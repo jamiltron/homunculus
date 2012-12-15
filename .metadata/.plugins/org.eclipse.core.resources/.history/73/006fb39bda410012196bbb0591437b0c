@@ -1,0 +1,11 @@
+package com.jamiltron.homunculus.model;
+
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
+public class Entity {
+  public Entity(Float x, Float y, Float w, Float h) {
+    Vector2   pos      = new Vector2(x, y);
+    Rectangle bounds   = new Rectangle(x, y, w, h);
+  }
+}

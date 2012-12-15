@@ -1,0 +1,47 @@
+package com.jamiltron.homunculus;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+public class Assets {
+  public static Texture background;
+  public static Texture pills;
+  public static Texture homunculi;
+
+  public static TextureRegion backgroundRegion;
+  public static TextureRegion bluePillRegion;
+  public static TextureRegion redPillRegion;
+  public static TextureRegion yellowPillRegion;
+  public static TextureRegion blueHomunculusRegion;
+  public static TextureRegion redHomunculusRegion;
+  public static TextureRegion yellowHomunculusRegion;
+  
+  public static BitmapFont font;
+  
+  public static Texture loadTexture(String file) {
+    return new Texture(Gdx.files.internal(file));
+  }
+  
+  public static void loadTextures() {
+    background = loadTexture("data/background.png");
+    backgroundRegion = new TextureRegion(background, 0, 1024 - 800, 600, 800);
+    
+    pills = loadTexture("data/pills.png");
+    blueSpellRegion   = new TextureRegion(pills, 0, 0, 32, 32);
+    redSpellRegion    = new TextureRegion(pills, 32, 0, 32, 32);
+    yellowSpellRegion = new TextureRegion(pills, 64, 0, 32, 32);
+    
+    homunculi = loadTexture("data/homunculi.png");
+    blueHomunculusRegion   = new TextureRegion(homunculi, 0, 0, 32, 32);
+    redHomunculusRegion    = new TextureRegion(homunculi, 32, 0, 32, 32);
+    yellowHomunculusRegion = new TextureRegion(homunculi, 64, 0, 32, 32);
+  }
+  
+  public static void loadFonts() {
+    font = new BitmapFont(Gdx.files.internal("data/font.fnt"),
+        Gdx.files.internal("data/font.png"), false);
+  }
+
+}

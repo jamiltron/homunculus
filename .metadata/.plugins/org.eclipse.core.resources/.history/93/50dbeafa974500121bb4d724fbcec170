@@ -1,0 +1,11 @@
+package com.jamiltron.homunculus.util;
+
+import com.badlogic.gdx.utils.Array;
+
+public class JArray<T> extends Array<T> {
+  
+  public JArray<T>(int rows, int cols, T value) {
+    
+  }
+
+}

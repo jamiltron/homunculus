@@ -1,0 +1,176 @@
+package com.jamiltron.homunculus.controller;
+
+import com.jamiltron.homunculus.model.World;
+import com.jamiltron.homunculus.model.Spell;
+import com.jamiltron.homunculus.model.Component;
+import com.jamiltron.homunculus.model.Homunculus;
+import java.util.HashMap;
+import java.util.Map;
+
+public class WorldController {
+  enum Keys {
+    LEFT, RIGHT, ROTR, ROTL, DROP;
+  }
+  
+  private World world;
+  private Spell activeSpell;
+  float currentTime;
+  
+  static Map<Keys, Boolean> keys = new HashMap<WorldController.Keys, Boolean>();
+  static {
+    keys.put(Keys.LEFT,   false);
+    keys.put(Keys.RIGHT,  false);
+    keys.put(Keys.ROTR, false);
+    keys.put(Keys.ROTL, false);
+    keys.put(Keys.DROP,   false);
+  };
+  
+  public void leftPress() {
+    keys.put(Keys.LEFT, true);
+  }
+  
+  public void rightPress() {
+    keys.put(Keys.RIGHT, true);
+  }
+  
+  public void rotrPress() {
+    keys.put(Keys.ROTR, true);
+  }
+  
+  public void rotlPress() {
+    keys.put(Keys.ROTL, true);
+  }
+  
+  public void leftRelease() {
+    keys.put(Keys.LEFT, false);
+  }
+  
+  public void rightRelease() {
+    keys.put(Keys.RIGHT, false);
+  }
+  
+  public void rotrRelease() {
+    keys.put(Keys.ROTR, false);
+  }
+  
+  public void rotlRelease() {
+    keys.put(Keys.ROTL, false);
+  }
+  
+  public WorldController(World w) {
+    world = w;
+    activeSpell = w.getActiveSpell();
+    currentTime = 0f;
+  }
+
+  
+  public void update(float dt) {
+    currentTime += dt;
+    if (currentTime >= 0.25f) {
+      currentTime -= 0.25f;
+      if (activeSpell == null) {
+        world.restSpell();
+        activeSpell = world.getActiveSpell();
+      } else {
+        activeSpell.setVel(null, -Component.SPEED);
+      }
+    }
+    updateSpell(dt, world);
+  }
+
+  
+  private void updateSpell(float dt, World world) {
+    if (activeSpell != null) {
+      boolean canMove = true;
+      
+      // check if rotating and can rotate
+      if (keys.get(Keys.ROTR) && activeSpell.getRotateTime() <= 0) {
+        if (activeSpell.isFlat() && activeSpell.topComponent().pos.y < 18) {
+          if (world.getGrid(activeSpell.leftComponent().pos.x - 1f, activeSpell.leftComponent().pos.y + 1f) == null) {
+            Component left = activeSpell.leftComponent();
+            Component right = activeSpell.rightComponent();
+            right.pos.x -= 1f;
+            left.pos.y  += 1f;
+            //activeSpell.rightComponent().pos.x -= 1f;
+            //activeSpell.leftComponent().pos.y += 1f;
+            activeSpell.setRotateTime(0.25f + dt);
+          }
+        } else if (activeSpell.isStanding() && 
+            activeSpell.topComponent().pos.y < 18 && 
+            activeSpell.rightComponent().pos.x < 8) {
+            if (world.getGrid(activeSpell.bottomComponent().pos.x + 1f, activeSpell.bottomComponent().pos.y)== null) {
+              activeSpell.topComponent().pos.x += 1f;
+              activeSpell.topComponent().pos.y -= 1f;
+              activeSpell.setRotateTime(0.25f + dt);
+            }
+          
+        }
+            
+      }
+      
+      
+      // check if we can move left
+      if (keys.get(Keys.LEFT) && 
+          activeSpell.getPauseTime() <= 0f &&
+          activeSpell.leftComponent().pos.x > 2 &&
+          activeSpell.topComponent().pos.y < 18) {
+        
+        if ((world.getGrid(activeSpell.topComponent().pos.x - 1f, activeSpell.topComponent().pos.y) != null) ||
+            (world.getGrid(activeSpell.bottomComponent().pos.x - 1f, activeSpell.bottomComponent().pos.y) != null)) {
+          canMove = false;
+        }
+            
+        if (canMove) {
+          activeSpell.setPauseTime(0.25f + dt);
+          activeSpell.setVel(-Component.SPEED, null);
+        }
+        canMove = true;
+      } 
+      
+      // check if we can move right
+      if (keys.get(Keys.RIGHT) && 
+          activeSpell.getPauseTime() <= 0f &&
+          activeSpell.rightComponent().pos.x < 9 &&
+          activeSpell.topComponent().pos.y < 18) {
+        
+        if ((world.getGrid(activeSpell.topComponent().pos.x + 1f, activeSpell.topComponent().pos.y) != null) ||
+            (world.getGrid(activeSpell.bottomComponent().pos.x + 1f, activeSpell.bottomComponent().pos.y) != null)) {
+          canMove = false;
+        }
+        
+        if (canMove) {
+          activeSpell.setPauseTime(0.25f + dt);
+          activeSpell.setVel(Component.SPEED, null);
+        }
+        canMove = true;
+      }
+      
+      // nullify movement if the player is holding down both
+      if (keys.get(Keys.LEFT) && keys.get(Keys.RIGHT)) {
+        activeSpell.setVel(0f, null);
+      }
+      
+      // check if we can move down
+      if (canMove && activeSpell.bottomComponent().pos.y <= 2f) {
+        canMove = false;
+      } else {
+        if ((world.getGrid(activeSpell.leftComponent().pos.x,  activeSpell.leftComponent().pos.y -1f) != null) ||
+            (world.getGrid(activeSpell.rightComponent().pos.x, activeSpell.rightComponent().pos.y - 1f) != null) ||
+            (world.getGrid(activeSpell.bottomComponent().pos.x, activeSpell.bottomComponent().pos.y - 1f) != null)) {
+          canMove = false;
+        }
+      }
+      
+      if (canMove) {
+        activeSpell.update(dt);
+        activeSpell.setVel(0f, 0f);
+      } else {
+        activeSpell.setVel(0f, 0f);
+        world.restSpell();
+        activeSpell = world.getActiveSpell();
+      }
+      
+    }
+  }
+  
+}

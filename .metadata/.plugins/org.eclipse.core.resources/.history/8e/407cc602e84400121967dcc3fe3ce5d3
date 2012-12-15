@@ -1,0 +1,75 @@
+package com.jamiltron.homunculus.model;
+
+public class Spell {
+  private final Component component1;
+  private final Component component2;
+  private float pauseTime;
+  
+  public Spell(Component p1, Component p2) {
+    component1 = p1;
+    component2 = p2;
+    pauseTime = 0;
+  }
+  
+  public Component getComponent1() {
+    return component1;
+  }
+  
+  public Component getComponent2() {
+    return component2;
+  }
+  
+  public Component lowestComponent() {
+    if (component1.pos.y <= component2.pos.y) {
+      return component1;
+    } else {
+      return component2;
+    }
+  }
+  
+  public Component leftestComponent() {
+    if (component1.pos.x <= component1.pos.x) {
+      return component1;
+    } else {
+      return component2;
+    }
+  }
+  
+  public Component rightestComponent() {
+    if (component1.pos.x >= component1.pos.x) {
+      return component1;
+    } else {
+      return component2;
+    }
+  }
+  
+  public float getPauseTime() {
+    return pauseTime;
+  }
+  
+  public void update(Float dt) {
+    pauseTime -= dt;
+    if (pauseTime < 0) {
+      pauseTime = 0;
+    }
+    component1.update(1f);
+    component2.update(1f);
+  }
+  
+  public void setPauseTime() {
+    pauseTime = pt;
+  }
+  
+  public void setVel(Float x, Float y) {
+    if (x != null) {
+      component1.vel.x = x;
+      component2.vel.x = x;
+    }
+    
+    if (y != null) {
+      component1.vel.y = y;
+      component2.vel.y = y;
+    }
+  }
+
+}

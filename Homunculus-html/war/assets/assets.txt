@@ -1,0 +1,5 @@
+d:
+d:data
+i:data/pills.png
+i:data/background.png
+i:data/homunculi.png

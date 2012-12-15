@@ -1,0 +1,65 @@
+package com.jamiltron.homunculus.controller;
+
+import com.jamiltron.homunculus.model.World;
+import com.jamiltron.homunculus.model.Spell;
+import com.jamiltron.homunculus.model.Component;
+import java.util.HashMap;
+import java.util.Map;
+
+public class WorldController {
+  enum Keys {
+    LEFT, RIGHT, ROTATE, DROP;
+  }
+  
+  private World world;
+  private Spell activeSpell;
+  float currentTime;
+  
+  static Map<Keys, Boolean> keys = new HashMap<WorldController.Keys, Boolean>();
+  static {
+    keys.put(Keys.LEFT, false);
+    keys.put(Keys.RIGHT, false);
+    keys.put(Keys.ROTATE, false);
+    keys.put(Keys.DROP, false);
+  };
+  
+  public void leftPress() {
+    keys.put(Keys.LEFT, true);
+  }
+  
+  public void rightPress() {
+    keys.put(Keys.RIGHT, true);
+  }
+  
+  public void leftRelease() {
+    keys.put(Keys.LEFT, false);
+  }
+  
+  public void rightRelease() {
+    keys.put(Keys.RIGHT, false);
+  }
+  
+  public WorldController(World w) {
+    world = w;
+    activeSpell = w.getActiveSpell();
+    currentTime = 0f;
+  }
+  
+  public void update(float dt) {
+    currentTime += dt;
+    if (currentTime >= 1f) {
+      currentTime -= 1f;
+      if (activeSpell == null) {
+        activeSpell = world.generateSpell();
+        world.setActiveSpell(activeSpell);
+      } else {
+        activeSpell.setVel(null, y)
+        //activeSpell.getComponent1().vel.y = -Component.SPEED;
+        //activeSpell.getComponent2().vel.y = -Component.SPEED;
+        activeSpell.update(1f);
+        activeSpell.getComponent1().vel.y = 0f;
+        activeSpell.getComponent2().vel.y = 0f;
+      }
+    }
+  }
+}

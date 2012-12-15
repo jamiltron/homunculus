@@ -1,0 +1,28 @@
+package com.jamiltron.homunculus.controller;
+
+import com.jamiltron.homunculus.model.World;
+import java.util.HashMap;
+import java.util.Map;
+
+public class WorldController {
+  enum Keys {
+    LEFT, RIGHT, ROTATE, DROP;
+  }
+  
+  private World world;
+  
+  static Map<Keys, Boolean> keys = new HashMap<WorldController.Keys, Boolean>();
+  static {
+    keys.put(Keys.LEFT, false);
+    keys.put(Keys.RIGHT, false);
+    keys.put(Keys.ROTATE, false);
+    keys.put(Keys.DROP, false);
+  };
+  
+  public WorldController(World w) {
+    this.world = w;
+  }
+  
+  public void update(float dt) {
+  }
+}

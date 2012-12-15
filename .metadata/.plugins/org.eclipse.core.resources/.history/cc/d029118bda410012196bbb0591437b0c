@@ -1,0 +1,20 @@
+package com.jamiltron.homunculus.model;
+
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
+public class Mob extends Entity {
+  Vector2 vel;
+  Vector2 acc;
+  
+  public Mob(Float x, Float y, Float w, Float h) {
+    super(x, y, w, h);
+  }
+  
+  public update(Float dt) {
+    bounds.setX(pos.x);
+    bounds.setY(pos.y);
+  }
+  
+
+}

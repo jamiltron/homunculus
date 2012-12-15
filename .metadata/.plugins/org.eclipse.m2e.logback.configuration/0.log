@@ -1,0 +1,14 @@
+2012-12-09 00:15:14,527 [ModalContext] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-09 00:17:51,522 [Worker-2] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-09 00:22:29,124 [Worker-6] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo1.maven.org/maven2
+2012-12-09 00:24:08,394 [Worker-6] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo1.maven.org/maven2 in 99269 ms
+2012-12-09 11:03:38,261 [Worker-1] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-09 22:55:06,732 [Worker-1] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-10 20:13:18,716 [org.eclipse.jdt.internal.ui.text.JavaReconciler] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-10 20:55:38,828 [Worker-3] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-10 21:00:25,467 [org.eclipse.jdt.internal.ui.text.JavaReconciler] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-10 21:06:03,846 [org.eclipse.jdt.internal.ui.text.JavaReconciler] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-12 19:25:42,872 [ModalContext] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-13 12:01:13,755 [org.eclipse.jdt.internal.ui.text.JavaReconciler] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-13 18:22:58,306 [Worker-1] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-15 14:20:09,759 [Worker-1] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog

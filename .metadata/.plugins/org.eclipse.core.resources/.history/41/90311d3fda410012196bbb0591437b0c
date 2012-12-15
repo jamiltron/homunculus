@@ -1,0 +1,7 @@
+package com.jamiltron.homunculus.model;
+
+public class Mob extends Entity {
+  Vector2 vel = new Vector2;
+  
+
+}

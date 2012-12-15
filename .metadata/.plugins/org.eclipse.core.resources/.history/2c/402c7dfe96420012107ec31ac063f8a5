@@ -1,0 +1,50 @@
+package com.jamiltron.homunculus.model;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+import com.jamiltron.homunculus.model.Color;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Random;
+
+public class World {
+
+  private Array<Homunculus> homunculi = new Array<Homunculus>();
+  
+  public World(int numHomunculi) {
+    createWorld(numHomunculi);
+  }
+  
+  public Array<Homunculus> getHomunculi() {
+    return homunculi;
+  }
+  
+  private void createWorld(int numHomunculi) {
+    //Boolean inserted;
+    //Color color;
+    Color[] colors = Color.values();
+    //float x, y;
+    //Map<Vector2, Boolean> places = new HashMap<Vector2, Boolean>();
+    //Random random = new Random(System.currentTimeMillis());
+    //Vector2 vector;
+    
+    for (int i = 0; i < 8; i++) {
+      homunculi.add(new Homunculus((float)(i + 2), 2f, colors[i % 3]));
+    }
+//    for (int i = 0; i < numHomunculi; i++) {
+//      inserted = false;
+//      do {
+//        x = (float)(random.nextInt(10 - 2) + 2);
+//        y = (float)(random.nextInt(17 - 1) + 1);
+//        vector = new Vector2(x, y);
+//        
+//        if (places.get(vector) == null) {
+//          places.put(vector, true);
+//          inserted = true;
+//          color = colors[i % 3];
+//          homunculi.add(new Homunculus((float)x, (float)y, color));
+//        }
+//      } while (!inserted);
+//    }
+  }
+}

@@ -1,0 +1,17 @@
+package com.jamiltron.homunculus.model;
+
+public class Spell {
+  Component component1;
+  Component component2;
+  
+  public Spell(Component p1, Component p2) {
+    component1 = p1;
+    component2 = p2;
+  }
+  
+  public void update(Float dt) {
+    component1.update(dt);
+    component2.update(dt);
+  }
+
+}
