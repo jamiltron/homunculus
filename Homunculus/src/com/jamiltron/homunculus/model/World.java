@@ -54,10 +54,6 @@ public class World {
     return new Spell(component1, component2);
   }
   
-  public void setActiveSpell(Spell spell) {
-    activeSpell = spell;
-  }
-  
   public void restSpell() {
     if (activeSpell != null) {
       putGrid(activeSpell.component1.pos.x, activeSpell.component1.pos.y, activeSpell.component1.color);
@@ -81,6 +77,7 @@ public class World {
     Boolean inserted;
     Color color;
     float x, y;
+    // TODO: Just use grid
     Map<Vector2, Boolean> places = new HashMap<Vector2, Boolean>();
     Vector2 vector = new Vector2(0, 0);
     colorGrid = new JArray<Color>(8, 17);

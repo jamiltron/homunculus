@@ -39,6 +39,7 @@ public class WorldRenderer {
     this.cam.update();
     spriteBatch = new SpriteBatch();
     Assets.loadTextures();
+    Assets.loadSounds();
   }
   
   public void render() {
@@ -48,7 +49,7 @@ public class WorldRenderer {
       renderSpells();
     spriteBatch.end();
   }
-  
+    
   private void renderBackground() {
     spriteBatch.draw(Assets.backgroundRegion, 0, 0, width, height);
   }
@@ -83,8 +84,8 @@ public class WorldRenderer {
   
   private void renderSpell(Spell spell) {
     if (spell != null) {
-      renderComponent(spell.getComponent1());
-      renderComponent(spell.getComponent2());
+      renderComponent(spell.component1);
+      renderComponent(spell.component2);
     }
   }
   
