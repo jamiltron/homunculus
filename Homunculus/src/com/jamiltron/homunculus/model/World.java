@@ -10,9 +10,11 @@ import java.util.Random;
 
 public class World {
   private Color[] colors = Color.values();
-  private Array<Homunculus> homunculi = new Array<Homunculus>();
-  private Array<Spell> setSpells = new Array<Spell>();
-  private JArray<Color> colorGrid;
+  public Array<Homunculus> homunculi = new Array<Homunculus>();
+  public Array<Spell> setSpells = new Array<Spell>();
+  public Array<Homunculus> deadHomunculi = new Array<Homunculus>();
+  public Array<Spell> deadSpells = new Array<Spell>();
+  public JArray<Color> colorGrid;
   private Spell activeSpell = null;
   private Spell nextSpell   = null;
   private Random random = new Random();
@@ -21,17 +23,22 @@ public class World {
     return colorGrid.get((int)x, (int)y);
   }
   
+  public Color getGrid(Component component) {
+    return colorGrid.get((int) component.pos.x, (int) component.pos.y);
+  }
+  
   public void putGrid(float x, float y, Color c) {
     colorGrid.set((int)x, (int)y, c);
   }
   
+
   public World(int numHomunculi) {
     createWorld(numHomunculi);
   }
   
-  public Array<Homunculus> getHomunculi() {
-    return homunculi;
-  }
+//  public Array<Homunculus> getHomunculi() {
+//    return homunculi;
+//  }
   
   public Spell getNextSpell() {
     return nextSpell;
@@ -41,8 +48,15 @@ public class World {
     return activeSpell;
   }
   
-  public Array<Spell> getSetSpells() {
-    return setSpells;
+//  public Array<Spell> getSetSpells() {
+//    return setSpells;
+//  }
+  
+  public void cleanUp() {
+    homunculi.removeAll(deadHomunculi, true);
+    setSpells.removeAll(deadSpells, true);
+    deadHomunculi.clear();
+    deadSpells.clear();
   }
   
   public Spell generateSpell() {
@@ -65,6 +79,7 @@ public class World {
     nextSpell = generateSpell();
   }
   
+
   public void activateSpell(Spell spell) {
     spell.component1.pos.x = 5;
     spell.component1.pos.y = 18;
@@ -87,7 +102,7 @@ public class World {
       inserted = false;
       do {
         x = (float)(random.nextInt(8)  + 2);
-        y = (float)(random.nextInt(13) + 2);
+        y = (float)(random.nextInt(12) + 2);
         vector.set(x, y);
 
         if (places.get(vector) == null) {

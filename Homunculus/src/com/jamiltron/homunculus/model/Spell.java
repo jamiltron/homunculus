@@ -5,6 +5,7 @@ public class Spell {
   public Component component2;
   private float pauseTime;
   private float rotateTime;
+  public boolean isFalling;
   
   public float getRotateTime() {
     return rotateTime;
@@ -18,6 +19,7 @@ public class Spell {
     component1 = p1;
     component2 = p2;
     pauseTime = 0;
+    isFalling = false;
   }
   
   public boolean isFlat() {
@@ -90,8 +92,9 @@ public class Spell {
     if (rotateTime < 0) {
       rotateTime = 0;
     }
-    component1.update(1f);
-    component2.update(1f);
+    
+    if (component1 != null) component1.update(1f);
+    if (component2 != null) component2.update(1f);
   }
   
   public void setPauseTime(float pt) {
@@ -100,13 +103,13 @@ public class Spell {
   
   public void setVel(Float x, Float y) {
     if (x != null) {
-      component1.vel.x = x;
-      component2.vel.x = x;
+      if (component1 != null) component1.vel.x = x;
+      if (component2 != null) component2.vel.x = x;
     }
     
     if (y != null) {
-      component1.vel.y = y;
-      component2.vel.y = y;
+      if (component1 != null) component1.vel.y = y;
+      if (component2 != null) component2.vel.y = y;
     }
   }
 

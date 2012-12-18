@@ -22,6 +22,8 @@ public class WorldController {
   float normalTime;
   
   JArray<Boolean> toDestroy;
+  JArray<Boolean> maybeDrop;
+  
   static Map<Keys, Boolean> keys = new HashMap<WorldController.Keys, Boolean>();
   static {
     keys.put(Keys.LEFT,   false);
@@ -81,13 +83,14 @@ public class WorldController {
     toDestroy = new JArray<Boolean>(8, 17);
     for (int y = 2; y <= 18; y++) {
       for (int x = 2; x <= 9; x++) {
-        toDestroy.set(x,  y, false);
+        toDestroy.set(x, y, false);
       }
     }
   }
 
   
   public void update(float dt) {
+    if (!updateDrops(dt)) {
     if (keys.get(Keys.DROP) && activeSpell != null) {
       dropTime = fastTime;
     } else {
@@ -105,18 +108,74 @@ public class WorldController {
     }
     updateSpell(dt);
     updateMatches();
+    }
   }
+  
+  private boolean updateDrops(float dt) {
+    boolean check1;
+    boolean check2;
+    boolean keepChecking = false;
+    
+    for (Spell spell : world.setSpells) {
+      check1 = true;
+      check2 = true;
+      if (spell.component1 == null) check1 = false;
+      if (spell.component2 == null) check2 = false;
 
+      if (check1 && check2) {
+        
+        if (spell.component1.pos.y > 2 && 
+            spell.component2.pos.y > 2 &&
+            world.getGrid(spell.component1.pos.x, spell.bottom() - 1f) == null &&
+            world.getGrid(spell.component2.pos.x, spell.bottom() - 1f) == null) {
+          world.putGrid(spell.component1.pos.x, spell.component1.pos.y, null);
+          world.putGrid(spell.component2.pos.x, spell.component2.pos.y, null);
+          spell.setVel(null, -1f);
+          keepChecking = true;
+        } else {
+          world.putGrid(spell.component1.pos.x, spell.component1.pos.y, spell.component1.color);
+          world.putGrid(spell.component2.pos.x, spell.component2.pos.y, spell.component2.color);
+        }
+      } else if (check1) {
+        if ((spell.component1.pos.y != 2) && 
+            world.getGrid(spell.component1.pos.x, spell.component1.pos.y - 1f) == null) {
+          world.putGrid(spell.component1.pos.x, spell.component1.pos.y, null);
+          spell.setVel(null, -1f);
+          keepChecking = true;
+        } else {
+          world.putGrid(spell.component1.pos.x, spell.component1.pos.y, spell.component1.color);
+        }
+        
+      } else if (check2) {
+        if ((spell.component2.pos.y != 2) && 
+            world.getGrid(spell.component2.pos.x, spell.component2.pos.y - 1f) == null) {
+          world.putGrid(spell.component2.pos.x, spell.component2.pos.y, null);
+          spell.setVel(null, -1f);
+          keepChecking = true;
+        } else {
+          world.putGrid(spell.component2.pos.x, spell.component2.pos.y, spell.component2.color);
+        }
+      } else {
+        System.out.println("Error condition in updateDrops.");
+      }
+      spell.update(dt);
+      spell.setVel(null, 0f);
+    }
+    
+    return keepChecking;
+  }
+  
   private void updateMatches() {
     boolean playSound = false;
     
-    for (int y = 2; y < 18; y++) {
+    // check for rows to destroy
+    for (int y = 2; y <= 18; y++) {
       for (int x = 2; x <= 6; x++) {
         if ((world.getGrid(x, y) != null) &&
             world.getGrid(x, y) == (world.getGrid(x + 1, y)) &&
             world.getGrid(x, y) == (world.getGrid(x + 2, y)) &&
             world.getGrid(x, y) == (world.getGrid(x + 3, y))) {
-          for (int j = x; j < x + 4; j++) {
+          for (int j = x; j <= x + 3; j++) {
             toDestroy.set(j, y, true);
             playSound = true;
             
@@ -125,13 +184,14 @@ public class WorldController {
       }
     }
     
-    for (int y = 2; y <= 14; y++) {
-      for (int x = 2; x < 10; x++) {
+    // check for columns to destroy
+    for (int y = 2; y <= 15; y++) {
+      for (int x = 2; x <= 9; x++) {
         if ((world.getGrid(x, y) != null) &&
             world.getGrid(x, y) == (world.getGrid(x, y + 1)) &&
             world.getGrid(x, y) == (world.getGrid(x, y + 2)) &&
             world.getGrid(x, y) == (world.getGrid(x, y + 3))){
-          for (int j = y; j < y + 4; j++) {
+          for (int j = y; j <= y + 3; j++) {
             toDestroy.set(x, j, true);
             playSound = true;
           }
@@ -139,8 +199,8 @@ public class WorldController {
       }
     }
     
-    for (Spell spell : world.getSetSpells()) {
-
+    // go through each spell, and destroy it if it matches an entry in toDestroy
+    for (Spell spell : world.setSpells) {
       float x, y;
       if ((spell != null) && 
           (spell.component1 != null) &&
@@ -153,7 +213,7 @@ public class WorldController {
       }
       if ((spell != null) && 
           (spell.component2 != null) &&
-          toDestroy.get(spell.component2.pos.x, spell.component2.pos.y)){
+          toDestroy.get(spell.component2.pos.x, spell.component2.pos.y)) {
         x = spell.component2.pos.x;
         y = spell.component2.pos.y;
         spell.component2 = null;
@@ -161,31 +221,29 @@ public class WorldController {
         toDestroy.set(x, y, false);
       }
     
-    
       if ((spell != null) &&
           (spell.component1 == null) && spell.component2 == null) {
-        world.getSetSpells().removeValue(spell, true);
+        world.deadSpells.add(spell);
       }
     }
     
-    for (Homunculus homunculi : world.getHomunculi()) {
+    // go through each homunculi and destroy it need be
+    for (Homunculus homunculi : world.homunculi) {
       float x, y;
       if ((homunculi != null) && 
           toDestroy.get(homunculi.pos.x, homunculi.pos.y)) {
 
         x = homunculi.pos.x;
         y = homunculi.pos.y;
-        world.getHomunculi().removeValue(homunculi, true);
+        world.deadHomunculi.add(homunculi);
         world.putGrid(x, y, null);
         toDestroy.set(x, y, false);
       }
     }
     
-    world.getHomunculi().removeValue(null, true);
-    world.getSetSpells().removeValue(null, true);
-    if (playSound) {
-      Assets.playSound(Assets.match);
-    }
+    world.cleanUp();
+
+    if (playSound) Assets.playSound(Assets.match);
   }
   
   private void updateSpell(float dt) {

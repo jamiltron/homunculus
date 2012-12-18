@@ -57,7 +57,7 @@ public class WorldRenderer {
   private void renderHomunculi() {
     TextureRegion drawingTexture;
     
-    for (Homunculus homunculi : world.getHomunculi()) {
+    for (Homunculus homunculi : world.homunculi) {
       if (homunculi != null) {
         if (homunculi.color.equals(Color.BLUE)) {
           drawingTexture = Assets.blueHomunculusRegion;
@@ -77,7 +77,7 @@ public class WorldRenderer {
   private void renderSpells() {
     renderSpell(world.getActiveSpell());
     renderSpell(world.getNextSpell());
-    for (Spell setSpell : world.getSetSpells()) {
+    for (Spell setSpell : world.setSpells) {
       renderSpell(setSpell);
     }
   }

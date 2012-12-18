@@ -12,3 +12,6 @@
 2012-12-13 12:01:13,755 [org.eclipse.jdt.internal.ui.text.JavaReconciler] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
 2012-12-13 18:22:58,306 [Worker-1] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
 2012-12-15 14:20:09,759 [Worker-1] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-16 10:55:20,840 [Worker-1] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-16 17:39:51,359 [org.eclipse.jdt.internal.ui.text.JavaReconciler] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2012-12-17 20:03:49,946 [Worker-1] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="32" version="2.0">
+<workbench progressCount="50" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="65" y="24">
 <fastViewData fastViewLocation="1024"/>
@@ -42,6 +42,7 @@
 <part id="3"/>
 <part id="4"/>
 <part id="5"/>
+<part id="6"/>
 </presentation>
 </folder>
 </info>
@@ -52,11 +53,11 @@
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WorldController.java" partName="WorldController.java" path="/home/jamiltron/Dropbox/workspace/java/homunculus/Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java" title="WorldController.java" tooltip="Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1719" selectionTopPixel="364"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="7678" selectionTopPixel="1278"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Spell.java" partName="Spell.java" path="/home/jamiltron/Dropbox/workspace/java/homunculus/Homunculus/src/com/jamiltron/homunculus/model/Spell.java" title="Spell.java" tooltip="Homunculus/src/com/jamiltron/homunculus/model/Spell.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/model/Spell.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1170" selectionTopPixel="347"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1739" selectionTopPixel="1112"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WorldRenderer.java" partName="WorldRenderer.java" path="/home/jamiltron/Dropbox/workspace/java/homunculus/Homunculus/src/com/jamiltron/homunculus/view/WorldRenderer.java" title="WorldRenderer.java" tooltip="Homunculus/src/com/jamiltron/homunculus/view/WorldRenderer.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/view/WorldRenderer.java"/>
@@ -68,7 +69,11 @@
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="World.java" partName="World.java" path="/home/jamiltron/Dropbox/workspace/java/homunculus/Homunculus/src/com/jamiltron/homunculus/model/World.java" title="World.java" tooltip="Homunculus/src/com/jamiltron/homunculus/model/World.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/model/World.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1168" selectionTopPixel="237"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1168" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="HomunculusGame.java" partName="HomunculusGame.java" path="/home/jamiltron/Dropbox/workspace/java/homunculus/Homunculus/src/com/jamiltron/homunculus/HomunculusGame.java" title="HomunculusGame.java" tooltip="Homunculus/src/com/jamiltron/homunculus/HomunculusGame.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/HomunculusGame.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -77,6 +82,7 @@
 <expanded>
 <category IMemento.internal.id="Errors"/>
 <category IMemento.internal.id="Warnings"/>
+<category IMemento.internal.id="Warnings (2 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="835" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="738"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -240,7 +246,7 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.1643167" ratioLeft="303" ratioRight="1541" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.74882996" ratioLeft="480" ratioRight="161" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
 <page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
@@ -281,159 +287,157 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/screen/GameScreen.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/model/Spell.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/model/World.java"/>
 </editors>
-<item historyLabel="World.java" index="3">
-<position info="not_deleted" x="1168" y="0"/>
-</item>
-<item historyLabel="GameScreen.java" index="1">
-<position info="not_deleted" x="2046" y="0"/>
-</item>
 <item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1319" y="0"/>
-</item>
-<item historyLabel="World.java" index="3">
-<position info="not_deleted" x="1168" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1319" y="0"/>
-</item>
-<item historyLabel="GameScreen.java" index="1">
-<position info="not_deleted" x="808" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="613" y="0"/>
-</item>
-<item historyLabel="Spell.java" index="2">
-<position info="not_deleted" x="1412" y="0"/>
-</item>
-<item historyLabel="Spell.java" index="2">
-<position info="not_deleted" x="1073" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="613" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1398" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1489" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1588" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1627" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1719" y="0"/>
+<position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
 <position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1907" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1907" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1521" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1834" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1864" y="0"/>
-</item>
-<item historyLabel="GameScreen.java" index="1">
-<position info="not_deleted" x="78" y="27"/>
-</item>
-<item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1864" y="0"/>
+<position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
 <position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1366" y="0"/>
+<position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
 <position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1018" y="0"/>
-</item>
-<item historyLabel="GameScreen.java" index="1">
-<position info="not_deleted" x="78" y="27"/>
-</item>
-<item historyLabel="GameScreen.java" index="1">
-<position info="not_deleted" x="674" y="0"/>
-</item>
-<item historyLabel="GameScreen.java" index="1">
-<position info="not_deleted" x="747" y="0"/>
-</item>
-<item historyLabel="GameScreen.java" index="1">
-<position info="not_deleted" x="994" y="0"/>
+<position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1719" y="0"/>
-</item>
-<item historyLabel="Spell.java" index="2">
-<position info="not_deleted" x="1073" y="0"/>
-</item>
-<item historyLabel="Spell.java" index="2">
-<position info="not_deleted" x="1021" y="0"/>
+<position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1719" y="0"/>
+<position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1855" y="0"/>
-</item>
-<item historyLabel="GameScreen.java" index="1">
-<position info="not_deleted" x="994" y="0"/>
-</item>
-<item historyLabel="Spell.java" index="2">
-<position info="not_deleted" x="1100" y="0"/>
+<position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1855" y="0"/>
+<position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1536" y="0"/>
-</item>
-<item historyLabel="Spell.java" index="2">
-<position info="not_deleted" x="1100" y="0"/>
-</item>
-<item historyLabel="Spell.java" index="2">
-<position info="not_deleted" x="1170" y="0"/>
+<position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1489" y="0"/>
-</item>
-<item historyLabel="World.java" index="3">
-<position info="not_deleted" x="1168" y="0"/>
+<position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1489" y="0"/>
+<position/>
 </item>
 <item historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1719" y="0"/>
+<position/>
 </item>
-<item historyLabel="GameScreen.java" index="1">
-<position info="not_deleted" x="994" y="0"/>
+<item historyLabel="WorldController.java" index="0">
+<position/>
 </item>
-<item historyLabel="World.java" index="3">
-<position info="not_deleted" x="1168" y="0"/>
+<item historyLabel="WorldController.java" index="0">
+<position/>
 </item>
-<item historyLabel="GameScreen.java" index="1">
-<position info="not_deleted" x="994" y="0"/>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="Spell.java" index="1">
+<position info="not_deleted" x="2229" y="51"/>
+</item>
+<item historyLabel="Spell.java" index="1">
+<position info="not_deleted" x="2287" y="0"/>
+</item>
+<item historyLabel="Spell.java" index="1">
+<position info="not_deleted" x="1739" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="633" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="1854" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="1861" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="1996" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="2006" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="5535" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="4220" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="4270" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="4273" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="5000" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="5086" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="4273" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="4513" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="4608" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="5326" y="0"/>
 </item>
 <item active="true" historyLabel="WorldController.java" index="0">
-<position info="not_deleted" x="1719" y="0"/>
+<position info="not_deleted" x="5421" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -441,9 +445,6 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
-<trimArea IMemento.internal.id="16384">
-<trimItem IMemento.internal.id="left"/>
-</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 <trimItem IMemento.internal.id="org.eclipse.mylyn.tasks.ui.trim.container"/>
@@ -453,11 +454,13 @@
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
 <trimItem IMemento.internal.id="com.google.gdt.eclipse.login.status.trim"/>
-<trimItem IMemento.internal.id="bottom"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="HomunculusGame.java" tooltip="Homunculus/src/com/jamiltron/homunculus/HomunculusGame.java">
+<persistable path="/Homunculus/src/com/jamiltron/homunculus/HomunculusGame.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="World.java" tooltip="Homunculus/src/com/jamiltron/homunculus/model/World.java">
 <persistable path="/Homunculus/src/com/jamiltron/homunculus/model/World.java"/>
 </file>
