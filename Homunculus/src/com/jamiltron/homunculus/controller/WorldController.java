@@ -20,6 +20,7 @@ public class WorldController {
   float dropTime;
   float fastTime;
   float normalTime;
+  int drops;
   
   JArray<Boolean> toDestroy;
   JArray<Boolean> maybeDrop;

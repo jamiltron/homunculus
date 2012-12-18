@@ -1,7 +1,10 @@
 *.class
-.metadata/
-Homunculus-html/gwt-unitCache/
-Homuncuus-html/war/
+.metadata/*
+Homunculus-html/gwt-unitCache/*
+Homuncuus-html/war/*
+Homuncuus-html/bin
+Homuncuus-desktop/bin
+Homuncuus/bin
 
 # Package Files #
 *.jar

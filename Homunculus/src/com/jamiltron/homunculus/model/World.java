@@ -92,9 +92,6 @@ public class World {
     Boolean inserted;
     Color color;
     float x, y;
-    // TODO: Just use grid
-    Map<Vector2, Boolean> places = new HashMap<Vector2, Boolean>();
-    Vector2 vector = new Vector2(0, 0);
     colorGrid = new JArray<Color>(8, 17);
     
     // create random homunculi
@@ -103,10 +100,9 @@ public class World {
       do {
         x = (float)(random.nextInt(8)  + 2);
         y = (float)(random.nextInt(12) + 2);
-        vector.set(x, y);
+        //vector.set(x, y);
 
-        if (places.get(vector) == null) {
-          places.put(vector, true);
+        if (getGrid(x, y) == null) {
           inserted = true;
           color = colors[i % colors.length];
           homunculi.add(new Homunculus((float)x, (float)y, color));
