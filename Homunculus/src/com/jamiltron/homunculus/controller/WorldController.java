@@ -23,7 +23,6 @@ public class WorldController {
   int drops;
   
   JArray<Boolean> toDestroy;
-  JArray<Boolean> maybeDrop;
   
   static Map<Keys, Boolean> keys = new HashMap<WorldController.Keys, Boolean>();
   static {
@@ -75,6 +74,7 @@ public class WorldController {
   }
   
   public WorldController(World w) {
+    drops = 0;
     world = w;
     activeSpell = w.getActiveSpell();
     currentTime = 0f;
@@ -92,23 +92,23 @@ public class WorldController {
   
   public void update(float dt) {
     if (!updateDrops(dt)) {
-    if (keys.get(Keys.DROP) && activeSpell != null) {
-      dropTime = fastTime;
-    } else {
-      dropTime = normalTime;
-    }
-    currentTime += dt;
-    if (currentTime >= dropTime) {
-      currentTime -= dropTime;
-      if (activeSpell == null) {
-        world.restSpell();
-        activeSpell = world.getActiveSpell();
+      if (keys.get(Keys.DROP) && activeSpell != null) {
+        dropTime = fastTime;
       } else {
-        activeSpell.setVel(null, -Component.SPEED);
+        dropTime = normalTime;
       }
-    }
-    updateSpell(dt);
-    updateMatches();
+      currentTime += dt;
+      if (currentTime >= dropTime) {
+        currentTime -= dropTime;
+        if (activeSpell == null) {
+          world.restSpell();
+          activeSpell = world.getActiveSpell();
+        } else {
+          activeSpell.setVel(null, -Component.SPEED);
+        }
+      }
+      updateSpell(dt);
+      updateMatches();
     }
   }
   
@@ -379,6 +379,15 @@ public class WorldController {
         }
         activeSpell.setVel(0f, 0f);
       } else {
+        drops += 1;
+          if (drops % 10 == 0 && drops != 0) {
+            normalTime -= 0.01f;
+            fastTime -= 0.01f;
+            System.out.println(normalTime);
+            System.out.println(fastTime);
+            if (normalTime < 0.01f) normalTime = 0.01f;
+            if (fastTime < 0.01f) fastTime = 0.01f;
+          }
         Assets.playSound(Assets.drop);
         activeSpell.setVel(0f, 0f);
         world.restSpell();

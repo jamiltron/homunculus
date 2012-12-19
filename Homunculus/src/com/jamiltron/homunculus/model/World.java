@@ -1,11 +1,8 @@
 package com.jamiltron.homunculus.model;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.jamiltron.homunculus.model.Color;
 import com.jamiltron.homunculus.util.JArray;
-import java.util.Map;
-import java.util.HashMap;
 import java.util.Random;
 
 public class World {
@@ -18,6 +15,7 @@ public class World {
   private Spell activeSpell = null;
   private Spell nextSpell   = null;
   private Random random = new Random();
+  public int Drops;
   
   public Color getGrid(float x, float y) {
     return colorGrid.get((int)x, (int)y);
@@ -35,11 +33,7 @@ public class World {
   public World(int numHomunculi) {
     createWorld(numHomunculi);
   }
-  
-//  public Array<Homunculus> getHomunculi() {
-//    return homunculi;
-//  }
-  
+    
   public Spell getNextSpell() {
     return nextSpell;
   }
@@ -47,10 +41,6 @@ public class World {
   public Spell getActiveSpell() {
     return activeSpell;
   }
-  
-//  public Array<Spell> getSetSpells() {
-//    return setSpells;
-//  }
   
   public void cleanUp() {
     homunculi.removeAll(deadHomunculi, true);
@@ -100,13 +90,12 @@ public class World {
       do {
         x = (float)(random.nextInt(8)  + 2);
         y = (float)(random.nextInt(12) + 2);
-        //vector.set(x, y);
 
         if (getGrid(x, y) == null) {
           inserted = true;
           color = colors[i % colors.length];
-          homunculi.add(new Homunculus((float)x, (float)y, color));
-          putGrid((float) x, (float) y, color);
+          homunculi.add(new Homunculus(x, y, color));
+          putGrid(x, y, color);
         }
       } while (!inserted);
     }

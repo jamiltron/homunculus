@@ -15,10 +15,8 @@ INDEX VERSION 1.126+/home/jamiltron/Dropbox/workspace/java/homunculus/.metadata/
 1159935248.index
 417373247.index
 2805782861.index
-1002223344.index
 2965795585.index
 4073392903.index
-4025361746.index
 2456322530.index
 1101969006.index
 922750126.index
