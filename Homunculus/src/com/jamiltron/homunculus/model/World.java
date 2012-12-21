@@ -60,8 +60,10 @@ public class World {
   
   public void restSpell() {
     if (activeSpell != null) {
-      putGrid(activeSpell.component1.pos.x, activeSpell.component1.pos.y, activeSpell.component1.color);
-      putGrid(activeSpell.component2.pos.x, activeSpell.component2.pos.y, activeSpell.component2.color);
+      putGrid(activeSpell.component1.pos.x, 
+          activeSpell.component1.pos.y, activeSpell.component1.color);
+      putGrid(activeSpell.component2.pos.x, 
+          activeSpell.component2.pos.y, activeSpell.component2.color);
       setSpells.add(activeSpell);
     }
     activateSpell(nextSpell);

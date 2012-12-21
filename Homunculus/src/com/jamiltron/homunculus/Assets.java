@@ -10,14 +10,26 @@ public class Assets {
   public static Texture background;
   public static Texture spells;
   public static Texture homunculi;
+  public static Texture cursor;
+  public static Texture title;
+  public static Texture startGame;
+  public static Texture quit;
+  public static Texture instructions;
+  public static Texture instructionsPage;
 
   public static TextureRegion backgroundRegion;
   public static TextureRegion blueSpellRegion;
+  public static TextureRegion cursorRegion;
   public static TextureRegion redSpellRegion;
   public static TextureRegion yellowSpellRegion;
   public static TextureRegion blueHomunculusRegion;
   public static TextureRegion redHomunculusRegion;
   public static TextureRegion yellowHomunculusRegion;
+  public static TextureRegion titleRegion;
+  public static TextureRegion startGameRegion;
+  public static TextureRegion quitRegion;
+  public static TextureRegion instructionsRegion;
+  public static TextureRegion instructionsPageRegion;
   
   public static BitmapFont font;
   
@@ -43,9 +55,31 @@ public class Assets {
     return new Texture(Gdx.files.internal(file));
   }
   
+  public static void loadMenuTextures() {
+    cursor = loadTexture("data/gfx/cursor.png");
+    cursorRegion = new TextureRegion(cursor, 0, 0, 64, 64);
+    title = loadTexture("data/gfx/Title.png");
+    titleRegion = new TextureRegion(title, 0, 0, 1028, 256);
+    
+    instructions = loadTexture("data/gfx/Instructions.png");
+    instructionsRegion = new TextureRegion(instructions, 0, 0, 512, 128);
+    
+    startGame = loadTexture("data/gfx/StartGame.png");
+    startGameRegion = new TextureRegion(startGame, 0, 0, 512, 128);
+    
+    quit = loadTexture("data/gfx/Quit.png");
+    quitRegion = new TextureRegion(quit, 0, 0, 512, 128);
+    
+    instructionsPage = loadTexture("data/gfx/InstructionScreen.png");
+    instructionsPageRegion = new TextureRegion(instructionsPage, 
+        0, 0, 600, 800);
+  }
+  
   public static void loadTextures() {
     background = loadTexture("data/gfx/background.png");
     backgroundRegion = new TextureRegion(background, 0, 1024 - 800, 600, 800);
+    
+    
     
     spells = loadTexture("data/gfx/pills.png");
     blueSpellRegion   = new TextureRegion(spells, 0, 0, 32, 32);
@@ -59,8 +93,8 @@ public class Assets {
   }
   
   public static void loadFonts() {
-    font = new BitmapFont(Gdx.files.internal("data/font.fnt"),
-        Gdx.files.internal("data/font.png"), false);
+    font = new BitmapFont(Gdx.files.internal("data/fnt/font.fnt"),
+        Gdx.files.internal("data/fnt/font.png"), false);
   }
 
 }

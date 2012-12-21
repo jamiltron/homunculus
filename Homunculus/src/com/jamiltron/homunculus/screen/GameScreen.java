@@ -1,5 +1,6 @@
 package com.jamiltron.homunculus.screen;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
@@ -15,6 +16,12 @@ public class GameScreen implements Screen, InputProcessor {
   private World           world;
   private WorldRenderer   renderer;
   private WorldController controller;
+  private Game            game;
+  
+  public GameScreen(Game g) {
+    super();
+    game = g;
+  }
   
   @Override
   public boolean keyDown(int keycode) {
@@ -117,7 +124,7 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public void show() {
-    world = new World(3);
+    world = new World(7);
     renderer = new WorldRenderer(world);
     controller = new WorldController(world);
     Gdx.input.setInputProcessor(this);

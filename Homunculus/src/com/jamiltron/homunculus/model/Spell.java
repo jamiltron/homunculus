@@ -1,5 +1,7 @@
 package com.jamiltron.homunculus.model;
 
+import com.badlogic.gdx.math.Vector2;
+
 public class Spell {
   public Component component1;
   public Component component2;
@@ -99,6 +101,17 @@ public class Spell {
   
   public void setPauseTime(float pt) {
     pauseTime = pt;
+  }
+  
+  public Vector2 getVel() {
+    if (component1 != null) {
+      return component1.vel;
+    } else if (component2 != null) {
+      return component2.vel;
+    } else {
+      return null;
+    }
+    
   }
   
   public void setVel(Float x, Float y) {

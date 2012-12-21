@@ -91,6 +91,7 @@ public class WorldController {
 
   
   public void update(float dt) {
+    
     if (!updateDrops(dt)) {
       if (keys.get(Keys.DROP) && activeSpell != null) {
         dropTime = fastTime;
@@ -358,12 +359,13 @@ public class WorldController {
       if (canMove && activeSpell.bottomComponent().pos.y <= 2f) {
         canMove = false;
       } else {
-        if ((world.getGrid(activeSpell.leftComponent().pos.x, 
+        if (((world.getGrid(activeSpell.leftComponent().pos.x, 
                 activeSpell.leftComponent().pos.y -1f) != null) ||
             (world.getGrid(activeSpell.rightComponent().pos.x, 
                 activeSpell.rightComponent().pos.y - 1f) != null) ||
             (world.getGrid(activeSpell.bottomComponent().pos.x, 
-                activeSpell.bottomComponent().pos.y - 1f) != null)) {
+                activeSpell.bottomComponent().pos.y - 1f) != null)) &&
+             (activeSpell.getVel().y == -Component.SPEED)){
           canMove = false;
         }
       }
@@ -378,13 +380,11 @@ public class WorldController {
           activeSpell.update(0f);
         }
         activeSpell.setVel(0f, 0f);
-      } else {
+      } else if (activeSpell.getVel().y == -Component.SPEED) {
         drops += 1;
           if (drops % 10 == 0 && drops != 0) {
             normalTime -= 0.01f;
             fastTime -= 0.01f;
-            System.out.println(normalTime);
-            System.out.println(fastTime);
             if (normalTime < 0.01f) normalTime = 0.01f;
             if (fastTime < 0.01f) fastTime = 0.01f;
           }
