@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move 3 elements to &apos;gfx&apos;&#x0A;- Original project: &apos;Homunculus-android&apos;&#x0A;- Destination element: &apos;gfx&apos;&#x0A;- Original elements:&#x0A;     pills.png&#x0A;     background.png&#x0A;     homunculi.png&#x0A;- Update references to refactored element" description="Move files" element1="assets/data/pills.png" element2="assets/data/background.png" element3="assets/data/homunculi.png" files="3" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1355610132845" target="assets/data/gfx" units="0" version="1.0"/>
-</session>

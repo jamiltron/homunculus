@@ -6,31 +6,35 @@ import com.jamiltron.homunculus.model.Spell;
 import com.jamiltron.homunculus.model.Component;
 import com.jamiltron.homunculus.model.Homunculus;
 import com.jamiltron.homunculus.util.JArray;
+import com.jamiltron.homunculus.Settings;
 import java.util.HashMap;
 import java.util.Map;
 
 public class WorldController {
   enum Keys {
-    LEFT, RIGHT, ROTR, ROTL, DROP;
+    LEFT, RIGHT, ROTR, ROTL, DROP, PAUSE;
   }
   
   private World world;
   private Spell activeSpell;
+  private Settings settings;
   float currentTime;
   float dropTime;
   float fastTime;
-  float normalTime;
+  public float normalTime;
+  float pauseTime;
   int drops;
   
   JArray<Boolean> toDestroy;
   
   static Map<Keys, Boolean> keys = new HashMap<WorldController.Keys, Boolean>();
   static {
-    keys.put(Keys.LEFT,   false);
-    keys.put(Keys.RIGHT,  false);
-    keys.put(Keys.ROTR, false);
-    keys.put(Keys.ROTL, false);
-    keys.put(Keys.DROP,   false);
+    keys.put(Keys.LEFT,  false);
+    keys.put(Keys.RIGHT, false);
+    keys.put(Keys.ROTR,  false);
+    keys.put(Keys.ROTL,  false);
+    keys.put(Keys.DROP,  false);
+    keys.put(Keys.PAUSE, false);
   };
   
   public void leftPress() {
@@ -53,6 +57,10 @@ public class WorldController {
     keys.put(Keys.DROP, true);
   }
   
+  public void pausePress() {
+    keys.put(Keys.PAUSE, true);
+  }
+  
   public void leftRelease() {
     keys.put(Keys.LEFT, false);
   }
@@ -73,13 +81,32 @@ public class WorldController {
     keys.put(Keys.DROP, false);
   }
   
-  public WorldController(World w) {
+  public void pauseRelease() {
+    keys.put(Keys.PAUSE, false);
+  }
+  
+  public WorldController(World w, Settings s) {
+    settings = s;
+    pauseTime = 0.15f;
     drops = 0;
     world = w;
     activeSpell = w.getActiveSpell();
     currentTime = 0f;
-    fastTime = 0.1f;
-    normalTime = 0.5f;
+    
+    // grab the game speed from the settings
+    if (settings.getSpeed().ordinal() == 0) {
+      normalTime = 0.75f;
+      fastTime = 0.1f;
+    } else if (settings.getSpeed().ordinal() == 1) {
+      normalTime = 0.5f;
+      fastTime = 0.1f;
+    } else if (settings.getSpeed().ordinal() == 2) {
+      normalTime = 0.25f;
+      fastTime = 0.08f;
+    } else {
+      throw new IllegalArgumentException("Invalid speed setting");
+    }
+
     dropTime = normalTime;
     toDestroy = new JArray<Boolean>(8, 17);
     for (int y = 2; y <= 18; y++) {
@@ -89,7 +116,6 @@ public class WorldController {
     }
   }
 
-  
   public void update(float dt) {
     
     if (!updateDrops(dt)) {
@@ -135,8 +161,10 @@ public class WorldController {
           spell.setVel(null, -1f);
           keepChecking = true;
         } else {
-          world.putGrid(spell.component1.pos.x, spell.component1.pos.y, spell.component1.color);
-          world.putGrid(spell.component2.pos.x, spell.component2.pos.y, spell.component2.color);
+          world.putGrid(spell.component1.pos.x, spell.component1.pos.y, 
+              spell.component1.color);
+          world.putGrid(spell.component2.pos.x, spell.component2.pos.y, 
+              spell.component2.color);
         }
       } else if (check1) {
         if ((spell.component1.pos.y != 2) && 
@@ -145,7 +173,8 @@ public class WorldController {
           spell.setVel(null, -1f);
           keepChecking = true;
         } else {
-          world.putGrid(spell.component1.pos.x, spell.component1.pos.y, spell.component1.color);
+          world.putGrid(spell.component1.pos.x, spell.component1.pos.y, 
+              spell.component1.color);
         }
         
       } else if (check2) {
@@ -155,7 +184,8 @@ public class WorldController {
           spell.setVel(null, -1f);
           keepChecking = true;
         } else {
-          world.putGrid(spell.component2.pos.x, spell.component2.pos.y, spell.component2.color);
+          world.putGrid(spell.component2.pos.x, spell.component2.pos.y, 
+              spell.component2.color);
         }
       } else {
         System.out.println("Error condition in updateDrops.");
@@ -322,7 +352,7 @@ public class WorldController {
         }
             
         if (canMove) {
-          activeSpell.setPauseTime(0.25f + dt);
+          activeSpell.setPauseTime(pauseTime + dt);
           activeSpell.setVel(-Component.SPEED, null);
         }
         canMove = true;
@@ -344,7 +374,7 @@ public class WorldController {
         }
         
         if (canMove) {
-          activeSpell.setPauseTime(0.25f + dt);
+          activeSpell.setPauseTime(pauseTime + dt);
           activeSpell.setVel(Component.SPEED, null);
         }
         canMove = true;

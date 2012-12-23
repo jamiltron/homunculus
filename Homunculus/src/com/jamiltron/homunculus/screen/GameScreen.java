@@ -6,10 +6,10 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
-
+import com.jamiltron.homunculus.Settings;
 import com.jamiltron.homunculus.controller.WorldController;
-import com.jamiltron.homunculus.view.WorldRenderer;
 import com.jamiltron.homunculus.model.World;
+import com.jamiltron.homunculus.view.WorldRenderer;
 
 public class GameScreen implements Screen, InputProcessor {
 
@@ -17,10 +17,12 @@ public class GameScreen implements Screen, InputProcessor {
   private WorldRenderer   renderer;
   private WorldController controller;
   private Game            game;
+  private Settings        settings;
   
-  public GameScreen(Game g) {
+  public GameScreen(Game g, Settings s) {
     super();
     game = g;
+    settings = s;
   }
   
   @Override
@@ -124,9 +126,9 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public void show() {
-    world = new World(7);
+    world = new World(settings.getHomunculiNum() + 4);
     renderer = new WorldRenderer(world);
-    controller = new WorldController(world);
+    controller = new WorldController(world, settings);
     Gdx.input.setInputProcessor(this);
   }
 

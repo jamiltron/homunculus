@@ -1,7 +1,0 @@
-package com.jamiltron.homunculus.util;
-
-import com.badlogic.gdx.utils.Array;
-
-public class JArray<T> extends Array {
-
-}

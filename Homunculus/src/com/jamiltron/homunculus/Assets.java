@@ -11,15 +11,18 @@ public class Assets {
   public static Texture spells;
   public static Texture homunculi;
   public static Texture cursor;
+  public static Texture cursorDown;
   public static Texture title;
   public static Texture startGame;
   public static Texture quit;
   public static Texture instructions;
   public static Texture instructionsPage;
+  public static Texture settingsPage;
 
   public static TextureRegion backgroundRegion;
   public static TextureRegion blueSpellRegion;
   public static TextureRegion cursorRegion;
+  public static TextureRegion cursorDownRegion;
   public static TextureRegion redSpellRegion;
   public static TextureRegion yellowSpellRegion;
   public static TextureRegion blueHomunculusRegion;
@@ -30,6 +33,7 @@ public class Assets {
   public static TextureRegion quitRegion;
   public static TextureRegion instructionsRegion;
   public static TextureRegion instructionsPageRegion;
+  public static TextureRegion settingsPageRegion;
   
   public static BitmapFont font;
   
@@ -58,6 +62,10 @@ public class Assets {
   public static void loadMenuTextures() {
     cursor = loadTexture("data/gfx/cursor.png");
     cursorRegion = new TextureRegion(cursor, 0, 0, 64, 64);
+    
+    cursorDown = loadTexture("data/gfx/cursor_down.png");
+    cursorDownRegion = new TextureRegion(cursorDown, 0, 0, 16, 16);
+    
     title = loadTexture("data/gfx/Title.png");
     titleRegion = new TextureRegion(title, 0, 0, 1028, 256);
     
@@ -72,6 +80,10 @@ public class Assets {
     
     instructionsPage = loadTexture("data/gfx/InstructionScreen.png");
     instructionsPageRegion = new TextureRegion(instructionsPage, 
+        0, 0, 600, 800);
+    
+    settingsPage = loadTexture("data/gfx/SettingsScreen.png");
+    settingsPageRegion = new TextureRegion(settingsPage,
         0, 0, 600, 800);
   }
   

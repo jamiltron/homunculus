@@ -1,6 +1,0 @@
-package com.jamiltron.homunculus.model;
-
-public class PillPart extends Entity {
-  private static final Float WIDTH = 1f;
-  private static final Float HEIGHT = 1f;
-}

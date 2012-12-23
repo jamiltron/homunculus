@@ -54,7 +54,8 @@ public class MainMenu implements Screen, InputProcessor {
     
     if (keycode == Keys.SPACE || keycode == Keys.ENTER) {
       if (arrowPos.y == 18) {
-        game.setScreen(new GameScreen(game));
+        //game.setScreen(new GameScreen(game));
+        game.setScreen(new SettingsScreen(game, this));
       } else if (arrowPos.y == 15) {
         game.setScreen(new InstructionScreen(game, this));
       } else {
@@ -152,7 +153,6 @@ public class MainMenu implements Screen, InputProcessor {
 
   @Override
   public void show() {
-    Assets.loadMenuTextures();
     Gdx.input.setInputProcessor(this);
     
   }
