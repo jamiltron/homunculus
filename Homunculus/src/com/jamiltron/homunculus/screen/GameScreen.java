@@ -46,6 +46,13 @@ public class GameScreen implements Screen, InputProcessor {
     if (keycode == Keys.Z){
       controller.rotlPress();
     }
+    
+    if (keycode == Keys.P) {
+      controller.pausePress();
+    }
+    
+    controller.anyPress();
+    
     return true;
   }
 
@@ -70,6 +77,13 @@ public class GameScreen implements Screen, InputProcessor {
     if (keycode == Keys.Z){
       controller.rotlRelease();
     }
+    
+    if (keycode == Keys.P){
+      controller.pauseRelease();
+    }
+    
+    controller.anyRelease();
+    
     return true;
   }
 

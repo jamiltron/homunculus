@@ -18,7 +18,13 @@ public class Assets {
   public static Texture instructions;
   public static Texture instructionsPage;
   public static Texture settingsPage;
-
+  public static Texture won;
+  public static Texture paused;
+  public static Texture over;
+  
+  public static TextureRegion overRegion;
+  public static TextureRegion wonRegion;
+  public static TextureRegion pausedRegion;
   public static TextureRegion backgroundRegion;
   public static TextureRegion blueSpellRegion;
   public static TextureRegion cursorRegion;
@@ -91,7 +97,14 @@ public class Assets {
     background = loadTexture("data/gfx/background.png");
     backgroundRegion = new TextureRegion(background, 0, 1024 - 800, 600, 800);
     
+    won = loadTexture("data/gfx/won_screen.png");
+    wonRegion = new TextureRegion(background, 0, 0, 256, 256);
     
+    over = loadTexture("data/gfx/over_screen.png");
+    overRegion = new TextureRegion(over, 0, 0, 256, 256);
+    
+    paused = loadTexture("data/gfx/paused_screen.png");
+    pausedRegion = new TextureRegion(paused, 0, 0, 256, 256);
     
     spells = loadTexture("data/gfx/pills.png");
     blueSpellRegion   = new TextureRegion(spells, 0, 0, 32, 32);

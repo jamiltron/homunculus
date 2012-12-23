@@ -12,12 +12,14 @@ import java.util.Map;
 
 public class WorldController {
   enum Keys {
-    LEFT, RIGHT, ROTR, ROTL, DROP, PAUSE;
+    LEFT, RIGHT, ROTR, ROTL, DROP, PAUSE, ANY;
   }
   
   private World world;
   private Spell activeSpell;
   private Settings settings;
+  private boolean paused;
+  private boolean unpausable;
   float currentTime;
   float dropTime;
   float fastTime;
@@ -35,7 +37,18 @@ public class WorldController {
     keys.put(Keys.ROTL,  false);
     keys.put(Keys.DROP,  false);
     keys.put(Keys.PAUSE, false);
+    keys.put(Keys.ANY, false);
   };
+  
+  public void resetKeys() {
+    keys.put(Keys.LEFT,  false);
+    keys.put(Keys.RIGHT, false);
+    keys.put(Keys.ROTR,  false);
+    keys.put(Keys.ROTL,  false);
+    keys.put(Keys.DROP,  false);
+    keys.put(Keys.PAUSE, false);
+    keys.put(Keys.ANY, false);
+  }
   
   public void leftPress() {
     keys.put(Keys.LEFT, true);
@@ -59,6 +72,10 @@ public class WorldController {
   
   public void pausePress() {
     keys.put(Keys.PAUSE, true);
+  }
+  
+  public void anyPress() {
+    keys.put(Keys.ANY, true);
   }
   
   public void leftRelease() {
@@ -85,7 +102,13 @@ public class WorldController {
     keys.put(Keys.PAUSE, false);
   }
   
+  public void anyRelease() {
+    keys.put(Keys.ANY, false);
+  }
+  
   public WorldController(World w, Settings s) {
+    paused = false;
+    unpausable = true;
     settings = s;
     pauseTime = 0.15f;
     drops = 0;
@@ -116,26 +139,45 @@ public class WorldController {
     }
   }
 
+  public void updatePaused() {
+    // if the game is not paused, pause it
+    if (unpausable && !paused && keys.get(Keys.PAUSE)) {
+      paused = true;
+      world.paused = true;
+      unpausable = false;
+    // if the game is paused, unpause it
+    } else if (unpausable && paused && keys.get(Keys.ANY)) {
+      paused = false;
+      world.paused = false;
+      unpausable = false;
+      resetKeys();
+    } else if (keys.get(Keys.PAUSE) == false) {
+      unpausable = true;
+    }
+  }
+  
   public void update(float dt) {
-    
-    if (!updateDrops(dt)) {
-      if (keys.get(Keys.DROP) && activeSpell != null) {
-        dropTime = fastTime;
-      } else {
-        dropTime = normalTime;
-      }
-      currentTime += dt;
-      if (currentTime >= dropTime) {
-        currentTime -= dropTime;
-        if (activeSpell == null) {
-          world.restSpell();
-          activeSpell = world.getActiveSpell();
+    updatePaused();
+    if (!paused) {
+      if (!updateDrops(dt)) {
+        if (keys.get(Keys.DROP) && activeSpell != null) {
+          dropTime = fastTime;
         } else {
-          activeSpell.setVel(null, -Component.SPEED);
+          dropTime = normalTime;
         }
+        currentTime += dt;
+        if (currentTime >= dropTime) {
+          currentTime -= dropTime;
+          if (activeSpell == null) {
+            world.restSpell();
+            activeSpell = world.getActiveSpell();
+          } else {
+            activeSpell.setVel(null, -Component.SPEED);
+          }
+        }
+        updateSpell(dt);
+        updateMatches();
       }
-      updateSpell(dt);
-      updateMatches();
     }
   }
   
@@ -188,7 +230,7 @@ public class WorldController {
               spell.component2.color);
         }
       } else {
-        System.out.println("Error condition in updateDrops.");
+        throw new Error("Error condition in updateDrops.");
       }
       spell.update(dt);
       spell.setVel(null, 0f);

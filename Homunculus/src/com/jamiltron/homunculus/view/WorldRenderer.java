@@ -47,9 +47,22 @@ public class WorldRenderer {
       renderBackground();
       renderHomunculi();
       renderSpells();
+      renderMessages();
     spriteBatch.end();
   }
+  
+  private void renderMessages() {
+    TextureRegion tempRegion = null;
+    if (world.won) {
+      tempRegion = Assets.wonRegion;
+    } else if (world.paused){
+      tempRegion = Assets.pausedRegion;
+    } else if (world.lost) {
+      tempRegion = Assets.overRegion;
+    }
     
+    if (tempRegion != null) spriteBatch.draw(tempRegion, 2 * ppuX, 8 * ppuY, 256, 256);
+  }
   private void renderBackground() {
     spriteBatch.draw(Assets.backgroundRegion, 0, 0, width, height);
   }

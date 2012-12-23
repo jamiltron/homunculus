@@ -7,15 +7,19 @@ import java.util.Random;
 
 public class World {
   private Color[] colors = Color.values();
+  public int numHomunculi;
   public Array<Homunculus> homunculi = new Array<Homunculus>();
   public Array<Spell> setSpells = new Array<Spell>();
   public Array<Homunculus> deadHomunculi = new Array<Homunculus>();
   public Array<Spell> deadSpells = new Array<Spell>();
   public JArray<Color> colorGrid;
+  public boolean paused;
+  public boolean won;
+  public boolean lost;
   private Spell activeSpell = null;
   private Spell nextSpell   = null;
   private Random random = new Random();
-  public int Drops;
+
   
   public Color getGrid(float x, float y) {
     return colorGrid.get((int)x, (int)y);
@@ -80,7 +84,11 @@ public class World {
     spell.component2.pos.y = 18;
   }
   
-  private void createWorld(int numHomunculi) {
+  private void createWorld(int nh) {
+    numHomunculi = nh;
+    paused = false;
+    won = false;
+    lost = false;
     Boolean inserted;
     Color color;
     float x, y;
