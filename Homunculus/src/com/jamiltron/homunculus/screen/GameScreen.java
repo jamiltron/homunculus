@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
+import com.jamiltron.homunculus.Assets;
 import com.jamiltron.homunculus.Settings;
 import com.jamiltron.homunculus.controller.WorldController;
 import com.jamiltron.homunculus.model.World;
@@ -13,77 +14,77 @@ import com.jamiltron.homunculus.view.WorldRenderer;
 
 public class GameScreen implements Screen, InputProcessor {
 
-  private World           world;
-  private WorldRenderer   renderer;
+  private World world;
+  private WorldRenderer renderer;
   private WorldController controller;
-  private Game            game;
-  private Settings        settings;
-  
+  private final Game game;
+  private final Settings settings;
+
   public GameScreen(Game g, Settings s) {
     super();
     game = g;
     settings = s;
   }
-  
+
   @Override
   public boolean keyDown(int keycode) {
-    if (keycode == Keys.LEFT){
+    if (keycode == Keys.LEFT) {
       controller.leftPress();
     }
-    
-    if (keycode == Keys.RIGHT){
+
+    if (keycode == Keys.RIGHT) {
       controller.rightPress();
     }
-    
+
     if (keycode == Keys.DOWN) {
       controller.dropPress();
     }
-    
-    if (keycode == Keys.X){
+
+    if (keycode == Keys.X) {
       controller.rotrPress();
     }
-    
-    if (keycode == Keys.Z){
+
+    if (keycode == Keys.Z) {
       controller.rotlPress();
     }
-    
+
     if (keycode == Keys.P) {
       controller.pausePress();
     }
-    
+
     controller.anyPress();
-    
+
     return true;
   }
 
   @Override
   public boolean keyUp(int keycode) {
-    if (keycode == Keys.LEFT){
+    if (keycode == Keys.LEFT) {
       controller.leftRelease();
     }
-    
-    if (keycode == Keys.RIGHT){
+
+    if (keycode == Keys.RIGHT) {
       controller.rightRelease();
     }
-    
-    if (keycode == Keys.DOWN){
+
+    if (keycode == Keys.DOWN) {
       controller.dropRelease();
     }
-    
-    if (keycode == Keys.X){
+
+    if (keycode == Keys.X) {
       controller.rotrRelease();
     }
-    
-    if (keycode == Keys.Z){
+
+    if (keycode == Keys.Z) {
       controller.rotlRelease();
     }
-    
-    if (keycode == Keys.P){
+
+    if (keycode == Keys.P) {
       controller.pauseRelease();
     }
-    
+
     controller.anyRelease();
-    
+
     return true;
   }
 
@@ -127,12 +128,22 @@ public class GameScreen implements Screen, InputProcessor {
   public void render(float delta) {
     Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
     Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-    
+
     controller.update(delta);
     renderer.render();
-    
-  }
 
+    if (controller.nextLevel) {
+      int numHomunculi = 20;
+      if (world.numHomunculi + 1 <= 20) {
+        numHomunculi = world.numHomunculi + 1;
+      }
+
+      world = new World(numHomunculi, world.score);
+      controller.resetController(world);
+      renderer.resetRenderer(world);
+    }
+
+  }
   @Override
   public void resize(int w, int h) {
     renderer.setSize(w, h);
@@ -140,9 +151,11 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public void show() {
+    Assets.loadTextures();
+    Assets.loadSounds();
     world = new World(settings.getHomunculiNum() + 4);
     renderer = new WorldRenderer(world);
-    controller = new WorldController(world, settings);
+    controller = new WorldController(world, settings, game);
     Gdx.input.setInputProcessor(this);
   }
 
@@ -154,13 +167,13 @@ public class GameScreen implements Screen, InputProcessor {
   @Override
   public void pause() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void resume() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override

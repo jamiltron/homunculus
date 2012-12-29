@@ -13,12 +13,11 @@ import com.jamiltron.homunculus.Assets;
 import com.jamiltron.homunculus.Settings;
 
 public class SettingsScreen implements Screen, InputProcessor {
-  
-  private Game game;
-  private SpriteBatch spriteBatch;
-  private OrthographicCamera cam;
-  private MainMenu mainMenu;
-  private Vector2 arrowPos1;
+
+  private final Game game;
+  private final SpriteBatch spriteBatch;
+  private final OrthographicCamera cam;
+  private final Vector2 arrowPos1;
   private Vector2 arrowPos2;
   private Vector2 arrowPos3;
   private int currentArrow;
@@ -31,12 +30,13 @@ public class SettingsScreen implements Screen, InputProcessor {
   private int numHomunculi;
   private int speed;
   private boolean music;
-  private boolean sound;
-  
+  private final boolean sound;
+
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
-  
-  public SettingsScreen(Game g, MainMenu mm) {
+
+  public SettingsScreen(Game g) {
+    Assets.loadFonts();
     music = true;
     sound = true;
     numHomunculi = 0;
@@ -49,9 +49,8 @@ public class SettingsScreen implements Screen, InputProcessor {
     this.cam.update();
     spriteBatch = new SpriteBatch();
     game = g;
-    mainMenu = mm;
   }
-  
+
   @Override
   public boolean keyDown(int keycode) {
     if (currentArrow == 1) {
@@ -62,7 +61,7 @@ public class SettingsScreen implements Screen, InputProcessor {
           arrowPos1.x -= .75f;
           numHomunculi -= 1;
         }
-      } else if (canMove && keycode == Keys.RIGHT){
+      } else if (canMove && keycode == Keys.RIGHT) {
         currKeyDown = keycode;
         canMove = false;
         if (arrowPos1.x < 16.5f) {
@@ -70,13 +69,13 @@ public class SettingsScreen implements Screen, InputProcessor {
           numHomunculi += 1;
         }
       } else if (keycode == Keys.DOWN || keycode == Keys.ENTER) {
-          if (arrowPos2 == null) {
-            arrowPos2 = new Vector2(0.5f, 10f);
-            canMove = true;
-          }
-          currentArrow = 2;
+        if (arrowPos2 == null) {
+          arrowPos2 = new Vector2(0.5f, 10f);
+          canMove = true;
         }
-      
+        currentArrow = 2;
+      }
+
     } else if (currentArrow == 2) {
       if (canMove && keycode == Keys.LEFT) {
         currKeyDown = keycode;
@@ -85,7 +84,7 @@ public class SettingsScreen implements Screen, InputProcessor {
           arrowPos2.x -= 5f;
           speed -= 1;
         }
-      } else if (canMove && keycode == Keys.RIGHT){
+      } else if (canMove && keycode == Keys.RIGHT) {
         currKeyDown = keycode;
         canMove = false;
         if (arrowPos2.x < 10.5f) {
@@ -93,11 +92,11 @@ public class SettingsScreen implements Screen, InputProcessor {
           speed += 1;
         }
       } else if (keycode == Keys.ENTER || keycode == Keys.DOWN) {
-          if (arrowPos3 == null) {
-            arrowPos3 = new Vector2(0.5f, 2f);
-            canMove = true;
-          }
-          currentArrow = 3;
+        if (arrowPos3 == null) {
+          arrowPos3 = new Vector2(0.5f, 2f);
+          canMove = true;
+        }
+        currentArrow = 3;
       }
 
     } else if (currentArrow == 3) {
@@ -108,7 +107,7 @@ public class SettingsScreen implements Screen, InputProcessor {
           arrowPos3.x -= 5f;
           music = true;
         }
-      } else if (canMove && keycode == Keys.RIGHT){
+      } else if (canMove && keycode == Keys.RIGHT) {
         currKeyDown = keycode;
         canMove = false;
         if (arrowPos3.x < 5.5f) {
@@ -124,13 +123,14 @@ public class SettingsScreen implements Screen, InputProcessor {
         game.setScreen(new GameScreen(game, settings));
       }
     }
-  
+
     return true;
   }
-  
+
   @Override
   public boolean keyUp(int keycode) {
-    if (keycode == currKeyDown) canMove = true;
+    if (keycode == currKeyDown)
+      canMove = true;
     return true;
   }
 
@@ -169,75 +169,81 @@ public class SettingsScreen implements Screen, InputProcessor {
     // TODO Auto-generated method stub
     return false;
   }
-  
+
   @Override
   public void render(float dt) {
     Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
     Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
     spriteBatch.begin();
-      renderBackground();
-      renderCursors();
+    renderBackground();
+    renderCursors();
+    renderText();
     spriteBatch.end();
   }
-  
-  private void renderBackground() {
-    spriteBatch.draw(Assets.settingsPageRegion, 0, 0, 600, 800);
+
+  private void renderText() {
+    Assets.font.draw(spriteBatch, Integer.toString(numHomunculi), 12 * ppuX,
+        20 * ppuY);
   }
-  
+
+  private void renderBackground() {
+    spriteBatch.draw(Assets.settingsPageRegion, 0, 0, width, height);
+  }
+
   private void renderCursors() {
     if (arrowPos1 != null) {
-      spriteBatch.draw(Assets.cursorDownRegion, arrowPos1.x * ppuX, 
-          arrowPos1.y * ppuY, 0.5f * ppuX, 0.5f * ppuY);
-          
+      spriteBatch.draw(Assets.cursorDownRegion, arrowPos1.x * ppuX, arrowPos1.y
+          * ppuY, 0.5f * ppuX, 0.5f * ppuY);
+
     }
-    
+
     if (arrowPos2 != null) {
-      spriteBatch.draw(Assets.cursorRegion, arrowPos2.x * ppuX, 
-          arrowPos2.y * ppuY, 1f * ppuX, 1f * ppuY);
+      spriteBatch.draw(Assets.cursorRegion, arrowPos2.x * ppuX, arrowPos2.y
+          * ppuY, 1f * ppuX, 1f * ppuY);
     }
-    
+
     if (arrowPos3 != null) {
-      spriteBatch.draw(Assets.cursorRegion, arrowPos3.x * ppuX, 
-          arrowPos3.y * ppuY, 1f * ppuX, 1f * ppuY);
+      spriteBatch.draw(Assets.cursorRegion, arrowPos3.x * ppuX, arrowPos3.y
+          * ppuY, 1f * ppuX, 1f * ppuY);
     }
   }
-  
+
   @Override
   public void resize(int w, int h) {
     width = w;
     height = h;
-    ppuX = (float)width / CAMERA_W;
-    ppuY = (float)height / CAMERA_H;
+    ppuX = width / CAMERA_W;
+    ppuY = height / CAMERA_H;
   }
 
   @Override
   public void show() {
     Gdx.input.setInputProcessor(this);
-    
+
   }
 
   @Override
   public void hide() {
     Gdx.input.setInputProcessor(null);
-    
+
   }
 
   @Override
   public void pause() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void resume() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void dispose() {
     Gdx.input.setInputProcessor(null);
-    
+
   }
 
 }
