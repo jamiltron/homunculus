@@ -72,22 +72,22 @@ public class Assets {
     cursorDown = loadTexture("data/gfx/cursor_down.png");
     cursorDownRegion = new TextureRegion(cursorDown, 0, 0, 16, 16);
 
-    title = loadTexture("data/gfx/Title.png");
+    title = loadTexture("data/gfx/title_text.png");
     titleRegion = new TextureRegion(title, 0, 0, 1028, 256);
 
-    instructions = loadTexture("data/gfx/Instructions.png");
+    instructions = loadTexture("data/gfx/instructions_text.png");
     instructionsRegion = new TextureRegion(instructions, 0, 0, 512, 128);
 
-    startGame = loadTexture("data/gfx/StartGame.png");
+    startGame = loadTexture("data/gfx/start_game_text.png");
     startGameRegion = new TextureRegion(startGame, 0, 0, 512, 128);
 
-    quit = loadTexture("data/gfx/Quit.png");
+    quit = loadTexture("data/gfx/quit_text.png");
     quitRegion = new TextureRegion(quit, 0, 0, 512, 128);
 
-    instructionsPage = loadTexture("data/gfx/InstructionScreen.png");
+    instructionsPage = loadTexture("data/gfx/instructions_screen.png");
     instructionsPageRegion = new TextureRegion(instructionsPage, 0, 0, 600, 800);
 
-    settingsPage = loadTexture("data/gfx/SettingsScreen.png");
+    settingsPage = loadTexture("data/gfx/settings_screen.png");
     settingsPageRegion = new TextureRegion(settingsPage, 0, 0, 600, 800);
   }
 
