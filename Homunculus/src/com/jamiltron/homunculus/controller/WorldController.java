@@ -497,8 +497,11 @@ public class WorldController {
       }
 
       // check if we can move down
-      if (canMove && activeSpell.bottomComponent().pos.y <= 2f) {
+
+      if (activeSpell.bottomComponent().pos.y == 2f && activeSpell.getVel().y == -Component.SPEED) {
         canMove = false;
+      } else if (activeSpell.bottomComponent().pos.y == 2f) {
+    	  // do nothing
       } else {
         if (((world.getGrid(activeSpell.leftComponent().pos.x,
             activeSpell.leftComponent().pos.y - 1f) != null)
@@ -510,7 +513,7 @@ public class WorldController {
           canMove = false;
         }
       }
-
+        
       if (canMove) {
         activeSpell.update(dt);
         // after having moved, see if we are occupying some other entity
