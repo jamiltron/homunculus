@@ -36,7 +36,6 @@ public class SettingsScreen implements Screen, InputProcessor {
   private static final float CAMERA_H = 25f;
 
   public SettingsScreen(Game g) {
-    Assets.loadFonts();
     music = true;
     sound = true;
     numHomunculi = 0;
@@ -182,28 +181,28 @@ public class SettingsScreen implements Screen, InputProcessor {
   }
 
   private void renderText() {
-    Assets.font.draw(spriteBatch, Integer.toString(numHomunculi), 12 * ppuX,
-        20 * ppuY);
+    spriteBatch.draw(Assets.settingsText, 0, 0, width, height);
+    // TODO render amount of homunculi
   }
 
   private void renderBackground() {
-    spriteBatch.draw(Assets.settingsPageRegion, 0, 0, width, height);
+    spriteBatch.draw(Assets.startScreenBackground, 0, 0, width, height);
   }
 
   private void renderCursors() {
     if (arrowPos1 != null) {
-      spriteBatch.draw(Assets.cursorDownRegion, arrowPos1.x * ppuX, arrowPos1.y
-          * ppuY, 0.5f * ppuX, 0.5f * ppuY);
+    //  spriteBatch.draw(Assets.cursorDownRegion, arrowPos1.x * ppuX, arrowPos1.y
+    //      * ppuY, 0.5f * ppuX, 0.5f * ppuY);
 
     }
 
     if (arrowPos2 != null) {
-      spriteBatch.draw(Assets.cursorRegion, arrowPos2.x * ppuX, arrowPos2.y
+      spriteBatch.draw(Assets.cursor, arrowPos2.x * ppuX, arrowPos2.y
           * ppuY, 1f * ppuX, 1f * ppuY);
     }
 
     if (arrowPos3 != null) {
-      spriteBatch.draw(Assets.cursorRegion, arrowPos3.x * ppuX, arrowPos3.y
+      spriteBatch.draw(Assets.cursor, arrowPos3.x * ppuX, arrowPos3.y
           * ppuY, 1f * ppuX, 1f * ppuY);
     }
   }

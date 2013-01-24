@@ -84,7 +84,7 @@ public class InstructionScreen implements Screen, InputProcessor {
     Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
     Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
     spriteBatch.begin();
-    spriteBatch.draw(Assets.instructionsPageRegion, 0, 0, width, height);
+    spriteBatch.draw(Assets.startScreenBackground, 0, 0, width, height);
     spriteBatch.end();
 
   }
@@ -93,8 +93,6 @@ public class InstructionScreen implements Screen, InputProcessor {
   public void resize(int w, int h) {
     width = w;
     height = h;
-    // TODO Auto-generated method stub
-
   }
 
   @Override
@@ -111,20 +109,17 @@ public class InstructionScreen implements Screen, InputProcessor {
 
   @Override
   public void pause() {
-    // TODO Auto-generated method stub
-
+    // do nothing
   }
 
   @Override
   public void resume() {
-    // TODO Auto-generated method stub
-
+    // do nothing
   }
 
   @Override
   public void dispose() {
     Gdx.input.setInputProcessor(null);
-
   }
 
 }

@@ -8,7 +8,7 @@ public class Main {
   public static void main(String[] args) {
     LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
     cfg.title = "Homunculus";
-    cfg.useGL20 = false;
+    cfg.useGL20 = true;
     cfg.width   = 400;
     cfg.height  = 600;
     new LwjglApplication(new HomunculusGame(), cfg);

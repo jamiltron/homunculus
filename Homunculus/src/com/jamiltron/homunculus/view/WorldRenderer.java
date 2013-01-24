@@ -1,6 +1,7 @@
 package com.jamiltron.homunculus.view;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jamiltron.homunculus.Assets;
@@ -55,26 +56,23 @@ public class WorldRenderer {
   }
 
   private void renderText() {
-    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-    Assets.font.draw(spriteBatch, Integer.toString(world.score), 12 * ppuX,
-        24 * ppuY);
+    //Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    //Assets.font.draw(spriteBatch, Integer.toString(world.score), 12 * ppuX,
+    //    24 * ppuY);
   }
 
   private void renderMessages() {
-    TextureRegion tempRegion = null;
     if (world.won) {
-      tempRegion = Assets.wonRegion;
+      spriteBatch.draw(Assets.pauseBackground, 2 * ppuX, 8 * ppuY, 256, 256);
     } else if (world.paused) {
-      tempRegion = Assets.pausedRegion;
+      spriteBatch.draw(Assets.pauseBackground, 2 * ppuX, 8 * ppuY, 256, 256);
     } else if (world.lost) {
-      tempRegion = Assets.overRegion;
+      spriteBatch.draw(Assets.gameOverBackground, 2 * ppuX, 8 * ppuY, 256, 256);
     }
-
-    if (tempRegion != null)
-      spriteBatch.draw(tempRegion, 2 * ppuX, 8 * ppuY, 256, 256);
   }
+  
   private void renderBackground() {
-    spriteBatch.draw(Assets.backgroundRegion, 0, 0, width, height);
+    spriteBatch.draw(Assets.playGameBackground, 0, 0, width, height);
   }
 
   private void renderHomunculi() {

@@ -4,8 +4,9 @@
 	<classpathentry kind="src" path="assets"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Homunculus"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/jamiltron/opt/libgdx/gdx-backend-lwjgl-natives.jar"/>
-	<classpathentry kind="lib" path="/home/jamiltron/opt/libgdx/gdx-backend-lwjgl.jar"/>
-	<classpathentry kind="lib" path="/home/jamiltron/opt/libgdx/gdx-natives.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/jamiltron/opt/libgdx/gdx-backend-lwjgl-natives.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/jamiltron/opt/libgdx/gdx-backend-lwjgl.jar" sourcepath="libs/gdx-backend-lwjgl-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/jamiltron/opt/libgdx/gdx-natives.jar"/>
+	<classpathentry kind="lib" path="/home/jamiltron/opt/libgdx/gdx.jar" sourcepath="/Homunculus/libs/gdx-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

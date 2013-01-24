@@ -7,7 +7,8 @@ public class HomunculusGame extends Game {
   
   @Override
   public void create() {
-    Assets.loadMenuTextures();
+    Assets.loadSounds();
+    Assets.loadImages();
     setScreen(new MainMenu(this));
   }
   

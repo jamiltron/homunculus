@@ -1,0 +1,10 @@
+2013-01-22 19:52:15,289 ERROR [Worker-11] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+when weaving type org.eclipse.debug.core.ILaunchConfigurationListener
+when weaving classes 
+when weaving 
+ [Xlint:cantFindType]
+2013-01-22 20:03:05,290 ERROR [Worker-3] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+when weaving type org.eclipse.debug.core.ILaunchConfigurationListener
+when weaving classes 
+when weaving 
+ [Xlint:cantFindType]
