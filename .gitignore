@@ -4,6 +4,7 @@ Homuncuus-html/war/*
 Homuncuus-html/bin
 Homuncuus-desktop/bin
 Homuncuus/bin
+.metadata/
 
 # Package Files #
 *.jar
