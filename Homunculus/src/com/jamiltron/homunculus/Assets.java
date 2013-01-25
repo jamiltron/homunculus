@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import java.util.Random;
 
 public class Assets {
   public static Sound drop;
@@ -38,6 +39,8 @@ public class Assets {
   public static Animation blueSpellDeadAnim;
   public static Animation redSpellDeadAnim;
   public static Animation yellowSpellDeadAnim;
+  
+  public static Random random = new Random();
 
   public static void loadSounds() {
     drop = Gdx.audio.newSound(Gdx.files.internal("data/sfx/hit.wav"));

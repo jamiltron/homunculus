@@ -75,7 +75,7 @@ public class MainMenu implements Screen, InputProcessor {
 
   private void renderCursor() {
     spriteBatch.draw(Assets.cursor, arrowPos.x * ppuX, arrowPos.y * ppuY,
-        1 * ppuX, 1 * ppuY);
+        0.5f * ppuX, 0.5f * ppuY);
   }
   
   private void renderBackground() {
@@ -84,13 +84,6 @@ public class MainMenu implements Screen, InputProcessor {
 
   private void renderText() {
     spriteBatch.draw(Assets.titleScreenText, 0, 0, width, height);
-
-//    spriteBatch.draw(Assets.startGameRegion, 5 * ppuX, 16 * ppuY, 8 * ppuX,
-//        4 * ppuY);
-//    spriteBatch.draw(Assets.instructionsRegion, 5 * ppuX, 13 * ppuY, 8 * ppuX,
-//        4 * ppuY);
-//    spriteBatch
-//        .draw(Assets.quitRegion, 5 * ppuX, 10 * ppuY, 8 * ppuX, 4 * ppuY);
   }
 
   private void update(float dt) {

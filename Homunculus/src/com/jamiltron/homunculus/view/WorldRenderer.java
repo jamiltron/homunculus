@@ -1,7 +1,6 @@
 package com.jamiltron.homunculus.view;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jamiltron.homunculus.Assets;
@@ -76,21 +75,23 @@ public class WorldRenderer {
   }
 
   private void renderHomunculi() {
-    TextureRegion drawingTexture;
-
+    TextureRegion keyFrame;
+    
     for (Homunculus homunculi : world.homunculi) {
       if (homunculi != null) {
         if (homunculi.color.equals(Color.BLUE)) {
-          drawingTexture = Assets.blueHomunculusRegion;
+          keyFrame = Assets.blueHomLiveAnim.getFrame(homunculi.stateTime, true);
+          spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
+              ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
         } else if (homunculi.color.equals(Color.RED)) {
-          drawingTexture = Assets.redHomunculusRegion;
+          keyFrame = Assets.redHomLiveAnim.getFrame(homunculi.stateTime, true);
+          spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
+              ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
         } else {
-          drawingTexture = Assets.yellowHomunculusRegion;
+        keyFrame = Assets.yellowHomLiveAnim.getFrame(homunculi.stateTime, true);
+        spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
+              ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
         }
-
-        spriteBatch.draw(drawingTexture, homunculi.pos.x * ppuX,
-            homunculi.pos.y * ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT
-                * ppuY);
       }
     }
   }
@@ -111,19 +112,22 @@ public class WorldRenderer {
   }
 
   private void renderComponent(Component component) {
-    TextureRegion drawingTexture;
+    TextureRegion keyFrame;
 
     if (component != null) {
       if (component.color.equals(Color.BLUE)) {
-        drawingTexture = Assets.blueSpellRegion;
+        keyFrame = Assets.blueSpellLiveAnim.getFrame(component.stateTime, true);
+        spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+            ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
       } else if (component.color.equals(Color.RED)) {
-        drawingTexture = Assets.redSpellRegion;
+        keyFrame = Assets.redSpellLiveAnim.getFrame(component.stateTime, true);
+        spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+            ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
       } else {
-        drawingTexture = Assets.yellowSpellRegion;
+        keyFrame = Assets.yellowSpellLiveAnim.getFrame(component.stateTime, true);
+        spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+            ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
       }
-
-      spriteBatch.draw(drawingTexture, component.pos.x * ppuX, component.pos.y
-          * ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
     }
   }
 }

@@ -6,6 +6,19 @@ import com.badlogic.gdx.utils.Array;
 import com.jamiltron.homunculus.util.JArray;
 
 public class World {
+  public static final float BOX_X = 13.70f;
+  public static final float BOX_Y = 20.5f;
+  public static final float BOTTOM = 5.75f;
+  public static final float ENTRY_X = 6f;
+  public static final float ENTRY_Y = 20.75f;
+  public static final float COLS = 8;
+  public static final float ROWS = 17;
+  public static final float ROW_RAND_MIN = 12;
+  public static final float X_MIN = 4f;
+  public static final float X_MAX = X_MIN + COLS - 1;
+  public static final float Y_MIN = 4.75f;
+  public static final float Y_MAX = Y_MIN + ROWS - 1;
+  
   private final Color[] colors = Color.values();
   public int numHomunculi;
   public Array<Homunculus> homunculi = new Array<Homunculus>();
@@ -22,15 +35,15 @@ public class World {
   private final Random random = new Random();
 
   public Color getGrid(float x, float y) {
-    return colorGrid.get((int) x, (int) y);
+    return colorGrid.get(x, y);
   }
 
   public Color getGrid(Component component) {
-    return colorGrid.get((int) component.pos.x, (int) component.pos.y);
+    return colorGrid.get(component.pos.x, component.pos.y);
   }
 
   public void putGrid(float x, float y, Color c) {
-    colorGrid.set((int) x, (int) y, c);
+    colorGrid.set(x, y, c);
   }
 
   public World(int numHomunculi) {
@@ -62,8 +75,8 @@ public class World {
     int i = colors.length;
     Color color1 = colors[random.nextInt(i)];
     Color color2 = colors[random.nextInt(i)];
-    Component component1 = new Component(12, 19, color1);
-    Component component2 = new Component(13, 19, color2);
+    Component component1 = new Component(BOX_X, BOX_Y, color1);
+    Component component2 = new Component(BOX_X + 1, BOX_Y, color2);
     return new Spell(component1, component2);
   }
 
@@ -81,11 +94,11 @@ public class World {
   }
 
   public void activateSpell(Spell spell) {
-    spell.component1.pos.x = 5;
-    spell.component1.pos.y = 18;
+    spell.component1.pos.x = ENTRY_X;
+    spell.component1.pos.y = ENTRY_Y;
 
-    spell.component2.pos.x = 6;
-    spell.component2.pos.y = 18;
+    spell.component2.pos.x = ENTRY_X + 1;
+    spell.component2.pos.y = ENTRY_Y;
   }
 
   private void createWorld(int nh) {
@@ -96,14 +109,14 @@ public class World {
     Boolean inserted;
     Color color;
     float x, y;
-    colorGrid = new JArray<Color>(8, 17);
+    colorGrid = new JArray<Color>((int)COLS, (int)ROWS);
 
     // create random homunculi
     for (int i = 0; i < numHomunculi; i++) {
       inserted = false;
       do {
-        x = (random.nextInt(8) + 2);
-        y = (random.nextInt(12) + 2);
+        x = (random.nextInt((int)COLS - 1) + X_MIN);
+        y = (random.nextInt((int)ROW_RAND_MIN) + Y_MIN);
 
         if (getGrid(x, y) == null) {
           inserted = true;

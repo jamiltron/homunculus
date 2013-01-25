@@ -5,6 +5,8 @@ Homuncuus-html/bin
 Homuncuus-desktop/bin
 Homuncuus/bin
 .metadata/
+.metadata/*
+.metadata/.*
 
 # Package Files #
 *.jar
