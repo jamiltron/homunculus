@@ -34,6 +34,22 @@ public class World {
   private Spell nextSpell = null;
   private final Random random = new Random();
 
+  public void update(float dt) {
+    for (Homunculus h : homunculi) {
+      if (h != null) {
+        h.stateTime += dt;
+      }
+    }
+    
+    if (activeSpell != null) {
+      activeSpell.updateAnimation(dt);
+    }
+    
+    if (nextSpell != null) {
+      nextSpell.updateAnimation(dt);
+    }
+  }
+  
   public Color getGrid(float x, float y) {
     return colorGrid.get(x, y);
   }
@@ -100,7 +116,7 @@ public class World {
     spell.component2.pos.x = ENTRY_X + 1;
     spell.component2.pos.y = ENTRY_Y;
   }
-
+  
   private void createWorld(int nh) {
     numHomunculi = nh;
     paused = false;

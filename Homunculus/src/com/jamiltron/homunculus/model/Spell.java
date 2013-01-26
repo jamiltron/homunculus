@@ -95,8 +95,23 @@ public class Spell {
       rotateTime = 0;
     }
     
-    if (component1 != null) component1.update(1f);
-    if (component2 != null) component2.update(1f);
+    if (component1 != null) {
+      component1.update(1f);      
+      component1.stateTime += dt;
+    }
+    if (component2 != null) {
+      component2.update(1f);
+      component2.stateTime += dt;
+    }
+  }
+  
+  public void updateAnimation(float dt) {
+    if (component1 != null) {
+      component1.stateTime += dt;
+    }
+    if (component2 != null) {
+      component2.stateTime += dt;
+    }
   }
   
   public void setPauseTime(float pt) {

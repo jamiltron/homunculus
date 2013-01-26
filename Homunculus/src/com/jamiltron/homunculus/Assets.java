@@ -68,12 +68,12 @@ public class Assets {
         new TextureRegion(spriteSheet, 128, 0, 128, 128),
         new TextureRegion(spriteSheet, 256, 0, 128, 128));
     
-    redHomLiveAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 0, 128, 32, 32),
+    redHomLiveAnim = new Animation(0.18f, new TextureRegion(spriteSheet, 0, 128, 32, 32),
         new TextureRegion(spriteSheet, 32, 128, 32, 32),
         new TextureRegion(spriteSheet, 64, 128, 32, 32),
         new TextureRegion(spriteSheet, 32, 128, 32, 32));
     
-    yellowHomLiveAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 0, 160, 32, 32),
+    yellowHomLiveAnim = new Animation(0.15f, new TextureRegion(spriteSheet, 0, 160, 32, 32),
         new TextureRegion(spriteSheet, 32, 160, 32, 32),
         new TextureRegion(spriteSheet, 64, 160, 32, 32),
         new TextureRegion(spriteSheet, 32, 160, 32, 32));
@@ -83,20 +83,17 @@ public class Assets {
         new TextureRegion(spriteSheet, 64, 192, 32, 32),
         new TextureRegion(spriteSheet, 32, 192, 32, 32));
     
-    redHomDeadAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 96, 128, 32, 32),
+    redHomDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 96, 128, 32, 32),
         new TextureRegion(spriteSheet, 128, 128, 32, 32),
-        new TextureRegion(spriteSheet, 160, 128, 32, 32),
-        new TextureRegion(spriteSheet, 128, 128, 32, 32));
+        new TextureRegion(spriteSheet, 160, 128, 32, 32));
     
-    yellowHomDeadAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 96, 160, 32, 32),
+    yellowHomDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 96, 160, 32, 32),
         new TextureRegion(spriteSheet, 128, 160, 32, 32),
-        new TextureRegion(spriteSheet, 160, 160, 32, 32),
-        new TextureRegion(spriteSheet, 128, 160, 32, 32));
-    
-    blueHomDeadAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 96, 192, 32, 32),
+        new TextureRegion(spriteSheet, 160, 160, 32, 32));
+
+    blueHomDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 96, 192, 32, 32),
         new TextureRegion(spriteSheet, 128, 192, 32, 32),
-        new TextureRegion(spriteSheet, 160, 192, 32, 32),
-        new TextureRegion(spriteSheet, 128, 192, 32, 32));
+        new TextureRegion(spriteSheet, 160, 192, 32, 32));
     
     redSpellLiveAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 192, 128, 32, 32),
         new TextureRegion(spriteSheet, 224, 128, 32, 32),
@@ -113,20 +110,17 @@ public class Assets {
         new TextureRegion(spriteSheet, 256, 192, 32, 32),
         new TextureRegion(spriteSheet, 224, 192, 32, 32));
     
-    redSpellDeadAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 288, 128, 32, 32),
+    redSpellDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 288, 128, 32, 32),
         new TextureRegion(spriteSheet, 320, 128, 32, 32),
-        new TextureRegion(spriteSheet, 352, 128, 32, 32),
-        new TextureRegion(spriteSheet, 320, 128, 32, 32));
+        new TextureRegion(spriteSheet, 352, 128, 32, 32));
     
-    yellowSpellDeadAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 288, 160, 32, 32),
+    yellowSpellDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 288, 160, 32, 32),
         new TextureRegion(spriteSheet, 320, 160, 32, 32),
-        new TextureRegion(spriteSheet, 352, 160, 32, 32),
-        new TextureRegion(spriteSheet, 320, 160, 32, 32));
+        new TextureRegion(spriteSheet, 352, 160, 32, 32));
     
-    blueSpellDeadAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 288, 192, 32, 32),
+    blueSpellDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 288, 192, 32, 32),
         new TextureRegion(spriteSheet, 320, 192, 32, 32),
-        new TextureRegion(spriteSheet, 352, 192, 32, 32),
-        new TextureRegion(spriteSheet, 320, 192, 32, 32));
+        new TextureRegion(spriteSheet, 352, 192, 32, 32));
 
   }
 

@@ -6,6 +6,8 @@ public class Homunculus extends Entity {
   public static final Float WIDTH = 1f;
   public static final Float HEIGHT = 1f;
   public float stateTime;
+  public static final float DYING_TIME = 0.3f;
+  public boolean isDying;
   
   public Color color;
   
@@ -13,5 +15,6 @@ public class Homunculus extends Entity {
     super(x, y, WIDTH, HEIGHT);
     color = c;
     stateTime = Assets.random.nextFloat(); 
+    isDying = false;
   }
 }

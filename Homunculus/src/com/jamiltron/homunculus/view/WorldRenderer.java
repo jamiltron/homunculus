@@ -18,6 +18,7 @@ public class WorldRenderer {
   private World world;
   private final OrthographicCamera cam;
   private final SpriteBatch spriteBatch;
+  private float wizardTime;
 
   private float ppuX;
   private float ppuY;
@@ -37,6 +38,7 @@ public class WorldRenderer {
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     this.cam.update();
     spriteBatch = new SpriteBatch();
+    wizardTime = 0;
 
   }
 
@@ -71,7 +73,11 @@ public class WorldRenderer {
   }
   
   private void renderBackground() {
+    TextureRegion keyFrame;
+    
     spriteBatch.draw(Assets.playGameBackground, 0, 0, width, height);
+    keyFrame = Assets.wizardAnim.getFrame(0, false);
+    spriteBatch.draw(keyFrame, 12.7f * ppuX, 16.45f * ppuY, 4 * ppuX, 4 * ppuY);
   }
 
   private void renderHomunculi() {
@@ -79,18 +85,34 @@ public class WorldRenderer {
     
     for (Homunculus homunculi : world.homunculi) {
       if (homunculi != null) {
-        if (homunculi.color.equals(Color.BLUE)) {
-          keyFrame = Assets.blueHomLiveAnim.getFrame(homunculi.stateTime, true);
-          spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
-              ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
-        } else if (homunculi.color.equals(Color.RED)) {
-          keyFrame = Assets.redHomLiveAnim.getFrame(homunculi.stateTime, true);
-          spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
-              ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
+        if (homunculi.isDying){
+          if (homunculi.color.equals(Color.BLUE)) {
+            keyFrame = Assets.blueHomDeadAnim.getFrame(homunculi.stateTime, false);
+            spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
+                ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
+          } else if (homunculi.color.equals(Color.RED)) {
+            keyFrame = Assets.redHomDeadAnim.getFrame(homunculi.stateTime, false);
+            spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
+                ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
+          } else {
+            keyFrame = Assets.yellowHomDeadAnim.getFrame(homunculi.stateTime, false);
+            spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
+                ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
+          }
         } else {
-        keyFrame = Assets.yellowHomLiveAnim.getFrame(homunculi.stateTime, true);
-        spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
-              ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
+          if (homunculi.color.equals(Color.BLUE)) {
+            keyFrame = Assets.blueHomLiveAnim.getFrame(homunculi.stateTime, true);
+            spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
+                ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
+          } else if (homunculi.color.equals(Color.RED)) {
+            keyFrame = Assets.redHomLiveAnim.getFrame(homunculi.stateTime, true);
+            spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
+                ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
+          } else {
+            keyFrame = Assets.yellowHomLiveAnim.getFrame(homunculi.stateTime, true);
+            spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
+                ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
+          }
         }
       }
     }
@@ -115,18 +137,34 @@ public class WorldRenderer {
     TextureRegion keyFrame;
 
     if (component != null) {
-      if (component.color.equals(Color.BLUE)) {
-        keyFrame = Assets.blueSpellLiveAnim.getFrame(component.stateTime, true);
-        spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
-            ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
-      } else if (component.color.equals(Color.RED)) {
-        keyFrame = Assets.redSpellLiveAnim.getFrame(component.stateTime, true);
-        spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
-            ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+      if (component.isDying) {
+        if (component.color.equals(Color.BLUE)) {
+          keyFrame = Assets.blueSpellDeadAnim.getFrame(component.stateTime, false);
+          spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+              ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+        } else if (component.color.equals(Color.RED)) {
+          keyFrame = Assets.redSpellDeadAnim.getFrame(component.stateTime, false);
+          spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+              ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+        } else {
+          keyFrame = Assets.yellowSpellDeadAnim.getFrame(component.stateTime, false);
+          spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+              ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+        }
       } else {
-        keyFrame = Assets.yellowSpellLiveAnim.getFrame(component.stateTime, true);
-        spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
-            ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+        if (component.color.equals(Color.BLUE)) {
+          keyFrame = Assets.blueSpellLiveAnim.getFrame(component.stateTime, true);
+          spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+              ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+        } else if (component.color.equals(Color.RED)) {
+          keyFrame = Assets.redSpellLiveAnim.getFrame(component.stateTime, true);
+          spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+              ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+        } else {
+          keyFrame = Assets.yellowSpellLiveAnim.getFrame(component.stateTime, true);
+          spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+              ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+        }
       }
     }
   }

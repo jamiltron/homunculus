@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="50" version="2.0">
+<workbench progressCount="36" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="65" y="24">
 <fastViewData fastViewLocation="1024"/>
@@ -48,6 +48,9 @@
 <part id="9"/>
 <part id="10"/>
 <part id="11"/>
+<part id="12"/>
+<part id="13"/>
+<part id="14"/>
 </presentation>
 </folder>
 </info>
@@ -82,30 +85,42 @@
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameScreen.java" partName="GameScreen.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/screen/GameScreen.java" title="GameScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/GameScreen.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/screen/GameScreen.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="60" selectionOffset="3312" selectionTopPixel="2064"/>
+<editorState selectionHorizontalPixel="0" selectionLength="29" selectionOffset="2745" selectionTopPixel="1802"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="World.java" partName="World.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/model/World.java" title="World.java" tooltip="Homunculus/src/com/jamiltron/homunculus/model/World.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/model/World.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="437" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="645" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WorldController.java" partName="WorldController.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java" title="WorldController.java" tooltip="Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WorldController.java" partName="WorldController.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java" title="WorldController.java" tooltip="Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3990" selectionTopPixel="2473"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="16008" selectionTopPixel="8058"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="JArray.java" partName="JArray.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/util/JArray.java" title="JArray.java" tooltip="Homunculus/src/com/jamiltron/homunculus/util/JArray.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/util/JArray.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="264" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="703" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.ClassFileEditor" name="Array.class" partName="Array.class" title="Array.class" tooltip="com.badlogic.gdx.utils.Array" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" org.eclipse.jdt.ui.ClassFileIdentifier="=Homunculus/\/home\/jamiltron\/opt\/libgdx\/gdx.jar&lt;com.badlogic.gdx.utils(Array.class"/>
 <editorState selectionHorizontalPixel="0" selectionLength="80" selectionOffset="5338" selectionTopPixel="1683"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.ClassFileEditor" name="Game.class" partName="Game.class" title="Game.class" tooltip="com.badlogic.gdx.Game" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" org.eclipse.jdt.ui.ClassFileIdentifier="=Homunculus/\/home\/jamiltron\/opt\/libgdx\/gdx.jar&lt;com.badlogic.gdx(Game.class"/>
+<editorState selectionHorizontalPixel="0" selectionLength="65" selectionOffset="1498" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SettingsScreen.java" partName="SettingsScreen.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java" title="SettingsScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="55" selectionOffset="3562" selectionTopPixel="1615"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GwtLauncher.java" partName="GwtLauncher.java" path="/home/jamiltron/workspace/homunculus/Homunculus-html/src/com/jamiltron/homunculus/client/GwtLauncher.java" title="GwtLauncher.java" tooltip="Homunculus-html/src/com/jamiltron/homunculus/client/GwtLauncher.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus-html/src/com/jamiltron/homunculus/client/GwtLauncher.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="30" selectionOffset="547" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings"/>
+<category IMemento.internal.id="Warnings (4 items)"/>
 <category IMemento.internal.id="Errors"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="886" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
@@ -154,6 +169,9 @@
 <viewState/>
 </view>
 <view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
+<view id="com.google.gwt.eclipse.DevModeView" partName="Development Mode">
+<viewState/>
+</view>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
 <perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
@@ -238,6 +256,7 @@
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="com.google.gwt.eclipse.DevModeView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars/>
 <layout>
@@ -265,20 +284,21 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.24950495" ratioLeft="252" ratioRight="758" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.74882996" ratioLeft="480" ratioRight="161" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<folder activePageID="com.google.gwt.eclipse.DevModeView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
 <page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="com.google.gwt.eclipse.DevModeView" label="Development Mode"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
-<page content="com.google.gwt.eclipse.DevModeView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
+<part id="4"/>
 </presentation>
 </folder>
 </info>
@@ -306,166 +326,162 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/Assets.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/view/WorldRenderer.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/model/Spell.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus-desktop/src/com/jamiltron/homunculus/Main.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/screen/MainMenu.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/screen/GameScreen.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/model/World.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/model/World.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/screen/GameScreen.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/util/JArray.java"/>
-<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=Homunculus/\/home\/jamiltron\/opt\/libgdx\/gdx.jar&lt;com.badlogic.gdx.utils(Array.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus-html/src/com/jamiltron/homunculus/client/GwtLauncher.java"/>
 </editors>
-<item historyLabel="WorldRenderer.java" index="1">
-<position info="not_deleted" x="4131" y="0"/>
-</item>
-<item historyLabel="WorldRenderer.java" index="1">
-<position info="not_deleted" x="4377" y="0"/>
-</item>
-<item historyLabel="Spell.java" index="2">
-<position info="not_deleted" x="78" y="0"/>
-</item>
-<item historyLabel="WorldRenderer.java" index="1">
-<position/>
-</item>
-<item historyLabel="Main.java" index="3">
-<position info="not_deleted" x="412" y="0"/>
-</item>
-<item historyLabel="MainMenu.java" index="4">
-<position info="not_deleted" x="2033" y="0"/>
-</item>
-<item historyLabel="Main.java" index="3">
-<position info="not_deleted" x="412" y="0"/>
-</item>
-<item historyLabel="GameScreen.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="WorldRenderer.java" index="1">
-<position info="not_deleted" x="3162" y="0"/>
-</item>
-<item historyLabel="World.java" index="6">
-<position info="not_deleted" x="2852" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="7">
-<position info="not_deleted" x="5056" y="0"/>
-</item>
-<item historyLabel="World.java" index="6">
-<position info="not_deleted" x="2019" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="7">
-<position info="not_deleted" x="15046" y="0"/>
-</item>
-<item historyLabel="Spell.java" index="2">
-<position info="not_deleted" x="548" y="0"/>
-</item>
-<item historyLabel="World.java" index="6">
-<position info="not_deleted" x="2332" y="0"/>
-</item>
-<item historyLabel="Assets.java" index="0">
-<position info="not_deleted" x="1492" y="0"/>
-</item>
-<item historyLabel="World.java" index="6">
-<position info="not_deleted" x="704" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="7">
-<position info="not_deleted" x="3564" y="0"/>
-</item>
-<item historyLabel="World.java" index="6">
-<position info="not_deleted" x="3009" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="7">
-<position info="not_deleted" x="15155" y="62"/>
-</item>
-<item historyLabel="World.java" index="6">
-<position info="not_deleted" x="387" y="0"/>
-</item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="707" y="0"/>
-</item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="548" y="37"/>
-</item>
-<item historyLabel="World.java" index="6">
-<position info="not_deleted" x="387" y="0"/>
-</item>
-<item historyLabel="GameScreen.java" index="5">
+<item historyLabel="GameScreen.java" index="2">
 <position info="not_deleted" x="3312" y="60"/>
 </item>
-<item historyLabel="WorldController.java" index="7">
-<position info="not_deleted" x="4036" y="35"/>
+<item historyLabel="GameScreen.java" index="2">
+<position info="not_deleted" x="2745" y="29"/>
 </item>
-<item historyLabel="JArray.java" index="8">
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="5916" y="28"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="4098" y="0"/>
+</item>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="1309" y="31"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="6543" y="84"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="5328" y="33"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="6543" y="84"/>
+</item>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="1309" y="31"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="6543" y="84"/>
+</item>
+<item historyLabel="JArray.java" index="3">
+<position info="not_deleted" x="264" y="0"/>
+</item>
+<item historyLabel="JArray.java" index="3">
 <position info="not_deleted" x="548" y="37"/>
 </item>
-<item historyLabel="World.java" index="6">
-<position info="not_deleted" x="3235" y="0"/>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="1337" y="0"/>
 </item>
-<item historyLabel="Array.class" index="9">
-<position info="not_deleted" x="5338" y="80"/>
+<item historyLabel="JArray.java" index="3">
+<position info="not_deleted" x="548" y="37"/>
 </item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="710" y="37"/>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="1309" y="31"/>
 </item>
-<item historyLabel="WorldController.java" index="7">
-<position info="not_deleted" x="3924" y="0"/>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="6461" y="81"/>
 </item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="710" y="37"/>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="3359" y="0"/>
 </item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="304" y="0"/>
+<item historyLabel="JArray.java" index="3">
+<position info="not_deleted" x="548" y="37"/>
 </item>
-<item historyLabel="JArray.java" index="8">
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="1309" y="31"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="4064" y="0"/>
+</item>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="1083" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="15330" y="1"/>
+</item>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="1083" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="10518" y="0"/>
+</item>
+<item historyLabel="SettingsScreen.java" index="4">
+<position info="not_deleted" x="3562" y="55"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="15477" y="0"/>
+</item>
+<item historyLabel="JArray.java" index="3">
+<position info="not_deleted" x="548" y="37"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="8462" y="0"/>
+</item>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="1529" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="15477" y="0"/>
+</item>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="1309" y="31"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="15517" y="62"/>
+</item>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="3159" y="0"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="15517" y="62"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="15641" y="65"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="5887" y="28"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="15641" y="65"/>
+</item>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="1309" y="31"/>
+</item>
+<item historyLabel="JArray.java" index="3">
+<position info="not_deleted" x="687" y="0"/>
+</item>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="1309" y="31"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="15641" y="65"/>
+</item>
+<item historyLabel="WorldController.java" index="0">
 <position/>
 </item>
-<item historyLabel="JArray.java" index="8">
+<item historyLabel="WorldController.java" index="0">
 <position/>
 </item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="323" y="0"/>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="16168" y="0"/>
 </item>
-<item historyLabel="JArray.java" index="8">
+<item historyLabel="WorldController.java" index="0">
 <position/>
 </item>
-<item historyLabel="JArray.java" index="8">
-<position/>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="16008" y="0"/>
 </item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="264" y="0"/>
+<item historyLabel="World.java" index="1">
+<position info="not_deleted" x="645" y="0"/>
 </item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="385" y="0"/>
+<item historyLabel="JArray.java" index="3">
+<position info="not_deleted" x="703" y="0"/>
 </item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="435" y="0"/>
+<item historyLabel="WorldController.java" index="0">
+<position info="not_deleted" x="16008" y="0"/>
 </item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="359" y="0"/>
-</item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="385" y="0"/>
-</item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="312" y="0"/>
-</item>
-<item historyLabel="JArray.java" index="8">
-<position info="not_deleted" x="264" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="7">
-<position info="not_deleted" x="3924" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="7">
-<position info="not_deleted" x="3937" y="4"/>
-</item>
-<item historyLabel="World.java" index="6">
-<position info="not_deleted" x="437" y="0"/>
-</item>
-<item active="true" historyLabel="WorldController.java" index="7">
-<position info="not_deleted" x="3937" y="4"/>
+<item active="true" historyLabel="GwtLauncher.java" index="5">
+<position info="not_deleted" x="547" y="30"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -486,6 +502,15 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GwtLauncher.java" tooltip="Homunculus-html/src/com/jamiltron/homunculus/client/GwtLauncher.java">
+<persistable path="/Homunculus-html/src/com/jamiltron/homunculus/client/GwtLauncher.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SettingsScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java">
+<persistable path="/Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Game.class" tooltip="com.badlogic.gdx.Game">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Homunculus/\/home\/jamiltron\/opt\/libgdx\/gdx.jar&lt;com.badlogic.gdx(Game.class"/>
+</file>
 <file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Array.class" tooltip="com.badlogic.gdx.utils.Array">
 <persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Homunculus/\/home\/jamiltron\/opt\/libgdx\/gdx.jar&lt;com.badlogic.gdx.utils(Array.class"/>
 </file>
@@ -521,9 +546,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="credits-text.png" tooltip="Homunculus-android/assets/data/gfx/credits-text.png">
 <persistable path="/Homunculus-android/assets/data/gfx/credits-text.png"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="Homunculus-desktop/src/com/jamiltron/homunculus/Main.java">
-<persistable path="/Homunculus-desktop/src/com/jamiltron/homunculus/Main.java"/>
 </file>
 </mruList>
 </workbench>
