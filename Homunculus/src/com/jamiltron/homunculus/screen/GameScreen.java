@@ -4,8 +4,11 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.input.GestureDetector.GestureListener;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
+import com.jamiltron.homunculus.Assets;
 import com.jamiltron.homunculus.Settings;
 import com.jamiltron.homunculus.controller.WorldController;
 import com.jamiltron.homunculus.model.World;
@@ -18,6 +21,10 @@ public class GameScreen implements Screen, InputProcessor {
   private WorldController controller;
   private final Game game;
   private final Settings settings;
+  private boolean touching;
+  private float lastX;
+  private float lastY;
+  private float lastDragX;
 
   public GameScreen(Game g, Settings s) {
     super();
@@ -39,7 +46,7 @@ public class GameScreen implements Screen, InputProcessor {
       controller.dropPress();
     }
 
-    if (keycode == Keys.X) {
+    if (keycode == Keys.X || keycode == Keys.UP) {
       controller.rotrPress();
     }
 
@@ -69,8 +76,9 @@ public class GameScreen implements Screen, InputProcessor {
     if (keycode == Keys.DOWN) {
       controller.dropRelease();
     }
+    
 
-    if (keycode == Keys.X) {
+    if (keycode == Keys.X || keycode == Keys.UP) {
       controller.rotrRelease();
     }
 
@@ -89,37 +97,50 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public boolean keyTyped(char character) {
-    // TODO Auto-generated method stub
     return false;
   }
 
   @Override
   public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-    // TODO Auto-generated method stub
-    return false;
+    if (button == 0) {
+      touching = true;
+      lastX = screenX;
+      lastY = screenY;
+      lastDragX = screenX;
+    }
+    return true;
   }
 
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-    // TODO Auto-generated method stub
-    return false;
+    if (button == 0) {
+      if (Math.abs(screenX - lastX) <= Assets.TOUCH_BOX) {
+        touching = false;
+        controller.rotrPress();
+      }
+    }
+    return true;
   }
 
   @Override
   public boolean touchDragged(int screenX, int screenY, int pointer) {
-    // TODO Auto-generated method stub
-    return false;
+    if (screenX - lastDragX > Assets.TOUCH_BOX) {
+      controller.rightPress();
+    } else if (lastDragX - screenX > Assets.TOUCH_BOX) {
+      controller.leftPress();
+    }
+    
+    lastDragX = screenX;
+    return true;
   }
 
   @Override
   public boolean mouseMoved(int screenX, int screenY) {
-    // TODO Auto-generated method stub
     return false;
   }
 
   @Override
   public boolean scrolled(int amount) {
-    // TODO Auto-generated method stub
     return false;
   }
 
@@ -130,12 +151,23 @@ public class GameScreen implements Screen, InputProcessor {
 
     controller.update(delta);
     renderer.render();
-
+    
+    // TODO: ADD A SETTING FOR TOUCHSCREEN YES/NO
+    controller.leftRelease();
+    controller.rightRelease();
+    
+    if (!touching) {
+      controller.rotrRelease();
+    }
+    // TODO: END ALL TOUCHSCREEN STUFF HERE
+    
     if (controller.nextLevel) {
       int numHomunculi = 20;
       if (world.numHomunculi + 1 <= 20) {
         numHomunculi = world.numHomunculi + 1;
       }
+      
+      
 
       world = new World(numHomunculi, world.score);
       controller.resetController(world);
@@ -177,5 +209,4 @@ public class GameScreen implements Screen, InputProcessor {
   public void dispose() {
     Gdx.input.setInputProcessor(null);
   }
-
 }

@@ -9,6 +9,7 @@ public class HomunculusGame extends Game {
   public void create() {
     Assets.loadSounds();
     Assets.loadImages();
+    Assets.loadFonts();
     setScreen(new MainMenu(this));
   }
   

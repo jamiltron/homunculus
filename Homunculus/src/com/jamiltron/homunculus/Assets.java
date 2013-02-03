@@ -3,28 +3,42 @@ package com.jamiltron.homunculus;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.util.Random;
 
 public class Assets {
+  public static final int TOUCH_BOX = 2;
+  
   public static Sound drop;
   public static Sound match;
   public static Sound selectMove;
   public static Sound select;
   public static Sound rotate;
   
+  public static Texture startScreenBackgroundT;
+  public static Texture gameOverBackgroundT;
+  public static Texture pauseBackgroundT;
+  public static Texture playGameBackgroundT;
+  
   public static Texture creditsText;
   public static Texture cursor;
-  public static Texture gameOverBackground;
   public static Texture gameOverText;
   public static Texture highScoresText;
-  public static Texture pauseBackground;
   public static Texture pauseText;
-  public static Texture playGameBackground;
   public static Texture settingsText;
   public static Texture spriteSheet;
-  public static Texture startScreenBackground;
   public static Texture titleScreenText;
+  
+  public static TextureRegion gameOverBackground;
+  public static TextureRegion startScreenBackground;
+  public static TextureRegion pauseBackground;
+  public static TextureRegion playGameBackground;
+  
+  public static TextureRegion leftArrow;
+  public static TextureRegion rightArrow;
+  public static TextureRegion downArrow;
+  public static TextureRegion rotateArrow;
   
   public static Animation wizardAnim;
   public static Animation blueHomLiveAnim;
@@ -41,6 +55,8 @@ public class Assets {
   public static Animation yellowSpellDeadAnim;
   
   public static Random random = new Random();
+  
+  public static BitmapFont font;
 
   public static void loadSounds() {
     drop = Gdx.audio.newSound(Gdx.files.internal("data/sfx/hit.wav"));
@@ -50,19 +66,29 @@ public class Assets {
     rotate = Gdx.audio.newSound(Gdx.files.internal("data/sfx/rotate.wav"));
   }
   
+  public static void loadFonts() {
+    font = new BitmapFont(Gdx.files.internal("data/fnt/font.fnt"),
+        Gdx.files.internal("data/fnt/font.png"), false);
+  }
+  
   public static void loadImages() {
-    creditsText = loadTexture("data/gfx/credits-text.png");
+    //creditsText = loadTexture("data/gfx/credits-text.png");
     cursor = loadTexture("data/gfx/cursor.png");
-    gameOverBackground = loadTexture("data/gfx/game-over-bg.png");
-    gameOverText = loadTexture("data/gfx/game-over-text.png");
-    highScoresText = loadTexture("data/gfx/high-scores-text.png");
-    pauseBackground = loadTexture("data/gfx/pause-bg.png");
-    pauseText = loadTexture("data/gfx/pause-text.png");
-    playGameBackground = loadTexture("data/gfx/play-game-bg.png");
-    settingsText = loadTexture("data/gfx/settings-text.png");
+    gameOverBackgroundT = loadTexture("data/gfx/game-over-bg.png");
+    //gameOverText = loadTexture("data/gfx/game-over-text.png");
+    //highScoresText = loadTexture("data/gfx/high-scores-text.png");
+    pauseBackgroundT = loadTexture("data/gfx/pause-bg.png");
+    //pauseText = loadTexture("data/gfx/pause-text.png");
+    playGameBackgroundT = loadTexture("data/gfx/play-game-bg.png");
+    //settingsText = loadTexture("data/gfx/settings-text.png");
     spriteSheet = loadTexture("data/gfx/sprite-sheet.png");
-    startScreenBackground = loadTexture("data/gfx/start-screen-bg.png");
-    titleScreenText = loadTexture("data/gfx/title-screen-text.png");
+    startScreenBackgroundT = loadTexture("data/gfx/start-screen-bg.png");
+    //titleScreenText = loadTexture("data/gfx/title-screen-text.png");
+    
+    startScreenBackground = new TextureRegion(startScreenBackgroundT, 0, 0, 600, 800);
+    playGameBackground = new TextureRegion(playGameBackgroundT, 0, 0, 600, 800);
+    pauseBackground = new TextureRegion(pauseBackgroundT, 0, 0, 300, 400);
+    gameOverBackground = new TextureRegion(gameOverBackgroundT, 0, 0, 300, 400);
     
     wizardAnim = new Animation(0.5f, new TextureRegion(spriteSheet, 0, 0, 128, 128),
         new TextureRegion(spriteSheet, 128, 0, 128, 128),
@@ -121,6 +147,11 @@ public class Assets {
     blueSpellDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 288, 192, 32, 32),
         new TextureRegion(spriteSheet, 320, 192, 32, 32),
         new TextureRegion(spriteSheet, 352, 192, 32, 32));
+    
+    leftArrow = new TextureRegion(spriteSheet, 0, 224, 32, 32);
+    rightArrow = new TextureRegion(spriteSheet, 64, 224, 32, 32);
+    rotateArrow = new TextureRegion(spriteSheet, 32, 224, 32, 32);
+    downArrow = new TextureRegion(spriteSheet, 96, 224, 32, 32);
 
   }
 

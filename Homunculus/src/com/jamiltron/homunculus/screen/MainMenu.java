@@ -83,7 +83,7 @@ public class MainMenu implements Screen, InputProcessor {
   }
 
   private void renderText() {
-    spriteBatch.draw(Assets.titleScreenText, 0, 0, width, height);
+    //spriteBatch.draw(Assets.titleScreenText, 0, 0, width, height);
   }
 
   private void update(float dt) {
@@ -106,13 +106,20 @@ public class MainMenu implements Screen, InputProcessor {
   @Override
   public boolean touchDown(int screenX, int screenY, int pointer, int button) {
     // TODO Auto-generated method stub
-    return false;
+    return true;
   }
 
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-    // TODO Auto-generated method stub
-    return false;
+    if (arrowPos.y == 18) {
+      game.setScreen(new SettingsScreen(game));
+    } else if (arrowPos.y == 15) {
+      game.setScreen(new InstructionScreen(game, this));
+    } else {
+      over = true;
+    }
+
+    return true;
   }
 
   @Override

@@ -1,9 +1,10 @@
 *.class
 Homunculus-html/gwt-unitCache/*
-Homuncuus-html/war/*
-Homuncuus-html/bin
-Homuncuus-desktop/bin
-Homuncuus/bin
+Homunculus-html/war/*
+Homunculus-html/bin
+Homunculus-desktop/bin
+Homunculus-android/bin
+Homunculus/bin
 .metadata/
 .metadata/*
 .metadata/.*

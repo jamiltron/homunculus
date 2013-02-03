@@ -57,9 +57,17 @@ public class WorldRenderer {
   }
 
   private void renderText() {
-    //Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-    //Assets.font.draw(spriteBatch, Integer.toString(world.score), 12 * ppuX,
-    //    24 * ppuY);
+    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    Assets.font.draw(spriteBatch, Integer.toString(world.score), 12.75f * ppuX,
+        22.5f * ppuY);
+    
+    Assets.font.setColor(0.0f, 0.0f, 0.0f, 1.0f);
+    Assets.font.draw(spriteBatch, "1000000", 13f * ppuX,
+        14.5f * ppuY);
+    Assets.font.draw(spriteBatch, "5", 13f * ppuX,
+        13.15f * ppuY);
+    Assets.font.draw(spriteBatch, "Classic", 13f * ppuX,
+        11.75f * ppuY);
   }
 
   private void renderMessages() {
@@ -78,6 +86,12 @@ public class WorldRenderer {
     spriteBatch.draw(Assets.playGameBackground, 0, 0, width, height);
     keyFrame = Assets.wizardAnim.getFrame(0, false);
     spriteBatch.draw(keyFrame, 12.7f * ppuX, 16.45f * ppuY, 4 * ppuX, 4 * ppuY);
+    spriteBatch.draw(Assets.leftArrow, 1.25f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+    spriteBatch.draw(Assets.downArrow, 5.5f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+    spriteBatch.draw(Assets.rightArrow, 9.75f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+    spriteBatch.draw(Assets.rotateArrow, 14f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+    
+    
   }
 
   private void renderHomunculi() {

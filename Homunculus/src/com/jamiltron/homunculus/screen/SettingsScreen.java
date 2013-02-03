@@ -142,13 +142,19 @@ public class SettingsScreen implements Screen, InputProcessor {
   @Override
   public boolean touchDown(int screenX, int screenY, int pointer, int button) {
     // TODO Auto-generated method stub
-    return false;
+    return true;
   }
 
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    Settings settings = new Settings();
+    settings.setSpeed(speed);
+    settings.setSoundOn(sound);
+    settings.setMusicOn(music);
+    settings.setHomunculiNum(numHomunculi);
+    game.setScreen(new GameScreen(game, settings));
     // TODO Auto-generated method stub
-    return false;
+    return true;
   }
 
   @Override
@@ -181,7 +187,7 @@ public class SettingsScreen implements Screen, InputProcessor {
   }
 
   private void renderText() {
-    spriteBatch.draw(Assets.settingsText, 0, 0, width, height);
+    //spriteBatch.draw(Assets.settingsText, 0, 0, width, height);
     // TODO render amount of homunculi
   }
 

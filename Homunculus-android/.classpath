@@ -5,7 +5,7 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Homunculus"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry kind="lib" path="/home/jamiltron/opt/libgdx/gdx-backend-android.jar" sourcepath="libs/gdx-backend-android-sources.jar"/>
-	<classpathentry kind="lib" path="/home/jamiltron/opt/libgdx/gdx.jar" sourcepath="/Homunculus/libs/gdx-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/jamiltron/opt/libgdx/gdx-backend-android.jar" sourcepath="libs/gdx-backend-android-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/jamiltron/opt/libgdx/gdx.jar" sourcepath="/Homunculus/libs/gdx-sources.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

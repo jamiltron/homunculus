@@ -264,6 +264,7 @@ public class WorldController {
                 }
               }
             }
+            scoreUp();
             world.cleanUp();
           } else {
             
