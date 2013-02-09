@@ -30,6 +30,7 @@ public class WorldController {
   float fastTime;
   public float normalTime;
   float pauseTime;
+  public static final float rotateDelay = 0.25f;
   int drops;
 
   JArray<Boolean> toDestroy;
@@ -414,11 +415,6 @@ public class WorldController {
         world.putGrid(x, y, null);
         toDestroy.set(x, y, false);
       }
-
-//      if ((spell != null) && (spell.component1 == null)
-//          && spell.component2 == null) {
-//        world.deadSpells.add(spell);
-//      }
     }
 
     // go through each homunculi and destroy it need be
@@ -430,8 +426,6 @@ public class WorldController {
         y = homunculi.pos.y;
         homunculi.isDying = true;
         homunculi.stateTime = 0f;
-        //world.deadHomunculi.add(homunculi);
-        //world.putGrid(x, y, null);
         toDestroy.set(x, y, false);
       }
     }
@@ -449,50 +443,68 @@ public class WorldController {
     }
   }
   private void updateSpell(float dt) {
-    //TODO UPDATE
     if (activeSpell != null) {
       boolean canMove = true;
       boolean playRotate = false;
 
       // check if rotating right and can rotate
       if (keys.get(Keys.ROTR) && activeSpell.getRotateTime() <= 0) {
-        if (activeSpell.isFlat() && activeSpell.topComponent().pos.y < World.Y_MAX - 1) {
+        if (activeSpell.isFlat() && ((activeSpell.topComponent().pos.y < World.Y_MAX - 1) ||
+            activeSpell.topComponent().pos.y < World.Y_MAX && 
+            (activeSpell.leftComponent().pos.x == World.ENTRY_X || 
+            activeSpell.leftComponent().pos.x == World.ENTRY_X + 1))) {
           if (world.getGrid(activeSpell.leftComponent().pos.x,
               activeSpell.leftComponent().pos.y + 1f) == null) {
             Component left = activeSpell.leftComponent();
             Component right = activeSpell.rightComponent();
             right.pos.x -= 1f;
             left.pos.y += 1f;
-            activeSpell.setRotateTime(0.25f + dt);
+            activeSpell.setRotateTime(rotateDelay + dt);
             playRotate = true;
           }
         } else if (activeSpell.isStanding()
-            && activeSpell.topComponent().pos.y < World.Y_MAX
+            && activeSpell.topComponent().pos.y <= World.Y_MAX
             && activeSpell.rightComponent().pos.x < World.X_MAX - 1f) {
           if (world.getGrid(activeSpell.bottomComponent().pos.x + 1f,
               activeSpell.bottomComponent().pos.y) == null) {
             Component top = activeSpell.topComponent();
             top.pos.x += 1f;
             top.pos.y -= 1f;
-            activeSpell.setRotateTime(0.25f + dt);
+            activeSpell.setRotateTime(rotateDelay + dt);
             playRotate = true;
+          }
+        } else if (activeSpell.isStanding()
+            && activeSpell.topComponent().pos.y <= World.Y_MAX
+            && activeSpell.rightComponent().pos.x < World.X_MAX) {
+          if (world.getGrid(activeSpell.bottomComponent().pos.x - 1f,
+              activeSpell.bottomComponent().pos.y) == null) {
+            Component top = activeSpell.topComponent();
+            Component bot = activeSpell.bottomComponent();
+            top.pos.y -= 1f;
+            bot.pos.x -= 1f;
+            activeSpell.setRotateTime(rotateDelay + dt);
+            playRotate = true;
+            
           }
         }
       }
 
       // check if rotating left and can rotate
       if (keys.get(Keys.ROTL) && activeSpell.getRotateTime() <= 0) {
-        if (activeSpell.isFlat() && activeSpell.topComponent().pos.y < World.Y_MAX - 1) {
+        if (activeSpell.isFlat() && ((activeSpell.topComponent().pos.y < World.Y_MAX - 1) ||
+            activeSpell.topComponent().pos.y < World.Y_MAX && 
+            (activeSpell.leftComponent().pos.x == World.ENTRY_X || 
+            activeSpell.leftComponent().pos.x == World.ENTRY_X + 1))) {
           if (world.getGrid(activeSpell.leftComponent().pos.x,
               activeSpell.leftComponent().pos.y + 1f) == null) {
             Component right = activeSpell.rightComponent();
             right.pos.y += 1f;
             right.pos.x -= 1f;
-            activeSpell.setRotateTime(0.25f + dt);
+            activeSpell.setRotateTime(rotateDelay + dt);
             playRotate = true;
           }
         } else if (activeSpell.isStanding()
-            && activeSpell.topComponent().pos.y < World.Y_MAX
+            && activeSpell.topComponent().pos.y <= World.Y_MAX
             && activeSpell.leftComponent().pos.x < World.X_MAX - 1f) {
           if (world.getGrid(activeSpell.bottomComponent().pos.x + 1f,
               activeSpell.bottomComponent().pos.y) == null) {
@@ -500,7 +512,7 @@ public class WorldController {
             Component bottom = activeSpell.bottomComponent();
             top.pos.y -= 1f;
             bottom.pos.x += 1f;
-            activeSpell.setRotateTime(0.25f + dt);
+            activeSpell.setRotateTime(rotateDelay + dt);
             playRotate = true;
           }
         }
@@ -508,8 +520,10 @@ public class WorldController {
 
       // check if we can move left
       if (keys.get(Keys.LEFT) && activeSpell.getPauseTime() <= 0f
-          && activeSpell.leftComponent().pos.x >= World.X_MIN
-          && activeSpell.topComponent().pos.y < World.Y_MAX) {
+          && ((activeSpell.leftComponent().pos.x >= World.X_MIN
+          && activeSpell.topComponent().pos.y < World.Y_MAX) ||
+          (activeSpell.leftComponent().pos.x == World.ENTRY_X + 1f 
+          && activeSpell.topComponent().pos.y == World.Y_MAX))) {
 
         if ((world.getGrid(activeSpell.topComponent().pos.x - 1f,
             activeSpell.topComponent().pos.y) != null)
@@ -529,8 +543,10 @@ public class WorldController {
 
       // check if we can move right
       if (keys.get(Keys.RIGHT) && activeSpell.getPauseTime() <= 0f
-          && activeSpell.rightComponent().pos.x < World.X_MAX - 1
-          && activeSpell.topComponent().pos.y < World.Y_MAX) {
+          && ((activeSpell.rightComponent().pos.x < World.X_MAX - 1
+          && activeSpell.topComponent().pos.y < World.Y_MAX) ||
+          (activeSpell.leftComponent().pos.x == World.ENTRY_X 
+          && activeSpell.topComponent().pos.y == World.Y_MAX))) {
 
         if ((world.getGrid(activeSpell.topComponent().pos.x + 1f,
             activeSpell.topComponent().pos.y) != null)

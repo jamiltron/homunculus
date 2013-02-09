@@ -25,21 +25,28 @@ public class GameScreen implements Screen, InputProcessor {
   private float lastX;
   private float lastY;
   private float lastDragX;
+  private boolean leftPressed;
+  private boolean rightPressed;
 
   public GameScreen(Game g, Settings s) {
     super();
     game = g;
     settings = s;
+    touching = false;
+    leftPressed = false;
+    rightPressed = true;
   }
 
   @Override
   public boolean keyDown(int keycode) {
     if (keycode == Keys.LEFT) {
       controller.leftPress();
+      leftPressed = true;
     }
 
     if (keycode == Keys.RIGHT) {
       controller.rightPress();
+      rightPressed = true;
     }
 
     if (keycode == Keys.DOWN) {
@@ -67,10 +74,12 @@ public class GameScreen implements Screen, InputProcessor {
   public boolean keyUp(int keycode) {
     if (keycode == Keys.LEFT) {
       controller.leftRelease();
+      leftPressed = false;
     }
 
     if (keycode == Keys.RIGHT) {
       controller.rightRelease();
+      rightPressed = false;
     }
 
     if (keycode == Keys.DOWN) {
@@ -153,11 +162,13 @@ public class GameScreen implements Screen, InputProcessor {
     renderer.render();
     
     // TODO: ADD A SETTING FOR TOUCHSCREEN YES/NO
-    controller.leftRelease();
-    controller.rightRelease();
+    if (!leftPressed) controller.leftRelease();
+    if (!rightPressed) controller.rightRelease();
+    
     
     if (!touching) {
       controller.rotrRelease();
+      controller.rotlRelease();
     }
     // TODO: END ALL TOUCHSCREEN STUFF HERE
     
@@ -166,8 +177,6 @@ public class GameScreen implements Screen, InputProcessor {
       if (world.numHomunculi + 1 <= 20) {
         numHomunculi = world.numHomunculi + 1;
       }
-      
-      
 
       world = new World(numHomunculi, world.score);
       controller.resetController(world);
