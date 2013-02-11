@@ -8,6 +8,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jamiltron.homunculus.Assets;
 
@@ -24,15 +25,37 @@ public class MainMenu implements Screen, InputProcessor {
 
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
+  private static final float MENU_SPACE_Y = 2f;
+  private static final float CURSOR_SPACE_X = 0.95f;
+  private static final float START_Y = 16f;
+  private static final float INSTRUCTIONS_Y = 14f;
+  private static final float CREDITS_Y = 12f;
+  private static final float QUIT_Y = 10f;
+  
+  private static final float AREA_SPACE_X = 2f;
+  private static final float AREA_SPACE_Y = 2f;
+  
+  private static final float START_X = 7.7f;
+  private static final float INSTRUCTIONS_X = 5.4f;
+  private static final float CREDITS_X = 7.05f;
+  private static final float QUIT_X = 7.9f;
+  
+  
+  
+  private Rectangle startArea;
+  private Rectangle instructionsArea;
+  private Rectangle creditsArea;
+  private Rectangle quitArea;
 
   public MainMenu(Game g) {
     this.cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     this.cam.update();
     spriteBatch = new SpriteBatch();
-    arrowPos = new Vector2(4, 18);
+    arrowPos = new Vector2(START_X - CURSOR_SPACE_X, 16);
     over = false;
     game = g;
+    Assets.font.scale(1f);
   }
 
   public void setSize(int w, int h) {
@@ -44,18 +67,33 @@ public class MainMenu implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
-    if (keycode == Keys.DOWN && arrowPos.y > 12) {
-      arrowPos.y -= 3;
+    if (keycode == Keys.DOWN && arrowPos.y == START_Y) {
+      arrowPos.y -= MENU_SPACE_Y;
+      arrowPos.x = INSTRUCTIONS_X - CURSOR_SPACE_X;
+    } else if (keycode == Keys.UP && arrowPos.y == INSTRUCTIONS_Y) {
+      arrowPos.y += MENU_SPACE_Y;
+      arrowPos.x = START_X - CURSOR_SPACE_X;
+    } else if (keycode == Keys.DOWN && arrowPos.y == INSTRUCTIONS_Y) {
+      arrowPos.y -= MENU_SPACE_Y;
+      arrowPos.x = CREDITS_X - CURSOR_SPACE_X;
+    } else if (keycode == Keys.DOWN && arrowPos.y == CREDITS_Y) {
+      arrowPos.y -= MENU_SPACE_Y;
+      arrowPos.x = QUIT_X - CURSOR_SPACE_X;
+    } else if (keycode == Keys.UP && arrowPos.y == CREDITS_Y) {
+      arrowPos.y += MENU_SPACE_Y;
+      arrowPos.x = INSTRUCTIONS_X - CURSOR_SPACE_X;
+    } else if (keycode == Keys.UP && arrowPos.y == QUIT_Y) {
+      arrowPos.y += MENU_SPACE_Y;
+      arrowPos.x = CREDITS_X - CURSOR_SPACE_X;
     }
-
-    if (keycode == Keys.UP && arrowPos.y < 18) {
-      arrowPos.y += 3;
-    }
-
+    
     if (keycode == Keys.SPACE || keycode == Keys.ENTER) {
-      if (arrowPos.y == 18) {
+      if (arrowPos.y == START_Y) {
         game.setScreen(new SettingsScreen(game));
-      } else if (arrowPos.y == 15) {
+      } else if (arrowPos.y == INSTRUCTIONS_Y) {
+        game.setScreen(new InstructionScreen(game, this));
+      } else if (arrowPos.y == CREDITS_Y) {
+        // TODO: MAKE CREDIT SCREEN
         game.setScreen(new InstructionScreen(game, this));
       } else {
         over = true;
@@ -68,8 +106,8 @@ public class MainMenu implements Screen, InputProcessor {
   private void draw(float dt) {
     spriteBatch.begin();
     renderBackground();
-    renderText();
     renderCursor();
+    renderText();
     spriteBatch.end();
   }
 
@@ -80,10 +118,20 @@ public class MainMenu implements Screen, InputProcessor {
   
   private void renderBackground() {
     spriteBatch.draw(Assets.startScreenBackground, 0, 0, width, height);
+    spriteBatch.draw(Assets.logo, 3.5f * ppuX, 19.5f * ppuY, 12.03125f * ppuX, 2.75f * ppuY);
   }
 
   private void renderText() {
-    //spriteBatch.draw(Assets.titleScreenText, 0, 0, width, height);
+    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    Assets.font.draw(spriteBatch, "start", START_X * ppuX,
+        16.5f * ppuY);
+    Assets.font.draw(spriteBatch, "instructions", INSTRUCTIONS_X * ppuX,
+        14.5f * ppuY);
+    Assets.font.draw(spriteBatch, "credits", CREDITS_X * ppuX,
+        12.5f * ppuY);
+    Assets.font.draw(spriteBatch, "quit", QUIT_X * ppuX,
+        10.5f * ppuY);
+    
   }
 
   private void update(float dt) {

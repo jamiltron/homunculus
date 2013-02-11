@@ -40,6 +40,8 @@ public class Assets {
   public static TextureRegion downArrow;
   public static TextureRegion rotateArrow;
   
+  public static TextureRegion logo;
+  
   public static Animation wizardAnim;
   public static Animation blueHomLiveAnim;
   public static Animation redHomLiveAnim;
@@ -67,8 +69,8 @@ public class Assets {
   }
   
   public static void loadFonts() {
-    font = new BitmapFont(Gdx.files.internal("data/fnt/font.fnt"),
-        Gdx.files.internal("data/fnt/font.png"), false);
+    font = new BitmapFont(Gdx.files.internal("data/fnt/font2.fnt"),
+        Gdx.files.internal("data/fnt/fontw.png"), false);
   }
   
   public static void loadImages() {
@@ -152,6 +154,8 @@ public class Assets {
     rightArrow = new TextureRegion(spriteSheet, 64, 224, 32, 32);
     rotateArrow = new TextureRegion(spriteSheet, 32, 224, 32, 32);
     downArrow = new TextureRegion(spriteSheet, 96, 224, 32, 32);
+    
+    logo = new TextureRegion(spriteSheet, 0, 256, 385, 88);
 
   }
 

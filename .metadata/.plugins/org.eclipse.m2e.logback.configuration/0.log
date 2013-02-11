@@ -9,3 +9,4 @@
 2013-01-25 12:47:43,952 [main] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
 2013-01-25 16:27:07,541 [Worker-1] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
 2013-02-09 12:42:20,665 [Worker-4] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2013-02-10 15:34:00,258 [Worker-1] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
