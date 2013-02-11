@@ -20,6 +20,7 @@ public class Assets {
   public static Texture gameOverBackgroundT;
   public static Texture pauseBackgroundT;
   public static Texture playGameBackgroundT;
+  public static Texture debug;
   
   public static Texture creditsText;
   public static Texture cursor;
@@ -74,18 +75,14 @@ public class Assets {
   }
   
   public static void loadImages() {
-    //creditsText = loadTexture("data/gfx/credits-text.png");
     cursor = loadTexture("data/gfx/cursor.png");
     gameOverBackgroundT = loadTexture("data/gfx/game-over-bg.png");
-    //gameOverText = loadTexture("data/gfx/game-over-text.png");
-    //highScoresText = loadTexture("data/gfx/high-scores-text.png");
     pauseBackgroundT = loadTexture("data/gfx/pause-bg.png");
-    //pauseText = loadTexture("data/gfx/pause-text.png");
     playGameBackgroundT = loadTexture("data/gfx/play-game-bg.png");
-    //settingsText = loadTexture("data/gfx/settings-text.png");
     spriteSheet = loadTexture("data/gfx/sprite-sheet.png");
     startScreenBackgroundT = loadTexture("data/gfx/start-screen-bg.png");
-    //titleScreenText = loadTexture("data/gfx/title-screen-text.png");
+
+    debug = loadTexture("data/gfx/debug.png");
     
     startScreenBackground = new TextureRegion(startScreenBackgroundT, 0, 0, 600, 800);
     playGameBackground = new TextureRegion(playGameBackgroundT, 0, 0, 600, 800);

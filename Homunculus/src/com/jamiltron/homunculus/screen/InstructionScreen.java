@@ -17,6 +17,12 @@ public class InstructionScreen implements Screen, InputProcessor {
   private final MainMenu mainMenu;
   private int width;
   private int height;
+  private float ppuX;
+  private float ppuY;
+  private static final float INSTRUCTIONS_Y = 21f;
+  private static final float INSTRUCTIONS_X = 5.4f;
+  private static final float TEXT_Y = 18f;
+  private static final float TEXT_X = 1.4f;
 
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
@@ -32,8 +38,8 @@ public class InstructionScreen implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
+    Assets.font.scale(1f);
     game.setScreen(mainMenu);
-
     return true;
   }
 
@@ -57,8 +63,9 @@ public class InstructionScreen implements Screen, InputProcessor {
 
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-    // TODO Auto-generated method stub
-    return false;
+    Assets.font.scale(1f);
+    game.setScreen(mainMenu);
+    return true;
   }
 
   @Override
@@ -84,8 +91,31 @@ public class InstructionScreen implements Screen, InputProcessor {
     Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
     Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
     spriteBatch.begin();
-    spriteBatch.draw(Assets.startScreenBackground, 0, 0, width, height);
+    renderBackground();
+    renderText();
     spriteBatch.end();
+  }
+  
+  public void renderBackground() {
+    spriteBatch.draw(Assets.startScreenBackground, 0, 0, width, height);
+  }
+  
+  public void renderText() {
+    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    Assets.font.scale(1f);
+    Assets.font.draw(spriteBatch, "instructions", INSTRUCTIONS_X * ppuX,
+        INSTRUCTIONS_Y * ppuY);
+    Assets.font.scale(-1f);
+    Assets.font.draw(spriteBatch, "a spell went awry and loosed foul homunculi", TEXT_X * ppuX,
+        TEXT_Y * ppuY);
+    Assets.font.draw(spriteBatch, "throughout your wizard tower  use your", TEXT_X * ppuX,
+        (TEXT_Y - 1f) * ppuY);
+    Assets.font.draw(spriteBatch, "magic to return them to the void  match", TEXT_X * ppuX,
+        (TEXT_Y - 2f) * ppuY);
+    Assets.font.draw(spriteBatch, "four of the same color in a row to complete", TEXT_X * ppuX,
+        (TEXT_Y - 3f) * ppuY);
+    Assets.font.draw(spriteBatch, "the spell", TEXT_X * ppuX,
+        (TEXT_Y - 4f) * ppuY);
 
   }
 
@@ -93,6 +123,8 @@ public class InstructionScreen implements Screen, InputProcessor {
   public void resize(int w, int h) {
     width = w;
     height = h;
+    ppuX = width / CAMERA_W;
+    ppuY = height / CAMERA_H;
   }
 
   @Override

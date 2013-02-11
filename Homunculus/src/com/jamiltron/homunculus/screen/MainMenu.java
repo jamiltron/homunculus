@@ -5,9 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jamiltron.homunculus.Assets;
@@ -40,12 +43,18 @@ public class MainMenu implements Screen, InputProcessor {
   private static final float CREDITS_X = 7.05f;
   private static final float QUIT_X = 7.9f;
   
+  private static final float AREA_H = 0.75f;
   
+  ShapeRenderer debugRenderer = new ShapeRenderer();
   
-  private Rectangle startArea;
-  private Rectangle instructionsArea;
-  private Rectangle creditsArea;
-  private Rectangle quitArea;
+  private Rectangle startArea = new Rectangle(2f, 
+      START_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
+  private Rectangle instructionsArea = new Rectangle(2f, 
+      INSTRUCTIONS_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
+  private Rectangle creditsArea = new Rectangle(2f, 
+      CREDITS_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
+  private Rectangle quitArea = new Rectangle(2f, 
+      QUIT_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
 
   public MainMenu(Game g) {
     this.cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
@@ -89,11 +98,14 @@ public class MainMenu implements Screen, InputProcessor {
     
     if (keycode == Keys.SPACE || keycode == Keys.ENTER) {
       if (arrowPos.y == START_Y) {
+        Assets.font.scale(-1f);
         game.setScreen(new SettingsScreen(game));
       } else if (arrowPos.y == INSTRUCTIONS_Y) {
+        Assets.font.scale(-1f);
         game.setScreen(new InstructionScreen(game, this));
       } else if (arrowPos.y == CREDITS_Y) {
         // TODO: MAKE CREDIT SCREEN
+        Assets.font.scale(-1f);
         game.setScreen(new InstructionScreen(game, this));
       } else {
         over = true;
@@ -108,7 +120,15 @@ public class MainMenu implements Screen, InputProcessor {
     renderBackground();
     renderCursor();
     renderText();
+    renderDebug();
     spriteBatch.end();
+  }
+  
+  private void renderDebug() {
+    spriteBatch.draw(Assets.debug, startArea.x * ppuX, startArea.y * ppuY, startArea.width * ppuX, startArea.height * ppuY);
+    spriteBatch.draw(Assets.debug, instructionsArea.x * ppuX, instructionsArea.y * ppuY, instructionsArea.width * ppuX, instructionsArea.height * ppuY);
+    spriteBatch.draw(Assets.debug, creditsArea.x * ppuX, creditsArea.y * ppuY, creditsArea.width * ppuX, creditsArea.height * ppuY);
+    spriteBatch.draw(Assets.debug, quitArea.x * ppuX, quitArea.y * ppuY, quitArea.width * ppuX, quitArea.height * ppuY);
   }
 
   private void renderCursor() {
@@ -159,12 +179,19 @@ public class MainMenu implements Screen, InputProcessor {
 
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-    if (arrowPos.y == 18) {
-      game.setScreen(new SettingsScreen(game));
-    } else if (arrowPos.y == 15) {
-      game.setScreen(new InstructionScreen(game, this));
-    } else {
-      over = true;
+    float x = screenX / ppuX;
+    float y = CAMERA_H - screenY / ppuY;
+    if (button == 0) {
+      if ((x >= startArea.x && x <= startArea.x + startArea.width) &&
+          (y >= startArea.y && y <= startArea.y + startArea.height)) {
+        Assets.font.scale(-1f);
+        game.setScreen(new SettingsScreen(game));
+        
+      } else if ((x >= instructionsArea.x && x <= instructionsArea.x + instructionsArea.width) &&
+          (y >= instructionsArea.y && y <= instructionsArea.y + instructionsArea.height)) {
+        Assets.font.scale(-1f);
+        game.setScreen(new InstructionScreen(game, this));
+      }
     }
 
     return true;
