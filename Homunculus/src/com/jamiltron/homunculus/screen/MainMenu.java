@@ -104,9 +104,8 @@ public class MainMenu implements Screen, InputProcessor {
         Assets.font.scale(-1f);
         game.setScreen(new InstructionScreen(game, this));
       } else if (arrowPos.y == CREDITS_Y) {
-        // TODO: MAKE CREDIT SCREEN
         Assets.font.scale(-1f);
-        game.setScreen(new InstructionScreen(game, this));
+        game.setScreen(new CreditsScreen(game, this));
       } else {
         over = true;
       }
@@ -191,6 +190,13 @@ public class MainMenu implements Screen, InputProcessor {
           (y >= instructionsArea.y && y <= instructionsArea.y + instructionsArea.height)) {
         Assets.font.scale(-1f);
         game.setScreen(new InstructionScreen(game, this));
+      } else if ((x >= creditsArea.x && x <= creditsArea.x + creditsArea.width) &&
+          (y >= creditsArea.y && y <= creditsArea.y + creditsArea.height)) {
+        Assets.font.scale(-1f);
+        game.setScreen(new CreditsScreen(game, this));
+      } else if ((x >= quitArea.x && x <= quitArea.x + quitArea.width) &&
+          (y >= quitArea.y && y <= quitArea.y + quitArea.height)) {
+        over = true;
       }
     }
 
