@@ -106,11 +106,11 @@ public class CreditsScreen implements Screen, InputProcessor {
     Assets.font.draw(spriteBatch, "credits", CREDITS_X * ppuX,
         CREDITS_Y * ppuY);
     Assets.font.scale(-1f);
-    Assets.font.draw(spriteBatch, "programming and game development", TEXT_X * ppuX,
+    Assets.font.draw(spriteBatch, "game development & programming", TEXT_X * ppuX,
         TEXT_Y * ppuY);
     Assets.font.draw(spriteBatch, "justin hamilton", TEXT_X * ppuX,
         (TEXT_Y - 1f) * ppuY);
-    Assets.font.draw(spriteBatch, "art and graphic design", TEXT_X * ppuX,
+    Assets.font.draw(spriteBatch, "graphic design & art", TEXT_X * ppuX,
         (TEXT_Y - 3f) * ppuY);
     Assets.font.draw(spriteBatch, "donna almendrala", TEXT_X * ppuX,
         (TEXT_Y - 4f) * ppuY);

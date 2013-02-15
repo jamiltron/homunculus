@@ -4,8 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.input.GestureDetector.GestureListener;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.jamiltron.homunculus.Assets;
@@ -23,7 +21,6 @@ public class GameScreen implements Screen, InputProcessor {
   private final Settings settings;
   private boolean touching;
   private float lastX;
-  private float lastY;
   private float lastDragX;
   private boolean leftPressed;
   private boolean rightPressed;
@@ -114,7 +111,6 @@ public class GameScreen implements Screen, InputProcessor {
     if (button == 0) {
       touching = true;
       lastX = screenX;
-      lastY = screenY;
       lastDragX = screenX;
     }
     return true;

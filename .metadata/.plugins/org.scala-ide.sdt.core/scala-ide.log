@@ -121,3 +121,18 @@ when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationL
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
+2013-02-11 10:39:31,111 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
+when weaving classes 
+when weaving 
+ [Xlint:cantFindType]
+2013-02-11 15:28:40,743 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
+when weaving classes 
+when weaving 
+ [Xlint:cantFindType]
+2013-02-14 13:51:44,264 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
+when weaving classes 
+when weaving 
+ [Xlint:cantFindType]

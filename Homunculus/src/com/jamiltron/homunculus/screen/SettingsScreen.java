@@ -8,41 +8,55 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.jamiltron.homunculus.Assets;
 import com.jamiltron.homunculus.Settings;
 
 public class SettingsScreen implements Screen, InputProcessor {
-
+  
   private final Game game;
   private final SpriteBatch spriteBatch;
   private final OrthographicCamera cam;
-  private final Vector2 arrowPos1;
-  private Vector2 arrowPos2;
-  private Vector2 arrowPos3;
-  private int currentArrow;
-  private boolean canMove;
-  private int currKeyDown;
+  private int cursorLevel;
   private float ppuX;
   private float ppuY;
   private int width;
   private int height;
-  private int numHomunculi;
+  private int level;
   private int speed;
   private boolean music;
-  private final boolean sound;
+  private boolean sound;
+  private boolean showSelector;
+  private static final float SETTINGS_Y = 22.5f;
+  private static final float SETTINGS_X = 6.4f;
+  private static final float LEVEL_X = 4f;
+  private static final float LEVEL_Y = SETTINGS_Y - 2f;
+  private static final float NUM_X = 9f;
+  private static final float NUM_Y = LEVEL_Y;
+  private static final float SPEED_X = LEVEL_X;
+  private static final float SPEED_Y = LEVEL_Y - 2f;
+  private static final float SPEEDS_X = 8f;
+  private static final float SPEEDS_Y = SPEED_Y;
+  private static final float SOUND_X = SPEED_X;
+  private static final float SOUND_Y = SPEED_Y - 2f;
+  private static final float SOUNDS_X = 8f;
+  private static final float SOUNDS_Y = SOUND_Y;
+  private static final float MUSIC_X = SOUND_X;
+  private static final float MUSIC_Y = SOUND_Y - 2f;
+  private static final float MUSICS_X = 8f;
+  private static final float MUSICS_Y = MUSIC_Y;
+  private static final float START_X = MUSIC_X;
+  private static final float START_Y = MUSIC_Y - 2f;
 
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
 
   public SettingsScreen(Game g) {
+    showSelector = true;
+    cursorLevel = 0;
     music = true;
     sound = true;
-    numHomunculi = 0;
+    level = 0;
     speed = 0;
-    canMove = true;
-    currentArrow = 1;
-    arrowPos1 = new Vector2(2f, 15f);
     this.cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     this.cam.update();
@@ -52,75 +66,47 @@ public class SettingsScreen implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
-    if (currentArrow == 1) {
-      if (canMove && keycode == Keys.LEFT) {
-        currKeyDown = keycode;
-        canMove = false;
-        if (arrowPos1.x > 2) {
-          arrowPos1.x -= .75f;
-          numHomunculi -= 1;
-        }
-      } else if (canMove && keycode == Keys.RIGHT) {
-        currKeyDown = keycode;
-        canMove = false;
-        if (arrowPos1.x < 16.5f) {
-          arrowPos1.x += .75f;
-          numHomunculi += 1;
-        }
-      } else if (keycode == Keys.DOWN || keycode == Keys.ENTER) {
-        if (arrowPos2 == null) {
-          arrowPos2 = new Vector2(0.5f, 10f);
-          canMove = true;
-        }
-        currentArrow = 2;
+    showSelector = true;
+    if (cursorLevel == 0) {
+      if (keycode == Keys.LEFT && level > 0) {
+        level -= 1;
+      } else if (keycode == Keys.RIGHT && level < 20) {
+        level += 1;
       }
-
-    } else if (currentArrow == 2) {
-      if (canMove && keycode == Keys.LEFT) {
-        currKeyDown = keycode;
-        canMove = false;
-        if (arrowPos2.x > 0.5) {
-          arrowPos2.x -= 5f;
-          speed -= 1;
-        }
-      } else if (canMove && keycode == Keys.RIGHT) {
-        currKeyDown = keycode;
-        canMove = false;
-        if (arrowPos2.x < 10.5f) {
-          arrowPos2.x += 5f;
-          speed += 1;
-        }
-      } else if (keycode == Keys.ENTER || keycode == Keys.DOWN) {
-        if (arrowPos3 == null) {
-          arrowPos3 = new Vector2(0.5f, 2f);
-          canMove = true;
-        }
-        currentArrow = 3;
+    } else if (cursorLevel == 1) {
+      if (keycode == Keys.LEFT && speed > 0) {
+        speed -= 1;
+      } else if (keycode == Keys.RIGHT && speed < 2) {
+        speed += 1;
       }
-
-    } else if (currentArrow == 3) {
-      if (canMove && keycode == Keys.LEFT) {
-        currKeyDown = keycode;
-        canMove = false;
-        if (arrowPos3.x > 0.5f) {
-          arrowPos3.x -= 5f;
-          music = true;
-        }
-      } else if (canMove && keycode == Keys.RIGHT) {
-        currKeyDown = keycode;
-        canMove = false;
-        if (arrowPos3.x < 5.5f) {
-          arrowPos3.x += 5f;
-          music = false;
-        }
-      } else if (keycode == Keys.ENTER || keycode == Keys.DOWN) {
-        Settings settings = new Settings();
-        settings.setSpeed(speed);
-        settings.setSoundOn(sound);
-        settings.setMusicOn(music);
-        settings.setHomunculiNum(numHomunculi);
-        game.setScreen(new GameScreen(game, settings));
+    } else if (cursorLevel == 2) {
+      if (keycode == Keys.LEFT && sound == false) {
+        sound = true;
+      } else if (keycode == Keys.RIGHT && sound == true) {
+        sound = false;
       }
+    } else if (cursorLevel == 3) {
+      if (keycode == Keys.LEFT && music == false) {
+        music = true;
+      } else if (keycode == Keys.RIGHT && music == true) {
+        music = false;
+      }
+    }
+    
+          
+    if ((keycode == Keys.DOWN || keycode == Keys.ENTER || keycode == Keys.SPACE) && cursorLevel < 4) {
+      cursorLevel += 1;
+    } else if ((keycode == Keys.UP || keycode == Keys.BACKSPACE)&& cursorLevel > 0) {
+      cursorLevel -= 1;
+    }
+    
+    if (cursorLevel == 4 && (keycode == Keys.ENTER)) {
+      Settings settings = new Settings();
+      settings.setSpeed(speed);
+      settings.setSoundOn(sound);
+      settings.setMusicOn(music);
+      settings.setHomunculiNum(level);
+      game.setScreen(new GameScreen(game, settings));
     }
 
     return true;
@@ -128,8 +114,6 @@ public class SettingsScreen implements Screen, InputProcessor {
 
   @Override
   public boolean keyUp(int keycode) {
-    if (keycode == currKeyDown)
-      canMove = true;
     return true;
   }
 
@@ -151,9 +135,8 @@ public class SettingsScreen implements Screen, InputProcessor {
     settings.setSpeed(speed);
     settings.setSoundOn(sound);
     settings.setMusicOn(music);
-    settings.setHomunculiNum(numHomunculi);
+    settings.setHomunculiNum(level);
     game.setScreen(new GameScreen(game, settings));
-    // TODO Auto-generated method stub
     return true;
   }
 
@@ -187,8 +170,77 @@ public class SettingsScreen implements Screen, InputProcessor {
   }
 
   private void renderText() {
-    //spriteBatch.draw(Assets.settingsText, 0, 0, width, height);
-    // TODO render amount of homunculi
+    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    Assets.font.scale(1f);
+    Assets.font.draw(spriteBatch, "settings", SETTINGS_X * ppuX,
+        SETTINGS_Y * ppuY);
+    Assets.font.scale(-0.5f);
+    Assets.font.draw(spriteBatch, "level", LEVEL_X * ppuX,
+        LEVEL_Y * ppuY);
+    Assets.font.scale(-0.125f);
+    Assets.font.draw(spriteBatch, Integer.toString(level), NUM_X * ppuX, 
+        NUM_Y * ppuY);
+    Assets.font.scale(0.125f);
+    Assets.font.draw(spriteBatch, "speed", SPEED_X * ppuX, SPEED_Y * ppuY);
+    
+    Assets.font.scale(-0.125f);
+    if (speed == 0) {
+      Assets.font.setColor(1f, 1f, 1f, 1.0f);
+    } else {
+      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
+    }
+    Assets.font.draw(spriteBatch, "slow", SPEEDS_X * ppuX, SPEEDS_Y * ppuY);
+    
+    if (speed == 1) {
+      Assets.font.setColor(1f, 1f, 1f, 1.0f);
+    } else {
+      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
+    }
+    Assets.font.draw(spriteBatch, "med", (SPEEDS_X + 3f) * ppuX, SPEEDS_Y * ppuY);
+    
+    if (speed == 2) {
+      Assets.font.setColor(1f, 1f, 1f, 1.0f);
+    } else {
+      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
+    }
+    Assets.font.draw(spriteBatch, "fast", (SPEEDS_X + 6f) * ppuX, SPEEDS_Y * ppuY);
+    Assets.font.scale(0.125f);
+    
+    Assets.font.setColor(1f, 1f, 1f, 1.0f);
+    Assets.font.draw(spriteBatch, "sounds", SOUND_X * ppuX, SOUND_Y * ppuY);
+    Assets.font.scale(-0.125f);
+    if (sound == false) {
+      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
+    }
+    Assets.font.draw(spriteBatch, "on", SOUNDS_X * ppuX, SOUNDS_Y * ppuY);
+    
+    if (sound == true) {
+      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
+    } else {
+      Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    }
+    Assets.font.draw(spriteBatch, "off", (SOUNDS_X + 3f) * ppuX, SOUNDS_Y * ppuY);
+    Assets.font.scale(0.125f);
+    
+    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    Assets.font.draw(spriteBatch, "music", MUSIC_X * ppuX, MUSIC_Y * ppuY);
+    Assets.font.scale(-0.125f);
+    if (music == false) {
+      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
+    }
+    Assets.font.draw(spriteBatch, "on", MUSICS_X * ppuX, MUSICS_Y * ppuY);
+    
+    if (music == true) {
+      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
+    } else {
+      Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    }
+    Assets.font.draw(spriteBatch, "off", (MUSICS_X + 3f) * ppuX, MUSICS_Y * ppuY);
+    Assets.font.scale(0.125f);
+    
+    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    Assets.font.draw(spriteBatch, "start", START_X * ppuX, START_Y * ppuY);
+    Assets.font.scale(-0.5f);
   }
 
   private void renderBackground() {
@@ -196,20 +248,29 @@ public class SettingsScreen implements Screen, InputProcessor {
   }
 
   private void renderCursors() {
-    if (arrowPos1 != null) {
-    //  spriteBatch.draw(Assets.cursorDownRegion, arrowPos1.x * ppuX, arrowPos1.y
-    //      * ppuY, 0.5f * ppuX, 0.5f * ppuY);
-
-    }
-
-    if (arrowPos2 != null) {
-      spriteBatch.draw(Assets.cursor, arrowPos2.x * ppuX, arrowPos2.y
-          * ppuY, 1f * ppuX, 1f * ppuY);
-    }
-
-    if (arrowPos3 != null) {
-      spriteBatch.draw(Assets.cursor, arrowPos3.x * ppuX, arrowPos3.y
-          * ppuY, 1f * ppuX, 1f * ppuY);
+    spriteBatch.draw(Assets.leftArrow, 7.25f * ppuX, (LEVEL_Y - .75f) * ppuY);
+    spriteBatch.draw(Assets.rightArrow, 10.25f * ppuX, (LEVEL_Y - .75f) * ppuY);
+    
+    if (showSelector) {
+      if (cursorLevel == 0) {
+        spriteBatch.draw(Assets.selector, (LEVEL_X - 0.25f) * ppuX, (LEVEL_Y -0.6f) * ppuY, 2.9f * ppuX, 0.9f * ppuY);
+      } else if (cursorLevel == 1 && speed == 0) {
+        spriteBatch.draw(Assets.selector, (SPEEDS_X - 0.25f) * ppuX, (SPEEDS_Y -0.6f) * ppuY, 2.3f * ppuX, 0.9f * ppuY);
+      } else if (cursorLevel == 1 && speed == 1) {
+        spriteBatch.draw(Assets.selector, (SPEEDS_X + 2.75f) * ppuX, (SPEEDS_Y -0.6f) * ppuY, 1.9f * ppuX, 0.9f * ppuY);
+      } else if (cursorLevel == 1 && speed == 2) {
+        spriteBatch.draw(Assets.selector, (SPEEDS_X + 5.75f) * ppuX, (SPEEDS_Y -0.6f) * ppuY, 2.2f * ppuX, 0.9f * ppuY);
+      } else if (cursorLevel == 2 && sound == true) {
+        spriteBatch.draw(Assets.selector, (SOUNDS_X -0.25f) * ppuX, (SOUNDS_Y -0.6f) * ppuY, 1.3f * ppuX, 0.9f * ppuY);
+      } else if (cursorLevel == 2 && sound == false) {
+        spriteBatch.draw(Assets.selector, (SOUNDS_X + 2.75f) * ppuX, (SOUNDS_Y -0.6f) * ppuY, 1.65f * ppuX, 0.9f * ppuY);
+      } else if (cursorLevel == 3 && music == true) {
+        spriteBatch.draw(Assets.selector, (MUSICS_X -0.25f) * ppuX, (MUSICS_Y -0.6f) * ppuY, 1.3f * ppuX, 0.9f * ppuY);
+      } else if (cursorLevel == 3 && music == false) {
+        spriteBatch.draw(Assets.selector, (MUSICS_X + 2.75f) * ppuX, (MUSICS_Y -0.6f) * ppuY, 1.65f * ppuX, 0.9f * ppuY);
+      } else if (cursorLevel == 4) {
+        spriteBatch.draw(Assets.selector, (START_X - 0.25f) * ppuX, (START_Y - 0.6f) * ppuY, 2.75f * ppuX, 0.9f * ppuY);
+      }
     }
   }
 

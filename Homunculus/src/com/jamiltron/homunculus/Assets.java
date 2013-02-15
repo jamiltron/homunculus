@@ -21,15 +21,11 @@ public class Assets {
   public static Texture pauseBackgroundT;
   public static Texture playGameBackgroundT;
   public static Texture debug;
-  
-  public static Texture creditsText;
+
   public static Texture cursor;
-  public static Texture gameOverText;
-  public static Texture highScoresText;
-  public static Texture pauseText;
-  public static Texture settingsText;
   public static Texture spriteSheet;
-  public static Texture titleScreenText;
+  public static Texture selector;
+
   
   public static TextureRegion gameOverBackground;
   public static TextureRegion startScreenBackground;
@@ -83,6 +79,7 @@ public class Assets {
     startScreenBackgroundT = loadTexture("data/gfx/start-screen-bg.png");
 
     debug = loadTexture("data/gfx/debug.png");
+    selector = loadTexture("data/gfx/selector.png");
     
     startScreenBackground = new TextureRegion(startScreenBackgroundT, 0, 0, 600, 800);
     playGameBackground = new TextureRegion(playGameBackgroundT, 0, 0, 600, 800);

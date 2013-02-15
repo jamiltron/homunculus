@@ -5,12 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jamiltron.homunculus.Assets;
@@ -25,6 +22,7 @@ public class MainMenu implements Screen, InputProcessor {
   private float ppuY;
   private int width;
   private int height;
+  private boolean showCursor;
 
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
@@ -35,17 +33,12 @@ public class MainMenu implements Screen, InputProcessor {
   private static final float CREDITS_Y = 12f;
   private static final float QUIT_Y = 10f;
   
-  private static final float AREA_SPACE_X = 2f;
-  private static final float AREA_SPACE_Y = 2f;
-  
   private static final float START_X = 7.7f;
   private static final float INSTRUCTIONS_X = 5.4f;
   private static final float CREDITS_X = 7.05f;
   private static final float QUIT_X = 7.9f;
   
   private static final float AREA_H = 0.75f;
-  
-  ShapeRenderer debugRenderer = new ShapeRenderer();
   
   private Rectangle startArea = new Rectangle(2f, 
       START_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
@@ -57,6 +50,7 @@ public class MainMenu implements Screen, InputProcessor {
       QUIT_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
 
   public MainMenu(Game g) {
+    showCursor = true;
     this.cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     this.cam.update();
@@ -76,6 +70,7 @@ public class MainMenu implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
+    showCursor = true;
     if (keycode == Keys.DOWN && arrowPos.y == START_Y) {
       arrowPos.y -= MENU_SPACE_Y;
       arrowPos.x = INSTRUCTIONS_X - CURSOR_SPACE_X;
@@ -119,20 +114,14 @@ public class MainMenu implements Screen, InputProcessor {
     renderBackground();
     renderCursor();
     renderText();
-    renderDebug();
     spriteBatch.end();
-  }
-  
-  private void renderDebug() {
-    spriteBatch.draw(Assets.debug, startArea.x * ppuX, startArea.y * ppuY, startArea.width * ppuX, startArea.height * ppuY);
-    spriteBatch.draw(Assets.debug, instructionsArea.x * ppuX, instructionsArea.y * ppuY, instructionsArea.width * ppuX, instructionsArea.height * ppuY);
-    spriteBatch.draw(Assets.debug, creditsArea.x * ppuX, creditsArea.y * ppuY, creditsArea.width * ppuX, creditsArea.height * ppuY);
-    spriteBatch.draw(Assets.debug, quitArea.x * ppuX, quitArea.y * ppuY, quitArea.width * ppuX, quitArea.height * ppuY);
   }
 
   private void renderCursor() {
-    spriteBatch.draw(Assets.cursor, arrowPos.x * ppuX, arrowPos.y * ppuY,
-        0.5f * ppuX, 0.5f * ppuY);
+    if (showCursor) {
+      spriteBatch.draw(Assets.cursor, arrowPos.x * ppuX, arrowPos.y * ppuY,
+          0.5f * ppuX, 0.5f * ppuY);
+    }
   }
   
   private void renderBackground() {

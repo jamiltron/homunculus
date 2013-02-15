@@ -18,7 +18,6 @@ public class WorldRenderer {
   private World world;
   private final OrthographicCamera cam;
   private final SpriteBatch spriteBatch;
-  private float wizardTime;
 
   private float ppuX;
   private float ppuY;
@@ -38,7 +37,6 @@ public class WorldRenderer {
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     this.cam.update();
     spriteBatch = new SpriteBatch();
-    wizardTime = 0;
 
   }
 
