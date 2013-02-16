@@ -26,6 +26,7 @@ public class GameScreen implements Screen, InputProcessor {
   private boolean rightPressed;
   private boolean dropPressed;
   private boolean rotrPressed;
+  private boolean rotlPressed;
   private float ppuX;
   private float ppuY;
   private static final float CAMERA_W = 18.75f;
@@ -40,6 +41,7 @@ public class GameScreen implements Screen, InputProcessor {
     rightPressed = false;
     dropPressed = false;
     rotrPressed = false;
+    rotlPressed = false;
   }
 
   @Override
@@ -65,6 +67,7 @@ public class GameScreen implements Screen, InputProcessor {
     }
 
     if (keycode == Keys.Z) {
+      rotlPressed = true;
       controller.rotlPress();
     }
 
@@ -93,7 +96,6 @@ public class GameScreen implements Screen, InputProcessor {
       controller.dropRelease();
       dropPressed = false;
     }
-    
 
     if (keycode == Keys.X || keycode == Keys.UP) {
       controller.rotrRelease();
@@ -101,6 +103,7 @@ public class GameScreen implements Screen, InputProcessor {
     }
 
     if (keycode == Keys.Z) {
+      rotlPressed = false;
       controller.rotlRelease();
     }
 
@@ -194,13 +197,8 @@ public class GameScreen implements Screen, InputProcessor {
       if (!leftPressed) controller.leftRelease();
       if (!rightPressed) controller.rightRelease();
       if (!dropPressed) controller.dropRelease();
-    }
-    
-    if (!touching) {
-      if (!rotrPressed) {
-        controller.rotrRelease();
-      }
-      controller.rotlRelease();
+      if (!rotrPressed) controller.rotrRelease();
+      if (!rotlPressed) controller.rotlRelease();
     }
     // TODO: END ALL TOUCHSCREEN STUFF HERE
     
