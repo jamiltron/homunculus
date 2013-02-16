@@ -118,10 +118,6 @@ public class MainMenu implements Screen, InputProcessor {
   }
 
   private void renderCursor() {
-    if (showCursor) {
-      spriteBatch.draw(Assets.cursor, arrowPos.x * ppuX, arrowPos.y * ppuY,
-          0.5f * ppuX, 0.5f * ppuY);
-    }
   }
   
   private void renderBackground() {
@@ -130,13 +126,35 @@ public class MainMenu implements Screen, InputProcessor {
   }
 
   private void renderText() {
-    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    if (arrowPos.y == START_Y) {
+      Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    } else {
+      Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
+    }
     Assets.font.draw(spriteBatch, "start", START_X * ppuX,
         16.5f * ppuY);
+    
+    if (arrowPos.y == INSTRUCTIONS_Y) {
+      Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    } else {
+      Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
+    }
     Assets.font.draw(spriteBatch, "instructions", INSTRUCTIONS_X * ppuX,
         14.5f * ppuY);
+    
+    if (arrowPos.y == CREDITS_Y) {
+      Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    } else {
+      Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
+    }
     Assets.font.draw(spriteBatch, "credits", CREDITS_X * ppuX,
         12.5f * ppuY);
+    
+    if (arrowPos.y == QUIT_Y) {
+      Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    } else {
+      Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
+    }
     Assets.font.draw(spriteBatch, "quit", QUIT_X * ppuX,
         10.5f * ppuY);
     

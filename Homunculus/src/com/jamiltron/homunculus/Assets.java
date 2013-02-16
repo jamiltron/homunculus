@@ -117,17 +117,17 @@ public class Assets {
         new TextureRegion(spriteSheet, 128, 192, 32, 32),
         new TextureRegion(spriteSheet, 160, 192, 32, 32));
     
-    redSpellLiveAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 192, 128, 32, 32),
+    redSpellLiveAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 192, 128, 32, 32),
         new TextureRegion(spriteSheet, 224, 128, 32, 32),
         new TextureRegion(spriteSheet, 256, 128, 32, 32),
         new TextureRegion(spriteSheet, 224, 128, 32, 32));
     
-    yellowSpellLiveAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 192, 160, 32, 32),
+    yellowSpellLiveAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 192, 160, 32, 32),
         new TextureRegion(spriteSheet, 224, 160, 32, 32),
         new TextureRegion(spriteSheet, 256, 160, 32, 32),
         new TextureRegion(spriteSheet, 224, 160, 32, 32));
     
-    blueSpellLiveAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 192, 192, 32, 32),
+    blueSpellLiveAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 192, 192, 32, 32),
         new TextureRegion(spriteSheet, 224, 192, 32, 32),
         new TextureRegion(spriteSheet, 256, 192, 32, 32),
         new TextureRegion(spriteSheet, 224, 192, 32, 32));

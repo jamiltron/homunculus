@@ -41,10 +41,6 @@ public class World {
       }
     }
     
-    if (activeSpell != null) {
-      activeSpell.updateAnimation(dt);
-    }
-    
     if (nextSpell != null) {
       nextSpell.updateAnimation(dt);
     }

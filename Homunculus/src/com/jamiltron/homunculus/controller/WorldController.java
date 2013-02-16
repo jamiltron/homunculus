@@ -135,7 +135,7 @@ public class WorldController {
     }
 
     dropTime = normalTime;
-    for (float y = World.Y_MIN; y <= World.Y_MAX + 1; y++) {
+    for (float y = World.Y_MIN; y <= World.Y_MAX; y++) {
       for (float x = World.X_MIN; x <= World.X_MAX; x++) {
         toDestroy.set(x, y, false);
       }
@@ -178,7 +178,6 @@ public class WorldController {
   }
 
   public void updateOver() {
-    // TODO update
     if (!world.lost && !world.won
         && (world.getGrid(World.ENTRY_X, World.ENTRY_Y) != null || 
         world.getGrid(World.ENTRY_X + 1, World.ENTRY_Y) != null)) {
@@ -546,7 +545,8 @@ public class WorldController {
           && ((activeSpell.rightComponent().pos.x < World.X_MAX - 1
           && activeSpell.topComponent().pos.y < World.Y_MAX) ||
           (activeSpell.leftComponent().pos.x == World.ENTRY_X 
-          && activeSpell.topComponent().pos.y == World.Y_MAX))) {
+          && activeSpell.topComponent().pos.y == World.Y_MAX
+          && activeSpell.rightComponent().pos.x == World.ENTRY_X))) {
 
         if ((world.getGrid(activeSpell.topComponent().pos.x + 1f,
             activeSpell.topComponent().pos.y) != null)

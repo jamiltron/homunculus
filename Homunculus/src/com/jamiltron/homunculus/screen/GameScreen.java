@@ -24,6 +24,12 @@ public class GameScreen implements Screen, InputProcessor {
   private float lastDragX;
   private boolean leftPressed;
   private boolean rightPressed;
+  private boolean dropPressed;
+  private boolean rotrPressed;
+  private float ppuX;
+  private float ppuY;
+  private static final float CAMERA_W = 18.75f;
+  private static final float CAMERA_H = 25f;
 
   public GameScreen(Game g, Settings s) {
     super();
@@ -31,7 +37,9 @@ public class GameScreen implements Screen, InputProcessor {
     settings = s;
     touching = false;
     leftPressed = false;
-    rightPressed = true;
+    rightPressed = false;
+    dropPressed = false;
+    rotrPressed = false;
   }
 
   @Override
@@ -48,9 +56,11 @@ public class GameScreen implements Screen, InputProcessor {
 
     if (keycode == Keys.DOWN) {
       controller.dropPress();
+      dropPressed = true;
     }
 
     if (keycode == Keys.X || keycode == Keys.UP) {
+      rotrPressed = true;
       controller.rotrPress();
     }
 
@@ -81,11 +91,13 @@ public class GameScreen implements Screen, InputProcessor {
 
     if (keycode == Keys.DOWN) {
       controller.dropRelease();
+      dropPressed = false;
     }
     
 
     if (keycode == Keys.X || keycode == Keys.UP) {
       controller.rotrRelease();
+      rotrPressed = false;
     }
 
     if (keycode == Keys.Z) {
@@ -109,6 +121,19 @@ public class GameScreen implements Screen, InputProcessor {
   @Override
   public boolean touchDown(int screenX, int screenY, int pointer, int button) {
     if (button == 0) {
+      float x = screenX / ppuX;
+      float y = CAMERA_H - screenY / ppuY;
+
+      if (x >= 1.25f && x <= 4.25f && y >= 0.25f && y <= 3.25f) {
+        controller.leftPress();
+      } else if (x >= 5.5f && x <= 8.5f && y >= 0.25f && y <= 3.25f) {
+        controller.dropPress();
+      } else if (x >= 9.75f && x <= 12.75f && y >= 0.25f && y <= 3.25f) {
+        controller.rightPress();
+      } else if (x >= 14f && x <= 17f && y >= 0.25f && y <= 3.25f) {
+        controller.rotrPress();
+      }
+
       touching = true;
       lastX = screenX;
       lastDragX = screenX;
@@ -119,23 +144,30 @@ public class GameScreen implements Screen, InputProcessor {
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
     if (button == 0) {
-      if (Math.abs(screenX - lastX) <= Assets.TOUCH_BOX) {
-        touching = false;
+      float x = screenX / ppuX;
+      float y = CAMERA_H - screenY / ppuY;
+      if (Math.abs(screenX - lastX) <= Assets.TOUCH_BOX && 
+          !(x >= 1.25f && x <= 4.25f && y >= 0.25f && y <= 3.25f) &&
+          !(x >= 5.5f && x <= 8.5f && y >= 0.25f && y <= 3.25f) &&
+          !(x >= 9.75f && x <= 12.75f && y >= 0.25f && y <= 3.25f) &&
+          !(x >= 14f && x <= 17f && y >= 0.25f && y <= 3.25f)) {
         controller.rotrPress();
       }
+    touching = false;
     }
     return true;
   }
 
   @Override
   public boolean touchDragged(int screenX, int screenY, int pointer) {
-    if (screenX - lastDragX > Assets.TOUCH_BOX) {
+    if (screenX - lastDragX > 1) {
       controller.rightPress();
-    } else if (lastDragX - screenX > Assets.TOUCH_BOX) {
+    } else if (lastDragX - screenX > 1) {
       controller.leftPress();
     }
     
     lastDragX = screenX;
+        
     return true;
   }
 
@@ -158,12 +190,16 @@ public class GameScreen implements Screen, InputProcessor {
     renderer.render();
     
     // TODO: ADD A SETTING FOR TOUCHSCREEN YES/NO
-    if (!leftPressed) controller.leftRelease();
-    if (!rightPressed) controller.rightRelease();
-    
+    if (!touching) {
+      if (!leftPressed) controller.leftRelease();
+      if (!rightPressed) controller.rightRelease();
+      if (!dropPressed) controller.dropRelease();
+    }
     
     if (!touching) {
-      controller.rotrRelease();
+      if (!rotrPressed) {
+        controller.rotrRelease();
+      }
       controller.rotlRelease();
     }
     // TODO: END ALL TOUCHSCREEN STUFF HERE
@@ -182,6 +218,8 @@ public class GameScreen implements Screen, InputProcessor {
   }
   @Override
   public void resize(int w, int h) {
+    ppuX = w / CAMERA_W;
+    ppuY = h / CAMERA_H;
     renderer.setSize(w, h);
   }
 
