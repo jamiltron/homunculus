@@ -81,7 +81,7 @@ public class WorldRenderer {
   private void renderBackground() {
     TextureRegion keyFrame;
     
-    spriteBatch.draw(Assets.playGameBackground, 0, 0, width, height);
+    spriteBatch.draw(Assets.playGameBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
     keyFrame = Assets.wizardAnim.getFrame(0, false);
     spriteBatch.draw(keyFrame, 12.7f * ppuX, 16.45f * ppuY, 4 * ppuX, 4 * ppuY);
     spriteBatch.draw(Assets.leftArrow, 1.25f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);

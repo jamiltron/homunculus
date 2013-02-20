@@ -244,7 +244,7 @@ public class SettingsScreen implements Screen, InputProcessor {
   }
 
   private void renderBackground() {
-    spriteBatch.draw(Assets.startScreenBackground, 0, 0, width, height);
+    spriteBatch.draw(Assets.startScreenBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
   }
 
   private void renderCursors() {
@@ -280,6 +280,10 @@ public class SettingsScreen implements Screen, InputProcessor {
     height = h;
     ppuX = width / CAMERA_W;
     ppuY = height / CAMERA_H;
+    if (ppuX != ppuY) {
+      ppuX = Math.min(ppuX, ppuY);
+      ppuY = Math.min(ppuX, ppuY);
+    }
   }
 
   @Override

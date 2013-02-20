@@ -25,6 +25,7 @@ public class Assets {
   public static Texture cursor;
   public static Texture spriteSheet;
   public static Texture selector;
+  public static Texture textT;
 
   
   public static TextureRegion gameOverBackground;
@@ -38,6 +39,15 @@ public class Assets {
   public static TextureRegion rotateArrow;
   
   public static TextureRegion logo;
+  
+  public static TextureRegion startW;
+  public static TextureRegion startB;
+  public static TextureRegion highScoresW;
+  public static TextureRegion highScoresB;
+  public static TextureRegion creditsW;
+  public static TextureRegion creditsB;
+  public static TextureRegion quitW;
+  public static TextureRegion quitB;
   
   public static Animation wizardAnim;
   public static Animation blueHomLiveAnim;
@@ -71,6 +81,16 @@ public class Assets {
   }
   
   public static void loadImages() {
+    textT = loadTexture("data/gfx/text.png");
+    startW = new TextureRegion(textT, 0, 0, 41, 10);
+    startB = new TextureRegion(textT, 42, 0, 41, 10);
+    quitW = new TextureRegion(textT, 83, 0, 33, 15);
+    quitB = new TextureRegion(textT, 118, 0, 33, 15);
+    creditsW = new TextureRegion(textT, 152, 0, 54, 12);
+    creditsB = new TextureRegion(textT, 207, 0, 54, 12);
+    highScoresW = new TextureRegion(textT, 261, 0, 82, 10);
+    highScoresB = new TextureRegion(textT, 345, 0, 82, 10);
+    
     cursor = loadTexture("data/gfx/cursor.png");
     gameOverBackgroundT = loadTexture("data/gfx/game-over-bg.png");
     pauseBackgroundT = loadTexture("data/gfx/pause-bg.png");
@@ -82,9 +102,9 @@ public class Assets {
     selector = loadTexture("data/gfx/selector.png");
     
     startScreenBackground = new TextureRegion(startScreenBackgroundT, 0, 0, 600, 800);
-    playGameBackground = new TextureRegion(playGameBackgroundT, 0, 0, 600, 800);
-    pauseBackground = new TextureRegion(pauseBackgroundT, 0, 0, 300, 400);
-    gameOverBackground = new TextureRegion(gameOverBackgroundT, 0, 0, 300, 400);
+    playGameBackground    = new TextureRegion(playGameBackgroundT, 0, 0, 600, 800);
+    pauseBackground       = new TextureRegion(pauseBackgroundT, 0, 0, 300, 400);
+    gameOverBackground    = new TextureRegion(gameOverBackgroundT, 0, 0, 300, 400);
     
     wizardAnim = new Animation(0.5f, new TextureRegion(spriteSheet, 0, 0, 128, 128),
         new TextureRegion(spriteSheet, 128, 0, 128, 128),

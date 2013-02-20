@@ -8,6 +8,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jamiltron.homunculus.Assets;
@@ -22,10 +23,13 @@ public class MainMenu implements Screen, InputProcessor {
   private float ppuY;
   private int width;
   private int height;
-  private boolean showCursor;
-
+  
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
+  private static final float START_W = 2.562f;
+  private static final float START_H = 0.625f;
+  private static final float START_X = CAMERA_W / 2f - START_W / 2f;
+  
   private static final float MENU_SPACE_Y = 2f;
   private static final float CURSOR_SPACE_X = 0.95f;
   private static final float START_Y = 16f;
@@ -33,7 +37,7 @@ public class MainMenu implements Screen, InputProcessor {
   private static final float CREDITS_Y = 12f;
   private static final float QUIT_Y = 10f;
   
-  private static final float START_X = 7.7f;
+  //private static final float START_X = 7.7f;
   private static final float INSTRUCTIONS_X = 5.4f;
   private static final float CREDITS_X = 7.05f;
   private static final float QUIT_X = 7.9f;
@@ -50,7 +54,6 @@ public class MainMenu implements Screen, InputProcessor {
       QUIT_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
 
   public MainMenu(Game g) {
-    showCursor = true;
     this.cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     this.cam.update();
@@ -70,7 +73,6 @@ public class MainMenu implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
-    showCursor = true;
     if (keycode == Keys.DOWN && arrowPos.y == START_Y) {
       arrowPos.y -= MENU_SPACE_Y;
       arrowPos.x = INSTRUCTIONS_X - CURSOR_SPACE_X;
@@ -121,42 +123,48 @@ public class MainMenu implements Screen, InputProcessor {
   }
   
   private void renderBackground() {
-    spriteBatch.draw(Assets.startScreenBackground, 0, 0, width, height);
+    spriteBatch.draw(Assets.startScreenBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
     spriteBatch.draw(Assets.logo, 3.5f * ppuX, 19.5f * ppuY, 12.03125f * ppuX, 2.75f * ppuY);
   }
 
   private void renderText() {
+    TextureRegion tmp = null;
     if (arrowPos.y == START_Y) {
-      Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+      tmp = Assets.startW;
     } else {
-      Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
+      tmp = Assets.startB;
     }
-    Assets.font.draw(spriteBatch, "start", START_X * ppuX,
-        16.5f * ppuY);
+    spriteBatch.draw(tmp, START_X * ppuX, 16.5f * ppuY, START_W * ppuX, START_H * ppuY);
     
     if (arrowPos.y == INSTRUCTIONS_Y) {
-      Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+      spriteBatch.draw(Assets.highScoresW, INSTRUCTIONS_X * ppuX, 14.5f * ppuY);
+      //Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
     } else {
-      Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
+      spriteBatch.draw(Assets.highScoresB, INSTRUCTIONS_X * ppuX, 14.5f * ppuY);
+      //Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
     }
-    Assets.font.draw(spriteBatch, "instructions", INSTRUCTIONS_X * ppuX,
-        14.5f * ppuY);
+    //Assets.font.draw(spriteBatch, "instructions", INSTRUCTIONS_X * ppuX,
+    //    14.5f * ppuY);
     
     if (arrowPos.y == CREDITS_Y) {
-      Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+      spriteBatch.draw(Assets.creditsW, CREDITS_X * ppuX, 12.5f * ppuY);
+      //Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
     } else {
-      Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
+      spriteBatch.draw(Assets.creditsB, CREDITS_X * ppuX, 12.5f * ppuY);
+      //Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
     }
-    Assets.font.draw(spriteBatch, "credits", CREDITS_X * ppuX,
-        12.5f * ppuY);
+    //Assets.font.draw(spriteBatch, "credits", CREDITS_X * ppuX,
+    //    12.5f * ppuY);
     
     if (arrowPos.y == QUIT_Y) {
-      Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+      spriteBatch.draw(Assets.quitW, QUIT_X * ppuX, 10.5f * ppuY);
+      //Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
     } else {
-      Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
+      spriteBatch.draw(Assets.quitB, QUIT_X * ppuX, 10.5f * ppuY);
+      //Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
     }
-    Assets.font.draw(spriteBatch, "quit", QUIT_X * ppuX,
-        10.5f * ppuY);
+//    Assets.font.draw(spriteBatch, "quit", QUIT_X * ppuX,
+//        10.5f * ppuY);
     
   }
 

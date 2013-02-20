@@ -163,10 +163,12 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public boolean touchDragged(int screenX, int screenY, int pointer) {
-    if (screenX - lastDragX > 1) {
+    if (screenX - lastDragX > 2) {
       controller.rightPress();
-    } else if (lastDragX - screenX > 1) {
+      controller.leftRelease();
+    } else if (lastDragX - screenX > 2) {
       controller.leftPress();
+      controller.rightRelease();
     }
     
     lastDragX = screenX;
@@ -193,9 +195,9 @@ public class GameScreen implements Screen, InputProcessor {
     renderer.render();
     
     // TODO: ADD A SETTING FOR TOUCHSCREEN YES/NO
+    if (!leftPressed) controller.leftRelease();
+    if (!rightPressed) controller.rightRelease();
     if (!touching) {
-      if (!leftPressed) controller.leftRelease();
-      if (!rightPressed) controller.rightRelease();
       if (!dropPressed) controller.dropRelease();
       if (!rotrPressed) controller.rotrRelease();
       if (!rotlPressed) controller.rotlRelease();
