@@ -151,3 +151,14 @@ when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationL
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
+2013-02-20 20:11:50,808 ERROR [Worker-11] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+when weaving type org.eclipse.jdt.internal.debug.ui.console.JavaConsoleTracker
+when weaving classes 
+when weaving 
+ [Xlint:cantFindType]
+2013-02-20 20:11:57,752 ERROR [Thread-19] - System.err - Unable to read properties from file com/google/gwt/eclipse/oophm/Activator.properties. The com.google.gwt.eclipse.oophm.Activator plugin may not run correctly.
+2013-02-22 19:16:27,632 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
+when weaving classes 
+when weaving 
+ [Xlint:cantFindType]

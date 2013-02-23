@@ -10,11 +10,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.jamiltron.homunculus.Assets;
 
 public class MainMenu implements Screen, InputProcessor {
-  private final Vector2 arrowPos;
+  private float arrowY;
   private boolean over;
   private final Game game;
   private final SpriteBatch spriteBatch;
@@ -24,30 +23,31 @@ public class MainMenu implements Screen, InputProcessor {
   private int width;
   private int height;
   
+  private static final float SCALE = 2f;
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
-  private static final float START_W = 2.562f;
-  private static final float START_H = 0.625f;
+  private static final float START_W = Assets.startW.getRegionWidth() / 32f * SCALE;
+  private static final float START_H = Assets.startW.getRegionHeight() / 32f * SCALE;
   private static final float START_X = CAMERA_W / 2f - START_W / 2f;
-  
-  private static final float MENU_SPACE_Y = 2f;
-  private static final float CURSOR_SPACE_X = 0.95f;
   private static final float START_Y = 16f;
-  private static final float INSTRUCTIONS_Y = 14f;
+  private static final float HIGHSCORES_W = Assets.highScoresW.getRegionWidth() / 32f * SCALE;
+  private static final float HIGHSCORES_H = Assets.highScoresW.getRegionHeight() / 32f * SCALE;
+  private static final float HIGHSCORES_X = CAMERA_W / 2f - HIGHSCORES_W / 2f;
+  private static final float HIGHSCORES_Y = 14f;
+  private static final float CREDITS_W = Assets.creditsW.getRegionWidth() / 32f * SCALE;
+  private static final float CREDITS_H = Assets.creditsW.getRegionHeight() / 32f * SCALE;
+  private static final float CREDITS_X = CAMERA_W / 2f - CREDITS_W / 2f;
   private static final float CREDITS_Y = 12f;
+  private static final float QUIT_W = Assets.quitW.getRegionWidth() / 32f * SCALE;
+  private static final float QUIT_H = Assets.quitW.getRegionHeight() / 32f * SCALE;
+  private static final float QUIT_X = CAMERA_W / 2f - QUIT_W / 2f;
   private static final float QUIT_Y = 10f;
-  
-  //private static final float START_X = 7.7f;
-  private static final float INSTRUCTIONS_X = 5.4f;
-  private static final float CREDITS_X = 7.05f;
-  private static final float QUIT_X = 7.9f;
-  
   private static final float AREA_H = 0.75f;
   
   private Rectangle startArea = new Rectangle(2f, 
       START_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
   private Rectangle instructionsArea = new Rectangle(2f, 
-      INSTRUCTIONS_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
+      HIGHSCORES_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
   private Rectangle creditsArea = new Rectangle(2f, 
       CREDITS_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
   private Rectangle quitArea = new Rectangle(2f, 
@@ -58,7 +58,7 @@ public class MainMenu implements Screen, InputProcessor {
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     this.cam.update();
     spriteBatch = new SpriteBatch();
-    arrowPos = new Vector2(START_X - CURSOR_SPACE_X, 16);
+    arrowY = START_Y;
     over = false;
     game = g;
     Assets.font.scale(1f);
@@ -73,34 +73,29 @@ public class MainMenu implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
-    if (keycode == Keys.DOWN && arrowPos.y == START_Y) {
-      arrowPos.y -= MENU_SPACE_Y;
-      arrowPos.x = INSTRUCTIONS_X - CURSOR_SPACE_X;
-    } else if (keycode == Keys.UP && arrowPos.y == INSTRUCTIONS_Y) {
-      arrowPos.y += MENU_SPACE_Y;
-      arrowPos.x = START_X - CURSOR_SPACE_X;
-    } else if (keycode == Keys.DOWN && arrowPos.y == INSTRUCTIONS_Y) {
-      arrowPos.y -= MENU_SPACE_Y;
-      arrowPos.x = CREDITS_X - CURSOR_SPACE_X;
-    } else if (keycode == Keys.DOWN && arrowPos.y == CREDITS_Y) {
-      arrowPos.y -= MENU_SPACE_Y;
-      arrowPos.x = QUIT_X - CURSOR_SPACE_X;
-    } else if (keycode == Keys.UP && arrowPos.y == CREDITS_Y) {
-      arrowPos.y += MENU_SPACE_Y;
-      arrowPos.x = INSTRUCTIONS_X - CURSOR_SPACE_X;
-    } else if (keycode == Keys.UP && arrowPos.y == QUIT_Y) {
-      arrowPos.y += MENU_SPACE_Y;
-      arrowPos.x = CREDITS_X - CURSOR_SPACE_X;
+    if (keycode == Keys.DOWN && arrowY == START_Y) {
+      arrowY = HIGHSCORES_Y;
+    } else if (keycode == Keys.UP && arrowY == HIGHSCORES_Y) {
+      arrowY = START_Y;
+    } else if (keycode == Keys.DOWN && arrowY == HIGHSCORES_Y) {
+      arrowY = CREDITS_Y;
+    } else if (keycode == Keys.DOWN && arrowY == CREDITS_Y) {
+      arrowY = QUIT_Y;
+    } else if (keycode == Keys.UP && arrowY == CREDITS_Y) {
+      arrowY = HIGHSCORES_Y;
+    } else if (keycode == Keys.UP && arrowY == QUIT_Y) {
+      arrowY = CREDITS_Y;
+
     }
     
     if (keycode == Keys.SPACE || keycode == Keys.ENTER) {
-      if (arrowPos.y == START_Y) {
+      if (arrowY == START_Y) {
         Assets.font.scale(-1f);
         game.setScreen(new SettingsScreen(game));
-      } else if (arrowPos.y == INSTRUCTIONS_Y) {
+      } else if (arrowY == HIGHSCORES_Y) {
         Assets.font.scale(-1f);
         game.setScreen(new InstructionScreen(game, this));
-      } else if (arrowPos.y == CREDITS_Y) {
+      } else if (arrowY == CREDITS_Y) {
         Assets.font.scale(-1f);
         game.setScreen(new CreditsScreen(game, this));
       } else {
@@ -129,43 +124,33 @@ public class MainMenu implements Screen, InputProcessor {
 
   private void renderText() {
     TextureRegion tmp = null;
-    if (arrowPos.y == START_Y) {
+    if (arrowY == START_Y) {
       tmp = Assets.startW;
     } else {
       tmp = Assets.startB;
     }
-    spriteBatch.draw(tmp, START_X * ppuX, 16.5f * ppuY, START_W * ppuX, START_H * ppuY);
+    spriteBatch.draw(tmp, START_X * ppuX, START_Y * ppuY, START_W * ppuX, START_H * ppuY);
     
-    if (arrowPos.y == INSTRUCTIONS_Y) {
-      spriteBatch.draw(Assets.highScoresW, INSTRUCTIONS_X * ppuX, 14.5f * ppuY);
-      //Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    if (arrowY == HIGHSCORES_Y) {
+      tmp = Assets.highScoresW;
     } else {
-      spriteBatch.draw(Assets.highScoresB, INSTRUCTIONS_X * ppuX, 14.5f * ppuY);
-      //Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
+      tmp = Assets.highScoresB;
     }
-    //Assets.font.draw(spriteBatch, "instructions", INSTRUCTIONS_X * ppuX,
-    //    14.5f * ppuY);
+    spriteBatch.draw(tmp, HIGHSCORES_X * ppuX, HIGHSCORES_Y * ppuY, HIGHSCORES_W * ppuX, HIGHSCORES_H * ppuY);
     
-    if (arrowPos.y == CREDITS_Y) {
-      spriteBatch.draw(Assets.creditsW, CREDITS_X * ppuX, 12.5f * ppuY);
-      //Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    if (arrowY == CREDITS_Y) {
+      tmp = Assets.creditsW;
     } else {
-      spriteBatch.draw(Assets.creditsB, CREDITS_X * ppuX, 12.5f * ppuY);
-      //Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
+      tmp = Assets.creditsB;
     }
-    //Assets.font.draw(spriteBatch, "credits", CREDITS_X * ppuX,
-    //    12.5f * ppuY);
+    spriteBatch.draw(tmp, CREDITS_X * ppuX, CREDITS_Y * ppuY, CREDITS_W * ppuX, CREDITS_H * ppuY);
     
-    if (arrowPos.y == QUIT_Y) {
-      spriteBatch.draw(Assets.quitW, QUIT_X * ppuX, 10.5f * ppuY);
-      //Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    if (arrowY == QUIT_Y) {
+      tmp = Assets.quitW;
     } else {
-      spriteBatch.draw(Assets.quitB, QUIT_X * ppuX, 10.5f * ppuY);
-      //Assets.font.setColor(0.6f, 0.6f, 0.6f, 0.6f);
+      tmp = Assets.quitB;
     }
-//    Assets.font.draw(spriteBatch, "quit", QUIT_X * ppuX,
-//        10.5f * ppuY);
-    
+    spriteBatch.draw(tmp, QUIT_X * ppuX, QUIT_Y * ppuY, QUIT_W * ppuX, QUIT_H * ppuY);
   }
 
   private void update(float dt) {

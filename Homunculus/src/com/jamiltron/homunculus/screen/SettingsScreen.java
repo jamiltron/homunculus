@@ -8,6 +8,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jamiltron.homunculus.Assets;
 import com.jamiltron.homunculus.Settings;
 
@@ -26,29 +27,64 @@ public class SettingsScreen implements Screen, InputProcessor {
   private boolean music;
   private boolean sound;
   private boolean showSelector;
-  private static final float SETTINGS_Y = 22.5f;
-  private static final float SETTINGS_X = 6.4f;
-  private static final float LEVEL_X = 4f;
-  private static final float LEVEL_Y = SETTINGS_Y - 2f;
-  private static final float NUM_X = 9f;
-  private static final float NUM_Y = LEVEL_Y;
-  private static final float SPEED_X = LEVEL_X;
-  private static final float SPEED_Y = LEVEL_Y - 2f;
-  private static final float SPEEDS_X = 8f;
-  private static final float SPEEDS_Y = SPEED_Y;
-  private static final float SOUND_X = SPEED_X;
-  private static final float SOUND_Y = SPEED_Y - 2f;
-  private static final float SOUNDS_X = 8f;
-  private static final float SOUNDS_Y = SOUND_Y;
-  private static final float MUSIC_X = SOUND_X;
-  private static final float MUSIC_Y = SOUND_Y - 2f;
-  private static final float MUSICS_X = 8f;
-  private static final float MUSICS_Y = MUSIC_Y;
-  private static final float START_X = MUSIC_X;
-  private static final float START_Y = MUSIC_Y - 2f;
-
+  
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
+  private static final float SETTINGS_SCALE = 2.5f;
+  private static final float SETTINGS_W = Assets.settingsText.getRegionWidth() / 32f * SETTINGS_SCALE;
+  private static final float SETTINGS_H = Assets.settingsText.getRegionHeight() / 32f * SETTINGS_SCALE;
+  private static final float SETTINGS_Y = 22.5f;
+  private static final float SETTINGS_X = CAMERA_W / 2f - SETTINGS_W / 2f;
+
+  private static final float HEADINGS_SCALE = 2f;
+  private static final float OPTIONS_SCALE = 1.875f;
+  private static final float LEVEL_X = 4f;
+  private static final float LEVEL_Y = SETTINGS_Y - 2f;
+  private static final float LEVEL_W = Assets.level.getRegionWidth() / 32f * HEADINGS_SCALE;
+  private static final float LEVEL_H = Assets.level.getRegionHeight() / 32f * HEADINGS_SCALE;
+  
+  private static final float SPEED_X = LEVEL_X;
+  private static final float SPEED_Y = LEVEL_Y - 2.09375f;
+  private static final float SPEED_W = Assets.speed.getRegionWidth() / 32f * HEADINGS_SCALE;
+  private static final float SPEED_H = Assets.speed.getRegionHeight() / 32f * HEADINGS_SCALE;
+  private static final float SLOW_X = 9f;
+  private static final float SLOW_Y = SPEED_Y +   .09375f * 2f;
+  private static final float SLOW_W = Assets.slowW.getRegionWidth() / 32f * OPTIONS_SCALE;
+  private static final float SLOW_H = Assets.slowW.getRegionHeight() / 32f * OPTIONS_SCALE;
+  private static final float MED_X = SLOW_X + 3f;
+  private static final float MED_Y = SLOW_Y;
+  private static final float MED_W = Assets.medW.getRegionWidth() / 32f * OPTIONS_SCALE;
+  private static final float MED_H = Assets.medW.getRegionHeight() / 32f * OPTIONS_SCALE;
+  private static final float FAST_X = MED_X + 2.5f;
+  private static final float FAST_Y = SLOW_Y - 0.0625f;
+  private static final float FAST_W = Assets.fastW.getRegionWidth() / 32f * OPTIONS_SCALE;
+  private static final float FAST_H = Assets.fastW.getRegionHeight() / 32f * OPTIONS_SCALE;
+  private static final float SOUND_X = SPEED_X;
+  private static final float SOUND_Y = SPEED_Y - 2f;
+  private static final float SOUND_W = Assets.sounds.getRegionWidth() / 32f * HEADINGS_SCALE;
+  private static final float SOUND_H = Assets.sounds.getRegionHeight() / 32f * HEADINGS_SCALE;
+  private static final float ON1_X = 9f;
+  private static final float ON1_Y = SOUND_Y;
+  private static final float ON_W = Assets.onW.getRegionWidth() / 32f * OPTIONS_SCALE;
+  private static final float ON_H = Assets.onW.getRegionHeight() / 32f * OPTIONS_SCALE;
+  private static final float OFF1_X = ON1_X + 3f;
+  private static final float OFF1_Y = ON1_Y - 0.0625f;
+  private static final float OFF_W = Assets.offW.getRegionWidth() / 32f * OPTIONS_SCALE;
+  private static final float OFF_H = Assets.offW.getRegionHeight() / 32f * OPTIONS_SCALE;
+  private static final float NUM_X = 9f;
+  private static final float NUM_Y = LEVEL_Y;
+  private static final float MUSIC_X = SOUND_X;
+  private static final float MUSIC_Y = SOUND_Y - 2f;
+  private static final float MUSIC_W = Assets.music.getRegionWidth() / 32f * HEADINGS_SCALE;
+  private static final float MUSIC_H = Assets.music.getRegionHeight() / 32f * HEADINGS_SCALE;
+  private static final float ON2_X = 9f;
+  private static final float ON2_Y = MUSIC_Y;
+  private static final float OFF2_X = ON2_X + 3f;
+  private static final float OFF2_Y = ON2_Y - 0.0625f;
+  private static final float START_Y = MUSIC_Y - 2f;
+  private static final float START_W = Assets.startW.getRegionWidth() / 32f * HEADINGS_SCALE;
+  private static final float START_H = Assets.startW.getRegionHeight() / 32f * HEADINGS_SCALE;
+  private static final float START_X = CAMERA_W / 2f - START_W / 2f;
 
   public SettingsScreen(Game g) {
     showSelector = true;
@@ -142,13 +178,11 @@ public class SettingsScreen implements Screen, InputProcessor {
 
   @Override
   public boolean touchDragged(int screenX, int screenY, int pointer) {
-    // TODO Auto-generated method stub
     return false;
   }
 
   @Override
   public boolean mouseMoved(int screenX, int screenY) {
-    // TODO Auto-generated method stub
     return false;
   }
 
@@ -170,77 +204,80 @@ public class SettingsScreen implements Screen, InputProcessor {
   }
 
   private void renderText() {
-    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-    Assets.font.scale(1f);
-    Assets.font.draw(spriteBatch, "settings", SETTINGS_X * ppuX,
-        SETTINGS_Y * ppuY);
-    Assets.font.scale(-0.5f);
-    Assets.font.draw(spriteBatch, "level", LEVEL_X * ppuX,
-        LEVEL_Y * ppuY);
-    Assets.font.scale(-0.125f);
-    Assets.font.draw(spriteBatch, Integer.toString(level), NUM_X * ppuX, 
-        NUM_Y * ppuY);
-    Assets.font.scale(0.125f);
-    Assets.font.draw(spriteBatch, "speed", SPEED_X * ppuX, SPEED_Y * ppuY);
+    TextureRegion tmp;
     
-    Assets.font.scale(-0.125f);
+    spriteBatch.draw(Assets.settingsText, SETTINGS_X * ppuX, SETTINGS_Y * ppuY, 
+        SETTINGS_W * ppuX, SETTINGS_H * ppuY);
+    spriteBatch.draw(Assets.level, LEVEL_X * ppuX, LEVEL_Y * ppuY,
+        LEVEL_W * ppuX, LEVEL_H * ppuY);
+    spriteBatch.draw(Assets.speed, SPEED_X * ppuX, SPEED_Y * ppuY,
+        SPEED_W * ppuX, SPEED_H * ppuY);
+    
     if (speed == 0) {
-      Assets.font.setColor(1f, 1f, 1f, 1.0f);
+      tmp = Assets.slowW;
     } else {
-      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
+      tmp = Assets.slowB;
     }
-    Assets.font.draw(spriteBatch, "slow", SPEEDS_X * ppuX, SPEEDS_Y * ppuY);
+    spriteBatch.draw(tmp, SLOW_X * ppuX, SLOW_Y * ppuY,
+        SLOW_W * ppuX, SLOW_H * ppuY);
     
     if (speed == 1) {
-      Assets.font.setColor(1f, 1f, 1f, 1.0f);
+      tmp = Assets.medW;
     } else {
-      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
+      tmp = Assets.medB;
     }
-    Assets.font.draw(spriteBatch, "med", (SPEEDS_X + 3f) * ppuX, SPEEDS_Y * ppuY);
+    spriteBatch.draw(tmp, MED_X * ppuX, MED_Y * ppuY,
+        MED_W * ppuX, MED_H * ppuY);
     
     if (speed == 2) {
-      Assets.font.setColor(1f, 1f, 1f, 1.0f);
+      tmp = Assets.fastW;
     } else {
-      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
+      tmp = Assets.fastB;
     }
-    Assets.font.draw(spriteBatch, "fast", (SPEEDS_X + 6f) * ppuX, SPEEDS_Y * ppuY);
-    Assets.font.scale(0.125f);
+    spriteBatch.draw(tmp, FAST_X * ppuX, FAST_Y * ppuY,
+        FAST_W * ppuX, FAST_H * ppuY);
     
-    Assets.font.setColor(1f, 1f, 1f, 1.0f);
-    Assets.font.draw(spriteBatch, "sounds", SOUND_X * ppuX, SOUND_Y * ppuY);
-    Assets.font.scale(-0.125f);
-    if (sound == false) {
-      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
-    }
-    Assets.font.draw(spriteBatch, "on", SOUNDS_X * ppuX, SOUNDS_Y * ppuY);
+    spriteBatch.draw(Assets.sounds, SOUND_X * ppuX, SOUND_Y * ppuY,
+        SOUND_W * ppuX, SOUND_H * ppuY);
     
-    if (sound == true) {
-      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
+    if (sound) {
+      tmp = Assets.onW;
     } else {
-      Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+      tmp = Assets.onB;
     }
-    Assets.font.draw(spriteBatch, "off", (SOUNDS_X + 3f) * ppuX, SOUNDS_Y * ppuY);
-    Assets.font.scale(0.125f);
+    spriteBatch.draw(tmp, ON1_X * ppuX, ON1_Y * ppuY,
+        ON_W * ppuX, ON_H * ppuY);
     
-    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-    Assets.font.draw(spriteBatch, "music", MUSIC_X * ppuX, MUSIC_Y * ppuY);
-    Assets.font.scale(-0.125f);
-    if (music == false) {
-      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
-    }
-    Assets.font.draw(spriteBatch, "on", MUSICS_X * ppuX, MUSICS_Y * ppuY);
-    
-    if (music == true) {
-      Assets.font.setColor(0.6f, 0.6f, 0.6f, 1.0f);
+    if (!sound) {
+      tmp = Assets.offW;
     } else {
-      Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+      tmp = Assets.offB;
     }
-    Assets.font.draw(spriteBatch, "off", (MUSICS_X + 3f) * ppuX, MUSICS_Y * ppuY);
-    Assets.font.scale(0.125f);
+    spriteBatch.draw(tmp, OFF1_X * ppuX, OFF1_Y * ppuY,
+        OFF_W * ppuX, OFF_H * ppuY);
     
-    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-    Assets.font.draw(spriteBatch, "start", START_X * ppuX, START_Y * ppuY);
-    Assets.font.scale(-0.5f);
+    spriteBatch.draw(Assets.music, MUSIC_X * ppuX, MUSIC_Y * ppuY,
+        MUSIC_W * ppuX, MUSIC_H * ppuY);
+    
+    if (music) {
+      tmp = Assets.onW;
+    } else {
+      tmp = Assets.onB;
+    }
+    spriteBatch.draw(tmp, ON2_X * ppuX, ON2_Y * ppuY,
+        ON_W * ppuX, ON_H * ppuY);
+    
+    if (!music) {
+      tmp = Assets.offW;
+    } else {
+      tmp = Assets.offB;
+    }
+    spriteBatch.draw(tmp, OFF2_X * ppuX, OFF2_Y * ppuY,
+        OFF_W * ppuX, OFF_H * ppuY);
+    
+    
+    spriteBatch.draw(Assets.startW, START_X * ppuX, START_Y * ppuY,
+        START_W * ppuX, START_H * ppuY);
   }
 
   private void renderBackground() {
@@ -248,28 +285,28 @@ public class SettingsScreen implements Screen, InputProcessor {
   }
 
   private void renderCursors() {
-    spriteBatch.draw(Assets.leftArrow, 7.25f * ppuX, (LEVEL_Y - .75f) * ppuY);
-    spriteBatch.draw(Assets.rightArrow, 10.25f * ppuX, (LEVEL_Y - .75f) * ppuY);
+    spriteBatch.draw(Assets.leftArrow, 7.25f * ppuX, (LEVEL_Y - 0.25f) * ppuY);
+    spriteBatch.draw(Assets.rightArrow, 10.25f * ppuX, (LEVEL_Y - 0.25f) * ppuY);
     
     if (showSelector) {
       if (cursorLevel == 0) {
-        spriteBatch.draw(Assets.selector, (LEVEL_X - 0.25f) * ppuX, (LEVEL_Y -0.6f) * ppuY, 2.9f * ppuX, 0.9f * ppuY);
+        spriteBatch.draw(Assets.selector, (LEVEL_X - 0.25f) * ppuX, (LEVEL_Y - 0.2f) * ppuY, 2.9f * ppuX, 0.9f * ppuY);
       } else if (cursorLevel == 1 && speed == 0) {
-        spriteBatch.draw(Assets.selector, (SPEEDS_X - 0.25f) * ppuX, (SPEEDS_Y -0.6f) * ppuY, 2.3f * ppuX, 0.9f * ppuY);
+        spriteBatch.draw(Assets.selector, (SLOW_X - .2f) * ppuX, (SLOW_Y - .2f) * ppuY, (SLOW_W + .4f) * ppuX, (SLOW_H + .35f) * ppuY);
       } else if (cursorLevel == 1 && speed == 1) {
-        spriteBatch.draw(Assets.selector, (SPEEDS_X + 2.75f) * ppuX, (SPEEDS_Y -0.6f) * ppuY, 1.9f * ppuX, 0.9f * ppuY);
+        spriteBatch.draw(Assets.selector, (MED_X - .2f) * ppuX, (MED_Y - .2f) * ppuY, (MED_W + .4f) * ppuX, (MED_H + .35f) * ppuY);
       } else if (cursorLevel == 1 && speed == 2) {
-        spriteBatch.draw(Assets.selector, (SPEEDS_X + 5.75f) * ppuX, (SPEEDS_Y -0.6f) * ppuY, 2.2f * ppuX, 0.9f * ppuY);
+        spriteBatch.draw(Assets.selector, (FAST_X - .2f) * ppuX, (FAST_Y - .2f) * ppuY, (FAST_W + .4f) * ppuX, (FAST_H + .35f) * ppuY);
       } else if (cursorLevel == 2 && sound == true) {
-        spriteBatch.draw(Assets.selector, (SOUNDS_X -0.25f) * ppuX, (SOUNDS_Y -0.6f) * ppuY, 1.3f * ppuX, 0.9f * ppuY);
+        spriteBatch.draw(Assets.selector, (ON1_X - .2f) * ppuX, (ON1_Y - .2f) * ppuY, (ON_W + .4f) * ppuX, (ON_H + .4f) * ppuY);
       } else if (cursorLevel == 2 && sound == false) {
-        spriteBatch.draw(Assets.selector, (SOUNDS_X + 2.75f) * ppuX, (SOUNDS_Y -0.6f) * ppuY, 1.65f * ppuX, 0.9f * ppuY);
+        spriteBatch.draw(Assets.selector, (OFF1_X - .2f) * ppuX, (OFF1_Y - .2f) * ppuY, (OFF_W + .4f) * ppuX, (OFF_H + .35f) * ppuY);
       } else if (cursorLevel == 3 && music == true) {
-        spriteBatch.draw(Assets.selector, (MUSICS_X -0.25f) * ppuX, (MUSICS_Y -0.6f) * ppuY, 1.3f * ppuX, 0.9f * ppuY);
+        spriteBatch.draw(Assets.selector, (ON2_X - .2f) * ppuX, (ON2_Y - .2f) * ppuY, (ON_W + .4f) * ppuX, (ON_H + .4f) * ppuY);
       } else if (cursorLevel == 3 && music == false) {
-        spriteBatch.draw(Assets.selector, (MUSICS_X + 2.75f) * ppuX, (MUSICS_Y -0.6f) * ppuY, 1.65f * ppuX, 0.9f * ppuY);
+        spriteBatch.draw(Assets.selector, (OFF2_X - .2f) * ppuX, (OFF2_Y - .2f) * ppuY, (OFF_W + .4f) * ppuX, (OFF_H + .35f) * ppuY);
       } else if (cursorLevel == 4) {
-        spriteBatch.draw(Assets.selector, (START_X - 0.25f) * ppuX, (START_Y - 0.6f) * ppuY, 2.75f * ppuX, 0.9f * ppuY);
+        spriteBatch.draw(Assets.selector, (START_X - 0.2f) * ppuX, (START_Y - 0.2f) * ppuY, (START_W + .4f) * ppuX, (START_H + .35f) * ppuY);
       }
     }
   }
@@ -280,10 +317,6 @@ public class SettingsScreen implements Screen, InputProcessor {
     height = h;
     ppuX = width / CAMERA_W;
     ppuY = height / CAMERA_H;
-    if (ppuX != ppuY) {
-      ppuX = Math.min(ppuX, ppuY);
-      ppuY = Math.min(ppuX, ppuY);
-    }
   }
 
   @Override
