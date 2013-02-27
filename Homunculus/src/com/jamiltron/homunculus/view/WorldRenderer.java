@@ -64,7 +64,7 @@ public class WorldRenderer {
         14.5f * ppuY);
     Assets.font.draw(spriteBatch, "5", 13f * ppuX,
         13.15f * ppuY);
-    Assets.font.draw(spriteBatch, "Classic", 13f * ppuX,
+    Assets.font.draw(spriteBatch, "classic", 13f * ppuX,
         11.75f * ppuY);
   }
 

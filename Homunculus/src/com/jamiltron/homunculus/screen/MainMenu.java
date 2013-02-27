@@ -1,6 +1,6 @@
 package com.jamiltron.homunculus.screen;
 
-import com.badlogic.gdx.Game;
+import com.jamiltron.homunculus.HomunculusGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
@@ -15,7 +15,7 @@ import com.jamiltron.homunculus.Assets;
 public class MainMenu implements Screen, InputProcessor {
   private float arrowY;
   private boolean over;
-  private final Game game;
+  private final HomunculusGame game;
   private final SpriteBatch spriteBatch;
   private final OrthographicCamera cam;
   private float ppuX;
@@ -53,7 +53,7 @@ public class MainMenu implements Screen, InputProcessor {
   private Rectangle quitArea = new Rectangle(2f, 
       QUIT_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
 
-  public MainMenu(Game g) {
+  public MainMenu(HomunculusGame g) {
     this.cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     this.cam.update();

@@ -3,7 +3,7 @@ package com.jamiltron.homunculus.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.badlogic.gdx.Game;
+import com.jamiltron.homunculus.HomunculusGame;
 import com.jamiltron.homunculus.Assets;
 import com.jamiltron.homunculus.Settings;
 import com.jamiltron.homunculus.model.Component;
@@ -19,7 +19,7 @@ public class WorldController {
   }
 
   public boolean nextLevel;
-  private final Game game;
+  private final HomunculusGame game;
   private World world;
   private Spell activeSpell;
   private final Settings settings;
@@ -142,11 +142,11 @@ public class WorldController {
     }
   }
 
-  public WorldController(World w, Settings s, Game g) {
+  public WorldController(World w, HomunculusGame g) {
     nextLevel = false;
     game = g;
     unpausable = true;
-    settings = s;
+    settings = g.settings;
     pauseTime = 0.15f;
     drops = 0;
     world = w;
@@ -431,8 +431,26 @@ public class WorldController {
 
     scoreUp();
 
-    if (playSound)
+    if (playSound) playMatch();
+      
+  }
+  
+  private void playDrop() {
+    if (game.settings.getSoundOn()) {
+      Assets.playSound(Assets.drop);
+    }
+  }
+  
+  public void playMatch() {
+    if (settings.getSoundOn()) {
       Assets.playSound(Assets.match);
+    }
+  }
+  
+  public void playRotate() {
+    if (settings.getSoundOn()) {
+      Assets.playSound(Assets.rotate);
+    }
   }
 
   private void scoreUp() {
@@ -607,14 +625,15 @@ public class WorldController {
           if (fastTime < 0.01f)
             fastTime = 0.01f;
         }
-        Assets.playSound(Assets.drop);
+        
+        playDrop();
         activeSpell.setVel(0f, 0f);
         world.restSpell();
         activeSpell = world.getActiveSpell();
       }
 
       if (playRotate) {
-        Assets.playSound(Assets.rotate);
+        playRotate();
       }
     }
   }

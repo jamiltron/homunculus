@@ -41,6 +41,7 @@ public class Settings {
   public int getHomunculiNum() {
     return numHomunculi;
   }
+  
 
   public int getScoreModifier() {
     if (speed == Speed.SLOW) {
@@ -59,7 +60,7 @@ public class Settings {
     return musicOn;
   }
 
-  public boolean getSondOn() {
+  public boolean getSoundOn() {
     return soundOn;
   }
 }
