@@ -228,19 +228,19 @@ public class WorldController {
             destroying = false;
             
             for (Spell spell : world.setSpells) {
-              if (spell.component1 != null) {
+              if (!spell.component1.isDead) {
                 if (spell.component1.isDying && spell.component1.stateTime > Component.DYING_TIME) {
                   world.putGrid(spell.component1.pos.x, spell.component1.pos.y, null);
-                  spell.component1 = null;
+                  spell.component1.isDead = true;
                 } else if (spell.component1.isDying){
                   destroying = true;
                 }
               }
               
-              if (spell.component2 != null) {
+              if (!spell.component2.isDead) {
                 if (spell.component2.isDying && spell.component2.stateTime > Component.DYING_TIME) {
                   world.putGrid(spell.component2.pos.x, spell.component2.pos.y, null);
-                  spell.component2 = null;
+                  spell.component2.isDead = true;
                 } else if (spell.component2.isDying) {
                   destroying = true;
                 }
@@ -248,8 +248,8 @@ public class WorldController {
               
               spell.update(dt);
               
-              if ((spell != null) && (spell.component1 == null)
-                  && spell.component2 == null) {
+              if ((spell != null) && (spell.component1.isDead)
+                  && spell.component2.isDead) {
                 world.deadSpells.add(spell);
               }
             }
@@ -301,10 +301,10 @@ public class WorldController {
     for (Spell spell : world.setSpells) {
       check1 = true;
       check2 = true;
-      if (spell.component1 == null) {
+      if (spell.component1.isDead) {
         check1 = false;
       }
-      if (spell.component2 == null) {
+      if (spell.component2.isDead) {
         check2 = false;
       }
 
@@ -394,23 +394,20 @@ public class WorldController {
     // go through each spell, and destroy it if it matches an entry in toDestroy
     for (Spell spell : world.setSpells) {
       float x, y;
-      if ((spell != null) && (spell.component1 != null)
+      if ((spell != null) && (!spell.component1.isDead)
           && toDestroy.get(spell.component1.pos.x, spell.component1.pos.y)) {
         x = spell.component1.pos.x;
         y = spell.component1.pos.y;
         spell.component1.isDying = true;
         spell.component1.stateTime = 0f;
-        //spell.component1 = null;
-        //world.putGrid(x, y, null);
         toDestroy.set(x, y, false);
       }
-      if ((spell != null) && (spell.component2 != null)
+      if ((spell != null) && (!spell.component2.isDead)
           && toDestroy.get(spell.component2.pos.x, spell.component2.pos.y)) {
         x = spell.component2.pos.x;
         y = spell.component2.pos.y;
         spell.component2.isDying = true;
         spell.component2.stateTime = 0f;
-        //spell.component2 = null;
         world.putGrid(x, y, null);
         toDestroy.set(x, y, false);
       }

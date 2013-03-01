@@ -184,8 +184,6 @@ public class GameScreen implements Screen, InputProcessor {
   public void resize(final int w, final int h) {
     ppuX = w / CAMERA_W;
     ppuY = h / CAMERA_H;
-    System.out.println(ppuX);
-    System.out.println(ppuY);
     renderer.setSize(w, h);
   }
 

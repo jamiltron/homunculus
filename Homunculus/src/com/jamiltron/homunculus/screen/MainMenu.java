@@ -61,7 +61,6 @@ public class MainMenu implements Screen, InputProcessor {
     arrowY = START_Y;
     over = false;
     game = g;
-    Assets.font.scale(1f);
   }
 
   public void setSize(int w, int h) {
@@ -73,6 +72,10 @@ public class MainMenu implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
+    if (keycode == Keys.Q) {
+      Gdx.graphics.setDisplayMode(300, 400, false);
+    }
+    
     if (keycode == Keys.DOWN && arrowY == START_Y) {
       arrowY = HIGHSCORES_Y;
     } else if (keycode == Keys.UP && arrowY == HIGHSCORES_Y) {
@@ -90,13 +93,10 @@ public class MainMenu implements Screen, InputProcessor {
     
     if (keycode == Keys.SPACE || keycode == Keys.ENTER) {
       if (arrowY == START_Y) {
-        Assets.font.scale(-1f);
         game.setScreen(new SettingsScreen(game));
       } else if (arrowY == HIGHSCORES_Y) {
-        Assets.font.scale(-1f);
         game.setScreen(new InstructionScreen(game, this));
       } else if (arrowY == CREDITS_Y) {
-        Assets.font.scale(-1f);
         game.setScreen(new CreditsScreen(game, this));
       } else {
         over = true;
@@ -157,6 +157,7 @@ public class MainMenu implements Screen, InputProcessor {
     if (over) {
       Gdx.app.exit();
     }
+    
   }
 
   @Override
@@ -183,16 +184,13 @@ public class MainMenu implements Screen, InputProcessor {
     if (button == 0) {
       if ((x >= startArea.x && x <= startArea.x + startArea.width) &&
           (y >= startArea.y && y <= startArea.y + startArea.height)) {
-        Assets.font.scale(-1f);
         game.setScreen(new SettingsScreen(game));
         
       } else if ((x >= instructionsArea.x && x <= instructionsArea.x + instructionsArea.width) &&
           (y >= instructionsArea.y && y <= instructionsArea.y + instructionsArea.height)) {
-        Assets.font.scale(-1f);
         game.setScreen(new InstructionScreen(game, this));
       } else if ((x >= creditsArea.x && x <= creditsArea.x + creditsArea.width) &&
           (y >= creditsArea.y && y <= creditsArea.y + creditsArea.height)) {
-        Assets.font.scale(-1f);
         game.setScreen(new CreditsScreen(game, this));
       } else if ((x >= quitArea.x && x <= quitArea.x + quitArea.width) &&
           (y >= quitArea.y && y <= quitArea.y + quitArea.height)) {

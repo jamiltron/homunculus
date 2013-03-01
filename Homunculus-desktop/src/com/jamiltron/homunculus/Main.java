@@ -11,6 +11,7 @@ public class Main {
     cfg.useGL20 = true;
     cfg.width   = 450;
     cfg.height  = 600;
+    cfg.resizable = false;
     new LwjglApplication(new HomunculusGame(), cfg);
   }
 }

@@ -95,21 +95,21 @@ public class Spell {
       rotateTime = 0;
     }
     
-    if (component1 != null) {
-      component1.update(1f);      
+    if (!component1.isDead) {
+      component1.update(1f);
       component1.stateTime += dt;
     }
-    if (component2 != null) {
+    if (!component2.isDead) {
       component2.update(1f);
       component2.stateTime += dt;
     }
   }
   
   public void updateAnimation(float dt) {
-    if (component1 != null) {
+    if (!component1.isDead) {
       component1.stateTime += dt;
     }
-    if (component2 != null) {
+    if (!component2.isDead) {
       component2.stateTime += dt;
     }
   }
@@ -119,9 +119,9 @@ public class Spell {
   }
   
   public Vector2 getVel() {
-    if (component1 != null) {
+    if (!component1.isDead) {
       return component1.vel;
-    } else if (component2 != null) {
+    } else if (!component2.isDead) {
       return component2.vel;
     } else {
       return null;
@@ -131,13 +131,13 @@ public class Spell {
   
   public void setVel(Float x, Float y) {
     if (x != null) {
-      if (component1 != null) component1.vel.x = x;
-      if (component2 != null) component2.vel.x = x;
+      if (!component1.isDead) component1.vel.x = x;
+      if (!component2.isDead) component2.vel.x = x;
     }
     
     if (y != null) {
-      if (component1 != null) component1.vel.y = y;
-      if (component2 != null) component2.vel.y = y;
+      if (!component1.isDead) component1.vel.y = y;
+      if (!component2.isDead) component2.vel.y = y;
     }
   }
 

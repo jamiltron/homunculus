@@ -136,6 +136,7 @@ public class SettingsScreen implements Screen, InputProcessor {
   @Override
   public boolean keyDown(final int keycode) {
     showSelector = true;
+    
     if (cursorLevel == 0) {
       if (keycode == Keys.LEFT && level > 0) {
         level -= 1;
@@ -176,7 +177,6 @@ public class SettingsScreen implements Screen, InputProcessor {
       settings.setSoundOn(sound);
       settings.setMusicOn(music);
       settings.setHomunculiNum(level);
-      System.out.println(sound);
       game.settings = settings;
       game.setScreen(new GameScreen(game));
     }
@@ -343,8 +343,6 @@ public class SettingsScreen implements Screen, InputProcessor {
     ppuX = width / CAMERA_W;
     ppuY = height / CAMERA_H;
     Assets.font.setScale(1.5f + (ppuX - 32f) / 32f, 1.5f + (ppuY - 32f) / 32f);
-    System.out.println(2f + (ppuX - 32f) / 32f);
-    System.out.println(2f + (ppuY - 32f) / 32f);
   }
 
   @Override

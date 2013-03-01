@@ -13,6 +13,11 @@ public class Component extends Mob {
   
   public boolean isDying;
   public boolean isFalling;
+  public boolean isDead;
+  
+  public Component() {
+    this(-1f, -1f, null);
+  }
 
   public Component(float x, float y, Color c) {
     super(x, y, WIDTH, HEIGHT);
@@ -20,9 +25,16 @@ public class Component extends Mob {
     isFalling = false;
     stateTime = Assets.random.nextFloat();
     isDying = false;
+    isDead  = false;
   }
   
-  public void setFalling(boolean fall) {
-    isFalling = fall;
+  public void setProps(float x, float y, Color c) {
+    pos.x = x;
+    pos.y = y;
+    color = c;
+    isFalling = false;
+    stateTime = Assets.random.nextFloat();
+    isDying = false;
+    isDead  = false;
   }
 }

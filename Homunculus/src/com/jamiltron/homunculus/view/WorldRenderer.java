@@ -148,7 +148,7 @@ public class WorldRenderer {
   private void renderComponent(Component component) {
     TextureRegion keyFrame;
 
-    if (component != null) {
+    if (!component.isDead) {
       if (component.isDying) {
         if (component.color.equals(Color.BLUE)) {
           keyFrame = Assets.blueSpellDeadAnim.getFrame(component.stateTime, false);

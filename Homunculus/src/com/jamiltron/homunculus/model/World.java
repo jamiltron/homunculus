@@ -3,6 +3,7 @@ package com.jamiltron.homunculus.model;
 import java.util.Random;
 
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Pool;
 import com.jamiltron.homunculus.util.JArray;
 
 public class World {
@@ -26,6 +27,7 @@ public class World {
   public Array<Homunculus> deadHomunculi = new Array<Homunculus>();
   public Array<Spell> deadSpells = new Array<Spell>();
   public JArray<Color> colorGrid;
+  public Pool<Component> componentPool;
   public boolean paused;
   public boolean won;
   public boolean lost;
@@ -59,11 +61,16 @@ public class World {
   }
 
   public World(int numHomunculi) {
-    createWorld(numHomunculi);
-    score = 0;
+    this(numHomunculi, 0);
   }
 
   public World(int numHomunculi, int s) {
+    componentPool = new Pool<Component>() {
+      @Override
+      protected Component newObject() {
+        return new Component();
+      }
+    };
     createWorld(numHomunculi);
     score = s;
   }
@@ -79,6 +86,10 @@ public class World {
   public void cleanUp() {
     homunculi.removeAll(deadHomunculi, true);
     setSpells.removeAll(deadSpells, true);
+    for (Spell spell : deadSpells) {
+      componentPool.free(spell.component1);
+      componentPool.free(spell.component2);
+    }
     deadHomunculi.clear();
     deadSpells.clear();
   }
@@ -87,8 +98,11 @@ public class World {
     int i = colors.length;
     Color color1 = colors[random.nextInt(i)];
     Color color2 = colors[random.nextInt(i)];
-    Component component1 = new Component(BOX_X, BOX_Y, color1);
-    Component component2 = new Component(BOX_X + 1, BOX_Y, color2);
+    Component component1 = componentPool.obtain();
+    Component component2 = componentPool.obtain();
+    component1.setProps(BOX_X, BOX_Y, color1);
+    component2.setProps(BOX_X + 1, BOX_Y, color2);
+    
     return new Spell(component1, component2);
   }
 
