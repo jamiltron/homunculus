@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
+import com.jamiltron.homunculus.Assets;
 import com.jamiltron.homunculus.util.JArray;
 
 public class World {
@@ -31,20 +32,30 @@ public class World {
   public boolean paused;
   public boolean won;
   public boolean lost;
+  public boolean switchingSpells;
+  public float switchingTime = 0;
   public int score;
   private Spell activeSpell = null;
   private Spell nextSpell = null;
   private final Random random = new Random();
 
   public void update(float dt) {
-    for (Homunculus h : homunculi) {
-      if (h != null) {
-        h.stateTime += dt;
+    if (!switchingSpells) {
+      for (Homunculus h : homunculi) {
+        if (h != null) {
+          h.stateTime += dt;
+        }
       }
-    }
     
-    if (nextSpell != null) {
-      nextSpell.updateAnimation(dt);
+      if (nextSpell != null) {
+        nextSpell.updateAnimation(dt);
+      }
+    } else {
+      switchingTime += dt;
+      if (switchingTime >= Assets.wizardTime * Assets.wizardFrames) {
+        switchingTime = 0;
+        switchingSpells = false;
+      }
     }
   }
   
@@ -127,8 +138,9 @@ public class World {
     spell.component2.pos.y = ENTRY_Y;
   }
   
-  private void createWorld(int nh) {
-    numHomunculi = nh;
+  private void createWorld(int numHomunculi) {
+    switchingSpells = false;
+    this.numHomunculi = numHomunculi;
     paused = false;
     won = false;
     lost = false;

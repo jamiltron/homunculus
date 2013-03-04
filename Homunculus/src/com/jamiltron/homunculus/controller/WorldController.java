@@ -224,6 +224,7 @@ public class WorldController {
         updatePaused();
         if (!world.paused) {
           world.update(dt);
+          if (!world.switchingSpells) {
           if (destroying) {
             destroying = false;
             
@@ -278,6 +279,7 @@ public class WorldController {
               if (currentTime >= dropTime) {
                 currentTime -= dropTime;
                 if (activeSpell == null) {
+                  world.switchingSpells = true;
                   world.restSpell();
                   activeSpell = world.getActiveSpell();
                 } else {
@@ -287,6 +289,7 @@ public class WorldController {
               updateSpell(dt);
               updateMatches();
             }
+          }
           }
         }
       }
@@ -624,6 +627,8 @@ public class WorldController {
         }
         
         playDrop();
+        
+        world.switchingSpells = true;
         activeSpell.setVel(0f, 0f);
         world.restSpell();
         activeSpell = world.getActiveSpell();

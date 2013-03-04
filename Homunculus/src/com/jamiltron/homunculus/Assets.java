@@ -10,6 +10,8 @@ import java.util.Random;
 public class Assets {
   public static final int TOUCH_BOX = 2;
   
+  public static int wizardFrames = 5;
+  public static float wizardTime = 0.1f;
   public static Sound drop;
   public static Sound match;
   public static Sound selectMove;
@@ -136,9 +138,11 @@ public class Assets {
     pauseBackground       = new TextureRegion(pauseBackgroundT, 0, 0, 300, 400);
     gameOverBackground    = new TextureRegion(gameOverBackgroundT, 0, 0, 300, 400);
     
-    wizardAnim = new Animation(0.5f, new TextureRegion(spriteSheet, 0, 0, 128, 128),
+    wizardAnim = new Animation(wizardTime, new TextureRegion(spriteSheet, 0, 0, 128, 128),
         new TextureRegion(spriteSheet, 128, 0, 128, 128),
-        new TextureRegion(spriteSheet, 256, 0, 128, 128));
+        new TextureRegion(spriteSheet, 256, 0, 128, 128),
+        new TextureRegion(spriteSheet, 256, 0, 128, 128),
+        new TextureRegion(spriteSheet, 128, 0, 128, 128));
     
     redHomLiveAnim = new Animation(0.18f, new TextureRegion(spriteSheet, 0, 128, 32, 32),
         new TextureRegion(spriteSheet, 32, 128, 32, 32),

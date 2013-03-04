@@ -18,7 +18,7 @@ public class GameScreen implements Screen, InputProcessor {
   private WorldController      controller;
   private final HomunculusGame game;
   private final Settings       settings;
-  private final boolean        touching;
+  private boolean              touching;
   private boolean              leftPressed;
   private boolean              rightPressed;
   private boolean              dropPressed;
@@ -26,19 +26,20 @@ public class GameScreen implements Screen, InputProcessor {
   private boolean              rotlPressed;
   private float                ppuX;
   private float                ppuY;
+  private float                lastDragX;
   private static final float   CAMERA_W = 18.75f;
   private static final float   CAMERA_H = 25f;
 
   public GameScreen(final HomunculusGame g) {
     super();
-    game = g;
-    settings = g.settings;
-    touching = false;
-    leftPressed = false;
+    game         = g;
+    settings     = g.settings;
+    touching     = false;
+    leftPressed  = false;
     rightPressed = false;
-    dropPressed = false;
-    rotrPressed = false;
-    rotlPressed = false;
+    dropPressed  = false;
+    rotrPressed  = false;
+    rotlPressed  = false;
   }
 
   @Override
@@ -147,25 +148,15 @@ public class GameScreen implements Screen, InputProcessor {
     controller.update(delta);
     renderer.render();
 
-    // TODO: ADD A SETTING FOR TOUCHSCREEN YES/NO
-    if (!leftPressed) {
-      controller.leftRelease();
-    }
-    if (!rightPressed) {
-      controller.rightRelease();
-    }
-    if (!touching) {
-      if (!dropPressed) {
-        controller.dropRelease();
-      }
-      if (!rotrPressed) {
-        controller.rotrRelease();
-      }
-      if (!rotlPressed) {
-        controller.rotlRelease();
+    if (!game.desktopGame) {
+      if (!leftPressed)  controller.leftRelease();
+      if (!rightPressed) controller.rightRelease();
+      if (!touching) {
+        if (!dropPressed) controller.dropRelease();
+        if (!rotrPressed) controller.rotrRelease();
+        if (!rotlPressed) controller.rotlRelease();
       }
     }
-    // TODO: END ALL TOUCHSCREEN STUFF HERE
 
     if (controller.nextLevel) {
       int numHomunculi = 20;
@@ -177,7 +168,6 @@ public class GameScreen implements Screen, InputProcessor {
       controller.resetController(world);
       renderer.resetRenderer(world);
     }
-
   }
 
   @Override
@@ -201,7 +191,7 @@ public class GameScreen implements Screen, InputProcessor {
   @Override
   public void show() {
     world = new World(settings.getHomunculiNum() + 4);
-    renderer = new WorldRenderer(world);
+    renderer = new WorldRenderer(world, game);
     controller = new WorldController(world, game);
     Gdx.input.setInputProcessor(this);
   }
@@ -209,35 +199,43 @@ public class GameScreen implements Screen, InputProcessor {
   @Override
   public boolean touchDown(final int screenX, final int screenY,
       final int pointer, final int button) {
-    /*
-     * if (button == 0) { final float x = screenX / ppuX; final float y =
-     * CAMERA_H - screenY / ppuY;
-     * 
-     * if (x >= 1.25f && x <= 4.25f && y >= 0.25f && y <= 3.25f) {
-     * controller.leftPress(); } else if (x >= 5.5f && x <= 8.5f && y >= 0.25f
-     * && y <= 3.25f) { controller.dropPress(); } else if (x >= 9.75f && x <=
-     * 12.75f && y >= 0.25f && y <= 3.25f) { controller.rightPress(); } else if
-     * (x >= 14f && x <= 17f && y >= 0.25f && y <= 3.25f) {
-     * controller.rotrPress(); }
-     * 
-     * touching = true; } return true;
-     */
-    return false;
+      
+    if (!game.desktopGame) {
+     if (button == 0) { 
+       final float x = screenX / ppuX; final float y = CAMERA_H - screenY / ppuY;
+     
+       if (x >= 1.25f && x <= 4.25f && y >= 0.25f && y <= 3.25f) {
+         controller.leftPress(); 
+       } else if (x >= 5.5f && x <= 8.5f && y >= 0.25f && y <= 3.25f) { 
+         controller.dropPress(); 
+       } else if (x >= 9.75f && x <= 12.75f && y >= 0.25f && y <= 3.25f) { 
+         controller.rightPress(); 
+       } else if (x >= 14f && x <= 17f && y >= 0.25f && y <= 3.25f) {
+         controller.rotrPress(); 
+       }
+       
+       touching = true;
+     }
+     return true;
+     } else {
+       return false;
+    }
   }
 
   @Override
   public boolean touchDragged(final int screenX, final int screenY,
       final int pointer) {
-    /*
-     * if (screenX - lastDragX > 2) { controller.rightPress();
-     * controller.leftRelease(); } else if (lastDragX - screenX > 2) {
-     * controller.leftPress(); controller.rightRelease(); }
-     * 
-     * lastDragX = screenX;
-     * 
-     * return true;
-     */
+    if (!game.desktopGame) {
+      if (screenX - lastDragX > 2) { controller.rightPress();
+      controller.leftRelease(); } else if (lastDragX - screenX > 2) {
+        controller.leftPress(); controller.rightRelease();
+      }
+      lastDragX = screenX;
+      
+      return true;
+     } else {
     return false;
+     }
   }
 
   @Override

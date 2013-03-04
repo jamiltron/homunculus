@@ -6,6 +6,16 @@ import com.jamiltron.homunculus.Settings;
 
 public class HomunculusGame extends Game {
   public Settings settings;
+  public boolean desktopGame;
+  
+  public HomunculusGame(boolean desktopGame) {
+    super();
+    this.desktopGame = desktopGame;
+  }
+  
+  public HomunculusGame() {
+    this(false);
+  }
   
   @Override
   public void create() {

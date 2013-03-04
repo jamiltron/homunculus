@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jamiltron.homunculus.Assets;
+import com.jamiltron.homunculus.HomunculusGame;
 import com.jamiltron.homunculus.model.Color;
 import com.jamiltron.homunculus.model.Component;
 import com.jamiltron.homunculus.model.Homunculus;
@@ -16,6 +17,7 @@ public class WorldRenderer {
   private static final float CAMERA_H = 25f;
 
   private World world;
+  private HomunculusGame game;
   private final OrthographicCamera cam;
   private final SpriteBatch spriteBatch;
 
@@ -31,7 +33,8 @@ public class WorldRenderer {
     ppuY = height / CAMERA_H;
   }
 
-  public WorldRenderer(World w) {
+  public WorldRenderer(World w, HomunculusGame g) {
+    game = g;
     world = w;
     this.cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
@@ -82,12 +85,15 @@ public class WorldRenderer {
     TextureRegion keyFrame;
     
     spriteBatch.draw(Assets.playGameBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
-    keyFrame = Assets.wizardAnim.getFrame(0, false);
+    keyFrame = Assets.wizardAnim.getFrame(world.switchingTime, true);
     spriteBatch.draw(keyFrame, 12.7f * ppuX, 16.45f * ppuY, 4 * ppuX, 4 * ppuY);
-    spriteBatch.draw(Assets.leftArrow, 1.25f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
-    spriteBatch.draw(Assets.downArrow, 5.5f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
-    spriteBatch.draw(Assets.rightArrow, 9.75f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
-    spriteBatch.draw(Assets.rotateArrow, 14f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+    
+    if (!game.desktopGame) {
+      spriteBatch.draw(Assets.leftArrow, 1.25f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+      spriteBatch.draw(Assets.downArrow, 5.5f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+      spriteBatch.draw(Assets.rightArrow, 9.75f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+      spriteBatch.draw(Assets.rotateArrow, 14f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+    }
     
     
   }
@@ -131,10 +137,83 @@ public class WorldRenderer {
   }
 
   private void renderSpells() {
-    renderSpell(world.getActiveSpell());
-    renderSpell(world.getNextSpell());
+    if (!world.switchingSpells) {
+      renderSpell(world.getActiveSpell());
+      renderSpell(world.getNextSpell());
+    } else {
+      renderEnteringSpell(world.getActiveSpell());
+      renderExitingSpell(world.getNextSpell());
+    }
     for (Spell setSpell : world.setSpells) {
       renderSpell(setSpell);
+    }
+  }
+  
+  private void renderExitingSpell(Spell spell) {
+    TextureRegion keyFrame;
+    Component component = spell.component1;
+    
+    if (component.color.equals(Color.BLUE)) {
+      keyFrame = Assets.blueSpellDeadAnim.getFrame(world.switchingTime / 2, false);
+      spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+          ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+    } else if (component.color.equals(Color.RED)) {
+      keyFrame = Assets.redSpellDeadAnim.getFrame(world.switchingTime / 2, false);
+      spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+          ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+    } else {
+      keyFrame = Assets.yellowSpellDeadAnim.getFrame(world.switchingTime / 2, false);
+      spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+          ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+    }
+    
+    component = spell.component2;
+    if (component.color.equals(Color.BLUE)) {
+      keyFrame = Assets.blueSpellDeadAnim.getFrame(world.switchingTime / 2, false);
+      spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+          ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+    } else if (component.color.equals(Color.RED)) {
+      keyFrame = Assets.redSpellDeadAnim.getFrame(world.switchingTime / 2, false);
+      spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+          ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+    } else {
+      keyFrame = Assets.yellowSpellDeadAnim.getFrame(world.switchingTime / 2, false);
+      spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+          ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+    }
+  }
+  
+  private void renderEnteringSpell(Spell spell) {
+     TextureRegion keyFrame;
+    Component component = spell.component1;
+    
+    if (component.color.equals(Color.BLUE)) {
+      keyFrame = Assets.blueSpellDeadAnim.getFrame((Assets.wizardTime * Assets.wizardFrames - world.switchingTime) / 2, false);
+      spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+          ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+    } else if (component.color.equals(Color.RED)) {
+      keyFrame = Assets.redSpellDeadAnim.getFrame((Assets.wizardTime * Assets.wizardFrames - world.switchingTime) / 2, false);
+      spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+          ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+    } else {
+      keyFrame = Assets.yellowSpellDeadAnim.getFrame((Assets.wizardTime * Assets.wizardFrames - world.switchingTime) / 2, false);
+      spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+          ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+    }
+    
+    component = spell.component2;
+    if (component.color.equals(Color.BLUE)) {
+      keyFrame = Assets.blueSpellDeadAnim.getFrame((Assets.wizardTime * Assets.wizardFrames - world.switchingTime) / 2, false);
+      spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+          ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+    } else if (component.color.equals(Color.RED)) {
+      keyFrame = Assets.redSpellDeadAnim.getFrame((Assets.wizardTime * Assets.wizardFrames - world.switchingTime) / 2, false);
+      spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+          ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+    } else {
+      keyFrame = Assets.yellowSpellDeadAnim.getFrame((Assets.wizardTime * Assets.wizardFrames - world.switchingTime) / 2, false);
+      spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+          ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
     }
   }
 
