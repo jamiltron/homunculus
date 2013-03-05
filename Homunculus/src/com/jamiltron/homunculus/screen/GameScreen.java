@@ -167,6 +167,7 @@ public class GameScreen implements Screen, InputProcessor {
       }
 
       world = new World(numHomunculi, world.score);
+      Assets.titleMusic.stop();
       if (game.settings.getMusicOn()) {
         Assets.titleMusic.stop();
         Assets.levelMusic.setLooping(true);

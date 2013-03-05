@@ -87,8 +87,8 @@ public class Assets {
   public static BitmapFont font;
   
   public static void loadMusic() {
-    titleMusic = Gdx.audio.newMusic(Gdx.files.internal("data/sfx/DST-TheMagiciansArmy.mp3"));
-    levelMusic = Gdx.audio.newMusic(Gdx.files.internal("data/sfx/DST-Arch-Delerium.mp3"));
+    titleMusic = Gdx.audio.newMusic(Gdx.files.internal("data/sfx/LLS-ParaBellum.mp3"));
+    levelMusic = Gdx.audio.newMusic(Gdx.files.internal("data/sfx/LLS-Surge.mp3"));
   }
 
   public static void loadSounds() {

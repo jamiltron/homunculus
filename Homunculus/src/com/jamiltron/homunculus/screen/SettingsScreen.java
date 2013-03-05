@@ -27,6 +27,7 @@ public class SettingsScreen implements Screen, InputProcessor {
   private boolean music;
   private boolean sound;
   private boolean showSelector;
+  private boolean playSelectMove;
 
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
@@ -108,18 +109,18 @@ public class SettingsScreen implements Screen, InputProcessor {
   private static final float NUM_X = LEVEL_X + 5f;
   private static final float NUM_Y = LEVEL_Y + 0.35f;
 
-  public SettingsScreen(final HomunculusGame g) {
+  public SettingsScreen(final HomunculusGame game) {
+    this.game = game;
     showSelector = true;
     cursorLevel = 0;
-    music = true;
-    sound = true;
+    music = game.settings.getMusicOn();
+    sound = game.settings.getSoundOn();
     level = 0;
     speed = 0;
     cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
     cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     cam.update();
     spriteBatch = new SpriteBatch();
-    game = g;
   }
 
   @Override
@@ -136,42 +137,55 @@ public class SettingsScreen implements Screen, InputProcessor {
   @Override
   public boolean keyDown(final int keycode) {
     showSelector = true;
+    playSelectMove = false;
     
     if (cursorLevel == 0) {
       if (keycode == Keys.LEFT && level > 0) {
         level -= 1;
+        playSelectMove = true;
       } else if (keycode == Keys.RIGHT && level < 20) {
         level += 1;
+        playSelectMove = true;
       }
     } else if (cursorLevel == 1) {
       if (keycode == Keys.LEFT && speed > 0) {
         speed -= 1;
+        playSelectMove = true;
       } else if (keycode == Keys.RIGHT && speed < 2) {
         speed += 1;
+        playSelectMove = true;
       }
     } else if (cursorLevel == 2) {
       if (keycode == Keys.LEFT && sound == false) {
         sound = true;
+        playSelectMove = true;
       } else if (keycode == Keys.RIGHT && sound == true) {
         sound = false;
       }
     } else if (cursorLevel == 3) {
       if (keycode == Keys.LEFT && music == false) {
+        playSelectMove = true;
         music = true;
+        Assets.titleMusic.play();
       } else if (keycode == Keys.RIGHT && music == true) {
+        playSelectMove = true;
         music = false;
+        Assets.titleMusic.stop();
       }
     }
 
     if (cursorLevel <= 4 &&
         (keycode == Keys.DOWN || keycode == Keys.ENTER || keycode == Keys.SPACE)) {
+      playSelectMove = true;
       cursorLevel += 1;
     } else if ((keycode == Keys.UP || keycode == Keys.BACKSPACE)
         && cursorLevel > 0) {
+      playSelectMove = true;
       cursorLevel -= 1;
     }
 
     if (cursorLevel == 5 && (keycode == Keys.ENTER || keycode == Keys.DOWN || keycode == Keys.SPACE)) {
+      if (sound) Assets.playSound(Assets.selectEnter);
       final Settings settings = new Settings();
       settings.setSpeed(speed);
       settings.setSoundOn(sound);
@@ -180,7 +194,8 @@ public class SettingsScreen implements Screen, InputProcessor {
       game.settings = settings;
       game.setScreen(new GameScreen(game));
     }
-
+    
+    if (sound && playSelectMove) Assets.playSound(Assets.selectMove);
     return true;
   }
 
