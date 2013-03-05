@@ -19,10 +19,15 @@ public class HomunculusGame extends Game {
   
   @Override
   public void create() {
-    settings = null;
+    settings = new Settings();
+    settings.setSoundOn(true);
+    settings.setMusicOn(true);
     Assets.loadSounds();
+    Assets.loadMusic();
     Assets.loadImages();
     Assets.loadFonts();
+    Assets.titleMusic.setLooping(true);
+    Assets.titleMusic.play();
     setScreen(new MainMenu(this));
   }
   

@@ -1,5 +1,6 @@
 package com.jamiltron.homunculus.screen;
 
+import com.jamiltron.homunculus.Assets;
 import com.jamiltron.homunculus.HomunculusGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -26,6 +27,7 @@ public class GameScreen implements Screen, InputProcessor {
   private boolean              rotlPressed;
   private float                ppuX;
   private float                ppuY;
+  private float                lastX;
   private float                lastDragX;
   private static final float   CAMERA_W = 18.75f;
   private static final float   CAMERA_H = 25f;
@@ -95,27 +97,27 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public boolean keyUp(final int keycode) {
-    if (keycode == Keys.LEFT) {
+    if (keycode == Keys.LEFT || keycode == Keys.A) {
       controller.leftRelease();
       leftPressed = false;
     }
 
-    if (keycode == Keys.RIGHT) {
+    if (keycode == Keys.RIGHT || keycode == Keys.D) {
       controller.rightRelease();
       rightPressed = false;
     }
 
-    if (keycode == Keys.DOWN) {
+    if (keycode == Keys.DOWN || keycode == Keys.S) {
       controller.dropRelease();
       dropPressed = false;
     }
 
-    if (keycode == Keys.X || keycode == Keys.UP) {
+    if (keycode == Keys.X || keycode == Keys.UP || keycode == Keys.W || keycode == Keys.SHIFT_RIGHT) {
       controller.rotrRelease();
       rotrPressed = false;
     }
 
-    if (keycode == Keys.Z) {
+    if (keycode == Keys.Z || keycode == Keys.SHIFT_LEFT) {
       rotlPressed = false;
       controller.rotlRelease();
     }
@@ -165,6 +167,11 @@ public class GameScreen implements Screen, InputProcessor {
       }
 
       world = new World(numHomunculi, world.score);
+      if (game.settings.getMusicOn()) {
+        Assets.titleMusic.stop();
+        Assets.levelMusic.setLooping(true);
+        Assets.levelMusic.play();
+      }
       controller.resetController(world);
       renderer.resetRenderer(world);
     }
@@ -194,6 +201,11 @@ public class GameScreen implements Screen, InputProcessor {
     renderer = new WorldRenderer(world, game);
     controller = new WorldController(world, game);
     Gdx.input.setInputProcessor(this);
+    if (game.settings.getMusicOn()) {
+      Assets.titleMusic.stop();
+      Assets.levelMusic.setLooping(true);
+      Assets.levelMusic.play();
+    }
   }
 
   @Override
@@ -241,14 +253,24 @@ public class GameScreen implements Screen, InputProcessor {
   @Override
   public boolean touchUp(final int screenX, final int screenY,
       final int pointer, final int button) {
-    /*
-     * if (button == 0) { float x = screenX / ppuX; float y = CAMERA_H - screenY
-     * / ppuY; if (Math.abs(screenX - lastX) <= Assets.TOUCH_BOX && !(x >= 1.25f
-     * && x <= 4.25f && y >= 0.25f && y <= 3.25f) && !(x >= 5.5f && x <= 8.5f &&
-     * y >= 0.25f && y <= 3.25f) && !(x >= 9.75f && x <= 12.75f && y >= 0.25f &&
-     * y <= 3.25f) && !(x >= 14f && x <= 17f && y >= 0.25f && y <= 3.25f)) {
-     * controller.rotrPress(); } touching = false; } return true;
-     */
-    return false;
+    
+    if (!game.desktopGame) {
+      if (button == 0) {
+        float x = screenX / ppuX; float y = CAMERA_H - screenY  / ppuY;
+        
+        if (Math.abs(screenX - lastX) <= Assets.TOUCH_BOX &&
+           !(x >= 1.25f && x <= 4.25f && y >= 0.25f && y <= 3.25f) && 
+           !(x >= 5.5f && x <= 8.5f &&
+           y >= 0.25f && y <= 3.25f) && 
+           !(x >= 9.75f && x <= 12.75f && y >= 0.25f &&
+           y <= 3.25f) && !(x >= 14f && x <= 17f && y >= 0.25f && y <= 3.25f)) {
+          controller.rotrPress(); 
+        }
+        touching = false;
+      }
+      return true;
+    } else {
+      return false;
+    }
   }
 }

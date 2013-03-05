@@ -2,6 +2,7 @@ package com.jamiltron.homunculus;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,10 +13,12 @@ public class Assets {
   
   public static int wizardFrames = 5;
   public static float wizardTime = 0.1f;
+  public static Music titleMusic;
+  public static Music levelMusic;
   public static Sound drop;
   public static Sound match;
   public static Sound selectMove;
-  public static Sound select;
+  public static Sound selectEnter;
   public static Sound rotate;
   
   public static Texture startScreenBackgroundT;
@@ -28,7 +31,6 @@ public class Assets {
   public static Texture spriteSheet;
   public static Texture selector;
   public static Texture textT;
-
   
   public static TextureRegion gameOverBackground;
   public static TextureRegion startScreenBackground;
@@ -83,12 +85,17 @@ public class Assets {
   public static Random random = new Random();
   
   public static BitmapFont font;
+  
+  public static void loadMusic() {
+    titleMusic = Gdx.audio.newMusic(Gdx.files.internal("data/sfx/DST-TheMagiciansArmy.mp3"));
+    levelMusic = Gdx.audio.newMusic(Gdx.files.internal("data/sfx/DST-Arch-Delerium.mp3"));
+  }
 
   public static void loadSounds() {
     drop = Gdx.audio.newSound(Gdx.files.internal("data/sfx/hit.wav"));
     match = Gdx.audio.newSound(Gdx.files.internal("data/sfx/match.wav"));
     selectMove = Gdx.audio.newSound(Gdx.files.internal("data/sfx/select1.wav"));
-    select = Gdx.audio.newSound(Gdx.files.internal("data/sfx/select2.wav"));
+    selectEnter = Gdx.audio.newSound(Gdx.files.internal("data/sfx/select2.wav"));
     rotate = Gdx.audio.newSound(Gdx.files.internal("data/sfx/rotate.wav"));
   }
   

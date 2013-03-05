@@ -43,6 +43,8 @@ public class MainMenu implements Screen, InputProcessor {
   private static final float QUIT_X = CAMERA_W / 2f - QUIT_W / 2f;
   private static final float QUIT_Y = 10f;
   private static final float AREA_H = 0.75f;
+  private boolean playSelectMove;
+  private boolean playSelectEnter;
   
   private Rectangle startArea = new Rectangle(2f, 
       START_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
@@ -61,6 +63,8 @@ public class MainMenu implements Screen, InputProcessor {
     arrowY = START_Y;
     over = false;
     game = g;
+    playSelectMove = false;
+    playSelectEnter = false;
   }
 
   public void setSize(int w, int h) {
@@ -72,35 +76,55 @@ public class MainMenu implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
+    playSelectMove = false;
+    playSelectEnter = false;
+    
     if (keycode == Keys.Q) {
       Gdx.graphics.setDisplayMode(300, 400, false);
     }
     
     if (keycode == Keys.DOWN && arrowY == START_Y) {
+      playSelectMove = true;
       arrowY = HIGHSCORES_Y;
     } else if (keycode == Keys.UP && arrowY == HIGHSCORES_Y) {
+      playSelectMove = true;
       arrowY = START_Y;
     } else if (keycode == Keys.DOWN && arrowY == HIGHSCORES_Y) {
+      playSelectMove = true;
       arrowY = CREDITS_Y;
     } else if (keycode == Keys.DOWN && arrowY == CREDITS_Y) {
+      playSelectMove = true;
       arrowY = QUIT_Y;
     } else if (keycode == Keys.UP && arrowY == CREDITS_Y) {
+      playSelectMove = true;
       arrowY = HIGHSCORES_Y;
     } else if (keycode == Keys.UP && arrowY == QUIT_Y) {
+      playSelectMove = true;
       arrowY = CREDITS_Y;
-
     }
     
     if (keycode == Keys.SPACE || keycode == Keys.ENTER) {
       if (arrowY == START_Y) {
+        playSelectEnter = true;
         game.setScreen(new SettingsScreen(game));
       } else if (arrowY == HIGHSCORES_Y) {
+        playSelectEnter = true;
         game.setScreen(new InstructionScreen(game, this));
       } else if (arrowY == CREDITS_Y) {
+        playSelectEnter = true;
         game.setScreen(new CreditsScreen(game, this));
       } else {
+        playSelectEnter = true;
         over = true;
       }
+    }
+
+    if (playSelectEnter && game.settings.getSoundOn()) {
+      Assets.playSound(Assets.selectEnter);
+      playSelectEnter = false;
+    } else if (playSelectMove && game.settings.getSoundOn()) {
+      Assets.playSound(Assets.selectMove);
+      playSelectEnter = false;
     }
 
     return true;

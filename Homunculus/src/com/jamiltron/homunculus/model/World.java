@@ -40,13 +40,12 @@ public class World {
   private final Random random = new Random();
 
   public void update(float dt) {
-    if (!switchingSpells) {
-      for (Homunculus h : homunculi) {
-        if (h != null) {
-          h.stateTime += dt;
-        }
+    for (Homunculus h : homunculi) {
+      if (h != null) {
+        h.stateTime += dt;
       }
-    
+    }
+    if (!switchingSpells) {
       if (nextSpell != null) {
         nextSpell.updateAnimation(dt);
       }
