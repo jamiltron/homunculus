@@ -3,6 +3,7 @@ package com.jamiltron.homunculus;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -85,6 +86,30 @@ public class Assets {
   public static Random random = new Random();
   
   public static BitmapFont font;
+  
+  private String settingsString;
+  
+  public String getSettingsString() {
+    return settingsString;
+  }
+  
+  public void loadSettingsString() {
+    if (Gdx.files.isLocalStorageAvailable()) {
+      FileHandle file = Gdx.files.local("data/misc/settings.dat");
+      settingsString = file.readString();
+    } else {
+      settingsString = "1 1";
+    }
+  }
+  
+  public void writeSettings(Settings settings) {
+    FileHandle file = Gdx.files.local("data/misc/settings.dat");
+    String music = "0";
+    String sound = "0";
+    if (settings.getMusicOn()) music = "1";
+    if (settings.getSoundOn()) sound = "1";
+    file.writeString(music + " " + sound, false);
+  }
   
   public static void loadMusic() {
     titleMusic = Gdx.audio.newMusic(Gdx.files.internal("data/sfx/LLS-ParaBellum.mp3"));

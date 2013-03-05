@@ -28,7 +28,7 @@ public class SettingsScreen implements Screen, InputProcessor {
   private boolean sound;
   private boolean showSelector;
   private boolean playSelectMove;
-
+  
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
   private static final float SETTINGS_SCALE = 2.5f;
