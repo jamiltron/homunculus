@@ -191,6 +191,7 @@ public class SettingsScreen implements Screen, InputProcessor {
       settings.setSoundOn(sound);
       settings.setMusicOn(music);
       settings.setHomunculiNum(level);
+      Assets.writeSettings(settings);
       game.settings = settings;
       game.setScreen(new GameScreen(game));
     }

@@ -13,7 +13,6 @@ import com.jamiltron.homunculus.model.World;
 import com.jamiltron.homunculus.view.WorldRenderer;
 
 public class GameScreen implements Screen, InputProcessor {
-
   private World                world;
   private WorldRenderer        renderer;
   private WorldController      controller;
@@ -84,6 +83,10 @@ public class GameScreen implements Screen, InputProcessor {
     if (keycode == Keys.P) {
       controller.pausePress();
     }
+    
+    if (keycode == Keys.Q){
+      controller.quitPress();
+    }
 
     controller.anyPress();
 
@@ -124,6 +127,10 @@ public class GameScreen implements Screen, InputProcessor {
 
     if (keycode == Keys.P) {
       controller.pauseRelease();
+    }
+    
+    if (keycode == Keys.Q){
+      controller.quitRelease();
     }
 
     controller.anyRelease();

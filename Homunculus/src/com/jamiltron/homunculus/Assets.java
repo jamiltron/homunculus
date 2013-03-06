@@ -7,7 +7,13 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Iterator;
 
 public class Assets {
   public static final int TOUCH_BOX = 2;
@@ -87,28 +93,103 @@ public class Assets {
   
   public static BitmapFont font;
   
-  private String settingsString;
+  private static String settingsString;
   
-  public String getSettingsString() {
-    return settingsString;
+  public static List<AbstractMap.SimpleEntry<String, Integer>> getHighScores() {
+    List<AbstractMap.SimpleEntry<String, Integer>> scores = new ArrayList<AbstractMap.SimpleEntry<String, Integer>>();
+    try {
+      if (Gdx.files.isLocalStorageAvailable()) {
+        FileHandle file = Gdx.files.local("data/misc/highscores.dat");
+        String highScoreString = file.readString();
+        String[] highScoreList = highScoreString.split("\n");
+        for (int i = 0; i < 10; i++) {
+          if (highScoreList.length < i) {
+            String[] lineParts = highScoreList[i].split("|");
+            AbstractMap.SimpleEntry<String, Integer> entry = new AbstractMap.SimpleEntry<String, Integer>(lineParts[0], Integer.parseInt(lineParts[1]));
+            scores.add(entry);
+          } else {
+            AbstractMap.SimpleEntry<String, Integer> entry = new AbstractMap.SimpleEntry<String, Integer>("   ", 0);
+            scores.add(entry);
+          }
+        }
+      } else {
+        for (int i = 0; i < 10; i++) {
+          AbstractMap.SimpleEntry<String, Integer> entry = new AbstractMap.SimpleEntry<String, Integer>("   ", 0);
+          scores.add(entry);
+        }
+      }
+    } catch (Exception e) {
+      while(scores.size() < 10) {
+        AbstractMap.SimpleEntry<String, Integer> entry = new AbstractMap.SimpleEntry<String, Integer>("   ", 0);
+        scores.add(entry);
+      }
+    }
+    return scores;
   }
   
-  public void loadSettingsString() {
-    if (Gdx.files.isLocalStorageAvailable()) {
-      FileHandle file = Gdx.files.local("data/misc/settings.dat");
-      settingsString = file.readString();
+  public static void writeHighScores(List<AbstractMap.SimpleEntry<String, Integer>> scores) {
+    try {
+      if (Gdx.files.isLocalStorageAvailable()) {
+        FileHandle file = Gdx.files.local("data/misc/highscores.dat");
+        file.writeString("", false);
+        Iterator<SimpleEntry<String, Integer>> iterator = scores.iterator();
+        while (iterator.hasNext()) {
+          SimpleEntry<String, Integer> entry = iterator.next();
+          String name = entry.getKey();
+          name.replaceAll("\\|", "\\|");
+          file.writeString(name + "|" + Integer.toString(entry.getValue()) + "\n", true);
+        }
+      }
+    } catch (Exception e) {
+      ; //do nothing
+    }
+  }
+  
+  public static Settings getSettings() {
+    Settings settings = new Settings();
+    char music = settingsString.charAt(0);
+    char sound = settingsString.charAt(2);
+    
+    if (music == '1') {
+      settings.setMusicOn(true);
     } else {
+      settings.setMusicOn(false);
+    }
+    
+    if (sound == '1') {
+      settings.setSoundOn(true);
+    } else {
+      settings.setSoundOn(false);
+    }
+    
+    return settings;
+  }
+  
+  public static void loadSettingsString() {
+    try {
+      if (Gdx.files.isLocalStorageAvailable()) {
+        FileHandle file = Gdx.files.local("data/misc/settings.dat");
+        settingsString = file.readString();
+      } else {
+        settingsString = "1 1";
+      }
+    } catch (Exception e) {
       settingsString = "1 1";
     }
   }
   
-  public void writeSettings(Settings settings) {
-    FileHandle file = Gdx.files.local("data/misc/settings.dat");
-    String music = "0";
-    String sound = "0";
-    if (settings.getMusicOn()) music = "1";
-    if (settings.getSoundOn()) sound = "1";
-    file.writeString(music + " " + sound, false);
+  public static void writeSettings(Settings settings) {
+    try {
+      if (Gdx.files.isLocalStorageAvailable()) {
+        FileHandle file = Gdx.files.local("data/misc/settings.dat");
+        String music = "0";
+        String sound = "0";
+        if (settings.getMusicOn()) music = "1";
+        if (settings.getSoundOn()) sound = "1";
+        file.writeString(music + " " + sound, false);
+      }
+    } catch (Exception e) {
+    }
   }
   
   public static void loadMusic() {

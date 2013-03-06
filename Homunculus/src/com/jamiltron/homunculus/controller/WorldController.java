@@ -3,6 +3,7 @@ package com.jamiltron.homunculus.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.Gdx;
 import com.jamiltron.homunculus.HomunculusGame;
 import com.jamiltron.homunculus.Assets;
 import com.jamiltron.homunculus.Settings;
@@ -15,7 +16,7 @@ import com.jamiltron.homunculus.util.JArray;
 
 public class WorldController {
   enum Keys {
-    LEFT, RIGHT, ROTR, ROTL, DROP, PAUSE, ANY;
+    LEFT, RIGHT, ROTR, ROTL, DROP, PAUSE, QUIT, ANY;
   }
 
   public boolean nextLevel;
@@ -44,6 +45,7 @@ public class WorldController {
     keys.put(Keys.DROP, false);
     keys.put(Keys.PAUSE, false);
     keys.put(Keys.ANY, false);
+    keys.put(Keys.QUIT, false);
   };
 
   public void resetKeys() {
@@ -53,6 +55,7 @@ public class WorldController {
     keys.put(Keys.ROTL, false);
     keys.put(Keys.DROP, false);
     keys.put(Keys.PAUSE, false);
+    keys.put(Keys.QUIT, false);
     keys.put(Keys.ANY, false);
   }
 
@@ -78,6 +81,14 @@ public class WorldController {
 
   public void pausePress() {
     keys.put(Keys.PAUSE, true);
+  }
+  
+  public void quitPress() {
+    keys.put(Keys.QUIT, true);
+  }
+  
+  public void quitRelease() {
+    keys.put(Keys.QUIT, false);
   }
 
   public void anyPress() {
@@ -195,6 +206,8 @@ public class WorldController {
       world.paused = true;
       unpausable = false;
       // if the game is paused, unpause it
+    } else if (unpausable && world.paused && keys.get(Keys.QUIT)) {
+      Gdx.app.exit();
     } else if (unpausable && world.paused && keys.get(Keys.ANY)) {
       world.paused = false;
       unpausable = false;

@@ -50,6 +50,9 @@ public class World {
         nextSpell.updateAnimation(dt);
       }
     } else {
+      for (Spell spell : setSpells) {
+        spell.updateAnimation(dt);
+      }
       switchingTime += dt;
       if (switchingTime >= Assets.wizardTime * Assets.wizardFrames) {
         switchingTime = 0;
