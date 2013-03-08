@@ -26,6 +26,10 @@ public class WorldController {
   private final Settings settings;
   private boolean unpausable;
   private boolean destroying;
+  private boolean playSound;
+  private boolean check1;
+  private boolean check2;
+  private boolean keepChecking;
   float currentTime;
   float dropTime;
   float fastTime;
@@ -294,9 +298,6 @@ public class WorldController {
                 currentTime -= dropTime;
                 if (activeSpell == null) {
                   world.setSwitching();
-                  //world.switchingSpells = true;
-                  //world.restSpell();
-                  //activeSpell = world.getActiveSpell();
                 } else {
                   activeSpell.setVel(null, -Component.SPEED);
                 }
@@ -312,9 +313,7 @@ public class WorldController {
   }
   
   private boolean updateDrops(float dt) {
-    boolean check1;
-    boolean check2;
-    boolean keepChecking = false;
+    keepChecking = false;
 
     for (Spell spell : world.setSpells) {
       check1 = true;
@@ -375,8 +374,8 @@ public class WorldController {
   }
 
   private void updateMatches() {
-    boolean playSound = false;
-
+    playSound = false;
+    
     // check for rows to destroy
     for (float y = World.Y_MIN; y <= World.Y_MAX; y++) {
       for (float x = World.X_MIN; x <= World.X_MAX - 3; x++) {
@@ -445,9 +444,7 @@ public class WorldController {
     }
 
     scoreUp();
-
     if (playSound) playMatch();
-      
   }
   
   private void playDrop() {
