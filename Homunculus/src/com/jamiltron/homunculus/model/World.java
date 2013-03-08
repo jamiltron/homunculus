@@ -28,6 +28,7 @@ public class World {
   public Array<Homunculus> deadHomunculi = new Array<Homunculus>();
   public Array<Spell> deadSpells = new Array<Spell>();
   public JArray<Color> colorGrid;
+  public Pool<Spell> spellPool;
   public Pool<Component> componentPool;
   public boolean paused;
   public boolean won;
@@ -70,6 +71,7 @@ public class World {
         switchingSpells = false;
         activeEntering = true;
         activeEnteringTime = 0.3f;
+        spellPool.free(nextSpell);
         nextSpell = generateSpell();
       }
     }
@@ -105,6 +107,12 @@ public class World {
         return new Component();
       }
     };
+    spellPool = new Pool<Spell>() {
+      @Override
+      protected Spell newObject() {
+        return new Spell();
+      }
+    };
     createWorld(numHomunculi);
     score = s;
   }
@@ -123,6 +131,7 @@ public class World {
     for (Spell spell : deadSpells) {
       componentPool.free(spell.component1);
       componentPool.free(spell.component2);
+      spellPool.free(spell);
     }
     deadHomunculi.clear();
     deadSpells.clear();
@@ -137,7 +146,10 @@ public class World {
     component1.setProps(BOX_X, BOX_Y, color1);
     component2.setProps(BOX_X + 1, BOX_Y, color2);
     
-    return new Spell(component1, component2);
+    Spell spell = spellPool.obtain();
+    spell.setProps(component1, component2);
+    return spell;
+    //return new Spell(component1, component2);
   }
   
   public Spell copySpell(Spell spell) {
@@ -146,7 +158,10 @@ public class World {
     component1.setProps(spell.component1.pos.x, spell.component1.pos.y, spell.component1.color);
     component2.setProps(spell.component2.pos.x, spell.component2.pos.y, spell.component2.color);
     
-    return new Spell(component1, component2);
+    Spell newSpell = spellPool.obtain();
+    newSpell.setProps(component1, component2);
+    return newSpell;
+    //return new Spell(component1, component2);
   }
 
   public void restSpell() {

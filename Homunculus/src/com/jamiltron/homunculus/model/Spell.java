@@ -17,6 +17,18 @@ public class Spell {
     rotateTime = r;
   }
   
+  public Spell() {
+    pauseTime = 0;
+    isFalling = false;
+  }
+  
+  public void setProps(Component p1, Component p2) {
+    component1 = p1;
+    component2 = p2;
+    pauseTime = 0;
+    isFalling = false;
+  }
+  
   public Spell(Component p1, Component p2) {
     component1 = p1;
     component2 = p2;
