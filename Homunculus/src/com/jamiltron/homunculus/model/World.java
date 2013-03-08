@@ -27,9 +27,11 @@ public class World {
   public Array<Spell> setSpells = new Array<Spell>();
   public Array<Homunculus> deadHomunculi = new Array<Homunculus>();
   public Array<Spell> deadSpells = new Array<Spell>();
-  public JArray<Color> colorGrid;
-  public Pool<Spell> spellPool;
-  public Pool<Component> componentPool;
+  public JArray<Color> colorGrid = new JArray<Color>((int)COLS, (int)ROWS);
+  private Pool<Component> componentPool;
+  private Pool<Spell> spellPool;
+  private Pool<Homunculus> homunculusPool;
+  private Homunculus tmpHomunculus;
   public boolean paused;
   public boolean won;
   public boolean lost;
@@ -99,6 +101,32 @@ public class World {
   public World(int numHomunculi) {
     this(numHomunculi, 0);
   }
+  
+  public World() {
+    this(3, 0);
+  }
+  
+  public void setProps(int numHomunculi, int score) {
+    for (Homunculus h : deadHomunculi) {
+      homunculusPool.free(h);
+    }
+    for (Homunculus h : homunculi) {
+      homunculusPool.free(h);
+    }
+    for (Spell s : setSpells) {
+      componentPool.free(s.component1);
+      componentPool.free(s.component2);
+      spellPool.free(s);
+    }
+    deadHomunculi.clear();
+    homunculi.clear();
+    setSpells.clear();
+    activeSpell = null;
+    nextSpell = null;
+    colorGrid.clear();
+    createWorld(numHomunculi);
+    this.score = score;
+  }
 
   public World(int numHomunculi, int s) {
     componentPool = new Pool<Component>() {
@@ -111,6 +139,12 @@ public class World {
       @Override
       protected Spell newObject() {
         return new Spell();
+      }
+    };
+    homunculusPool = new Pool<Homunculus>() {
+      @Override
+      protected Homunculus newObject() {
+        return new Homunculus();
       }
     };
     createWorld(numHomunculi);
@@ -132,6 +166,9 @@ public class World {
       componentPool.free(spell.component1);
       componentPool.free(spell.component2);
       spellPool.free(spell);
+    }
+    for (Homunculus homunculus : deadHomunculi) {
+      homunculusPool.free(homunculus);
     }
     deadHomunculi.clear();
     deadSpells.clear();
@@ -170,9 +207,6 @@ public class World {
           activeSpell.component2.color);
       setSpells.add(activeSpell);
     }
-    //activateSpell(nextSpell);
-    //activeSpell = nextSpell;
-    //nextSpell = generateSpell();
   }
 
   public void activateSpell(Spell spell) {
@@ -195,7 +229,7 @@ public class World {
     Boolean inserted;
     Color color;
     float x, y;
-    colorGrid = new JArray<Color>((int)COLS, (int)ROWS);
+    //colorGrid = new JArray<Color>((int)COLS, (int)ROWS);
 
     // create random homunculi
     for (int i = 0; i < numHomunculi; i++) {
@@ -207,7 +241,10 @@ public class World {
         if (getGrid(x, y) == null) {
           inserted = true;
           color = colors[i % colors.length];
-          homunculi.add(new Homunculus(x, y, color));
+          tmpHomunculus = homunculusPool.obtain();
+          tmpHomunculus.setProps(x, y, color);
+          homunculi.add(tmpHomunculus);
+          //homunculi.add(new Homunculus(x, y, color));
           putGrid(x, y, color);
         }
       } while (!inserted);

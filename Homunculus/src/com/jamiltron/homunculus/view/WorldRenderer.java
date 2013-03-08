@@ -34,6 +34,7 @@ public class WorldRenderer {
     height = h;
     ppuX = width / CAMERA_W;
     ppuY = height / CAMERA_H;
+    Assets.scaleFont(ppuX, ppuY);
   }
 
   public WorldRenderer(World w, HomunculusGame g) {
@@ -66,9 +67,9 @@ public class WorldRenderer {
         22.5f * ppuY);
     
     Assets.font.setColor(0.0f, 0.0f, 0.0f, 1.0f);
-    Assets.font.draw(spriteBatch, "1000000", 13f * ppuX,
+    Assets.font.draw(spriteBatch, "100000", 13f * ppuX,
         14.5f * ppuY);
-    Assets.font.draw(spriteBatch, "5", 13f * ppuX,
+    Assets.font.draw(spriteBatch, Integer.toString(world.numHomunculi - 3), 13f * ppuX,
         13.15f * ppuY);
     Assets.font.draw(spriteBatch, "classic", 13f * ppuX,
         11.75f * ppuY);
@@ -76,17 +77,25 @@ public class WorldRenderer {
 
   private void renderMessages() {
     if (world.won) {
-      spriteBatch.draw(Assets.pauseBackground, 2 * ppuX, 8 * ppuY, 256, 256);
+      spriteBatch.draw(Assets.pauseBackground, 2 * ppuX, 3.65f * ppuY, 10 * ppuX, 18 * ppuY);
     } else if (world.paused) {
-      spriteBatch.draw(Assets.pauseBackground, 2 * ppuX, 8 * ppuY, 256, 256);
+      spriteBatch.draw(Assets.overlay, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
+      spriteBatch.draw(Assets.pauseBackground, 2 * ppuX, 3.65f * ppuY, 10 * ppuX, 18 * ppuY);
     } else if (world.lost) {
-      spriteBatch.draw(Assets.gameOverBackground, 2 * ppuX, 8 * ppuY, 256, 256);
+      spriteBatch.draw(Assets.overlay, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
+      spriteBatch.draw(Assets.gameOverBackground, 2 * ppuX, 3.65f * ppuY, 10 * ppuX, 18 * ppuY);
     }
   }
   
   private void renderBackground() {
     spriteBatch.draw(Assets.playGameBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
-    keyFrame = Assets.wizardAnim.getFrame(world.switchingTime, true);
+    if (world.won) { 
+      keyFrame = Assets.wizardAnim.getFrame(Assets.wizardTime * 3, true);
+    } else if (world.lost) {
+      keyFrame = Assets.wizardAnim.getFrame(0, true);
+    } else {
+      keyFrame = Assets.wizardAnim.getFrame(world.switchingTime, true);
+    }
     spriteBatch.draw(keyFrame, 12.7f * ppuX, 16.45f * ppuY, 4 * ppuX, 4 * ppuY);
     
     if (!game.desktopGame) {
@@ -137,15 +146,19 @@ public class WorldRenderer {
 
   private void renderSpells() {
     if (!world.switchingSpells) {
-      renderSpell(world.getActiveSpell());
-      if (!world.activeEntering) {
-        renderSpell(world.getNextSpell());
-      } else {
-        renderEnteringActiveSpell(world.getNextSpell());
+      if (!world.won && !world.paused && !world.lost) {
+        renderSpell(world.getActiveSpell());
+        if (!world.activeEntering) {
+          renderSpell(world.getNextSpell());
+        } else {
+          renderEnteringActiveSpell(world.getNextSpell());
+        }
       }
     } else {
-      renderEnteringSpell(world.getActiveSpell());
-      renderExitingSpell(world.getNextSpell());
+      if (!world.won && !world.paused && !world.lost) {
+        renderEnteringSpell(world.getActiveSpell());
+        renderExitingSpell(world.getNextSpell());
+      }
     }
     for (Spell setSpell : world.setSpells) {
       renderSpell(setSpell);

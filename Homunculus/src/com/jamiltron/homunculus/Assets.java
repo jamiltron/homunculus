@@ -33,6 +33,7 @@ public class Assets {
   public static Texture pauseBackgroundT;
   public static Texture playGameBackgroundT;
   public static Texture debug;
+  public static Texture overlay;
 
   public static Texture cursor;
   public static Texture spriteSheet;
@@ -89,6 +90,9 @@ public class Assets {
   public static Animation redSpellDeadAnim;
   public static Animation yellowSpellDeadAnim;
   
+  private static float lastFontScaleX = 0;
+  private static float lastFontScaleY = 0;
+  
   public static Random random = new Random();
   
   public static BitmapFont font;
@@ -125,6 +129,16 @@ public class Assets {
       }
     }
     return scores;
+  }
+  
+  public static void scaleFont(float ppuX, float ppuY) {
+    lastFontScaleX = 1.5f + (ppuX - 32f) / 32f;
+    lastFontScaleY = 1.5f + (ppuY - 32f) / 32f;
+    font.setScale(lastFontScaleX, lastFontScaleY);
+  }
+  
+  public static void resetFont() {
+    font.setScale(-lastFontScaleX, -lastFontScaleY);
   }
   
   public static void writeHighScores(List<AbstractMap.SimpleEntry<String, Integer>> scores) {
@@ -211,6 +225,7 @@ public class Assets {
   }
   
   public static void loadImages() {
+    overlay = loadTexture("data/gfx/overlay.png");
     textT = loadTexture("data/gfx/text.png");
     startW = new TextureRegion(textT, 0, 0, 41, 10);
     startB = new TextureRegion(textT, 42, 0, 41, 10);

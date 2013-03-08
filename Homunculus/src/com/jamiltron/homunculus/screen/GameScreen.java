@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.utils.Pool;
 import com.jamiltron.homunculus.Settings;
 import com.jamiltron.homunculus.controller.WorldController;
 import com.jamiltron.homunculus.model.World;
@@ -14,6 +15,7 @@ import com.jamiltron.homunculus.view.WorldRenderer;
 
 public class GameScreen implements Screen, InputProcessor {
   private World                world;
+  private Pool<World>          worldPool;
   private WorldRenderer        renderer;
   private WorldController      controller;
   private final HomunculusGame game;
@@ -41,6 +43,12 @@ public class GameScreen implements Screen, InputProcessor {
     dropPressed  = false;
     rotrPressed  = false;
     rotlPressed  = false;
+    worldPool = new Pool<World>() {
+      @Override
+      protected World newObject() {
+        return new World();
+      }
+    };
   }
 
   @Override
@@ -169,13 +177,17 @@ public class GameScreen implements Screen, InputProcessor {
 
     if (controller.nextLevel) {
       int numHomunculi = 20;
+      int score = world.score;
       if (world.numHomunculi + 1 <= 20) {
         numHomunculi = world.numHomunculi + 1;
       }
 
-      world = new World(numHomunculi, world.score);
+      //world = new World(numHomunculi, world.score);
+      worldPool.free(world);
+      world = worldPool.obtain();
+      world.setProps(numHomunculi, score);
       Assets.titleMusic.stop();
-      if (game.settings.getMusicOn()) {
+      if (game.settings.getMusicOn() && Assets.titleMusic.isPlaying()) {
         Assets.titleMusic.stop();
         Assets.levelMusic.setLooping(true);
         Assets.levelMusic.play();
@@ -205,7 +217,9 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public void show() {
-    world = new World(settings.getHomunculiNum() + 4);
+    //world = new World(settings.getHomunculiNum() + 4);
+    world = worldPool.obtain();
+    world.setProps(settings.getHomunculiNum() + 4, 0);
     renderer = new WorldRenderer(world, game);
     controller = new WorldController(world, game);
     Gdx.input.setInputProcessor(this);

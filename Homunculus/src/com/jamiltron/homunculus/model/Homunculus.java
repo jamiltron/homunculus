@@ -11,9 +11,21 @@ public class Homunculus extends Entity {
   
   public Color color;
   
-  public Homunculus(Float x, Float y, Color c) {
+  public Homunculus(Float x, Float y, Color color) {
     super(x, y, WIDTH, HEIGHT);
-    color = c;
+    this.color = color;
+    stateTime = Assets.random.nextFloat(); 
+    isDying = false;
+  }
+  
+  public Homunculus() {
+    this(-1f, -1f, null);
+  }
+  
+  public void setProps(Float x, Float y, Color color) {
+    pos.x = x;
+    pos.y = y;
+    this.color = color;
     stateTime = Assets.random.nextFloat(); 
     isDying = false;
   }

@@ -207,12 +207,18 @@ public class WorldController {
   public void updatePaused() {
     // if the game is not paused, pause it
     if (unpausable && !world.paused && keys.get(Keys.PAUSE)) {
+      if (game.settings.getMusicOn()) {
+        Assets.levelMusic.pause();
+      }
       world.paused = true;
       unpausable = false;
       // if the game is paused, unpause it
     } else if (unpausable && world.paused && keys.get(Keys.QUIT)) {
       Gdx.app.exit();
     } else if (unpausable && world.paused && keys.get(Keys.ANY)) {
+      if (game.settings.getMusicOn()) {
+        Assets.levelMusic.play();
+      }
       world.paused = false;
       unpausable = false;
       resetKeys();

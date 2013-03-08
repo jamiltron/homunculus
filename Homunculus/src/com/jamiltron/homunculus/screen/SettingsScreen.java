@@ -358,7 +358,7 @@ public class SettingsScreen implements Screen, InputProcessor {
     height = h;
     ppuX = width / CAMERA_W;
     ppuY = height / CAMERA_H;
-    Assets.font.setScale(1.5f + (ppuX - 32f) / 32f, 1.5f + (ppuY - 32f) / 32f);
+    Assets.scaleFont(ppuX, ppuY);
   }
 
   @Override

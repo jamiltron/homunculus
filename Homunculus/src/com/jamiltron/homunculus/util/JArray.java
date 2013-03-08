@@ -33,5 +33,13 @@ public class JArray<T> extends Array<T> {
     int iy = (rows - 1) - ((int)(y - 4.75));
     super.set(cols * iy + ix, value);
   }
-
+  
+  @Override
+  public void clear() {
+    for (int y = 0; y < rows; y++) {
+      for (int x = 0; x < cols; x++) {
+        super.set(cols * y + x, null);
+      }
+    }
+  }
 }
