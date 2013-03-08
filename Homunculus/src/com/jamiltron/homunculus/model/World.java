@@ -149,7 +149,6 @@ public class World {
     Spell spell = spellPool.obtain();
     spell.setProps(component1, component2);
     return spell;
-    //return new Spell(component1, component2);
   }
   
   public Spell copySpell(Spell spell) {
@@ -161,7 +160,6 @@ public class World {
     Spell newSpell = spellPool.obtain();
     newSpell.setProps(component1, component2);
     return newSpell;
-    //return new Spell(component1, component2);
   }
 
   public void restSpell() {
