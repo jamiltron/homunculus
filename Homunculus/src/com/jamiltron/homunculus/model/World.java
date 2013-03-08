@@ -33,7 +33,9 @@ public class World {
   public boolean won;
   public boolean lost;
   public boolean switchingSpells;
-  public float switchingTime = 0;
+  public boolean activeEntering;
+  public float activeEnteringTime;
+  public float switchingTime;
   public int score;
   private Spell activeSpell = null;
   private Spell nextSpell = null;
@@ -45,6 +47,15 @@ public class World {
         h.stateTime += dt;
       }
     }
+    
+    if (activeEntering) {
+      activeEnteringTime -= dt;
+      if (activeEnteringTime <= 0f) {
+        activeEntering = false;
+        activeEnteringTime = 0f;
+      }
+    }
+    
     if (!switchingSpells) {
       if (nextSpell != null) {
         nextSpell.updateAnimation(dt);
@@ -57,8 +68,18 @@ public class World {
       if (switchingTime >= Assets.wizardTime * Assets.wizardFrames) {
         switchingTime = 0;
         switchingSpells = false;
+        activeEntering = true;
+        activeEnteringTime = 0.3f;
+        nextSpell = generateSpell();
       }
     }
+  }
+  
+  public void setSwitching() {
+    restSpell();
+    switchingSpells = true;
+    activeSpell = copySpell(nextSpell);
+    activateSpell(activeSpell);
   }
   
   public Color getGrid(float x, float y) {
@@ -118,6 +139,15 @@ public class World {
     
     return new Spell(component1, component2);
   }
+  
+  public Spell copySpell(Spell spell) {
+    Component component1 = componentPool.obtain();
+    Component component2 = componentPool.obtain();
+    component1.setProps(spell.component1.pos.x, spell.component1.pos.y, spell.component1.color);
+    component2.setProps(spell.component2.pos.x, spell.component2.pos.y, spell.component2.color);
+    
+    return new Spell(component1, component2);
+  }
 
   public void restSpell() {
     if (activeSpell != null) {
@@ -127,9 +157,9 @@ public class World {
           activeSpell.component2.color);
       setSpells.add(activeSpell);
     }
-    activateSpell(nextSpell);
-    activeSpell = nextSpell;
-    nextSpell = generateSpell();
+    //activateSpell(nextSpell);
+    //activeSpell = nextSpell;
+    //nextSpell = generateSpell();
   }
 
   public void activateSpell(Spell spell) {
@@ -141,6 +171,9 @@ public class World {
   }
   
   private void createWorld(int numHomunculi) {
+    switchingTime = 0;
+    activeEntering = false;
+    activeEnteringTime = 0;
     switchingSpells = false;
     this.numHomunculi = numHomunculi;
     paused = false;

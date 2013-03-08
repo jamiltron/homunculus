@@ -139,7 +139,11 @@ public class WorldRenderer {
   private void renderSpells() {
     if (!world.switchingSpells) {
       renderSpell(world.getActiveSpell());
-      renderSpell(world.getNextSpell());
+      if (!world.activeEntering) {
+        renderSpell(world.getNextSpell());
+      } else {
+        renderEnteringActiveSpell(world.getNextSpell());
+      }
     } else {
       renderEnteringSpell(world.getActiveSpell());
       renderExitingSpell(world.getNextSpell());
@@ -147,6 +151,36 @@ public class WorldRenderer {
     for (Spell setSpell : world.setSpells) {
       renderSpell(setSpell);
     }
+  }
+  
+  private void renderEnteringActiveSpell(Spell spell) {
+    TextureRegion keyFrame;
+    Component component = spell.component1;
+    
+        
+    if (component.color.equals(Color.BLUE)) {
+      keyFrame = Assets.blueSpellDeadAnim.getFrame(world.activeEnteringTime, false);
+    } else if (component.color.equals(Color.RED)) {
+      keyFrame = Assets.redSpellDeadAnim.getFrame(world.activeEnteringTime, false);
+    } else {
+      keyFrame = Assets.yellowSpellDeadAnim.getFrame(world.activeEnteringTime, false);
+    }
+    spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y * 
+        ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+
+    
+    component = spell.component2;
+    if (component.color.equals(Color.BLUE)) {
+      keyFrame = Assets.blueSpellDeadAnim.getFrame(world.activeEnteringTime, false);
+    } else if (component.color.equals(Color.RED)) {
+      keyFrame = Assets.redSpellDeadAnim.getFrame(world.activeEnteringTime, false);
+    } else {
+      keyFrame = Assets.yellowSpellDeadAnim.getFrame(world.activeEnteringTime, false);
+    }
+    spriteBatch.draw(keyFrame, component.pos.x * ppuX, component.pos.y *
+        ppuY, Component.WIDTH * ppuX, Component.HEIGHT * ppuY);
+
+
   }
   
   private void renderExitingSpell(Spell spell) {

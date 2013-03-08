@@ -238,18 +238,19 @@ public class WorldController {
         if (!world.paused) {
           world.update(dt);
           if (!world.switchingSpells) {
-          if (destroying) {
-            destroying = false;
-            
-            for (Spell spell : world.setSpells) {
-              if (!spell.component1.isDead) {
-                if (spell.component1.isDying && spell.component1.stateTime > Component.DYING_TIME) {
-                  world.putGrid(spell.component1.pos.x, spell.component1.pos.y, null);
-                  spell.component1.isDead = true;
-                } else if (spell.component1.isDying){
-                  destroying = true;
-                }
-              }
+            activeSpell = world.getActiveSpell();
+            if (destroying) {
+              destroying = false;
+              
+              for (Spell spell : world.setSpells) {
+                if (!spell.component1.isDead) {
+                  if (spell.component1.isDying && spell.component1.stateTime > Component.DYING_TIME) {
+                    world.putGrid(spell.component1.pos.x, spell.component1.pos.y, null);
+                    spell.component1.isDead = true;
+                    } else if (spell.component1.isDying){
+                      destroying = true;
+                      }
+                  }
               
               if (!spell.component2.isDead) {
                 if (spell.component2.isDying && spell.component2.stateTime > Component.DYING_TIME) {
@@ -292,9 +293,10 @@ public class WorldController {
               if (currentTime >= dropTime) {
                 currentTime -= dropTime;
                 if (activeSpell == null) {
-                  world.switchingSpells = true;
-                  world.restSpell();
-                  activeSpell = world.getActiveSpell();
+                  world.setSwitching();
+                  //world.switchingSpells = true;
+                  //world.restSpell();
+                  //activeSpell = world.getActiveSpell();
                 } else {
                   activeSpell.setVel(null, -Component.SPEED);
                 }
@@ -641,10 +643,11 @@ public class WorldController {
         
         playDrop();
         
-        world.switchingSpells = true;
+        //world.switchingSpells = true;
+        world.setSwitching();
         activeSpell.setVel(0f, 0f);
-        world.restSpell();
-        activeSpell = world.getActiveSpell();
+        //world.restSpell();
+        //activeSpell = world.getActiveSpell();
       }
 
       if (playRotate) {
