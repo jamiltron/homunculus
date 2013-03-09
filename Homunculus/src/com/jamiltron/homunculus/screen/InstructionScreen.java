@@ -1,7 +1,8 @@
 package com.jamiltron.homunculus.screen;
 
-import com.badlogic.gdx.Game;
+import com.jamiltron.homunculus.HomunculusGame;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
@@ -11,7 +12,7 @@ import com.jamiltron.homunculus.Assets;
 
 public class InstructionScreen implements Screen, InputProcessor {
 
-  private final Game game;
+  private final HomunculusGame game;
   private final SpriteBatch spriteBatch;
   private final OrthographicCamera cam;
   private final MainMenu mainMenu;
@@ -19,15 +20,21 @@ public class InstructionScreen implements Screen, InputProcessor {
   private int height;
   private float ppuX;
   private float ppuY;
-  private static final float INSTRUCTIONS_Y = 21f;
-  private static final float INSTRUCTIONS_X = 5.4f;
-  private static final float TEXT_Y = 18f;
-  private static final float TEXT_X = 1.4f;
-
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
+  private static final float SCALE = 2.5f;
+  private static final float INSTRUCTIONS_W = Assets.instructionsW.getRegionWidth()
+      / 32f * SCALE;
+  private static final float INSTRUCTIONS_H = Assets.instructionsB.getRegionHeight()
+      / 32f * SCALE;
+  private static final float INSTRUCTIONS_Y = 22.5f; 
+  private static final float INSTRUCTIONS_X = CAMERA_W / 2f - INSTRUCTIONS_W / 2f;
+  private static final float TEXT_Y = 21.5f;
+  private static final float TEXT_X = 1.4f;
 
-  public InstructionScreen(Game g, MainMenu mm) {
+
+
+  public InstructionScreen(HomunculusGame g, MainMenu mm) {
     this.cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     this.cam.update();
@@ -38,8 +45,11 @@ public class InstructionScreen implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
-    Assets.font.scale(1f);
-    game.setScreen(mainMenu);
+    if (keycode == Keys.ESCAPE) {
+      Gdx.app.exit();
+    } else {
+      game.setScreen(mainMenu);
+    }
     return true;
   }
 
@@ -63,9 +73,13 @@ public class InstructionScreen implements Screen, InputProcessor {
 
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-    Assets.font.scale(1f);
-    game.setScreen(mainMenu);
-    return true;
+    if (!game.desktopGame) {
+      Assets.font.scale(1f);
+      game.setScreen(mainMenu);
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @Override
@@ -102,20 +116,36 @@ public class InstructionScreen implements Screen, InputProcessor {
   
   public void renderText() {
     Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-    Assets.font.scale(1f);
-    Assets.font.draw(spriteBatch, "instructions", INSTRUCTIONS_X * ppuX,
-        INSTRUCTIONS_Y * ppuY);
-    Assets.font.scale(-1f);
-    Assets.font.draw(spriteBatch, "a spell went awry and loosed foul homunculi", TEXT_X * ppuX,
+    spriteBatch.draw(Assets.instructionsW, INSTRUCTIONS_X * ppuX, INSTRUCTIONS_Y * ppuY, INSTRUCTIONS_W * ppuX, INSTRUCTIONS_H * ppuY);
+    
+    Assets.font.draw(spriteBatch, "a spell went awry and loosed foul", TEXT_X * ppuX,
         TEXT_Y * ppuY);
-    Assets.font.draw(spriteBatch, "throughout your wizard tower  use your", TEXT_X * ppuX,
+    Assets.font.draw(spriteBatch, "homunculi throughout your tower", TEXT_X * ppuX,
         (TEXT_Y - 1f) * ppuY);
-    Assets.font.draw(spriteBatch, "magic to return them to the void  match", TEXT_X * ppuX,
-        (TEXT_Y - 2f) * ppuY);
-    Assets.font.draw(spriteBatch, "four of the same color in a row to complete", TEXT_X * ppuX,
+    Assets.font.draw(spriteBatch, "use magic to return them to the void", TEXT_X * ppuX,
         (TEXT_Y - 3f) * ppuY);
-    Assets.font.draw(spriteBatch, "the spell", TEXT_X * ppuX,
+    Assets.font.draw(spriteBatch, "match four of the same color in a", TEXT_X * ppuX,
         (TEXT_Y - 4f) * ppuY);
+    Assets.font.draw(spriteBatch, "row to complete the spell", TEXT_X * ppuX,
+        (TEXT_Y - 5f) * ppuY);
+    
+    if (game.desktopGame) {
+      Assets.font.draw(spriteBatch, "press the arrow keys or wasd' to move", TEXT_X * ppuX,
+          (TEXT_Y - 6.5f) * ppuY);
+      Assets.font.draw(spriteBatch, "press 'z' or 'left shift' to rotate left", TEXT_X * ppuX,
+          (TEXT_Y - 7.5f) * ppuY);
+      Assets.font.draw(spriteBatch, "press 'x' or 'right shift' to rotate right", TEXT_X * ppuX,
+          (TEXT_Y - 8.5f) * ppuY);
+      Assets.font.draw(spriteBatch, "press 'p' to pause", TEXT_X * ppuX,
+          (TEXT_Y - 9.5f) * ppuY);
+      Assets.font.draw(spriteBatch, "press 'esc' to quit", TEXT_X * ppuX,
+          (TEXT_Y - 10.5f) * ppuY);
+      
+      Assets.font.draw(spriteBatch, "       press any key to continue", TEXT_X * ppuX,
+          (TEXT_Y - 12.5f) * ppuY);
+    } else {
+      // TODO mobile instructions
+    }
 
   }
 

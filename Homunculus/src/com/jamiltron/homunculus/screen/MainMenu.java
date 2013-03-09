@@ -115,6 +115,7 @@ public class MainMenu implements Screen, InputProcessor {
     }
     
     if (keycode == Keys.SPACE || keycode == Keys.ENTER) {
+      // TODO don't create new screens every time
       if (arrowY == START_Y) {
         playSelectEnter = true;
         game.setScreen(new SettingsScreen(game));
