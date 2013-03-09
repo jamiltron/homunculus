@@ -1,17 +1,18 @@
 package com.jamiltron.homunculus.screen;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jamiltron.homunculus.Assets;
+import com.jamiltron.homunculus.HomunculusGame;
 
 public class CreditsScreen implements Screen, InputProcessor {
 
-  private final Game game;
+  private final HomunculusGame game;
   private final SpriteBatch spriteBatch;
   private final OrthographicCamera cam;
   private final MainMenu mainMenu;
@@ -19,15 +20,17 @@ public class CreditsScreen implements Screen, InputProcessor {
   private int height;
   private float ppuX;
   private float ppuY;
-  private static final float CREDITS_Y = 21f;
-  private static final float CREDITS_X = 7.05f;
-  private static final float TEXT_Y = 18f;
-  private static final float TEXT_X = 1.4f;
-
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
+  private static final float SCALE = 2.5f;
+  private static final float CREDITS_W = Assets.creditsW.getRegionWidth() / 32f * SCALE;
+  private static final float CREDITS_H = Assets.creditsW.getRegionHeight() / 32f * SCALE;
+  private static final float CREDITS_Y = 22.5f;
+  private static final float CREDITS_X = CAMERA_W / 2f - CREDITS_W / 2f;
+  private static final float TEXT_Y = 20.5f;
+  private static final float TEXT_X = 1.4f;
 
-  public CreditsScreen(Game g, MainMenu mm) {
+  public CreditsScreen(HomunculusGame g, MainMenu mm) {
     this.cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     this.cam.update();
@@ -38,8 +41,11 @@ public class CreditsScreen implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
-    Assets.font.scale(1f);
-    game.setScreen(mainMenu);
+    if (keycode == Keys.ESCAPE) {
+      Gdx.app.exit();
+    } else {
+      game.setScreen(mainMenu);
+    }
     return true;
   }
 
@@ -63,9 +69,12 @@ public class CreditsScreen implements Screen, InputProcessor {
 
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-    Assets.font.scale(1f);
-    game.setScreen(mainMenu);
-    return true;
+    if (!game.desktopGame) {
+      game.setScreen(mainMenu);
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @Override
@@ -76,13 +85,11 @@ public class CreditsScreen implements Screen, InputProcessor {
 
   @Override
   public boolean mouseMoved(int screenX, int screenY) {
-    // TODO Auto-generated method stub
     return false;
   }
 
   @Override
   public boolean scrolled(int amount) {
-    // TODO Auto-generated method stub
     return false;
   }
 
@@ -101,19 +108,20 @@ public class CreditsScreen implements Screen, InputProcessor {
   }
   
   public void renderText() {
+    spriteBatch.draw(Assets.creditsW, CREDITS_X * ppuX, CREDITS_Y * ppuY, CREDITS_W * ppuX, CREDITS_H * ppuY);
     Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-    Assets.font.scale(1f);
-    Assets.font.draw(spriteBatch, "credits", CREDITS_X * ppuX,
-        CREDITS_Y * ppuY);
-    Assets.font.scale(-1f);
-    Assets.font.draw(spriteBatch, "game development & programming", TEXT_X * ppuX,
+    Assets.font.draw(spriteBatch, "game development & programming", (TEXT_X + 1f) * ppuX,
         TEXT_Y * ppuY);
-    Assets.font.draw(spriteBatch, "justin hamilton", TEXT_X * ppuX,
+    Assets.font.draw(spriteBatch, "justin hamilton", (TEXT_X + 5f) * ppuX,
         (TEXT_Y - 1f) * ppuY);
-    Assets.font.draw(spriteBatch, "graphic design & art", TEXT_X * ppuX,
-        (TEXT_Y - 3f) * ppuY);
-    Assets.font.draw(spriteBatch, "donna almendrala", TEXT_X * ppuX,
+    Assets.font.draw(spriteBatch, "graphic design & art", (TEXT_X + 4f) * ppuX,
         (TEXT_Y - 4f) * ppuY);
+    Assets.font.draw(spriteBatch, "donna almendrala", (TEXT_X + 5f) * ppuX,
+        (TEXT_Y - 5f) * ppuY);
+    Assets.font.draw(spriteBatch, "music", (TEXT_X + 7f) * ppuX,
+        (TEXT_Y - 8f) * ppuY);
+    Assets.font.draw(spriteBatch, "lucky lion studios", (TEXT_X + 4.25f) * ppuX,
+        (TEXT_Y - 9f) * ppuY);
   }
 
   @Override

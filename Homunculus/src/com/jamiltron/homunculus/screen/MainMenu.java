@@ -29,23 +29,28 @@ public class MainMenu implements Screen, InputProcessor {
   private static final float START_W = Assets.startW.getRegionWidth() / 32f * SCALE;
   private static final float START_H = Assets.startW.getRegionHeight() / 32f * SCALE;
   private static final float START_X = CAMERA_W / 2f - START_W / 2f;
-  private static final float START_Y = 16f;
+  private static final float START_Y = 18f;
+  private static final float INSTRUCTIONS_W = Assets.instructionsW.getRegionWidth() / 32f * SCALE;
+  private static final float INSTRUCTIONS_H = Assets.instructionsW.getRegionHeight() / 32f * SCALE;
+  private static final float INSTRUCTIONS_X = CAMERA_W / 2f - INSTRUCTIONS_W / 2f;
+  private static final float INSTRUCTIONS_Y = START_Y - 2;
   private static final float HIGHSCORES_W = Assets.highScoresW.getRegionWidth() / 32f * SCALE;
   private static final float HIGHSCORES_H = Assets.highScoresW.getRegionHeight() / 32f * SCALE;
   private static final float HIGHSCORES_X = CAMERA_W / 2f - HIGHSCORES_W / 2f;
-  private static final float HIGHSCORES_Y = 14f;
+  private static final float HIGHSCORES_Y = INSTRUCTIONS_Y - 2;
   private static final float CREDITS_W = Assets.creditsW.getRegionWidth() / 32f * SCALE;
   private static final float CREDITS_H = Assets.creditsW.getRegionHeight() / 32f * SCALE;
   private static final float CREDITS_X = CAMERA_W / 2f - CREDITS_W / 2f;
-  private static final float CREDITS_Y = 12f;
+  private static final float CREDITS_Y = HIGHSCORES_Y - 2;
   private static final float QUIT_W = Assets.quitW.getRegionWidth() / 32f * SCALE;
   private static final float QUIT_H = Assets.quitW.getRegionHeight() / 32f * SCALE;
   private static final float QUIT_X = CAMERA_W / 2f - QUIT_W / 2f;
-  private static final float QUIT_Y = 10f;
+  private static final float QUIT_Y = CREDITS_Y - 2;
   private static final float AREA_H = 0.75f;
   private boolean playSelectMove;
   private boolean playSelectEnter;
   
+  // TODO UPDATE RECTANGLES
   private Rectangle startArea = new Rectangle(2f, 
       START_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
   private Rectangle instructionsArea = new Rectangle(2f, 
@@ -79,16 +84,22 @@ public class MainMenu implements Screen, InputProcessor {
     playSelectMove = false;
     playSelectEnter = false;
     
-    if (keycode == Keys.Q) {
-      Gdx.graphics.setDisplayMode(300, 400, false);
+    if (keycode == Keys.ESCAPE) {
+      Gdx.app.exit();
     }
     
     if (keycode == Keys.DOWN && arrowY == START_Y) {
       playSelectMove = true;
+      arrowY = INSTRUCTIONS_Y;
+    } else if (keycode == Keys.UP && arrowY == INSTRUCTIONS_Y) {
+      playSelectMove = true;
+      arrowY = START_Y;
+    } else if (keycode == Keys.DOWN && arrowY == INSTRUCTIONS_Y) {
+      playSelectMove = true;
       arrowY = HIGHSCORES_Y;
     } else if (keycode == Keys.UP && arrowY == HIGHSCORES_Y) {
       playSelectMove = true;
-      arrowY = START_Y;
+      arrowY = INSTRUCTIONS_Y;
     } else if (keycode == Keys.DOWN && arrowY == HIGHSCORES_Y) {
       playSelectMove = true;
       arrowY = CREDITS_Y;
@@ -107,6 +118,10 @@ public class MainMenu implements Screen, InputProcessor {
       if (arrowY == START_Y) {
         playSelectEnter = true;
         game.setScreen(new SettingsScreen(game));
+      } else if (arrowY == INSTRUCTIONS_Y) {
+        playSelectEnter = true;
+        game.setScreen(new InstructionScreen(game, this));
+        // TODO Make highscore screen
       } else if (arrowY == HIGHSCORES_Y) {
         playSelectEnter = true;
         game.setScreen(new InstructionScreen(game, this));
@@ -154,6 +169,13 @@ public class MainMenu implements Screen, InputProcessor {
       tmp = Assets.startB;
     }
     spriteBatch.draw(tmp, START_X * ppuX, START_Y * ppuY, START_W * ppuX, START_H * ppuY);
+    
+    if (arrowY == INSTRUCTIONS_Y) {
+      tmp = Assets.instructionsW;
+    } else {
+      tmp = Assets.instructionsB;
+    }
+    spriteBatch.draw(tmp, INSTRUCTIONS_X * ppuX, INSTRUCTIONS_Y * ppuY, INSTRUCTIONS_W * ppuX, INSTRUCTIONS_H * ppuY);
     
     if (arrowY == HIGHSCORES_Y) {
       tmp = Assets.highScoresW;

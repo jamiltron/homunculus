@@ -139,6 +139,10 @@ public class SettingsScreen implements Screen, InputProcessor {
     showSelector = true;
     playSelectMove = false;
     
+    if (keycode == Keys.ESCAPE) {
+      Gdx.app.exit();
+    }
+    
     if (cursorLevel == 0) {
       if (keycode == Keys.LEFT && level > 0) {
         level -= 1;

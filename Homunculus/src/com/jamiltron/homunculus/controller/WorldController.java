@@ -213,8 +213,6 @@ public class WorldController {
       world.paused = true;
       unpausable = false;
       // if the game is paused, unpause it
-    } else if (unpausable && world.paused && keys.get(Keys.QUIT)) {
-      Gdx.app.exit();
     } else if (unpausable && world.paused && keys.get(Keys.ANY)) {
       if (game.settings.getMusicOn()) {
         Assets.levelMusic.play();
@@ -240,6 +238,10 @@ public class WorldController {
   }
 
   public void update(float dt) {
+    if (keys.get(Keys.QUIT)) {
+      Gdx.app.exit();
+    }
+    
     updateOver();
     if (!world.lost) {
       updateWon();
@@ -476,6 +478,7 @@ public class WorldController {
       world.score += settings.getScoreModifier()
           * Math.pow(2, world.deadHomunculi.size - 1);
     }
+    world.updateHighScore();
   }
   private void updateSpell(float dt) {
     if (activeSpell != null) {

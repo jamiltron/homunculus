@@ -45,11 +45,11 @@ public class Settings {
 
   public int getScoreModifier() {
     if (speed == Speed.SLOW) {
-      return 100;
+      return 1;
     } else if (speed == Speed.MED) {
-      return 200;
+      return 2;
     } else
-      return 300;
+      return 3;
   }
 
   public Speed getSpeed() {

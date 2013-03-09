@@ -20,6 +20,7 @@ public class World {
   public static final float X_MAX = X_MIN + COLS - 1;
   public static final float Y_MIN = 4.75f;
   public static final float Y_MAX = Y_MIN + ROWS - 1;
+  public int highScore;
   
   private final Color[] colors = Color.values();
   public int numHomunculi;
@@ -76,6 +77,12 @@ public class World {
         spellPool.free(nextSpell);
         nextSpell = generateSpell();
       }
+    }
+  }
+  
+  public void updateHighScore() {
+    if (score > highScore) {
+      highScore = score;
     }
   }
   

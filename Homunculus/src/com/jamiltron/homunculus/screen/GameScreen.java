@@ -12,6 +12,7 @@ import com.jamiltron.homunculus.Settings;
 import com.jamiltron.homunculus.controller.WorldController;
 import com.jamiltron.homunculus.model.World;
 import com.jamiltron.homunculus.view.WorldRenderer;
+import com.badlogic.gdx.graphics.FPSLogger;
 
 public class GameScreen implements Screen, InputProcessor {
   private World                world;
@@ -26,12 +27,14 @@ public class GameScreen implements Screen, InputProcessor {
   private boolean              dropPressed;
   private boolean              rotrPressed;
   private boolean              rotlPressed;
+  private int                  highScore;
   private float                ppuX;
   private float                ppuY;
   private float                lastX;
   private float                lastDragX;
   private static final float   CAMERA_W = 18.75f;
   private static final float   CAMERA_H = 25f;
+  private FPSLogger logger = new FPSLogger();
 
   public GameScreen(final HomunculusGame g) {
     super();
@@ -43,6 +46,7 @@ public class GameScreen implements Screen, InputProcessor {
     dropPressed  = false;
     rotrPressed  = false;
     rotlPressed  = false;
+    highScore    = game.scores.get(game.scores.size() - 1).getValue();
     worldPool = new Pool<World>() {
       @Override
       protected World newObject() {
@@ -92,7 +96,7 @@ public class GameScreen implements Screen, InputProcessor {
       controller.pausePress();
     }
     
-    if (keycode == Keys.Q){
+    if (keycode == Keys.ESCAPE){
       controller.quitPress();
     }
 
@@ -137,7 +141,7 @@ public class GameScreen implements Screen, InputProcessor {
       controller.pauseRelease();
     }
     
-    if (keycode == Keys.Q){
+    if (keycode == Keys.ESCAPE){
       controller.quitRelease();
     }
 
@@ -159,6 +163,7 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public void render(final float delta) {
+    logger.log();
     Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
     Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
@@ -178,6 +183,7 @@ public class GameScreen implements Screen, InputProcessor {
     if (controller.nextLevel) {
       int numHomunculi = 20;
       int score = world.score;
+      highScore = world.highScore;
       if (world.numHomunculi + 1 <= 20) {
         numHomunculi = world.numHomunculi + 1;
       }
@@ -219,6 +225,7 @@ public class GameScreen implements Screen, InputProcessor {
   public void show() {
     //world = new World(settings.getHomunculiNum() + 4);
     world = worldPool.obtain();
+    world.highScore = highScore;
     world.setProps(settings.getHomunculiNum() + 4, 0);
     renderer = new WorldRenderer(world, game);
     controller = new WorldController(world, game);

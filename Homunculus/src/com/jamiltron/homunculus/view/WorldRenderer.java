@@ -25,6 +25,7 @@ public class WorldRenderer {
   private float ppuY;
   private int width;
   private int height;
+  private String tmpString;
   
   private TextureRegion keyFrame;
   private Component component;
@@ -66,12 +67,25 @@ public class WorldRenderer {
     Assets.font.draw(spriteBatch, Integer.toString(world.score), 12.75f * ppuX,
         22.5f * ppuY);
     
+    if (world.paused) {
+      if (game.desktopGame) {
+        Assets.font.draw(spriteBatch, "paused", 5.5f * ppuX, 19.5f * ppuY);
+        Assets.font.draw(spriteBatch, "press any key", 3.4f * ppuX, 12 * ppuY);
+        Assets.font.draw(spriteBatch, "to continue", 4f * ppuX, 11 * ppuY);
+      } else {
+        Assets.font.draw(spriteBatch, "touch screen to continue", 4 * ppuX, 7 * ppuY);
+      }
+    }
+    
     Assets.font.setColor(0.0f, 0.0f, 0.0f, 1.0f);
-    Assets.font.draw(spriteBatch, "100000", 13f * ppuX,
+    Assets.font.draw(spriteBatch, Integer.toString(world.highScore), 13f * ppuX,
         14.5f * ppuY);
     Assets.font.draw(spriteBatch, Integer.toString(world.numHomunculi - 3), 13f * ppuX,
         13.15f * ppuY);
-    Assets.font.draw(spriteBatch, "classic", 13f * ppuX,
+    if (game.settings.getSpeed().ordinal() == 0) tmpString = "slow"; 
+    if (game.settings.getSpeed().ordinal() == 1) tmpString = "med";
+    if (game.settings.getSpeed().ordinal() == 2) tmpString = "fast";
+    Assets.font.draw(spriteBatch, tmpString, 13f * ppuX,
         11.75f * ppuY);
   }
 

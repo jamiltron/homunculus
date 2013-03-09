@@ -61,6 +61,8 @@ public class Assets {
   public static TextureRegion quitW;
   public static TextureRegion quitB;
   public static TextureRegion settingsText;
+  public static TextureRegion instructionsW;
+  public static TextureRegion instructionsB;
   public static TextureRegion slowW;
   public static TextureRegion slowB;
   public static TextureRegion medW;
@@ -235,6 +237,8 @@ public class Assets {
     creditsB = new TextureRegion(textT, 207, 0, 54, 12);
     highScoresW = new TextureRegion(textT, 261, 0, 82, 10);
     highScoresB = new TextureRegion(textT, 345, 0, 82, 10);
+    instructionsW = new TextureRegion(textT, 128, 28, 96, 10);
+    instructionsB = new TextureRegion(textT, 225, 28, 96, 10);
     settingsText = new TextureRegion(textT, 64, 28, 63, 12);
     level = new TextureRegion(textT, 0, 14, 40, 9);
     speed = new TextureRegion(textT, 82, 14, 41, 12);
