@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +76,8 @@ public class Assets {
   public static TextureRegion speed;
   public static TextureRegion level;
   public static TextureRegion sounds;
+  public static Texture textCursorT;
+  public static TextureRegion textCursor;
   
   public static Animation wizardAnim;
   public static Animation blueHomLiveAnim;
@@ -101,8 +102,8 @@ public class Assets {
   
   private static String settingsString;
   
-  public static List<AbstractMap.SimpleEntry<String, Integer>> getHighScores() {
-    List<AbstractMap.SimpleEntry<String, Integer>> scores = new ArrayList<AbstractMap.SimpleEntry<String, Integer>>();
+  public static List<SimpleEntry<String, Integer>> getHighScores() {
+    List<SimpleEntry<String, Integer>> scores = new ArrayList<SimpleEntry<String, Integer>>();
     try {
       if (Gdx.files.isLocalStorageAvailable()) {
         FileHandle file = Gdx.files.local("data/misc/highscores.dat");
@@ -111,22 +112,22 @@ public class Assets {
         for (int i = 0; i < 10; i++) {
           if (highScoreList.length < i) {
             String[] lineParts = highScoreList[i].split("|");
-            AbstractMap.SimpleEntry<String, Integer> entry = new AbstractMap.SimpleEntry<String, Integer>(lineParts[0], Integer.parseInt(lineParts[1]));
+            SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>(lineParts[0], Integer.parseInt(lineParts[1]));
             scores.add(entry);
           } else {
-            AbstractMap.SimpleEntry<String, Integer> entry = new AbstractMap.SimpleEntry<String, Integer>("   ", 0);
+            SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("   ", 0);
             scores.add(entry);
           }
         }
       } else {
         for (int i = 0; i < 10; i++) {
-          AbstractMap.SimpleEntry<String, Integer> entry = new AbstractMap.SimpleEntry<String, Integer>("   ", 0);
+          SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("   ", 0);
           scores.add(entry);
         }
       }
     } catch (Exception e) {
       while(scores.size() < 10) {
-        AbstractMap.SimpleEntry<String, Integer> entry = new AbstractMap.SimpleEntry<String, Integer>("   ", 0);
+        SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("   ", 0);
         scores.add(entry);
       }
     }
@@ -143,7 +144,7 @@ public class Assets {
     font.setScale(-lastFontScaleX, -lastFontScaleY);
   }
   
-  public static void writeHighScores(List<AbstractMap.SimpleEntry<String, Integer>> scores) {
+  public static void writeHighScores(List<SimpleEntry<String, Integer>> scores) {
     try {
       if (Gdx.files.isLocalStorageAvailable()) {
         FileHandle file = Gdx.files.local("data/misc/highscores.dat");
@@ -223,10 +224,12 @@ public class Assets {
   
   public static void loadFonts() {
     font = new BitmapFont(Gdx.files.internal("data/fnt/font2.fnt"),
-        Gdx.files.internal("data/fnt/fontw.png"), false);
+        Gdx.files.internal("data/fnt/font2.png"), false);
   }
   
   public static void loadImages() {
+    textCursorT = loadTexture("data/gfx/textCursor.png");
+    textCursor = new TextureRegion(textCursorT, 0, 0, 8, 12);
     overlay = loadTexture("data/gfx/overlay.png");
     textT = loadTexture("data/gfx/text.png");
     startW = new TextureRegion(textT, 0, 0, 41, 10);

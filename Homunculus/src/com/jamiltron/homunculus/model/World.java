@@ -15,12 +15,13 @@ public class World {
   public static final float ENTRY_Y = 20.75f;
   public static final float COLS = 8;
   public static final float ROWS = 17;
-  public static final float ROW_RAND_MIN = 12;
-  public static final float X_MIN = 4f;
+  public static final float ROW_RAND_MIN = 13;
+  public static final float X_MIN = 3f;
   public static final float X_MAX = X_MIN + COLS - 1;
   public static final float Y_MIN = 4.75f;
   public static final float Y_MAX = Y_MIN + ROWS - 1;
   public int highScore;
+  public boolean scoreBroken;
   
   private final Color[] colors = Color.values();
   public int numHomunculi;
@@ -242,7 +243,7 @@ public class World {
     for (int i = 0; i < numHomunculi; i++) {
       inserted = false;
       do {
-        x = (random.nextInt((int)COLS) + (X_MIN - 1));
+        x = (random.nextInt((int)COLS) + X_MIN);
         y = (random.nextInt((int)ROW_RAND_MIN) + Y_MIN);
         int j = 0;
 

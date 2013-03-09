@@ -35,7 +35,6 @@ public class WorldRenderer {
     height = h;
     ppuX = width / CAMERA_W;
     ppuY = height / CAMERA_H;
-    Assets.scaleFont(ppuX, ppuY);
   }
 
   public WorldRenderer(World w, HomunculusGame g) {
@@ -79,12 +78,22 @@ public class WorldRenderer {
       Assets.font.draw(spriteBatch, "     complete", 2f * ppuX, 19.5f * ppuY);
       Assets.font.draw(spriteBatch, "press any key", 3.4f * ppuX, 12 * ppuY);
       Assets.font.draw(spriteBatch, "to continue", 4f * ppuX, 11 * ppuY);
+    } else if (world.lost && !world.scoreBroken) {
+      Assets.font.draw(spriteBatch, "    game over", 2f * ppuX, 19.5f * ppuY);
+      Assets.font.draw(spriteBatch, "press any key", 3.4f * ppuX, 12 * ppuY);
+      Assets.font.draw(spriteBatch, "to continue", 4f * ppuX, 11 * ppuY);
+    } else if (world.lost && world.scoreBroken) {
+      Assets.font.draw(spriteBatch, "    high score", 2f * ppuX, 19.5f * ppuY);
+      Assets.font.draw(spriteBatch, "enter your", 4f * ppuX, 17.5f * ppuY);
+      Assets.font.draw(spriteBatch, "   name", 4f * ppuX, 16.5f * ppuY);
+      Assets.font.draw(spriteBatch, "press  enter", 3.5f * ppuX, 12 * ppuY);
+      Assets.font.draw(spriteBatch, "to continue", 3.7f * ppuX, 11 * ppuY);
     }
     
     Assets.font.setColor(0.0f, 0.0f, 0.0f, 1.0f);
     Assets.font.draw(spriteBatch, Integer.toString(world.highScore), 13f * ppuX,
         14.5f * ppuY);
-    Assets.font.draw(spriteBatch, Integer.toString((world.numHomunculi / 4) - 1), 13f * ppuX,
+    Assets.font.draw(spriteBatch, Integer.toString(world.homunculi.size), 13f * ppuX,
         13.15f * ppuY);
     if (game.settings.getSpeed().ordinal() == 0) tmpString = "slow"; 
     if (game.settings.getSpeed().ordinal() == 1) tmpString = "med";
@@ -132,32 +141,22 @@ public class WorldRenderer {
         if (homunculi.isDying){
           if (homunculi.color.equals(Color.BLUE)) {
             keyFrame = Assets.blueHomDeadAnim.getFrame(homunculi.stateTime, false);
-            spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
-                ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
           } else if (homunculi.color.equals(Color.RED)) {
             keyFrame = Assets.redHomDeadAnim.getFrame(homunculi.stateTime, false);
-            spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
-                ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
           } else {
             keyFrame = Assets.yellowHomDeadAnim.getFrame(homunculi.stateTime, false);
-            spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
-                ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
           }
         } else {
           if (homunculi.color.equals(Color.BLUE)) {
             keyFrame = Assets.blueHomLiveAnim.getFrame(homunculi.stateTime, true);
-            spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
-                ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
           } else if (homunculi.color.equals(Color.RED)) {
             keyFrame = Assets.redHomLiveAnim.getFrame(homunculi.stateTime, true);
-            spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
-                ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
           } else {
             keyFrame = Assets.yellowHomLiveAnim.getFrame(homunculi.stateTime, true);
-            spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y * 
-                ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
           }
         }
+        spriteBatch.draw(keyFrame, homunculi.pos.x * ppuX, homunculi.pos.y *
+            ppuY, Homunculus.WIDTH * ppuX, Homunculus.HEIGHT * ppuY);
       }
     }
   }
@@ -178,8 +177,10 @@ public class WorldRenderer {
         renderExitingSpell(world.getNextSpell());
       }
     }
-    for (Spell setSpell : world.setSpells) {
-      renderSpell(setSpell);
+    if (!world.won && !world.paused && !world.lost) {
+      for (Spell setSpell : world.setSpells) {
+        renderSpell(setSpell);
+      }
     }
   }
   

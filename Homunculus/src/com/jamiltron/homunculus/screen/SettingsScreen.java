@@ -126,7 +126,6 @@ public class SettingsScreen implements Screen, InputProcessor {
   @Override
   public void dispose() {
     Gdx.input.setInputProcessor(null);
-
   }
 
   @Override
@@ -380,6 +379,7 @@ public class SettingsScreen implements Screen, InputProcessor {
   @Override
   public void show() {
     Gdx.input.setInputProcessor(this);
+    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
   }
 
   @Override

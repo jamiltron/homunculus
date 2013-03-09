@@ -1,18 +1,25 @@
 package com.jamiltron.homunculus.screen;
 
-import com.jamiltron.homunculus.Assets;
-import com.jamiltron.homunculus.HomunculusGame;
+
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.utils.Pool;
+import com.jamiltron.homunculus.Assets;
+import com.jamiltron.homunculus.HomunculusGame;
 import com.jamiltron.homunculus.Settings;
 import com.jamiltron.homunculus.controller.WorldController;
 import com.jamiltron.homunculus.model.World;
 import com.jamiltron.homunculus.view.WorldRenderer;
-import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class GameScreen implements Screen, InputProcessor {
   private World                world;
@@ -34,7 +41,8 @@ public class GameScreen implements Screen, InputProcessor {
   private float                lastDragX;
   private static final float   CAMERA_W = 18.75f;
   private static final float   CAMERA_H = 25f;
-  private FPSLogger logger = new FPSLogger();
+  private Stage stage;
+  private TextField textfield;
 
   public GameScreen(final HomunculusGame g) {
     super();
@@ -53,10 +61,31 @@ public class GameScreen implements Screen, InputProcessor {
         return new World();
       }
     };
+    stage = new Stage(Gdx.graphics.getWidth(),
+        Gdx.graphics.getHeight(), false);
+    TextFieldStyle tStyle = new TextFieldStyle();
+    tStyle.font = Assets.font;
+    tStyle.fontColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+    tStyle.cursor =  new TextureRegionDrawable(Assets.textCursor);
+    textfield = new TextField("", tStyle);
+    textfield.setMaxLength(10);
+    stage.addActor(textfield);
+    final GameScreen tmpGameScreen = this;
+    textfield.setTextFieldListener(new TextFieldListener() {
+      public void keyTyped (TextField textfield, char key) {
+        if (key == '\n' || key == '\r') {
+          textfield.getOnscreenKeyboard().show(false);
+          Gdx.input.setInputProcessor(tmpGameScreen);
+          world.scoreBroken = false;
+          game.setScreen(new MainMenu(game));
+        }
+      }
+    });
   }
 
   @Override
   public void dispose() {
+    stage.dispose();
     Gdx.input.setInputProcessor(null);
   }
 
@@ -163,10 +192,11 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public void render(final float delta) {
-    logger.log();
+    //logger.log();
     Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
     Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
+    if (!world.scoreBroken || !world.lost) {
     controller.update(delta);
     renderer.render();
 
@@ -201,6 +231,14 @@ public class GameScreen implements Screen, InputProcessor {
       controller.resetController(world);
       renderer.resetRenderer(world);
     }
+    } else {
+      Gdx.input.setInputProcessor(stage);
+      renderer.render();
+      stage.act(delta);
+      stage.setKeyboardFocus(textfield);
+      stage.draw();
+      
+    }
   }
 
   @Override
@@ -208,6 +246,7 @@ public class GameScreen implements Screen, InputProcessor {
     ppuX = w / CAMERA_W;
     ppuY = h / CAMERA_H;
     renderer.setSize(w, h);
+    textfield.setPosition(4.5f * ppuX, 14.5f * ppuY);
   }
 
   @Override
@@ -223,7 +262,6 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public void show() {
-    //world = new World(settings.getHomunculiNum() + 4);
     world = worldPool.obtain();
     world.highScore = highScore;
     world.setProps((settings.getHomunculiNum() + 1) * 4, 0);

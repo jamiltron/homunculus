@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
-import com.jamiltron.homunculus.HomunculusGame;
 import com.jamiltron.homunculus.Assets;
+import com.jamiltron.homunculus.HomunculusGame;
 import com.jamiltron.homunculus.Settings;
 import com.jamiltron.homunculus.model.Component;
 import com.jamiltron.homunculus.model.Homunculus;
@@ -16,7 +16,7 @@ import com.jamiltron.homunculus.util.JArray;
 
 public class WorldController {
   enum Keys {
-    LEFT, RIGHT, ROTR, ROTL, DROP, PAUSE, QUIT, ANY;
+    LEFT, RIGHT, ROTR, ROTL, DROP, PAUSE, QUIT, ANY, CONTINUE;
   }
 
   public boolean nextLevel;
@@ -50,6 +50,7 @@ public class WorldController {
     keys.put(Keys.PAUSE, false);
     keys.put(Keys.ANY, false);
     keys.put(Keys.QUIT, false);
+    keys.put(Keys.CONTINUE, false);
   };
 
   public void resetKeys() {
@@ -61,8 +62,17 @@ public class WorldController {
     keys.put(Keys.PAUSE, false);
     keys.put(Keys.QUIT, false);
     keys.put(Keys.ANY, false);
+    keys.put(Keys.CONTINUE, false);
   }
 
+  public void continuePress() {
+    keys.put(Keys.CONTINUE, true);
+  }
+  
+  public void continueRelease() {
+    keys.put(Keys.CONTINUE, false);
+  }
+  
   public void leftPress() {
     keys.put(Keys.LEFT, true);
   }
@@ -198,9 +208,20 @@ public class WorldController {
         world.getGrid(World.ENTRY_X + 1, World.ENTRY_Y) != null)) {
       world.lost = true;
       resetKeys();
+      if (settings.getMusicOn()) {
+        Assets.levelMusic.stop();
+      }
     }
 
-    if (world.lost && keys.get(Keys.ANY)) {
+    if (world.score > game.scores.get(0).getValue()) {
+      world.scoreBroken = true;
+    } else {
+      world.scoreBroken = false;
+    }
+    
+    if (world.lost && keys.get(Keys.ANY) && !world.scoreBroken ||
+        world.lost && keys.get(Keys.CONTINUE) && world.scoreBroken) {
+      // TODO write score stuff here
       game.setScreen(new MainMenu(game));
     }
   }
@@ -502,7 +523,7 @@ public class WorldController {
           }
         } else if (activeSpell.isStanding()
             && activeSpell.topComponent().pos.y <= World.Y_MAX
-            && activeSpell.rightComponent().pos.x < World.X_MAX - 1f) {
+            && activeSpell.rightComponent().pos.x < World.X_MAX) {
           if (world.getGrid(activeSpell.bottomComponent().pos.x + 1f,
               activeSpell.bottomComponent().pos.y) == null) {
             Component top = activeSpell.topComponent();
@@ -513,7 +534,7 @@ public class WorldController {
           }
         } else if (activeSpell.isStanding()
             && activeSpell.topComponent().pos.y <= World.Y_MAX
-            && activeSpell.rightComponent().pos.x < World.X_MAX) {
+            && activeSpell.rightComponent().pos.x == World.X_MAX) {
           if (world.getGrid(activeSpell.bottomComponent().pos.x - 1f,
               activeSpell.bottomComponent().pos.y) == null) {
             Component top = activeSpell.topComponent();
@@ -543,7 +564,7 @@ public class WorldController {
           }
         } else if (activeSpell.isStanding()
             && activeSpell.topComponent().pos.y <= World.Y_MAX
-            && activeSpell.leftComponent().pos.x < World.X_MAX - 1f) {
+            && activeSpell.leftComponent().pos.x < World.X_MAX) {
           if (world.getGrid(activeSpell.bottomComponent().pos.x + 1f,
               activeSpell.bottomComponent().pos.y) == null) {
             Component top = activeSpell.topComponent();
@@ -553,12 +574,25 @@ public class WorldController {
             activeSpell.setRotateTime(rotateDelay + dt);
             playRotate = true;
           }
+        } else if (activeSpell.isStanding()
+            && activeSpell.topComponent().pos.y <= World.Y_MAX
+            && activeSpell.rightComponent().pos.x == World.X_MIN) {
+          if (world.getGrid(activeSpell.bottomComponent().pos.x + 1f,
+              activeSpell.bottomComponent().pos.y) == null) {
+            Component top = activeSpell.topComponent();
+            Component bot = activeSpell.bottomComponent();
+            top.pos.y -= 1f;
+            bot.pos.x += 1f;
+            activeSpell.setRotateTime(rotateDelay + dt);
+            playRotate = true;
+            
+          }
         }
       }
 
       // check if we can move left
       if (keys.get(Keys.LEFT) && activeSpell.getPauseTime() <= 0f
-          && ((activeSpell.leftComponent().pos.x >= World.X_MIN
+          && ((activeSpell.leftComponent().pos.x > World.X_MIN
           && activeSpell.topComponent().pos.y < World.Y_MAX) ||
           (activeSpell.leftComponent().pos.x == World.ENTRY_X + 1f 
           && activeSpell.topComponent().pos.y == World.Y_MAX))) {
@@ -581,7 +615,7 @@ public class WorldController {
 
       // check if we can move right
       if (keys.get(Keys.RIGHT) && activeSpell.getPauseTime() <= 0f
-          && ((activeSpell.rightComponent().pos.x < World.X_MAX - 1
+          && ((activeSpell.rightComponent().pos.x < World.X_MAX
           && activeSpell.topComponent().pos.y < World.Y_MAX) ||
           (activeSpell.leftComponent().pos.x == World.ENTRY_X 
           && activeSpell.topComponent().pos.y == World.Y_MAX

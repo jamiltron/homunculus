@@ -74,7 +74,6 @@ public class InstructionScreen implements Screen, InputProcessor {
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
     if (!game.desktopGame) {
-      Assets.font.scale(1f);
       game.setScreen(mainMenu);
       return true;
     } else {
@@ -155,12 +154,12 @@ public class InstructionScreen implements Screen, InputProcessor {
     height = h;
     ppuX = width / CAMERA_W;
     ppuY = height / CAMERA_H;
+    Assets.scaleFont(ppuX / 1.5f, ppuY / 1.5f);
   }
 
   @Override
   public void show() {
     Gdx.input.setInputProcessor(this);
-
   }
 
   @Override

@@ -23,13 +23,13 @@ public class JArray<T> extends Array<T> {
   }
   
   public T get(float x, float y) {
-    int ix = (int)x - 4;
+    int ix = (int)x - 3;
     int iy = (rows - 1) - ((int)(y - 4.75));
     return super.get(cols * iy + ix);
   }
   
   public void set(float x, float y, T value) {
-    int ix = (int)x - 4;
+    int ix = (int)x - 3;
     int iy = (rows - 1) - ((int)(y - 4.75));
     super.set(cols * iy + ix, value);
   }

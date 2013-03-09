@@ -272,6 +272,9 @@ public class MainMenu implements Screen, InputProcessor {
     Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
     update(dt);
     draw(dt);
+    if (game.settings.getMusicOn() && !Assets.titleMusic.isPlaying()) {
+      Assets.titleMusic.play();
+    }
   }
 
   @Override
@@ -283,7 +286,6 @@ public class MainMenu implements Screen, InputProcessor {
   @Override
   public void show() {
     Gdx.input.setInputProcessor(this);
-
   }
 
   @Override
