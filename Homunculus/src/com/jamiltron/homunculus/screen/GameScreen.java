@@ -181,11 +181,11 @@ public class GameScreen implements Screen, InputProcessor {
     }
 
     if (controller.nextLevel) {
-      int numHomunculi = 20;
+      int numHomunculi = 20 * 4;
       int score = world.score;
       highScore = world.highScore;
-      if (world.numHomunculi + 1 <= 20) {
-        numHomunculi = world.numHomunculi + 1;
+      if (world.numHomunculi + 4 <= 20 * 4) {
+        numHomunculi = world.numHomunculi + 4;
       }
 
       //world = new World(numHomunculi, world.score);
@@ -226,7 +226,7 @@ public class GameScreen implements Screen, InputProcessor {
     //world = new World(settings.getHomunculiNum() + 4);
     world = worldPool.obtain();
     world.highScore = highScore;
-    world.setProps(settings.getHomunculiNum() + 4, 0);
+    world.setProps((settings.getHomunculiNum() + 1) * 4, 0);
     renderer = new WorldRenderer(world, game);
     controller = new WorldController(world, game);
     Gdx.input.setInputProcessor(this);

@@ -242,20 +242,53 @@ public class World {
     for (int i = 0; i < numHomunculi; i++) {
       inserted = false;
       do {
-        x = (random.nextInt((int)COLS - 1) + X_MIN);
+        x = (random.nextInt((int)COLS) + (X_MIN - 1));
         y = (random.nextInt((int)ROW_RAND_MIN) + Y_MIN);
+        int j = 0;
 
         if (getGrid(x, y) == null) {
-          inserted = true;
-          color = colors[i % colors.length];
           tmpHomunculus = homunculusPool.obtain();
-          tmpHomunculus.setProps(x, y, color);
-          homunculi.add(tmpHomunculus);
-          //homunculi.add(new Homunculus(x, y, color));
-          putGrid(x, y, color);
+          do {
+            inserted = true;
+            color = colors[(i + j) % colors.length];
+            tmpHomunculus.setProps(x, y, color);
+            putGrid(x, y, color);
+            if (insertCausesMatches()) {
+              j += 1;
+              inserted = false;
+            }
+          } while (j < 3 && !inserted);
         }
       } while (!inserted);
+      homunculi.add(tmpHomunculus);
     }
     nextSpell = generateSpell();
+  }
+  
+  private boolean insertCausesMatches() {
+    // check for rows to destroy
+    for (float y = World.Y_MIN; y <= World.Y_MAX; y++) {
+      for (float x = World.X_MIN; x <= World.X_MAX - 3; x++) {
+        if ((getGrid(x, y) != null)
+            && getGrid(x, y) == (getGrid(x + 1, y))
+            && getGrid(x, y) == (getGrid(x + 2, y))
+            && getGrid(x, y) == (getGrid(x + 3, y))) {
+          return true;
+        }
+      }
+    }
+
+    // check for columns to destroy
+    for (float y = World.Y_MIN; y <= World.Y_MAX - 3; y++) {
+      for (float x = World.X_MIN; x <= World.X_MAX; x++) {
+        if ((getGrid(x, y) != null)
+            && getGrid(x, y) == (getGrid(x, y + 1))
+            && getGrid(x, y) == (getGrid(x, y + 2))
+            && getGrid(x, y) == (getGrid(x, y + 3))) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }
