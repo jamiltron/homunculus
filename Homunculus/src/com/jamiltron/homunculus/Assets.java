@@ -15,6 +15,9 @@ import java.util.Random;
 import java.util.Iterator;
 
 public class Assets {
+  private static final String path           = ".homunculus/data/";
+  private static final String highScoresPath = path + "highscores.dat";
+  private static final String settingsPath   = path + "settings.dat";
   public static final int TOUCH_BOX = 2;
   
   public static int wizardFrames = 5;
@@ -34,7 +37,6 @@ public class Assets {
   public static Texture debug;
   public static Texture overlay;
 
-  public static Texture cursor;
   public static Texture spriteSheet;
   public static Texture selector;
   public static Texture textT;
@@ -92,27 +94,30 @@ public class Assets {
   public static Animation blueSpellDeadAnim;
   public static Animation redSpellDeadAnim;
   public static Animation yellowSpellDeadAnim;
-  
   private static float lastFontScaleX = 0;
   private static float lastFontScaleY = 0;
-  
   public static Random random = new Random();
-  
   public static BitmapFont font;
-  
   private static String settingsString;
   
   public static List<SimpleEntry<String, Integer>> getHighScores() {
     List<SimpleEntry<String, Integer>> scores = new ArrayList<SimpleEntry<String, Integer>>();
     try {
-      if (Gdx.files.isLocalStorageAvailable()) {
-        FileHandle file = Gdx.files.local("data/misc/highscores.dat");
+      if (Gdx.files.isExternalStorageAvailable() &&
+          Gdx.files.external(highScoresPath).exists()) {
+        FileHandle file = Gdx.files.external(highScoresPath);
         String highScoreString = file.readString();
-        String[] highScoreList = highScoreString.split("\n");
+        String[] highScoreList = highScoreString.split("\t");
         for (int i = 0; i < 10; i++) {
           if (i < highScoreList.length) {
             String[] lineParts = highScoreList[i].split("\\|");
-            SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>(lineParts[0], Integer.parseInt(lineParts[1]));
+            String name;
+            if (lineParts[0].length() > 10) {
+              name = lineParts[0].substring(0, 10);
+            } else {
+              name = lineParts[0];
+            }
+            SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>(name, Integer.parseInt(lineParts[1]));
             scores.add(entry);
           } else {
             SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("   ", 0);
@@ -126,6 +131,7 @@ public class Assets {
         }
       }
     } catch (Exception e) {
+      System.out.println("EXCEPTION! " + e.getMessage());
       while(scores.size() < 10) {
         SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("   ", 0);
         scores.add(entry);
@@ -146,15 +152,18 @@ public class Assets {
   
   public static void writeHighScores(List<SimpleEntry<String, Integer>> scores) {
     try {
-      if (Gdx.files.isLocalStorageAvailable()) {
-        FileHandle file = Gdx.files.local("data/misc/highscores.dat");
+      if (Gdx.files.isExternalStorageAvailable()) {
+        FileHandle file = Gdx.files.external(highScoresPath);
         file.writeString("", false);
         Iterator<SimpleEntry<String, Integer>> iterator = scores.iterator();
         while (iterator.hasNext()) {
           SimpleEntry<String, Integer> entry = iterator.next();
           String name = entry.getKey();
           name.replaceAll("\\|", "\\|");
-          file.writeString(name + "|" + Integer.toString(entry.getValue()) + "\n", true);
+          name.replaceAll("\t", "");
+          name.replaceAll("\n", "");
+          name.replaceAll("\r", "");
+          file.writeString(name + "|" + Integer.toString(entry.getValue()) + "\t", true);
         }
       }
     } catch (Exception e) {
@@ -202,21 +211,22 @@ public class Assets {
   
   public static void loadSettingsString() {
     try {
-      if (Gdx.files.isLocalStorageAvailable()) {
-        FileHandle file = Gdx.files.local("data/misc/settings.dat");
+      if (Gdx.files.isExternalStorageAvailable() && 
+          Gdx.files.external(settingsPath).exists()) {
+        FileHandle file = Gdx.files.external(settingsPath);
         settingsString = file.readString();
       } else {
-        settingsString = "1 1 1 1";
+        settingsString = "1 1 1 0";
       }
     } catch (Exception e) {
-      settingsString = "1 1 1 1";
+      settingsString = "1 1 1 0";
     }
   }
   
   public static void writeSettings(Settings settings) {
     try {
-      if (Gdx.files.isLocalStorageAvailable()) {
-        FileHandle file = Gdx.files.local("data/misc/settings.dat");
+      if (Gdx.files.isExternalStorageAvailable()) {
+        FileHandle file = Gdx.files.external(settingsPath);
         String music = "0";
         String sound = "0";
         if (settings.getMusicOn()) music = "1";
@@ -244,7 +254,7 @@ public class Assets {
   
   public static void loadFonts() {
     font = new BitmapFont(Gdx.files.internal("data/fnt/font2.fnt"),
-        Gdx.files.internal("data/fnt/font2.png"), false);
+        Gdx.files.internal("data/fnt/fontw.png"), false);
   }
   
   public static void loadImages() {
@@ -278,7 +288,6 @@ public class Assets {
     offW = new TextureRegion(textT, 460, 0, 21, 12);
     offB = new TextureRegion(textT, 482, 0, 21, 12);
     
-    cursor = loadTexture("data/gfx/cursor.png");
     gameOverBackgroundT = loadTexture("data/gfx/game-over-bg.png");
     pauseBackgroundT = loadTexture("data/gfx/pause-bg.png");
     playGameBackgroundT = loadTexture("data/gfx/play-game-bg.png");
