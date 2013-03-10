@@ -131,7 +131,6 @@ public class Assets {
         }
       }
     } catch (Exception e) {
-      System.out.println("EXCEPTION! " + e.getMessage());
       while(scores.size() < 10) {
         SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("   ", 0);
         scores.add(entry);
