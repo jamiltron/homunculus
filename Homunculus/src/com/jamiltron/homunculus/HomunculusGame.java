@@ -26,6 +26,11 @@ public class HomunculusGame extends Game {
     Assets.loadSettingsString();
     settings = Assets.getSettings();
     scores = Assets.getHighScores();
+    
+    for (int i = 0; i < 10; i++) {
+      //System.out.println(Integer.toString(i) + " " + scores.get(i).getKey() + " " + scores.get(i).getValue());
+    }
+    
     Assets.loadSounds();
     Assets.loadMusic();
     Assets.loadImages();

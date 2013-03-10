@@ -213,7 +213,7 @@ public class WorldController {
       }
     }
 
-    if (world.score > game.scores.get(0).getValue()) {
+    if (world.score > game.scores.get(game.scores.size() - 1).getValue()) {
       world.scoreBroken = true;
     } else {
       world.scoreBroken = false;

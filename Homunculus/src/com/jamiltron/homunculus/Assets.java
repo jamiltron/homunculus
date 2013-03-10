@@ -110,8 +110,8 @@ public class Assets {
         String highScoreString = file.readString();
         String[] highScoreList = highScoreString.split("\n");
         for (int i = 0; i < 10; i++) {
-          if (highScoreList.length < i) {
-            String[] lineParts = highScoreList[i].split("|");
+          if (i < highScoreList.length) {
+            String[] lineParts = highScoreList[i].split("\\|");
             SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>(lineParts[0], Integer.parseInt(lineParts[1]));
             scores.add(entry);
           } else {
@@ -164,9 +164,10 @@ public class Assets {
   
   public static Settings getSettings() {
     Settings settings = new Settings();
+    try {
     char music = settingsString.charAt(0);
     char sound = settingsString.charAt(2);
-    char speed = settingsString.charAt(4);
+    int speed =  Integer.parseInt(Character.toString(settingsString.charAt(4)));
     String numHomunculi = settingsString.substring(6);
     
     if (music == '1') {
@@ -193,7 +194,9 @@ public class Assets {
     } else {
       settings.setHomunculiNum(0);
     }
-    
+    } catch (Exception e) {
+      ;
+    }
     return settings;
   }
   

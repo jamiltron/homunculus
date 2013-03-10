@@ -1,6 +1,6 @@
 package com.jamiltron.homunculus.screen;
 
-
+import java.util.AbstractMap.SimpleEntry;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -54,7 +54,7 @@ public class GameScreen implements Screen, InputProcessor {
     dropPressed  = false;
     rotrPressed  = false;
     rotlPressed  = false;
-    highScore    = game.scores.get(game.scores.size() - 1).getValue();
+    highScore    = game.scores.get(0).getValue();
     worldPool = new Pool<World>() {
       @Override
       protected World newObject() {
@@ -78,6 +78,14 @@ public class GameScreen implements Screen, InputProcessor {
           Gdx.input.setInputProcessor(tmpGameScreen);
           world.scoreBroken = false;
           game.setScreen(new MainMenu(game));
+          game.scores.remove(game.scores.size() - 1);
+          for (int i=0; i < 9; i++) {
+            if (world.score > game.scores.get(i).getValue()) {
+              game.scores.add(i, new SimpleEntry<String, Integer>(textfield.getText(), world.score));
+              break;
+            }
+          }
+          Assets.writeHighScores(game.scores);
         }
       }
     });

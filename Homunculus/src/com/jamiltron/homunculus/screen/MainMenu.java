@@ -125,7 +125,7 @@ public class MainMenu implements Screen, InputProcessor {
         // TODO Make highscore screen
       } else if (arrowY == HIGHSCORES_Y) {
         playSelectEnter = true;
-        game.setScreen(new InstructionScreen(game, this));
+        game.setScreen(new HighScoreScreen(game, this));
       } else if (arrowY == CREDITS_Y) {
         playSelectEnter = true;
         game.setScreen(new CreditsScreen(game, this));

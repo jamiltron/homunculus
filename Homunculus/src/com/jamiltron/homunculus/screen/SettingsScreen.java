@@ -115,8 +115,8 @@ public class SettingsScreen implements Screen, InputProcessor {
     cursorLevel = 0;
     music = game.settings.getMusicOn();
     sound = game.settings.getSoundOn();
-    level = 0;
-    speed = 0;
+    level = game.settings.getHomunculiNum();
+    speed = game.settings.getSpeed().ordinal();
     cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
     cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     cam.update();
