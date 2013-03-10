@@ -166,6 +166,8 @@ public class Assets {
     Settings settings = new Settings();
     char music = settingsString.charAt(0);
     char sound = settingsString.charAt(2);
+    char speed = settingsString.charAt(4);
+    String numHomunculi = settingsString.substring(6);
     
     if (music == '1') {
       settings.setMusicOn(true);
@@ -179,6 +181,19 @@ public class Assets {
       settings.setSoundOn(false);
     }
     
+    if (speed >= 0 && speed < 3) {
+      settings.setSpeed(speed);
+    } else {
+      settings.setSpeed(1);
+    }
+    
+    int iHomunculi = Integer.parseInt(numHomunculi);
+    if (iHomunculi >= 0 && iHomunculi <= 20) {
+      settings.setHomunculiNum(iHomunculi);
+    } else {
+      settings.setHomunculiNum(0);
+    }
+    
     return settings;
   }
   
@@ -188,10 +203,10 @@ public class Assets {
         FileHandle file = Gdx.files.local("data/misc/settings.dat");
         settingsString = file.readString();
       } else {
-        settingsString = "1 1";
+        settingsString = "1 1 1 1";
       }
     } catch (Exception e) {
-      settingsString = "1 1";
+      settingsString = "1 1 1 1";
     }
   }
   
@@ -203,7 +218,9 @@ public class Assets {
         String sound = "0";
         if (settings.getMusicOn()) music = "1";
         if (settings.getSoundOn()) sound = "1";
-        file.writeString(music + " " + sound, false);
+        file.writeString(music + " " + sound + " " +
+            Integer.toString(settings.getSpeed().ordinal()) + " " +
+            Integer.toString(settings.getHomunculiNum()), false);
       }
     } catch (Exception e) {
     }
