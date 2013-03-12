@@ -78,8 +78,7 @@ public class GameScreen implements Screen, InputProcessor {
           Gdx.input.setInputProcessor(tmpGameScreen);
           world.scoreBroken = false;
           game.setScreen(new MainMenu(game));
-          game.scores.remove(game.scores.size() - 1);
-          for (int i=0; i < 9; i++) {
+          for (int i=0; i < 10; i++) {
             if (world.score > game.scores.get(i).getValue()) {
               game.scores.add(i, new SimpleEntry<String, Integer>(textfield.getText(), world.score));
               break;

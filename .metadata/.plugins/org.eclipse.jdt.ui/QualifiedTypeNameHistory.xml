@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.Random"/>
-<fullyQualifiedTypeName name="com.jamiltron.homunculus.Assets"/>
-<fullyQualifiedTypeName name="com.badlogic.gdx.utils.Pool"/>
-<fullyQualifiedTypeName name="com.badlogic.gdx.Graphics"/>
-<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.FPSLogger"/>
-<fullyQualifiedTypeName name="com.jamiltron.homunculus.Settings"/>
-<fullyQualifiedTypeName name="com.jamiltron.homunculus.HomunculusGame"/>
-<fullyQualifiedTypeName name="com.badlogic.gdx.Input.Keys"/>
+<fullyQualifiedTypeName name="java.util.AbstractMap"/>
+<fullyQualifiedTypeName name="java.util.AbstractMap.SimpleEntry"/>
+<fullyQualifiedTypeName name="com.jamiltron.homunculus.screen.SettingsScreen"/>
 </qualifiedTypeNameHistroy>

@@ -131,9 +131,9 @@ public class InstructionScreen implements Screen, InputProcessor {
     if (game.desktopGame) {
       Assets.font.draw(spriteBatch, "press the arrow keys or wasd' to move", TEXT_X * ppuX,
           (TEXT_Y - 6f) * ppuY);
-      Assets.font.draw(spriteBatch, "press 'z' or 'left shift' to rotate left", TEXT_X * ppuX,
+      Assets.font.draw(spriteBatch, "press 'z' to rotate left", TEXT_X * ppuX,
           (TEXT_Y - 7f) * ppuY);
-      Assets.font.draw(spriteBatch, "press 'x' or 'right shift' to rotate right", TEXT_X * ppuX,
+      Assets.font.draw(spriteBatch, "press 'x' or 'up' to rotate right", TEXT_X * ppuX,
           (TEXT_Y - 8f) * ppuY);
       Assets.font.draw(spriteBatch, "press 'p' to pause", TEXT_X * ppuX,
           (TEXT_Y - 9f) * ppuY);

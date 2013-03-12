@@ -7,7 +7,6 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,7 +105,7 @@ public class Assets {
       if (Gdx.files.isExternalStorageAvailable() &&
           Gdx.files.external(highScoresPath).exists()) {
         FileHandle file = Gdx.files.external(highScoresPath);
-        String highScoreString = file.readString();
+        String highScoreString = file.readString("UTF-8");
         String[] highScoreList = highScoreString.split("\t");
         for (int i = 0; i < 10; i++) {
           if (i < highScoreList.length) {
@@ -131,6 +130,7 @@ public class Assets {
         }
       }
     } catch (Exception e) {
+      System.out.println(e.getMessage());
       while(scores.size() < 10) {
         SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("   ", 0);
         scores.add(entry);
@@ -144,7 +144,7 @@ public class Assets {
     lastFontScaleY = 1.5f + (ppuY - 32f) / 32f;
     font.setScale(lastFontScaleX, lastFontScaleY);
   }
-  
+
   public static void resetFont() {
     font.setScale(-lastFontScaleX, -lastFontScaleY);
   }
@@ -155,7 +155,8 @@ public class Assets {
         FileHandle file = Gdx.files.external(highScoresPath);
         file.writeString("", false);
         Iterator<SimpleEntry<String, Integer>> iterator = scores.iterator();
-        while (iterator.hasNext()) {
+        int i = 0;
+        while (iterator.hasNext() && i <= 9) {
           SimpleEntry<String, Integer> entry = iterator.next();
           String name = entry.getKey();
           name.replaceAll("\\|", "\\|");
@@ -163,10 +164,11 @@ public class Assets {
           name.replaceAll("\n", "");
           name.replaceAll("\r", "");
           file.writeString(name + "|" + Integer.toString(entry.getValue()) + "\t", true);
+          i++;
         }
       }
     } catch (Exception e) {
-      ; //do nothing
+      System.out.println(e.getMessage());
     }
   }
   
@@ -203,7 +205,7 @@ public class Assets {
       settings.setHomunculiNum(0);
     }
     } catch (Exception e) {
-      ;
+      System.out.println(e.getMessage());
     }
     return settings;
   }
@@ -213,11 +215,12 @@ public class Assets {
       if (Gdx.files.isExternalStorageAvailable() && 
           Gdx.files.external(settingsPath).exists()) {
         FileHandle file = Gdx.files.external(settingsPath);
-        settingsString = file.readString();
+        settingsString = file.readString("UTF-8");
       } else {
         settingsString = "1 1 1 0";
       }
     } catch (Exception e) {
+      System.out.println(e.getMessage());
       settingsString = "1 1 1 0";
     }
   }
@@ -230,11 +233,13 @@ public class Assets {
         String sound = "0";
         if (settings.getMusicOn()) music = "1";
         if (settings.getSoundOn()) sound = "1";
+        
         file.writeString(music + " " + sound + " " +
             Integer.toString(settings.getSpeed().ordinal()) + " " +
-            Integer.toString(settings.getHomunculiNum()), false);
+            Integer.toString(settings.getHomunculiNum()), false, "UTF-8");
       }
     } catch (Exception e) {
+      System.out.println(e.getMessage());
     }
   }
   

@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jamiltron.homunculus.Assets;
+import java.util.AbstractMap.SimpleEntry;
 
 public class HighScoreScreen implements Screen, InputProcessor {
 
@@ -115,9 +116,14 @@ public class HighScoreScreen implements Screen, InputProcessor {
     Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
     spriteBatch.draw(Assets.highScoresW, INSTRUCTIONS_X * ppuX, INSTRUCTIONS_Y * ppuY, INSTRUCTIONS_W * ppuX, INSTRUCTIONS_H * ppuY);
     
-    for (int i=0; i < 10; i++) {
-      Assets.font.draw(spriteBatch, game.scores.get(i).getKey(), (TEXT_X + 2f) * ppuX, (TEXT_Y - ((float) i)) * ppuY);
-      Assets.font.draw(spriteBatch, Integer.toString(game.scores.get(i).getValue()), (TEXT_X + 12f) * ppuX, (TEXT_Y - ((float) i)) * ppuY);
+    //for (int i=0; i < 10; i++) {
+    int i =0;
+    for (SimpleEntry<String, Integer> score : game.scores) {
+      if (i < 10) {
+        Assets.font.draw(spriteBatch, score.getKey(), (TEXT_X + 2f) * ppuX, (TEXT_Y - ((float) i)) * ppuY);
+        Assets.font.draw(spriteBatch, Integer.toString(score.getValue()), (TEXT_X + 12f) * ppuX, (TEXT_Y - ((float) i)) * ppuY);
+        i++;
+      }
     }
     Assets.font.draw(spriteBatch, "       press any key to continue", TEXT_X * ppuX,
         (TEXT_Y - 12.5f) * ppuY);

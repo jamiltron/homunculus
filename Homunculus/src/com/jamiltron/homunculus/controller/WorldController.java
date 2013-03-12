@@ -37,6 +37,12 @@ public class WorldController {
   float pauseTime;
   public static final float rotateDelay = 0.25f;
   int drops;
+  private static final float SLOW_NORMAL = 0.75f;
+  private static final float SLOW_FAST   = 0.1f;
+  private static final float MED_NORMAL  = 0.5f;
+  private static final float MED_FAST    = 0.1f;
+  private static final float FAST_NORMAL = 0.25f;
+  private static final float FAST_FAST   = 0.08f;
 
   JArray<Boolean> toDestroy;
 
@@ -137,28 +143,34 @@ public class WorldController {
     keys.put(Keys.ANY, false);
   }
 
-  public void resetController(World w) {
-    world = w;
-    nextLevel = false;
-    pauseTime = 0.15f;
-    drops = 0;
-    activeSpell = world.getActiveSpell();
-    currentTime = 0f;
-
+  private void setSpeed() {
     // grab the game speed from the settings
     if (settings.getSpeed().ordinal() == 0) {
-      normalTime = 0.75f;
-      fastTime = 0.1f;
+      normalTime = SLOW_NORMAL;
+      fastTime = SLOW_FAST;
     } else if (settings.getSpeed().ordinal() == 1) {
-      normalTime = 0.5f;
-      fastTime = 0.1f;
+      normalTime = MED_NORMAL;
+      fastTime = MED_FAST;
     } else if (settings.getSpeed().ordinal() == 2) {
-      normalTime = 0.25f;
-      fastTime = 0.08f;
+      normalTime = FAST_NORMAL;
+      fastTime = FAST_FAST;
     } else {
       throw new IllegalArgumentException("Invalid speed setting");
     }
+  }
+  
+  public void resetController(World w) {
+    nextLevel = false;
+    unpausable = true;
+    pauseTime = 0.15f;
+    drops = 0;
+    world = w;
+    activeSpell = w.getActiveSpell();
+    currentTime = 0f;
+    destroying = false;
 
+    resetKeys();
+    setSpeed();
     dropTime = normalTime;
     for (float y = World.Y_MIN; y <= World.Y_MAX; y++) {
       for (float x = World.X_MIN; x <= World.X_MAX; x++) {
@@ -179,19 +191,8 @@ public class WorldController {
     currentTime = 0f;
     destroying = false;
 
-    // grab the game speed from the settings
-    if (settings.getSpeed().ordinal() == 0) {
-      normalTime = 0.75f;
-      fastTime = 0.1f;
-    } else if (settings.getSpeed().ordinal() == 1) {
-      normalTime = 0.5f;
-      fastTime = 0.1f;
-    } else if (settings.getSpeed().ordinal() == 2) {
-      normalTime = 0.25f;
-      fastTime = 0.08f;
-    } else {
-      throw new IllegalArgumentException("Invalid speed setting");
-    }
+    resetKeys();
+    setSpeed();
 
     dropTime = normalTime;
     toDestroy = new JArray<Boolean>(World.COLS, World.ROWS);
@@ -280,10 +281,10 @@ public class WorldController {
                   if (spell.component1.isDying && spell.component1.stateTime > Component.DYING_TIME) {
                     world.putGrid(spell.component1.pos.x, spell.component1.pos.y, null);
                     spell.component1.isDead = true;
-                    } else if (spell.component1.isDying){
-                      destroying = true;
-                      }
+                  } else if (spell.component1.isDying){
+                    destroying = true;
                   }
+                }
               
               if (!spell.component2.isDead) {
                 if (spell.component2.isDying && spell.component2.stateTime > Component.DYING_TIME) {
@@ -576,13 +577,13 @@ public class WorldController {
           }
         } else if (activeSpell.isStanding()
             && activeSpell.topComponent().pos.y <= World.Y_MAX
-            && activeSpell.rightComponent().pos.x == World.X_MIN) {
-          if (world.getGrid(activeSpell.bottomComponent().pos.x + 1f,
+            && activeSpell.rightComponent().pos.x == World.X_MAX) {
+          if (world.getGrid(activeSpell.bottomComponent().pos.x - 1f,
               activeSpell.bottomComponent().pos.y) == null) {
             Component top = activeSpell.topComponent();
             Component bot = activeSpell.bottomComponent();
             top.pos.y -= 1f;
-            bot.pos.x += 1f;
+            bot.pos.x -= 1f;
             activeSpell.setRotateTime(rotateDelay + dt);
             playRotate = true;
             

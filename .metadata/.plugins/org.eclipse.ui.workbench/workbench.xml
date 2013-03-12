@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="48" version="2.0">
+<workbench progressCount="47" version="2.0">
 <workbenchAdvisor/>
-<window height="768" maximized="true" width="1024" x="65" y="24">
+<window height="744" maximized="true" width="1024" x="65" y="24">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -17,7 +17,7 @@
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="120" y="30"/>
 <coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="76" y="30"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="104" y="30"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="152" y="30"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="68" y="30"/>
 <coolItem id="org.scala-ide.sdt.core.toolbar" itemType="typeToolBarContribution" x="40" y="30"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -25,125 +25,25 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="184" y="30"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="com.android.ide.eclipse.editors.CommonXmlEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="com.google.gwt.eclipse.core.editors.gwtJavaEditor" itemType="typePlaceholder" x="-1" y="-1"/>
-<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
-<page aggregateWorkingSetId="Aggregate for window 1357412698260" focus="true" label="Workspace - Java">
+<page aggregateWorkingSetId="Aggregate for window 1362894581157" focus="true" label="Workspace - Java">
 <editors>
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-<part id="1"/>
-<part id="2"/>
-<part id="3"/>
-<part id="4"/>
-<part id="5"/>
-<part id="6"/>
-<part id="7"/>
-<part id="8"/>
-<part id="9"/>
-<part id="10"/>
-<part id="11"/>
-<part id="12"/>
-<part id="13"/>
-<part id="14"/>
-</presentation>
-</folder>
-</info>
-<info part="org.eclipse.ui.internal.EditorStack@7c71da6" ratio="0.49966776" ratioLeft="752" ratioRight="753" relationship="2" relative="DefaultEditorWorkbook">
-<folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-<part id="2"/>
-<part id="1"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WorldRenderer.java" partName="WorldRenderer.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/view/WorldRenderer.java" title="WorldRenderer.java" tooltip="Homunculus/src/com/jamiltron/homunculus/view/WorldRenderer.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/view/WorldRenderer.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2298" selectionTopPixel="969"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="World.java" partName="World.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/model/World.java" title="World.java" tooltip="Homunculus/src/com/jamiltron/homunculus/model/World.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/model/World.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6203" selectionTopPixel="3536"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Assets.java" partName="Assets.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/Assets.java" title="Assets.java" tooltip="Homunculus/src/com/jamiltron/homunculus/Assets.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/Assets.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8724" selectionTopPixel="3848"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Spell.java" partName="Spell.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/model/Spell.java" title="Spell.java" tooltip="Homunculus/src/com/jamiltron/homunculus/model/Spell.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/model/Spell.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="216" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Homunculus.java" partName="Homunculus.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/model/Homunculus.java" title="Homunculus.java" tooltip="Homunculus/src/com/jamiltron/homunculus/model/Homunculus.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/model/Homunculus.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="743" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Component.java" partName="Component.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/model/Component.java" title="Component.java" tooltip="Homunculus/src/com/jamiltron/homunculus/model/Component.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/model/Component.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameScreen.java" partName="GameScreen.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/screen/GameScreen.java" title="GameScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/GameScreen.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/screen/GameScreen.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5812" selectionTopPixel="3129"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="JArray.java" partName="JArray.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/util/JArray.java" title="JArray.java" tooltip="Homunculus/src/com/jamiltron/homunculus/util/JArray.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/util/JArray.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="905" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="HomunculusGame.java" partName="HomunculusGame.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/HomunculusGame.java" title="HomunculusGame.java" tooltip="Homunculus/src/com/jamiltron/homunculus/HomunculusGame.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/HomunculusGame.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="702" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Settings.java" partName="Settings.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/Settings.java" title="Settings.java" tooltip="Homunculus/src/com/jamiltron/homunculus/Settings.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/Settings.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="841" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CreditsScreen.java" partName="CreditsScreen.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/screen/CreditsScreen.java" title="CreditsScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/CreditsScreen.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/screen/CreditsScreen.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2505" selectionTopPixel="1187"/>
-</editor>
-<editor id="org.eclipse.ui.DefaultTextEditor" name="font.fnt" partName="font.fnt" path="/home/jamiltron/workspace/homunculus/Homunculus-android/assets/data/fnt/font.fnt" title="font.fnt" tooltip="Homunculus-android/assets/data/fnt/font.fnt" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus-android/assets/data/fnt/font.fnt"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1007"/>
-</editor>
-<editor id="org.eclipse.ui.DefaultTextEditor" name="font2.fnt" partName="font2.fnt" path="/home/jamiltron/workspace/homunculus/Homunculus-android/assets/data/fnt/font2.fnt" title="font2.fnt" tooltip="Homunculus-android/assets/data/fnt/font2.fnt" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus-android/assets/data/fnt/font2.fnt"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5390" selectionTopPixel="75"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainMenu.java" partName="MainMenu.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/screen/MainMenu.java" title="MainMenu.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/MainMenu.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/screen/MainMenu.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5022" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InstructionScreen.java" partName="InstructionScreen.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/screen/InstructionScreen.java" title="InstructionScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/InstructionScreen.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/screen/InstructionScreen.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4600" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainMenu.java" partName="MainMenu.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/screen/MainMenu.java" title="MainMenu.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/MainMenu.java" workbook="org.eclipse.ui.internal.EditorStack@7c71da6">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/screen/MainMenu.java"/>
-<editorState selectionHorizontalPixel="254" selectionLength="0" selectionOffset="6623" selectionTopPixel="2142"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SettingsScreen.java" partName="SettingsScreen.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java" title="SettingsScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java" workbook="org.eclipse.ui.internal.EditorStack@7c71da6">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="12043" selectionTopPixel="4691"/>
-</editor>
-<editor focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WorldController.java" partName="WorldController.java" path="/home/jamiltron/workspace/homunculus/Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java" title="WorldController.java" tooltip="Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java" workbook="org.eclipse.ui.internal.EditorStack@7c71da6">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="1145" selectionOffset="10844" selectionTopPixel="6156"/>
-</editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="886" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="848"/>
+<columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="201" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -185,17 +85,10 @@
 </customFilters>
 </viewState>
 </view>
-<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration">
-<viewState/>
-</view>
-<view id="com.google.gwt.eclipse.DevModeView" partName="Development Mode">
-<viewState/>
-</view>
-<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc">
-<viewState/>
-</view>
+<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
+<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -207,11 +100,11 @@
 <alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
 <alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
 <alwaysOnActionSet id="org.eclipse.wb.core.ui.actionset"/>
+<alwaysOnActionSet id="scala.texteditor.actionset"/>
+<alwaysOnActionSet id="com.google.gdt.eclipse.core.actionSet"/>
 <alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
 <alwaysOnActionSet id="org.eclipse.mylyn.doc.actionSet"/>
 <alwaysOnActionSet id="org.eclipse.mylyn.tasks.ui.navigation"/>
-<alwaysOnActionSet id="com.google.gdt.eclipse.core.actionSet"/>
-<alwaysOnActionSet id="scala.texteditor.actionset"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
 <alwaysOnActionSet id="org.eclipse.jdt.ui.JavaActionSet"/>
 <alwaysOnActionSet id="org.eclipse.jdt.ui.JavaElementCreationActionSet"/>
@@ -277,7 +170,6 @@
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
-<view id="com.google.gwt.eclipse.DevModeView"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -295,40 +187,40 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="left">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@434a314e" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="left">
 <folder appearance="2" expanded="2">
 <page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.2627907" ratioLeft="339" ratioRight="951" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.74882996" ratioLeft="480" ratioRight="161" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<info part="org.eclipse.ui.editorss" ratio="0.29689923" ratioLeft="383" ratioRight="907" relationship="2" relative="left"/>
+<info folder="true" part="bottom" ratio="0.7487844" ratioLeft="462" ratioRight="155" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
 <page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
-<page content="com.google.gwt.eclipse.DevModeView" label="Development Mode"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
+<page content="com.google.gwt.eclipse.DevModeView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
-<part id="4"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@6809cf9d" ratio="0.74934036" ratioLeft="568" ratioRight="190" relationship="2" relative="org.eclipse.ui.editorss">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1268f84" ratio="0.74934036" ratioLeft="568" ratioRight="190" relationship="2" relative="org.eclipse.ui.editorss">
 <folder appearance="2" expanded="2">
 <page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="right" ratio="0.5" ratioLeft="240" ratioRight="240" relationship="4" relative="org.eclipse.ui.internal.ViewStack@6809cf9d">
+<info folder="true" part="right" ratio="0.5" ratioLeft="231" ratioRight="231" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1268f84">
 <folder appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.ui.texteditor.TemplatesView" label="LabelNotFound"/>
@@ -336,173 +228,13 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info part="org.eclipse.egit.ui.RepositoriesView" ratio="0.59906393" ratioLeft="384" ratioRight="257" relationship="4" relative="left"/>
+<info part="org.eclipse.egit.ui.RepositoriesView" ratio="0.59967583" ratioLeft="370" ratioRight="247" relationship="4" relative="left"/>
 </mainWindow>
 </layout>
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory>
-<editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/screen/MainMenu.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/screen/InstructionScreen.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/view/WorldRenderer.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/model/World.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/screen/GameScreen.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java"/>
-</editors>
-<item historyLabel="InstructionScreen.java" index="2">
-<position info="not_deleted" x="4448" y="0"/>
-</item>
-<item historyLabel="InstructionScreen.java" index="2">
-<position info="not_deleted" x="4558" y="0"/>
-</item>
-<item historyLabel="InstructionScreen.java" index="2">
-<position info="not_deleted" x="4551" y="0"/>
-</item>
-<item historyLabel="InstructionScreen.java" index="2">
-<position info="not_deleted" x="4565" y="0"/>
-</item>
-<item historyLabel="InstructionScreen.java" index="2">
-<position info="not_deleted" x="4681" y="0"/>
-</item>
-<item historyLabel="InstructionScreen.java" index="2">
-<position info="not_deleted" x="4551" y="0"/>
-</item>
-<item historyLabel="InstructionScreen.java" index="2">
-<position info="not_deleted" x="4340" y="0"/>
-</item>
-<item historyLabel="InstructionScreen.java" index="2">
-<position info="not_deleted" x="4600" y="0"/>
-</item>
-<item historyLabel="MainMenu.java" index="1">
-<position info="not_deleted" x="5022" y="0"/>
-</item>
-<item historyLabel="WorldRenderer.java" index="3">
-<position info="not_deleted" x="1947" y="0"/>
-</item>
-<item historyLabel="WorldRenderer.java" index="3">
-<position info="not_deleted" x="2248" y="0"/>
-</item>
-<item historyLabel="WorldRenderer.java" index="3">
-<position info="not_deleted" x="2113" y="0"/>
-</item>
-<item historyLabel="WorldRenderer.java" index="3">
-<position info="not_deleted" x="2258" y="0"/>
-</item>
-<item historyLabel="WorldRenderer.java" index="3">
-<position info="not_deleted" x="1694" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="6434" y="0"/>
-</item>
-<item historyLabel="GameScreen.java" index="5">
-<position info="not_deleted" x="5814" y="0"/>
-</item>
-<item historyLabel="WorldRenderer.java" index="3">
-<position info="not_deleted" x="2128" y="0"/>
-</item>
-<item historyLabel="SettingsScreen.java" index="0">
-<position info="not_deleted" x="867" y="0"/>
-</item>
-<item historyLabel="SettingsScreen.java" index="0">
-<position info="not_deleted" x="7266" y="0"/>
-</item>
-<item historyLabel="WorldRenderer.java" index="3">
-<position info="not_deleted" x="1089" y="0"/>
-</item>
-<item historyLabel="GameScreen.java" index="5">
-<position info="not_deleted" x="5814" y="0"/>
-</item>
-<item historyLabel="GameScreen.java" index="5">
-<position/>
-</item>
-<item historyLabel="GameScreen.java" index="5">
-<position info="not_deleted" x="5812" y="0"/>
-</item>
-<item historyLabel="SettingsScreen.java" index="0">
-<position info="not_deleted" x="7645" y="0"/>
-</item>
-<item historyLabel="WorldRenderer.java" index="3">
-<position info="not_deleted" x="2298" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="6888" y="0"/>
-</item>
-<item historyLabel="SettingsScreen.java" index="0">
-<position info="not_deleted" x="12043" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="6888" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="6">
-<position info="not_deleted" x="10966" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="7271" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="6">
-<position info="not_deleted" x="10877" y="1112"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="7271" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="8353" y="0"/>
-</item>
-<item historyLabel="WorldController.java" index="6">
-<position info="not_deleted" x="10844" y="1145"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="8353" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="7437" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="8353" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="7159" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="7039" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="6902" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="6942" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="7271" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="7315" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="7344" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="7818" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="8228" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="8255" y="0"/>
-</item>
-<item historyLabel="World.java" index="4">
-<position info="not_deleted" x="8307" y="0"/>
-</item>
-<item active="true" historyLabel="World.java" index="4">
-<position info="not_deleted" x="8335" y="0"/>
-</item>
-</navigationHistory>
+<navigationHistory/>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -521,50 +253,44 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="font.png" tooltip="Homunculus-android/assets/data/fnt/font.png">
-<persistable path="/Homunculus-android/assets/data/fnt/font.png"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="font2.fnt" tooltip="Homunculus-android/assets/data/fnt/font2.fnt">
+<persistable path="/Homunculus-android/assets/data/fnt/font2.fnt"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InstructionScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/InstructionScreen.java">
-<persistable path="/Homunculus/src/com/jamiltron/homunculus/screen/InstructionScreen.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="text.png" tooltip="Homunculus-android/assets/data/gfx/text.png">
-<persistable path="/Homunculus-android/assets/data/gfx/text.png"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="highscores.dat" tooltip="Homunculus-desktop/data/misc/highscores.dat">
+<persistable path="/Homunculus-desktop/data/misc/highscores.dat"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainMenu.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/MainMenu.java">
 <persistable path="/Homunculus/src/com/jamiltron/homunculus/screen/MainMenu.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="font2.fnt" tooltip="Homunculus-android/assets/data/fnt/font2.fnt">
-<persistable path="/Homunculus-android/assets/data/fnt/font2.fnt"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="HighScoreScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/HighScoreScreen.java">
+<persistable path="/Homunculus/src/com/jamiltron/homunculus/screen/HighScoreScreen.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="font.fnt" tooltip="Homunculus-android/assets/data/fnt/font.fnt">
-<persistable path="/Homunculus-android/assets/data/fnt/font.fnt"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InstructionScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/InstructionScreen.java">
+<persistable path="/Homunculus/src/com/jamiltron/homunculus/screen/InstructionScreen.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CreditsScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/CreditsScreen.java">
-<persistable path="/Homunculus/src/com/jamiltron/homunculus/screen/CreditsScreen.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WorldController.java" tooltip="Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java">
+<persistable path="/Homunculus/src/com/jamiltron/homunculus/controller/WorldController.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Settings.java" tooltip="Homunculus/src/com/jamiltron/homunculus/Settings.java">
 <persistable path="/Homunculus/src/com/jamiltron/homunculus/Settings.java"/>
 </file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SettingsScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java">
+<persistable path="/Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" tooltip="Homunculus-desktop/src/com/jamiltron/homunculus/Main.java">
+<persistable path="/Homunculus-desktop/src/com/jamiltron/homunculus/Main.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="HomunculusGame.java" tooltip="Homunculus/src/com/jamiltron/homunculus/HomunculusGame.java">
 <persistable path="/Homunculus/src/com/jamiltron/homunculus/HomunculusGame.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="JArray.java" tooltip="Homunculus/src/com/jamiltron/homunculus/util/JArray.java">
-<persistable path="/Homunculus/src/com/jamiltron/homunculus/util/JArray.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="settings.dat" tooltip="Homunculus-desktop/data/misc/settings.dat">
+<persistable path="/Homunculus-desktop/data/misc/settings.dat"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/GameScreen.java">
 <persistable path="/Homunculus/src/com/jamiltron/homunculus/screen/GameScreen.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Component.java" tooltip="Homunculus/src/com/jamiltron/homunculus/model/Component.java">
-<persistable path="/Homunculus/src/com/jamiltron/homunculus/model/Component.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Homunculus.java" tooltip="Homunculus/src/com/jamiltron/homunculus/model/Homunculus.java">
-<persistable path="/Homunculus/src/com/jamiltron/homunculus/model/Homunculus.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SettingsScreen.java" tooltip="Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java">
-<persistable path="/Homunculus/src/com/jamiltron/homunculus/screen/SettingsScreen.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Spell.java" tooltip="Homunculus/src/com/jamiltron/homunculus/model/Spell.java">
-<persistable path="/Homunculus/src/com/jamiltron/homunculus/model/Spell.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Assets.java" tooltip="Homunculus/src/com/jamiltron/homunculus/Assets.java">
+<persistable path="/Homunculus/src/com/jamiltron/homunculus/Assets.java"/>
 </file>
 </mruList>
 </workbench>

@@ -130,6 +130,7 @@ public class CreditsScreen implements Screen, InputProcessor {
     height = h;
     ppuX = width / CAMERA_W;
     ppuY = height / CAMERA_H;
+    Assets.scaleFont(ppuX / 1.5f, ppuY / 1.5f);
   }
 
   @Override

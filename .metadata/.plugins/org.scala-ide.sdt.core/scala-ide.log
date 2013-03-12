@@ -1,330 +1,65 @@
-2013-01-01 16:38:19,937 ERROR [Worker-14] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.debug.core.ILaunchConfigurationListener
+2013-03-09 21:49:48,525 ERROR [Worker-4] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+when weaving type org.eclipse.debug.core.model.IDebugModelProvider
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
-2013-01-01 16:38:32,372 ERROR [ModalContext] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+2013-03-09 21:50:28,151 ERROR [ModalContext] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
 when weaving type org.eclipse.jdt.internal.launching.JREContainerInitializer
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
-2013-01-01 16:41:27,289 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
+2013-03-09 22:07:31,443 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
-2013-01-05 11:04:57,421 ERROR [main] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+2013-03-09 23:59:41,248 ERROR [main] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
 when weaving type org.eclipse.jdt.launching.JavaRuntime
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
-2013-01-05 11:04:57,493 ERROR [main] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+2013-03-09 23:59:41,309 ERROR [main] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
 when weaving type org.eclipse.debug.core.ILaunchesListener
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
-2013-01-05 11:05:23,964 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+2013-03-10 00:01:41,481 ERROR [Worker-6] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
 when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
-2013-01-22 20:03:22,341 ERROR [main] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+2013-03-10 11:56:13,360 ERROR [main] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
 when weaving type org.eclipse.jdt.launching.JavaRuntime
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
-2013-01-22 20:03:22,395 ERROR [main] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+2013-03-10 11:56:13,477 ERROR [main] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
 when weaving type org.eclipse.debug.core.ILaunchesListener
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
-2013-01-22 20:11:09,266 ERROR [main] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+2013-03-10 12:14:08,011 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
+when weaving classes 
+when weaving 
+ [Xlint:cantFindType]
+2013-03-10 17:12:56,794 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
+when weaving classes 
+when weaving 
+ [Xlint:cantFindType]
+2013-03-11 18:59:10,455 ERROR [main] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
 when weaving type org.eclipse.jdt.launching.JavaRuntime
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
-2013-01-22 20:11:09,308 ERROR [main] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+2013-03-11 18:59:10,584 ERROR [main] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
 when weaving type org.eclipse.debug.core.ILaunchesListener
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
-2013-01-22 20:16:28,911 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-01-23 11:00:24,741 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+2013-03-11 18:59:36,427 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
 when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-01-24 21:29:32,253 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-01-25 11:02:32,556 ERROR [org.eclipse.jdt.internal.ui.text.JavaReconciler] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.launching.JREContainerInitializer
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-01-25 11:02:32,619 ERROR [org.eclipse.jdt.internal.ui.text.JavaReconciler] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.debug.core.ILaunchesListener
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-01-25 11:02:36,780 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-01-25 12:42:00,653 ERROR [Thread-478] - System.err - Unable to read properties from file com/google/gwt/eclipse/oophm/Activator.properties. The com.google.gwt.eclipse.oophm.Activator plugin may not run correctly.
-2013-01-25 12:47:43,873 ERROR [main] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.debug.core.ILaunchesListener
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-01-25 12:47:45,444 ERROR [main] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.launching.JavaRuntime
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-01-25 12:50:43,944 ERROR [Worker-4] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaAppletLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-01-25 12:51:45,832 ERROR [Thread-23] - System.err - Unable to read properties from file com/google/gwt/eclipse/oophm/Activator.properties. The com.google.gwt.eclipse.oophm.Activator plugin may not run correctly.
-2013-01-25 16:30:18,656 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-09 12:41:09,921 ERROR [main] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.debug.core.ILaunchesListener
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-09 12:41:47,960 ERROR [main] - System.err - Unable to read properties from file com/google/gwt/eclipse/oophm/Activator.properties. The com.google.gwt.eclipse.oophm.Activator plugin may not run correctly.
-2013-02-09 12:42:16,178 ERROR [Worker-4] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.launching.JREPreferenceModifyListener
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-09 12:47:34,184 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-10 15:34:37,911 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-11 10:39:31,111 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-11 15:28:40,743 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-14 13:51:44,264 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-15 14:47:29,827 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaAppletLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-16 07:39:12,938 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaAppletLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-19 21:20:45,539 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-20 20:11:50,808 ERROR [Worker-11] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.console.JavaConsoleTracker
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-20 20:11:57,752 ERROR [Thread-19] - System.err - Unable to read properties from file com/google/gwt/eclipse/oophm/Activator.properties. The com.google.gwt.eclipse.oophm.Activator plugin may not run correctly.
-2013-02-22 19:16:27,632 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-25 21:02:38,691 ERROR [ModalContext] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.launching.JREContainerInitializer
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-25 21:02:49,960 ERROR [main] - System.err - java.lang.NullPointerException
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.ui.texteditor.AbstractTextEditor.setAction(AbstractTextEditor.java:5237)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at com.mulgasoft.emacsplus.EmacsPlusActivation$4.run(EmacsPlusActivation.java:799)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3563)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3212)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
-2013-02-25 21:02:49,961 ERROR [main] - System.err - at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at java.lang.reflect.Method.invoke(Method.java:616)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at org.eclipse.equinox.launcher.Main.main(Main.java:1386)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - java.lang.NullPointerException
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at org.eclipse.ui.texteditor.AbstractTextEditor.setAction(AbstractTextEditor.java:5237)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at com.mulgasoft.emacsplus.EmacsPlusActivation$4.run(EmacsPlusActivation.java:799)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
-2013-02-25 21:02:49,962 ERROR [main] - System.err - at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3563)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3212)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at java.lang.reflect.Method.invoke(Method.java:616)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
-2013-02-25 21:02:49,963 ERROR [main] - System.err - at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at org.eclipse.equinox.launcher.Main.main(Main.java:1386)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - java.lang.NullPointerException
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at org.eclipse.ui.texteditor.AbstractTextEditor.setAction(AbstractTextEditor.java:5237)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at com.mulgasoft.emacsplus.EmacsPlusActivation$4.run(EmacsPlusActivation.java:799)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3563)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3212)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
-2013-02-25 21:02:49,964 ERROR [main] - System.err - at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at java.lang.reflect.Method.invoke(Method.java:616)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
-2013-02-25 21:02:49,965 ERROR [main] - System.err - at org.eclipse.equinox.launcher.Main.main(Main.java:1386)
-2013-02-25 21:08:55,755 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-26 20:01:29,570 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-26 20:13:28,163 ERROR [Thread-57] - System.err - Unable to read properties from file com/google/gwt/eclipse/oophm/Activator.properties. The com.google.gwt.eclipse.oophm.Activator plugin may not run correctly.
-2013-02-26 20:21:12,366 ERROR [org.eclipse.jdt.internal.ui.text.JavaReconciler] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.launching.JREContainerInitializer
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-26 20:21:12,870 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-26 20:23:16,118 ERROR [Thread-22] - System.err - Unable to read properties from file com/google/gwt/eclipse/oophm/Activator.properties. The com.google.gwt.eclipse.oophm.Activator plugin may not run correctly.
-2013-02-27 13:19:45,179 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-02-28 21:12:09,201 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-03-03 22:06:52,010 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-03-04 20:03:39,746 ERROR [Worker-2] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-03-05 20:41:08,001 ERROR [Worker-9] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.debug.ui.launchConfigurations.JavaApplicationLaunchShortcut
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-03-08 11:12:09,284 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-03-08 18:41:22,786 ERROR [org.eclipse.jdt.internal.ui.text.JavaReconciler] - System.err - [org.eclipse.jdt.launching] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.launching.JREContainerInitializer
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-03-08 18:41:22,827 ERROR [org.eclipse.jdt.internal.ui.text.JavaReconciler] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.debug.core.ILaunchesListener
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-03-08 18:41:24,062 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-03-09 09:10:20,648 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
-when weaving classes 
-when weaving 
- [Xlint:cantFindType]
-2013-03-09 09:19:15,147 ERROR [main] - System.err - [org.eclipse.jdt.debug.ui] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
-when weaving type org.eclipse.jdt.internal.debug.ui.actions.RetargettableActionAdapterFactory
 when weaving classes 
 when weaving 
  [Xlint:cantFindType]
