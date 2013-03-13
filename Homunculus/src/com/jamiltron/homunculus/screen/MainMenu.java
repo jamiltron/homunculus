@@ -20,8 +20,8 @@ public class MainMenu implements Screen, InputProcessor {
   private final OrthographicCamera cam;
   private float ppuX;
   private float ppuY;
-  private int width;
   private int height;
+  private float yDiff;
   
   private static final float SCALE = 2f;
   private static final float CAMERA_W = 18.75f;
@@ -72,11 +72,15 @@ public class MainMenu implements Screen, InputProcessor {
     playSelectEnter = false;
   }
 
-  public void setSize(int w, int h) {
-    width = w;
-    height = h;
+  public void setSize(int width, int height) {
+    this.height = height;
     ppuX = width / CAMERA_W;
     ppuY = height / CAMERA_H;
+    
+    ppuX = Math.min(ppuX, ppuY);
+    ppuY = Math.min(ppuX, ppuY);
+    
+    yDiff = height - CAMERA_H * ppuY;
   }
 
   @Override
@@ -160,6 +164,12 @@ public class MainMenu implements Screen, InputProcessor {
   private void renderBackground() {
     spriteBatch.draw(Assets.startScreenBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
     spriteBatch.draw(Assets.logo, 3.5f * ppuX, 19.5f * ppuY, 12.03125f * ppuX, 2.75f * ppuY);
+    if (yDiff > 0) {
+      for (float i = -1; i < yDiff / 32f; i++) {
+        spriteBatch.draw(Assets.startScreenStretch, 0, (CAMERA_H + i) * ppuY, CAMERA_W * ppuX, ppuY);
+      }
+      spriteBatch.draw(Assets.startScreenTop, 0, height - ppuY, CAMERA_W * ppuX, ppuY);
+    }
   }
 
   private void renderText() {

@@ -20,6 +20,7 @@ public class SettingsScreen implements Screen, InputProcessor {
   private int cursorLevel;
   private float ppuX;
   private float ppuY;
+  private float yDiff;
   private int width;
   private int height;
   private int level;
@@ -237,8 +238,13 @@ public class SettingsScreen implements Screen, InputProcessor {
   }
 
   private void renderBackground() {
-    spriteBatch.draw(Assets.startScreenBackground, 0, 0, CAMERA_W * ppuX,
-        CAMERA_H * ppuY);
+    spriteBatch.draw(Assets.startScreenBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
+    if (yDiff > 0) {
+      for (float i = -1; i < yDiff / 32f; i++) {
+        spriteBatch.draw(Assets.startScreenStretch, 0, (CAMERA_H + i) * ppuY, CAMERA_W * ppuX, ppuY);
+      }
+      spriteBatch.draw(Assets.startScreenTop, 0, height - ppuY, CAMERA_W * ppuX, ppuY);
+    }
   }
 
   private void renderCursors() {
@@ -361,6 +367,10 @@ public class SettingsScreen implements Screen, InputProcessor {
     height = h;
     ppuX = width / CAMERA_W;
     ppuY = height / CAMERA_H;
+    
+    ppuX = Math.min(ppuX, ppuY);
+    ppuY = ppuX;
+    yDiff = height - CAMERA_H * ppuY;
     Assets.scaleFont(ppuX, ppuY);
   }
 

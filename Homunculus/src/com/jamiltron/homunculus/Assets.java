@@ -45,6 +45,11 @@ public class Assets {
   public static TextureRegion pauseBackground;
   public static TextureRegion playGameBackground;
   
+  public static TextureRegion startScreenStretch;
+  public static TextureRegion startScreenTop;
+  public static TextureRegion gameScreenStretch;
+  public static TextureRegion gameScreenTop;
+  
   public static TextureRegion leftArrow;
   public static TextureRegion rightArrow;
   public static TextureRegion downArrow;
@@ -302,7 +307,11 @@ public class Assets {
     selector = loadTexture("data/gfx/selector.png");
     
     startScreenBackground = new TextureRegion(startScreenBackgroundT, 0, 0, 600, 800);
+    startScreenTop        = new TextureRegion(startScreenBackgroundT, 0, 0, 600, 32);
+    startScreenStretch    = new TextureRegion(startScreenBackgroundT, 0, 32, 600, 32);
     playGameBackground    = new TextureRegion(playGameBackgroundT, 0, 0, 600, 800);
+    gameScreenTop         = new TextureRegion(playGameBackgroundT, 0, 0, 600, 32);
+    gameScreenStretch     = new TextureRegion(playGameBackgroundT, 0, 32, 600, 32);
     pauseBackground       = new TextureRegion(pauseBackgroundT, 0, 0, 300, 400);
     gameOverBackground    = new TextureRegion(gameOverBackgroundT, 0, 0, 300, 400);
     

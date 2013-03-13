@@ -23,6 +23,7 @@ public class WorldRenderer {
 
   private float ppuX;
   private float ppuY;
+  private float yDiff;
   private int width;
   private int height;
   private String tmpString;
@@ -35,6 +36,11 @@ public class WorldRenderer {
     height = h;
     ppuX = width / CAMERA_W;
     ppuY = height / CAMERA_H;
+    
+    ppuX = Math.min(ppuX, ppuY);
+    ppuY = ppuX;
+    yDiff = height - CAMERA_H * ppuY;
+    
   }
 
   public WorldRenderer(World w, HomunculusGame g) {
@@ -106,16 +112,23 @@ public class WorldRenderer {
     if (world.won) {
       spriteBatch.draw(Assets.pauseBackground, 2 * ppuX, 3.65f * ppuY, 10 * ppuX, 18 * ppuY);
     } else if (world.paused) {
-      spriteBatch.draw(Assets.overlay, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
+      spriteBatch.draw(Assets.overlay, 0, 0, width, height);
       spriteBatch.draw(Assets.pauseBackground, 2 * ppuX, 3.65f * ppuY, 10 * ppuX, 18 * ppuY);
     } else if (world.lost) {
-      spriteBatch.draw(Assets.overlay, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
+      spriteBatch.draw(Assets.overlay, 0, 0, width, height);
       spriteBatch.draw(Assets.gameOverBackground, 2 * ppuX, 3.65f * ppuY, 10 * ppuX, 18 * ppuY);
     }
   }
   
   private void renderBackground() {
     spriteBatch.draw(Assets.playGameBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
+    if (yDiff > 0) {
+      for (float i = -1; i < yDiff / 32f; i++) {
+        spriteBatch.draw(Assets.gameScreenStretch, 0, (CAMERA_H + i) * ppuY, CAMERA_W * ppuX, ppuY);
+      }
+      spriteBatch.draw(Assets.gameScreenTop, 0, height - ppuY, CAMERA_W * ppuX, ppuY);
+    }
+    
     if (world.won) { 
       keyFrame = Assets.wizardAnim.getFrame(Assets.wizardTime * 3, true);
     } else if (world.lost) {
