@@ -22,6 +22,7 @@ public class HighScoreScreen implements Screen, InputProcessor {
   private float ppuX;
   private float ppuY;
   private float yDiff;
+  private float xDiff;
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
   private static final float SCALE = 2.5f;
@@ -117,7 +118,11 @@ public class HighScoreScreen implements Screen, InputProcessor {
       }
       spriteBatch.draw(Assets.startScreenTop, 0, height - ppuY, CAMERA_W * ppuX, ppuY);
     }
-
+    if (xDiff > 0) {
+      for (float i = CAMERA_W * ppuX; i <= width; i += ppuX) {
+        spriteBatch.draw(Assets.wallScreenStretch, i, 0, ppuX, CAMERA_H * ppuY);
+      }
+    }
   }
   
   public void renderText() {
@@ -147,6 +152,7 @@ public class HighScoreScreen implements Screen, InputProcessor {
     ppuX = Math.min(ppuX, ppuY);
     ppuY = ppuX;
     yDiff = height - CAMERA_H * ppuY;
+    xDiff = width - CAMERA_W * ppuX;
     Assets.scaleFont(ppuX / 1.5f, ppuY / 1.5f);
   }
 

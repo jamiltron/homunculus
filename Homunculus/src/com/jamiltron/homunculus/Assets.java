@@ -49,6 +49,7 @@ public class Assets {
   public static TextureRegion startScreenTop;
   public static TextureRegion gameScreenStretch;
   public static TextureRegion gameScreenTop;
+  public static TextureRegion wallScreenStretch;
   
   public static TextureRegion leftArrow;
   public static TextureRegion rightArrow;
@@ -310,6 +311,7 @@ public class Assets {
     startScreenTop        = new TextureRegion(startScreenBackgroundT, 0, 0, 600, 32);
     startScreenStretch    = new TextureRegion(startScreenBackgroundT, 0, 32, 600, 32);
     playGameBackground    = new TextureRegion(playGameBackgroundT, 0, 0, 600, 800);
+    wallScreenStretch     = new TextureRegion(playGameBackgroundT, 0, 0, 32, 800);
     gameScreenTop         = new TextureRegion(playGameBackgroundT, 0, 0, 600, 32);
     gameScreenStretch     = new TextureRegion(playGameBackgroundT, 0, 32, 600, 32);
     pauseBackground       = new TextureRegion(pauseBackgroundT, 0, 0, 300, 400);

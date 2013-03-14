@@ -21,7 +21,9 @@ public class MainMenu implements Screen, InputProcessor {
   private float ppuX;
   private float ppuY;
   private int height;
+  private int width;
   private float yDiff;
+  private float xDiff;
   
   private static final float SCALE = 2f;
   private static final float CAMERA_W = 18.75f;
@@ -74,13 +76,13 @@ public class MainMenu implements Screen, InputProcessor {
 
   public void setSize(int width, int height) {
     this.height = height;
+    this.width  = width;
     ppuX = width / CAMERA_W;
     ppuY = height / CAMERA_H;
-    
     ppuX = Math.min(ppuX, ppuY);
     ppuY = Math.min(ppuX, ppuY);
-    
     yDiff = height - CAMERA_H * ppuY;
+    xDiff = width  - CAMERA_W * ppuX;
   }
 
   @Override
@@ -169,6 +171,12 @@ public class MainMenu implements Screen, InputProcessor {
         spriteBatch.draw(Assets.startScreenStretch, 0, (CAMERA_H + i) * ppuY, CAMERA_W * ppuX, ppuY);
       }
       spriteBatch.draw(Assets.startScreenTop, 0, height - ppuY, CAMERA_W * ppuX, ppuY);
+    }
+    
+    if (xDiff > 0) {
+      for (float i = CAMERA_W * ppuX; i <= width; i += ppuX) {
+        spriteBatch.draw(Assets.wallScreenStretch, i, 0, ppuX, CAMERA_H * ppuY);
+      }
     }
   }
 
@@ -290,7 +298,6 @@ public class MainMenu implements Screen, InputProcessor {
   @Override
   public void resize(int width, int height) {
     setSize(width, height);
-
   }
 
   @Override

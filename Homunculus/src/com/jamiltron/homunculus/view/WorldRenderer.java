@@ -24,6 +24,7 @@ public class WorldRenderer {
   private float ppuX;
   private float ppuY;
   private float yDiff;
+  private float xDiff;
   private int width;
   private int height;
   private String tmpString;
@@ -40,6 +41,7 @@ public class WorldRenderer {
     ppuX = Math.min(ppuX, ppuY);
     ppuY = ppuX;
     yDiff = height - CAMERA_H * ppuY;
+    xDiff = width - CAMERA_W * ppuX;
     
   }
 
@@ -123,10 +125,15 @@ public class WorldRenderer {
   private void renderBackground() {
     spriteBatch.draw(Assets.playGameBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
     if (yDiff > 0) {
-      for (float i = -1; i < yDiff / 32f; i++) {
+      for (float i = -1; i <= yDiff / 32f; i++) {
         spriteBatch.draw(Assets.gameScreenStretch, 0, (CAMERA_H + i) * ppuY, CAMERA_W * ppuX, ppuY);
       }
       spriteBatch.draw(Assets.gameScreenTop, 0, height - ppuY, CAMERA_W * ppuX, ppuY);
+    }
+    if (xDiff > 0) {
+      for (float i = CAMERA_W * ppuX; i <= width; i += ppuX) {
+        spriteBatch.draw(Assets.wallScreenStretch, i, 0, ppuX, CAMERA_H * ppuY);
+      }
     }
     
     if (world.won) { 
