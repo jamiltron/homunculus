@@ -48,7 +48,6 @@ public class Assets {
   public static TextureRegion startScreenStretch;
   public static TextureRegion startScreenTop;
   public static TextureRegion gameScreenStretch;
-  public static TextureRegion gameScreenTop;
   public static TextureRegion wallScreenStretch;
   
   public static TextureRegion leftArrow;
@@ -125,20 +124,20 @@ public class Assets {
             SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>(name, Integer.parseInt(lineParts[1]));
             scores.add(entry);
           } else {
-            SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("   ", 0);
+            SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("homunculus", 0);
             scores.add(entry);
           }
         }
       } else {
         for (int i = 0; i < 10; i++) {
-          SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("   ", 0);
+          SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("homunculus", 0);
           scores.add(entry);
         }
       }
     } catch (Exception e) {
       System.out.println(e.getMessage());
       while(scores.size() < 10) {
-        SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("   ", 0);
+        SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("homunculus", 0);
         scores.add(entry);
       }
     }
@@ -151,10 +150,6 @@ public class Assets {
     font.setScale(lastFontScaleX, lastFontScaleY);
   }
 
-  public static void resetFont() {
-    font.setScale(-lastFontScaleX, -lastFontScaleY);
-  }
-  
   public static void writeHighScores(List<SimpleEntry<String, Integer>> scores) {
     try {
       if (Gdx.files.isExternalStorageAvailable()) {
@@ -312,7 +307,6 @@ public class Assets {
     startScreenStretch    = new TextureRegion(startScreenBackgroundT, 0, 32, 600, 32);
     playGameBackground    = new TextureRegion(playGameBackgroundT, 0, 0, 600, 800);
     wallScreenStretch     = new TextureRegion(playGameBackgroundT, 0, 0, 32, 800);
-    gameScreenTop         = new TextureRegion(playGameBackgroundT, 0, 0, 600, 32);
     gameScreenStretch     = new TextureRegion(playGameBackgroundT, 0, 32, 600, 32);
     pauseBackground       = new TextureRegion(pauseBackgroundT, 0, 0, 300, 400);
     gameOverBackground    = new TextureRegion(gameOverBackgroundT, 0, 0, 300, 400);

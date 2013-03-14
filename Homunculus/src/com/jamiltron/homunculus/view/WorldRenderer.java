@@ -125,10 +125,9 @@ public class WorldRenderer {
   private void renderBackground() {
     spriteBatch.draw(Assets.playGameBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
     if (yDiff > 0) {
-      for (float i = -1; i <= yDiff / 32f; i++) {
-        spriteBatch.draw(Assets.gameScreenStretch, 0, (CAMERA_H + i) * ppuY, CAMERA_W * ppuX, ppuY);
+      for (float i = (CAMERA_H - 1) * ppuY; i <= height; i += ppuY) {
+        spriteBatch.draw(Assets.gameScreenStretch, 0, i, CAMERA_W * ppuX, ppuY);
       }
-      spriteBatch.draw(Assets.gameScreenTop, 0, height - ppuY, CAMERA_W * ppuX, ppuY);
     }
     if (xDiff > 0) {
       for (float i = CAMERA_W * ppuX; i <= width; i += ppuX) {

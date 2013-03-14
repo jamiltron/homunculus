@@ -56,6 +56,8 @@ public class MainMenu implements Screen, InputProcessor {
   private Rectangle startArea = new Rectangle(2f, 
       START_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
   private Rectangle instructionsArea = new Rectangle(2f, 
+      INSTRUCTIONS_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
+  private Rectangle highscoresArea = new Rectangle(2f,
       HIGHSCORES_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
   private Rectangle creditsArea = new Rectangle(2f, 
       CREDITS_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
@@ -124,17 +126,21 @@ public class MainMenu implements Screen, InputProcessor {
       // TODO don't create new screens every time
       if (arrowY == START_Y) {
         playSelectEnter = true;
-        game.setScreen(new SettingsScreen(game));
+        //game.setScreen(new SettingsScreen(game));
+        game.goToSettings();
       } else if (arrowY == INSTRUCTIONS_Y) {
         playSelectEnter = true;
-        game.setScreen(new InstructionScreen(game, this));
+        game.goToInstructions();
+        //game.setScreen(new InstructionScreen(game, this));
         // TODO Make highscore screen
       } else if (arrowY == HIGHSCORES_Y) {
         playSelectEnter = true;
-        game.setScreen(new HighScoreScreen(game, this));
+        game.goToHighScores();
+        //game.setScreen(new HighScoreScreen(game, this));
       } else if (arrowY == CREDITS_Y) {
         playSelectEnter = true;
-        game.setScreen(new CreditsScreen(game, this));
+        game.goToCredits();
+//        game.setScreen(new CreditsScreen(game, this));
       } else {
         playSelectEnter = true;
         over = true;
@@ -167,8 +173,8 @@ public class MainMenu implements Screen, InputProcessor {
     spriteBatch.draw(Assets.startScreenBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
     spriteBatch.draw(Assets.logo, 3.5f * ppuX, 19.5f * ppuY, 12.03125f * ppuX, 2.75f * ppuY);
     if (yDiff > 0) {
-      for (float i = -1; i < yDiff / 32f; i++) {
-        spriteBatch.draw(Assets.startScreenStretch, 0, (CAMERA_H + i) * ppuY, CAMERA_W * ppuX, ppuY);
+      for (float i = (CAMERA_H - 1) * ppuY; i <= height; i+= ppuY) {
+        spriteBatch.draw(Assets.startScreenStretch, 0, i, CAMERA_W * ppuX, ppuY);
       }
       spriteBatch.draw(Assets.startScreenTop, 0, height - ppuY, CAMERA_W * ppuX, ppuY);
     }
@@ -238,25 +244,34 @@ public class MainMenu implements Screen, InputProcessor {
 
   @Override
   public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-    // TODO Auto-generated method stub
-    return true;
+    if (game.desktopGame) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
     float x = screenX / ppuX;
-    float y = CAMERA_H - screenY / ppuY;
+    float y = height / ppuY - screenY / ppuY;
     if (button == 0) {
       if ((x >= startArea.x && x <= startArea.x + startArea.width) &&
           (y >= startArea.y && y <= startArea.y + startArea.height)) {
-        game.setScreen(new SettingsScreen(game));
-        
+        //game.setScreen(new SettingsScreen(game));
+        game.goToSettings();
       } else if ((x >= instructionsArea.x && x <= instructionsArea.x + instructionsArea.width) &&
           (y >= instructionsArea.y && y <= instructionsArea.y + instructionsArea.height)) {
-        game.setScreen(new InstructionScreen(game, this));
+        game.goToInstructions();
+        //game.setScreen(new InstructionScreen(game, this));
+      } else if ((x >= highscoresArea.x && x <= highscoresArea.x + highscoresArea.width) &&
+          (y >= highscoresArea.y && y <= highscoresArea.y + highscoresArea.height)) {
+        game.goToHighScores();
+        //game.setScreen(new HighScoreScreen(game, this));
       } else if ((x >= creditsArea.x && x <= creditsArea.x + creditsArea.width) &&
           (y >= creditsArea.y && y <= creditsArea.y + creditsArea.height)) {
-        game.setScreen(new CreditsScreen(game, this));
+        game.goToCredits();
+        //game.setScreen(new CreditsScreen(game, this));
       } else if ((x >= quitArea.x && x <= quitArea.x + quitArea.width) &&
           (y >= quitArea.y && y <= quitArea.y + quitArea.height)) {
         over = true;

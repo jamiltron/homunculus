@@ -16,7 +16,6 @@ public class HighScoreScreen implements Screen, InputProcessor {
   private final HomunculusGame game;
   private final SpriteBatch spriteBatch;
   private final OrthographicCamera cam;
-  private final MainMenu mainMenu;
   private int width;
   private int height;
   private float ppuX;
@@ -35,13 +34,12 @@ public class HighScoreScreen implements Screen, InputProcessor {
   private static final float TEXT_Y = 21.5f;
   private static final float TEXT_X = 1.4f;
 
-  public HighScoreScreen(HomunculusGame g, MainMenu mm) {
+  public HighScoreScreen(HomunculusGame g) {
     this.cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     this.cam.update();
     spriteBatch = new SpriteBatch();
     game = g;
-    mainMenu = mm;
   }
 
   @Override
@@ -49,7 +47,7 @@ public class HighScoreScreen implements Screen, InputProcessor {
     if (keycode == Keys.ESCAPE) {
       Gdx.app.exit();
     } else {
-      game.setScreen(mainMenu);
+      game.goToMainMenu();
     }
     return true;
   }
@@ -75,7 +73,7 @@ public class HighScoreScreen implements Screen, InputProcessor {
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
     if (!game.desktopGame) {
-      game.setScreen(mainMenu);
+      game.goToMainMenu();
       return true;
     } else {
       return false;
@@ -113,8 +111,8 @@ public class HighScoreScreen implements Screen, InputProcessor {
   public void renderBackground() {
     spriteBatch.draw(Assets.startScreenBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
     if (yDiff > 0) {
-      for (float i = -1; i < yDiff / 32f; i++) {
-        spriteBatch.draw(Assets.startScreenStretch, 0, (CAMERA_H + i) * ppuY, CAMERA_W * ppuX, ppuY);
+      for (float i = (CAMERA_H - 1) * ppuY; i <= height; i += ppuY) {
+        spriteBatch.draw(Assets.startScreenStretch, 0, i, CAMERA_W * ppuX, ppuY);
       }
       spriteBatch.draw(Assets.startScreenTop, 0, height - ppuY, CAMERA_W * ppuX, ppuY);
     }

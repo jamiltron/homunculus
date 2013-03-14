@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jamiltron.homunculus.Assets;
-import com.jamiltron.homunculus.Settings;
 
 public class SettingsScreen implements Screen, InputProcessor {
 
@@ -110,10 +109,18 @@ public class SettingsScreen implements Screen, InputProcessor {
   private static final float START_X = CAMERA_W / 2f - START_W / 2f;
   private static final float NUM_X = LEVEL_X + 5f;
   private static final float NUM_Y = LEVEL_Y + 0.35f;
+  private static final float LEFT_ARROW_X = 7.25f;
+  private static final float LEFT_ARROW_Y = LEVEL_Y - 0.25f;
+  private static final float LEFT_ARROW_W = Assets.leftArrow.getRegionWidth() / 32f;
+  private static final float LEFT_ARROW_H = Assets.leftArrow.getRegionHeight() / 32f;
+  private static final float RIGHT_ARROW_X = 10.25f;
+  private static final float RIGHT_ARROW_Y = LEVEL_Y - 0.25f;
+  private static final float RIGHT_ARROW_W = Assets.rightArrow.getRegionWidth() / 32f;
+  private static final float RIGHT_ARROW_H = Assets.rightArrow.getRegionHeight() / 32f;
 
   public SettingsScreen(final HomunculusGame game) {
     this.game = game;
-    showSelector = true;
+    showSelector = game.desktopGame ? true : false;
     cursorLevel = 0;
     music = game.settings.getMusicOn();
     sound = game.settings.getSoundOn();
@@ -123,6 +130,11 @@ public class SettingsScreen implements Screen, InputProcessor {
     cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     cam.update();
     spriteBatch = new SpriteBatch();
+  }
+  
+  public void reset() {
+    showSelector = game.desktopGame ? true : false;
+    cursorLevel = 0;
   }
 
   @Override
@@ -191,14 +203,12 @@ public class SettingsScreen implements Screen, InputProcessor {
 
     if (cursorLevel == 5 && (keycode == Keys.ENTER || keycode == Keys.DOWN || keycode == Keys.SPACE)) {
       if (sound) Assets.playSound(Assets.selectEnter);
-      final Settings settings = new Settings();
-      settings.setSpeed(speed);
-      settings.setSoundOn(sound);
-      settings.setMusicOn(music);
-      settings.setHomunculiNum(level);
-      Assets.writeSettings(settings);
-      game.settings = settings;
-      game.setScreen(new GameScreen(game));
+      game.settings.setSpeed(speed);
+      game.settings.setSoundOn(sound);
+      game.settings.setMusicOn(music);
+      game.settings.setHomunculiNum(level);
+      Assets.writeSettings(game.settings);
+      game.goToGame();
     }
     
     if (sound && playSelectMove) Assets.playSound(Assets.selectMove);
@@ -241,8 +251,8 @@ public class SettingsScreen implements Screen, InputProcessor {
   private void renderBackground() {
     spriteBatch.draw(Assets.startScreenBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
     if (yDiff > 0) {
-      for (float i = -1; i < yDiff / 32f; i++) {
-        spriteBatch.draw(Assets.startScreenStretch, 0, (CAMERA_H + i) * ppuY, CAMERA_W * ppuX, ppuY);
+      for (float i = (CAMERA_H - 1) * ppuY; i <= height; i += ppuY) {
+        spriteBatch.draw(Assets.startScreenStretch, 0, i, CAMERA_W * ppuX, ppuY);
       }
       spriteBatch.draw(Assets.startScreenTop, 0, height - ppuY, CAMERA_W * ppuX, ppuY);
     }
@@ -254,9 +264,8 @@ public class SettingsScreen implements Screen, InputProcessor {
   }
 
   private void renderCursors() {
-    spriteBatch.draw(Assets.leftArrow, 7.25f * ppuX, (LEVEL_Y - 0.25f) * ppuY);
-    spriteBatch
-        .draw(Assets.rightArrow, 10.25f * ppuX, (LEVEL_Y - 0.25f) * ppuY);
+    spriteBatch.draw(Assets.leftArrow, LEFT_ARROW_X * ppuX, (LEVEL_Y - 0.25f) * ppuY, LEFT_ARROW_W * ppuX, LEFT_ARROW_H * ppuY);
+    spriteBatch.draw(Assets.rightArrow, RIGHT_ARROW_X * ppuX, (LEVEL_Y - 0.25f) * ppuY, RIGHT_ARROW_W * ppuX, RIGHT_ARROW_H * ppuY);
 
     if (showSelector) {
       if (cursorLevel == 0) {
@@ -415,15 +424,67 @@ public class SettingsScreen implements Screen, InputProcessor {
   @Override
   public boolean touchUp(final int screenX, final int screenY,
       final int pointer, final int button) {
-/*    final Settings settings = new Settings();
-    settings.setSpeed(speed);
-    settings.setSoundOn(sound);
-    settings.setMusicOn(music);
-    settings.setHomunculiNum(level);
-    game.settings = settings;
-    game.setScreen(new GameScreen(game));
-    return true;*/
-    return false;
+    if (game.desktopGame) {
+      return false;
+    } else {
+      if (button == 0) {
+        playSelectMove = false;
+        float x = screenX / ppuX;
+        float y = height / ppuY - screenY / ppuY;
+      
+        // left arrow
+        if (overArea(x, y, LEFT_ARROW_X, LEFT_ARROW_Y, LEFT_ARROW_W, LEFT_ARROW_H)) {
+          if (level > 0) {
+            level -= 1;
+            playSelectMove = true;
+          }
+        // right arrow
+        } else if (overArea(x, y, RIGHT_ARROW_X, RIGHT_ARROW_Y, RIGHT_ARROW_W, RIGHT_ARROW_H)) {
+           if (level < 20) {
+             level += 1;
+              playSelectMove = true;
+           }
+        } else if (overArea(x, y, SLOW_X, SLOW_Y, SLOW_W, SLOW_H)) {
+          speed = 0;
+          playSelectMove = true;
+        } else if (overArea(x, y, MED_X, MED_Y, MED_W, MED_H)) {
+          speed = 1;
+          playSelectMove = true;
+        } else if (overArea(x, y, FAST_X, FAST_Y, FAST_W, FAST_H)) {
+          speed = 2;
+          playSelectMove = true;
+        } else if (overArea(x, y, ON1_X, ON1_Y, ON_W, ON_H)) {
+          sound = true;
+          playSelectMove = true;
+        } else if (overArea(x, y, OFF1_X, OFF1_Y, OFF_W, OFF_H)) {
+          sound = false;
+        }else if (overArea(x, y, ON2_X, ON2_Y, ON_W, ON_H)) {
+          music = true;
+          playSelectMove = true;
+          Assets.titleMusic.play();
+        } else if (overArea(x, y, OFF2_X, OFF2_Y, OFF_W, OFF_H)) {
+          music = false;
+          playSelectMove = true;
+          Assets.titleMusic.stop();
+        } else if (overArea(x, y, START_X, START_Y, START_W, START_H)) {
+          if (sound) Assets.playSound(Assets.selectEnter);
+            //final Settings settings = new Settings();
+            game.settings.setSpeed(speed);
+            game.settings.setSoundOn(sound);
+            game.settings.setMusicOn(music);
+            game.settings.setHomunculiNum(level);
+            Assets.writeSettings(game.settings);
+            game.setScreen(new GameScreen(game));
+        }
+      }
+      if (sound && playSelectMove) Assets.playSound(Assets.selectMove);
+      return true;
+    }
+  }
+  
+  private boolean overArea(float x, float y, float left, float bottom, float width, float height) {
+    return ((x >= left && x <= left + width) &&
+        (y >= bottom && y <= bottom + height));
   }
 
 }

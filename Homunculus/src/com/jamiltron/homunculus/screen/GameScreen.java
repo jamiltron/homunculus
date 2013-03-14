@@ -37,12 +37,35 @@ public class GameScreen implements Screen, InputProcessor {
   private int                  highScore;
   private float                ppuX;
   private float                ppuY;
+  private float                width;
+  private float                height;
   private float                lastX;
   private float                lastDragX;
   private static final float   CAMERA_W = 18.75f;
   private static final float   CAMERA_H = 25f;
   private Stage stage;
   private TextField textfield;
+  
+  private static final float LEFT_X = 1.25f;
+  private static final float LEFT_W = 3;
+  private static final float LEFT_Y = 0.25f;
+  private static final float LEFT_H = LEFT_W;
+  
+  private static final float DOWN_X = 5.5f;
+  private static final float DOWN_W = 3;
+  private static final float DOWN_Y = LEFT_Y;
+  private static final float DOWN_H = LEFT_W;
+  
+  private static final float RIGHT_X = 9.75f;
+  private static final float RIGHT_W = 3;
+  private static final float RIGHT_Y = LEFT_Y;
+  private static final float RIGHT_H = LEFT_W;
+
+  private static final float ROTR_X = 14f;
+  private static final float ROTR_W = 3;
+  private static final float ROTR_Y = LEFT_Y;
+  private static final float ROTR_H = LEFT_W;
+
 
   public GameScreen(final HomunculusGame g) {
     super();
@@ -250,8 +273,12 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public void resize(final int w, final int h) {
+    width = w;
+    height = h;
     ppuX = w / CAMERA_W;
     ppuY = h / CAMERA_H;
+    ppuX = Math.min(ppuX, ppuY);
+    ppuY = ppuX;
     renderer.setSize(w, h);
     textfield.setPosition(4.5f * ppuX, 14.5f * ppuY);
   }
@@ -288,18 +315,22 @@ public class GameScreen implements Screen, InputProcessor {
       
     if (!game.desktopGame) {
      if (button == 0) { 
-       final float x = screenX / ppuX; final float y = CAMERA_H - screenY / ppuY;
-     
-       if (x >= 1.25f && x <= 4.25f && y >= 0.25f && y <= 3.25f) {
+       final float x = screenX / ppuX; 
+       final float y = height / ppuY - screenY / ppuY;
+
+       if (x >= LEFT_X && x <= LEFT_X + LEFT_W && y >= LEFT_Y && y <= LEFT_Y + LEFT_H) {
          controller.leftPress(); 
-       } else if (x >= 5.5f && x <= 8.5f && y >= 0.25f && y <= 3.25f) { 
+         leftPressed = true;
+       } else if (x >= DOWN_X && x <= DOWN_X + DOWN_W && y >= DOWN_Y && y <= DOWN_Y + DOWN_H) { 
          controller.dropPress(); 
-       } else if (x >= 9.75f && x <= 12.75f && y >= 0.25f && y <= 3.25f) { 
-         controller.rightPress(); 
-       } else if (x >= 14f && x <= 17f && y >= 0.25f && y <= 3.25f) {
-         controller.rotrPress(); 
+       } else if (x >= RIGHT_X && x <= RIGHT_X + RIGHT_W && y >= RIGHT_Y && y <= RIGHT_Y + RIGHT_H) { 
+         controller.rightPress();
+         rightPressed = true;
+       } else if (x >= ROTR_X && x <= ROTR_X + ROTR_W && y >= ROTR_Y && y <= ROTR_Y + ROTR_H) {
+         controller.rotrPress();
        }
-       
+       lastX = screenX;
+       lastDragX = screenX;
        touching = true;
      }
      return true;
@@ -312,39 +343,41 @@ public class GameScreen implements Screen, InputProcessor {
   public boolean touchDragged(final int screenX, final int screenY,
       final int pointer) {
     if (!game.desktopGame) {
-      if (screenX - lastDragX > 2) { controller.rightPress();
-      controller.leftRelease(); } else if (lastDragX - screenX > 2) {
-        controller.leftPress(); controller.rightRelease();
-      }
-      lastDragX = screenX;
-      
-      return true;
-     } else {
-    return false;
-     }
-  }
-
-  @Override
-  public boolean touchUp(final int screenX, final int screenY,
-      final int pointer, final int button) {
-    
-    if (!game.desktopGame) {
-      if (button == 0) {
-        float x = screenX / ppuX; float y = CAMERA_H - screenY  / ppuY;
-        
-        if (Math.abs(screenX - lastX) <= Assets.TOUCH_BOX &&
-           !(x >= 1.25f && x <= 4.25f && y >= 0.25f && y <= 3.25f) && 
-           !(x >= 5.5f && x <= 8.5f &&
-           y >= 0.25f && y <= 3.25f) && 
-           !(x >= 9.75f && x <= 12.75f && y >= 0.25f &&
-           y <= 3.25f) && !(x >= 14f && x <= 17f && y >= 0.25f && y <= 3.25f)) {
-          controller.rotrPress(); 
+      final float y = height / ppuY - screenY / ppuY;
+      if (y > 3.25f) {
+        if (screenX - lastDragX > 1) {
+          controller.rightPress();
+          controller.leftRelease(); 
+        } else if (lastDragX - screenX > 1) {
+          controller.leftPress(); 
+          controller.rightRelease();
+        } else {
+          controller.leftRelease();
+          controller.rightRelease();
         }
-        touching = false;
       }
       return true;
     } else {
       return false;
     }
   }
+
+  @Override
+  public boolean touchUp(final int screenX, final int screenY,
+      final int pointer, final int button) {
+    System.out.println(screenY / 32f);
+    if (Math.abs(lastX - screenX) <= 1f && screenY < height - 3.25 * ppuY) {
+      controller.rotlPress();
+    }
+    if (!game.desktopGame) {
+    leftPressed = false;
+    rightPressed = false;
+    lastDragX = screenX;
+    touching = false;
+    return true;
+    } else {
+      return false;
+    }
+  }
 }
+
