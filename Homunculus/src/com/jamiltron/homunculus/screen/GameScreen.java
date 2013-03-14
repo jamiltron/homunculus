@@ -365,16 +365,16 @@ public class GameScreen implements Screen, InputProcessor {
   @Override
   public boolean touchUp(final int screenX, final int screenY,
       final int pointer, final int button) {
-    System.out.println(screenY / 32f);
-    if (Math.abs(lastX - screenX) <= 1f && screenY < height - 3.25 * ppuY) {
-      controller.rotlPress();
-    }
     if (!game.desktopGame) {
-    leftPressed = false;
-    rightPressed = false;
-    lastDragX = screenX;
-    touching = false;
-    return true;
+      if (Math.abs(lastX - screenX) <= 1f && screenY < height - 3.25 * ppuY) {
+        controller.rotlPress();
+      }
+
+      leftPressed = false;
+      rightPressed = false;
+      lastDragX = screenX;
+      touching = false;
+      return true;
     } else {
       return false;
     }
