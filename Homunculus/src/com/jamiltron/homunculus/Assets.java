@@ -57,6 +57,13 @@ public class Assets {
   
   public static TextureRegion logo;
   
+  public static TextureRegion pressAnyKey;
+  public static TextureRegion tapScreen;
+  public static TextureRegion gameOver;
+  public static TextureRegion enterName;
+  public static TextureRegion highScore;
+  public static TextureRegion complete;
+  
   public static TextureRegion startW;
   public static TextureRegion startB;
   public static TextureRegion highScoresW;
@@ -104,30 +111,39 @@ public class Assets {
   public static BitmapFont font;
   private static String settingsString;
   
-  public static List<SimpleEntry<String, Integer>> getHighScores() {
+  private static void loadScores(FileHandle file, List<SimpleEntry<String, Integer>> scores) {
+    String highScoreString = file.readString("UTF-8");
+    String[] highScoreList = highScoreString.split("\t");
+    for (int i = 0; i < 10; i++) {
+      if (i < highScoreList.length) {
+        String[] lineParts = highScoreList[i].split("\\|");
+        String name;
+        if (lineParts[0].length() > 10) {
+          name = lineParts[0].substring(0, 10);
+          } else {
+            name = lineParts[0];
+          }
+        SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>(name, Integer.parseInt(lineParts[1]));
+        scores.add(entry);
+        } else {
+          SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("homunculus", 0);
+          scores.add(entry);
+        }
+      }
+  }
+  
+  public static List<SimpleEntry<String, Integer>> getHighScores(boolean desktopGame) {
     List<SimpleEntry<String, Integer>> scores = new ArrayList<SimpleEntry<String, Integer>>();
     try {
-      if (Gdx.files.isExternalStorageAvailable() &&
+      FileHandle file;
+      if (desktopGame && Gdx.files.isExternalStorageAvailable() &&
           Gdx.files.external(highScoresPath).exists()) {
-        FileHandle file = Gdx.files.external(highScoresPath);
-        String highScoreString = file.readString("UTF-8");
-        String[] highScoreList = highScoreString.split("\t");
-        for (int i = 0; i < 10; i++) {
-          if (i < highScoreList.length) {
-            String[] lineParts = highScoreList[i].split("\\|");
-            String name;
-            if (lineParts[0].length() > 10) {
-              name = lineParts[0].substring(0, 10);
-            } else {
-              name = lineParts[0];
-            }
-            SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>(name, Integer.parseInt(lineParts[1]));
-            scores.add(entry);
-          } else {
-            SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("homunculus", 0);
-            scores.add(entry);
-          }
-        }
+        file = Gdx.files.external(highScoresPath);
+        loadScores(file, scores);
+      } else if (!desktopGame && Gdx.files.isLocalStorageAvailable() &&
+                 Gdx.files.local(highScoresPath).exists()) {
+            file = Gdx.files.local(highScoresPath);
+            loadScores(file, scores);
       } else {
         for (int i = 0; i < 10; i++) {
           SimpleEntry<String, Integer> entry = new SimpleEntry<String, Integer>("homunculus", 0);
@@ -150,10 +166,25 @@ public class Assets {
     font.setScale(lastFontScaleX, lastFontScaleY);
   }
 
-  public static void writeHighScores(List<SimpleEntry<String, Integer>> scores) {
+  public static void writeHighScores(List<SimpleEntry<String, Integer>> scores, boolean desktopGame) {
     try {
-      if (Gdx.files.isExternalStorageAvailable()) {
+      if (desktopGame && Gdx.files.isExternalStorageAvailable()) {
         FileHandle file = Gdx.files.external(highScoresPath);
+        file.writeString("", false);
+        Iterator<SimpleEntry<String, Integer>> iterator = scores.iterator();
+        int i = 0;
+        while (iterator.hasNext() && i <= 9) {
+          SimpleEntry<String, Integer> entry = iterator.next();
+          String name = entry.getKey();
+          name.replaceAll("\\|", "\\|");
+          name.replaceAll("\t", "");
+          name.replaceAll("\n", "");
+          name.replaceAll("\r", "");
+          file.writeString(name + "|" + Integer.toString(entry.getValue()) + "\t", true);
+          i++;
+        }
+      } else if (!desktopGame && Gdx.files.isLocalStorageAvailable()){
+        FileHandle file = Gdx.files.local(highScoresPath);
         file.writeString("", false);
         Iterator<SimpleEntry<String, Integer>> iterator = scores.iterator();
         int i = 0;
@@ -211,12 +242,16 @@ public class Assets {
     return settings;
   }
   
-  public static void loadSettingsString() {
+  public static void loadSettingsString(boolean desktopGame) {
     try {
-      if (Gdx.files.isExternalStorageAvailable() && 
+      if (desktopGame && Gdx.files.isExternalStorageAvailable() && 
           Gdx.files.external(settingsPath).exists()) {
-        FileHandle file = Gdx.files.external(settingsPath);
-        settingsString = file.readString("UTF-8");
+          FileHandle file = Gdx.files.external(settingsPath);
+          settingsString = file.readString("UTF-8");
+      } else if (!desktopGame && Gdx.files.isLocalStorageAvailable() &&
+          Gdx.files.local(settingsPath).exists()) {
+          FileHandle file = Gdx.files.local(settingsPath);
+          settingsString = file.readString("UTF-8");
       } else {
         settingsString = "1 1 1 0";
       }
@@ -226,10 +261,20 @@ public class Assets {
     }
   }
   
-  public static void writeSettings(Settings settings) {
+  public static void writeSettings(Settings settings, boolean desktopGame) {
     try {
-      if (Gdx.files.isExternalStorageAvailable()) {
+      if (desktopGame && Gdx.files.isExternalStorageAvailable()) {
         FileHandle file = Gdx.files.external(settingsPath);
+        String music = "0";
+        String sound = "0";
+        if (settings.getMusicOn()) music = "1";
+        if (settings.getSoundOn()) sound = "1";
+        
+        file.writeString(music + " " + sound + " " +
+            Integer.toString(settings.getSpeed().ordinal()) + " " +
+            Integer.toString(settings.getHomunculiNum()), false, "UTF-8");
+      } else if (!desktopGame && Gdx.files.isLocalStorageAvailable()) {
+        FileHandle file = Gdx.files.local(settingsPath);
         String music = "0";
         String sound = "0";
         if (settings.getMusicOn()) music = "1";
@@ -267,6 +312,13 @@ public class Assets {
     textCursor = new TextureRegion(textCursorT, 0, 0, 8, 12);
     overlay = loadTexture("data/gfx/overlay.png");
     textT = loadTexture("data/gfx/text.png");
+    pressAnyKey = new TextureRegion(textT, 322, 28, 96, 22);
+    tapScreen = new TextureRegion(textT, 419, 28, 83, 22);
+    gameOver = new TextureRegion(textT, 0, 42, 71, 10);
+    enterName = new TextureRegion(textT, 73, 40, 77, 22);
+    highScore = new TextureRegion(textT, 262, 0, 74, 12);
+    complete  = new TextureRegion(textT, 152,41,66,12);
+
     startW = new TextureRegion(textT, 0, 0, 41, 10);
     startB = new TextureRegion(textT, 42, 0, 41, 10);
     quitW = new TextureRegion(textT, 83, 0, 33, 14);

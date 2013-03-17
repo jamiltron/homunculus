@@ -21,6 +21,17 @@ public class WorldRenderer {
   private final OrthographicCamera cam;
   private final SpriteBatch spriteBatch;
 
+  private static final float GAMEOVER_SCALE = 2.75f;
+  private static final float GAMEOVER_W = Assets.gameOver.getRegionWidth() / 32f * GAMEOVER_SCALE;
+  private static final float GAMEOVER_H = Assets.gameOver.getRegionHeight() / 32f * GAMEOVER_SCALE;
+  private static final float GAMEOVER_X = 3.8f;
+  private static final float GAMEOVER_Y = 18.5f;
+  private static final float CONTINUE_SCALE = 2.5f;
+  private static final float PRESS_W = Assets.pressAnyKey.getRegionWidth() / 32f * CONTINUE_SCALE;
+  private static final float PRESS_H = Assets.pressAnyKey.getRegionHeight() / 32f * CONTINUE_SCALE;
+  private static final float PRESS_X = 3.25f;
+  private static final float PRESS_Y = 6f;
+  
   private float ppuX;
   private float ppuY;
   private float yDiff;
@@ -87,9 +98,8 @@ public class WorldRenderer {
       Assets.font.draw(spriteBatch, "press any key", 3.4f * ppuX, 12 * ppuY);
       Assets.font.draw(spriteBatch, "to continue", 4f * ppuX, 11 * ppuY);
     } else if (world.lost && !world.scoreBroken) {
-      Assets.font.draw(spriteBatch, "    game over", 2f * ppuX, 19.5f * ppuY);
-      Assets.font.draw(spriteBatch, "press any key", 3.4f * ppuX, 12 * ppuY);
-      Assets.font.draw(spriteBatch, "to continue", 4f * ppuX, 11 * ppuY);
+      spriteBatch.draw(Assets.gameOver, GAMEOVER_X * ppuX, GAMEOVER_Y * ppuY, GAMEOVER_W * ppuX, GAMEOVER_H * ppuY);
+      spriteBatch.draw(Assets.pressAnyKey, PRESS_X * ppuX, PRESS_Y * ppuY, PRESS_W * ppuX, PRESS_H * ppuY);
     } else if (world.lost && world.scoreBroken) {
       Assets.font.draw(spriteBatch, "    high score", 2f * ppuX, 19.5f * ppuY);
       Assets.font.draw(spriteBatch, "enter your", 4f * ppuX, 17.5f * ppuY);

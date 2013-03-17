@@ -25,29 +25,36 @@ public class MainMenu implements Screen, InputProcessor {
   private float yDiff;
   private float xDiff;
   
-  private static final float SCALE = 2f;
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
+  private static final float LOGO_SCALE = 1.25f;
+  private static final float LOGO_W = Assets.logo.getRegionWidth() / 32f * LOGO_SCALE;
+  private static final float LOGO_H = Assets.logo.getRegionHeight() / 32f * LOGO_SCALE;
+  private static final float LOGO_X = CAMERA_W / 2f - LOGO_W / 2f;
+  private static float LOGO_Y;
+  private static float YSPACE;
+  private static final float YBASE = 2f;
+  private static final float SCALE = 2.5f;
   private static final float START_W = Assets.startW.getRegionWidth() / 32f * SCALE;
   private static final float START_H = Assets.startW.getRegionHeight() / 32f * SCALE;
   private static final float START_X = CAMERA_W / 2f - START_W / 2f;
-  private static final float START_Y = 18f;
+  private static float START_Y;
   private static final float INSTRUCTIONS_W = Assets.instructionsW.getRegionWidth() / 32f * SCALE;
   private static final float INSTRUCTIONS_H = Assets.instructionsW.getRegionHeight() / 32f * SCALE;
   private static final float INSTRUCTIONS_X = CAMERA_W / 2f - INSTRUCTIONS_W / 2f;
-  private static final float INSTRUCTIONS_Y = START_Y - 2;
+  private static float INSTRUCTIONS_Y;
   private static final float HIGHSCORES_W = Assets.highScoresW.getRegionWidth() / 32f * SCALE;
   private static final float HIGHSCORES_H = Assets.highScoresW.getRegionHeight() / 32f * SCALE;
   private static final float HIGHSCORES_X = CAMERA_W / 2f - HIGHSCORES_W / 2f;
-  private static final float HIGHSCORES_Y = INSTRUCTIONS_Y - 2;
+  private static float HIGHSCORES_Y;
   private static final float CREDITS_W = Assets.creditsW.getRegionWidth() / 32f * SCALE;
   private static final float CREDITS_H = Assets.creditsW.getRegionHeight() / 32f * SCALE;
   private static final float CREDITS_X = CAMERA_W / 2f - CREDITS_W / 2f;
-  private static final float CREDITS_Y = HIGHSCORES_Y - 2;
+  private static float CREDITS_Y;
   private static final float QUIT_W = Assets.quitW.getRegionWidth() / 32f * SCALE;
   private static final float QUIT_H = Assets.quitW.getRegionHeight() / 32f * SCALE;
   private static final float QUIT_X = CAMERA_W / 2f - QUIT_W / 2f;
-  private static final float QUIT_Y = CREDITS_Y - 2;
+  private static float QUIT_Y;;
   private static final float AREA_H = 0.75f;
   private boolean playSelectMove;
   private boolean playSelectEnter;
@@ -69,7 +76,6 @@ public class MainMenu implements Screen, InputProcessor {
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     this.cam.update();
     spriteBatch = new SpriteBatch();
-    arrowY = START_Y;
     over = false;
     game = g;
     playSelectMove = false;
@@ -85,6 +91,19 @@ public class MainMenu implements Screen, InputProcessor {
     ppuY = Math.min(ppuX, ppuY);
     yDiff = height - CAMERA_H * ppuY;
     xDiff = width  - CAMERA_W * ppuX;
+    setHeights();
+    arrowY = START_Y;
+  }
+  
+  public void setHeights() {
+    YSPACE = yDiff / ppuY / 4;
+    LOGO_Y = height / ppuY - 5f;
+    START_Y = LOGO_Y - YBASE;
+    INSTRUCTIONS_Y = START_Y - YBASE - YSPACE;
+    HIGHSCORES_Y = INSTRUCTIONS_Y - YBASE - YSPACE;
+    CREDITS_Y = HIGHSCORES_Y - YBASE - YSPACE;
+    QUIT_Y = CREDITS_Y - YBASE - YSPACE;
+
   }
 
   @Override
@@ -171,7 +190,6 @@ public class MainMenu implements Screen, InputProcessor {
   
   private void renderBackground() {
     spriteBatch.draw(Assets.startScreenBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
-    spriteBatch.draw(Assets.logo, 3.5f * ppuX, 19.5f * ppuY, 12.03125f * ppuX, 2.75f * ppuY);
     if (yDiff > 0) {
       for (float i = (CAMERA_H - 1) * ppuY; i <= height; i+= ppuY) {
         spriteBatch.draw(Assets.startScreenStretch, 0, i, CAMERA_W * ppuX, ppuY);
@@ -187,6 +205,7 @@ public class MainMenu implements Screen, InputProcessor {
   }
 
   private void renderText() {
+    spriteBatch.draw(Assets.logo, LOGO_X * ppuX, LOGO_Y * ppuY, LOGO_W * ppuX, LOGO_H * ppuY);
     TextureRegion tmp = null;
     if (arrowY == START_Y) {
       tmp = Assets.startW;
@@ -253,6 +272,7 @@ public class MainMenu implements Screen, InputProcessor {
 
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    if (!game.desktopGame) {
     float x = screenX / ppuX;
     float y = height / ppuY - screenY / ppuY;
     if (button == 0) {
@@ -279,6 +299,9 @@ public class MainMenu implements Screen, InputProcessor {
     }
 
     return true;
+    } else {
+      return false;
+    }
   }
 
   @Override
@@ -307,6 +330,7 @@ public class MainMenu implements Screen, InputProcessor {
     draw(dt);
     if (game.settings.getMusicOn() && !Assets.titleMusic.isPlaying()) {
       Assets.titleMusic.play();
+      Assets.titleMusic.setLooping(true);
     }
   }
 
@@ -328,14 +352,13 @@ public class MainMenu implements Screen, InputProcessor {
 
   @Override
   public void pause() {
-    // TODO Auto-generated method stub
+    Gdx.input.setInputProcessor(null);
 
   }
 
   @Override
   public void resume() {
-    // TODO Auto-generated method stub
-
+    Gdx.input.setInputProcessor(this);
   }
 
   @Override

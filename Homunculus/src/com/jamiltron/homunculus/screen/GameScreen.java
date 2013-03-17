@@ -37,7 +37,6 @@ public class GameScreen implements Screen, InputProcessor {
   private int                  highScore;
   private float                ppuX;
   private float                ppuY;
-  private float                width;
   private float                height;
   private float                lastX;
   private float                lastDragX;
@@ -107,7 +106,7 @@ public class GameScreen implements Screen, InputProcessor {
               break;
             }
           }
-          Assets.writeHighScores(game.scores);
+          Assets.writeHighScores(game.scores, game.desktopGame);
         }
       }
     });
@@ -216,8 +215,8 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public void pause() {
-    // TODO Auto-generated method stub
-
+    world.paused = true;
+    Gdx.input.setInputProcessor(null);
   }
 
   @Override
@@ -273,7 +272,6 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public void resize(final int w, final int h) {
-    width = w;
     height = h;
     ppuX = w / CAMERA_W;
     ppuY = h / CAMERA_H;
@@ -285,8 +283,7 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public void resume() {
-    // TODO Auto-generated method stub
-
+    Gdx.input.setInputProcessor(this);
   }
 
   @Override
@@ -345,10 +342,10 @@ public class GameScreen implements Screen, InputProcessor {
     if (!game.desktopGame) {
       final float y = height / ppuY - screenY / ppuY;
       if (y > 3.25f) {
-        if (screenX - lastDragX > 1) {
+        if (screenX - lastDragX >= 51) {
           controller.rightPress();
           controller.leftRelease(); 
-        } else if (lastDragX - screenX > 1) {
+        } else if (lastDragX - screenX >= 51) {
           controller.leftPress(); 
           controller.rightRelease();
         } else {

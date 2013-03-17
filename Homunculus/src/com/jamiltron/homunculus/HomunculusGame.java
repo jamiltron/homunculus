@@ -59,9 +59,9 @@ public class HomunculusGame extends Game {
   
   @Override
   public void create() {
-    Assets.loadSettingsString();
+    Assets.loadSettingsString(this.desktopGame);
     settings = Assets.getSettings();
-    scores = Assets.getHighScores();
+    scores = Assets.getHighScores(this.desktopGame);
     Assets.loadSounds();
     Assets.loadMusic();
     Assets.loadImages();

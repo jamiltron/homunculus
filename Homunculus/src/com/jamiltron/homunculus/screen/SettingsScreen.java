@@ -30,93 +30,97 @@ public class SettingsScreen implements Screen, InputProcessor {
   private boolean showSelector;
   private boolean playSelectMove;
   
+  private static float YSPACE;
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
-  private static final float SETTINGS_SCALE = 2.5f;
+  private static final float SETTINGS_SCALE = 3.5f;
+  private static final float ARROW_SCALE = 1.5f;
+  private static final float STEP = 2.5f;
   private static final float SETTINGS_W = Assets.settingsText.getRegionWidth()
       / 32f * SETTINGS_SCALE;
   private static final float SETTINGS_H = Assets.settingsText.getRegionHeight()
       / 32f * SETTINGS_SCALE;
-  private static final float SETTINGS_Y = 22.5f;
+  private static float SETTINGS_Y;
   private static final float SETTINGS_X = CAMERA_W / 2f - SETTINGS_W / 2f;
 
-  private static final float HEADINGS_SCALE = 2f;
-  private static final float OPTIONS_SCALE = 1.875f;
-  private static final float LEVEL_X = 4f;
-  private static final float LEVEL_Y = SETTINGS_Y - 2f;
+  private static final float HEADINGS_SCALE = 2.75f;
+  private static final float OPTIONS_SCALE = 2.5f;
+  private static final float LEVEL_X = 2f;
+  private static float LEVEL_Y;
   private static final float LEVEL_W = Assets.level.getRegionWidth() / 32f
       * HEADINGS_SCALE;
   private static final float LEVEL_H = Assets.level.getRegionHeight() / 32f
       * HEADINGS_SCALE;
 
   private static final float SPEED_X = LEVEL_X;
-  private static final float SPEED_Y = LEVEL_Y - 2.09375f;
+  private static float SPEED_Y;
   private static final float SPEED_W = Assets.speed.getRegionWidth() / 32f
       * HEADINGS_SCALE;
   private static final float SPEED_H = Assets.speed.getRegionHeight() / 32f
       * HEADINGS_SCALE;
-  private static final float SLOW_X = 9f;
-  private static final float SLOW_Y = SPEED_Y + .09375f * 2f;
+  private static final float SLOW_X = 7f;
+  private static float SLOW_Y;
   private static final float SLOW_W = Assets.slowW.getRegionWidth() / 32f
       * OPTIONS_SCALE;
   private static final float SLOW_H = Assets.slowW.getRegionHeight() / 32f
       * OPTIONS_SCALE;
-  private static final float MED_X = SLOW_X + 3f;
-  private static final float MED_Y = SLOW_Y;
+  private static final float MED_X = SLOW_X + SLOW_W + 1.25f;
+  private static float MED_Y;
   private static final float MED_W = Assets.medW.getRegionWidth() / 32f
       * OPTIONS_SCALE;
   private static final float MED_H = Assets.medW.getRegionHeight() / 32f
       * OPTIONS_SCALE;
-  private static final float FAST_X = MED_X + 2.5f;
-  private static final float FAST_Y = SLOW_Y - 0.0625f;
+  private static final float FAST_X = MED_X + MED_W + 1.25f;
+  private static float FAST_Y;
   private static final float FAST_W = Assets.fastW.getRegionWidth() / 32f
       * OPTIONS_SCALE;
   private static final float FAST_H = Assets.fastW.getRegionHeight() / 32f
       * OPTIONS_SCALE;
   private static final float SOUND_X = SPEED_X;
-  private static final float SOUND_Y = SPEED_Y - 2f;
+  private static float SOUND_Y;
   private static final float SOUND_W = Assets.sounds.getRegionWidth() / 32f
       * HEADINGS_SCALE;
   private static final float SOUND_H = Assets.sounds.getRegionHeight() / 32f
       * HEADINGS_SCALE;
-  private static final float ON1_X = 9f;
-  private static final float ON1_Y = SOUND_Y;
   private static final float ON_W = Assets.onW.getRegionWidth() / 32f
       * OPTIONS_SCALE;
   private static final float ON_H = Assets.onW.getRegionHeight() / 32f
       * OPTIONS_SCALE;
-  private static final float OFF1_X = ON1_X + 3f;
-  private static final float OFF1_Y = ON1_Y - 0.0625f;
+  private static final float ON1_X = SLOW_X + (SLOW_W - ON_W);
+  private static float ON1_Y;
+  private static final float OFF1_X = FAST_X;
+  private static float OFF1_Y;
   private static final float OFF_W = Assets.offW.getRegionWidth() / 32f
       * OPTIONS_SCALE;
   private static final float OFF_H = Assets.offW.getRegionHeight() / 32f
       * OPTIONS_SCALE;
   private static final float MUSIC_X = SOUND_X;
-  private static final float MUSIC_Y = SOUND_Y - 2f;
+  private static float MUSIC_Y;
   private static final float MUSIC_W = Assets.music.getRegionWidth() / 32f
       * HEADINGS_SCALE;
   private static final float MUSIC_H = Assets.music.getRegionHeight() / 32f
       * HEADINGS_SCALE;
-  private static final float ON2_X = 9f;
-  private static final float ON2_Y = MUSIC_Y;
-  private static final float OFF2_X = ON2_X + 3f;
-  private static final float OFF2_Y = ON2_Y - 0.0625f;
-  private static final float START_Y = MUSIC_Y - 2f;
+  private static final float ON2_X = ON1_X;
+  private static float ON2_Y;
+  private static final float OFF2_X = FAST_X;
+  private static float OFF2_Y;
+  private static final float START_Y = 9f;
   private static final float START_W = Assets.startW.getRegionWidth() / 32f
       * HEADINGS_SCALE;
   private static final float START_H = Assets.startW.getRegionHeight() / 32f
       * HEADINGS_SCALE;
   private static final float START_X = CAMERA_W / 2f - START_W / 2f;
-  private static final float NUM_X = LEVEL_X + 5f;
-  private static final float NUM_Y = LEVEL_Y + 0.35f;
   private static final float LEFT_ARROW_X = 7.25f;
   private static final float LEFT_ARROW_Y = LEVEL_Y - 0.25f;
-  private static final float LEFT_ARROW_W = Assets.leftArrow.getRegionWidth() / 32f;
-  private static final float LEFT_ARROW_H = Assets.leftArrow.getRegionHeight() / 32f;
-  private static final float RIGHT_ARROW_X = 10.25f;
+  private static final float LEFT_ARROW_W = Assets.leftArrow.getRegionWidth() / 32f * ARROW_SCALE;
+  private static final float LEFT_ARROW_H = Assets.leftArrow.getRegionHeight() / 32f * ARROW_SCALE;
+  private static final float RIGHT_ARROW_X = LEFT_ARROW_X + 3.25f;
   private static final float RIGHT_ARROW_Y = LEVEL_Y - 0.25f;
-  private static final float RIGHT_ARROW_W = Assets.rightArrow.getRegionWidth() / 32f;
-  private static final float RIGHT_ARROW_H = Assets.rightArrow.getRegionHeight() / 32f;
+  private static final float RIGHT_ARROW_W = Assets.rightArrow.getRegionWidth() / 32f * ARROW_SCALE;
+  private static final float RIGHT_ARROW_H = Assets.rightArrow.getRegionHeight() / 32f * ARROW_SCALE;
+  private static final float NUM_X = LEFT_ARROW_X + 1.75f;
+  private static float NUM_Y;
+  private StringBuffer tmpString;
 
   public SettingsScreen(final HomunculusGame game) {
     this.game = game;
@@ -130,6 +134,7 @@ public class SettingsScreen implements Screen, InputProcessor {
     cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
     cam.update();
     spriteBatch = new SpriteBatch();
+    tmpString = new StringBuffer(2);
   }
   
   public void reset() {
@@ -184,6 +189,7 @@ public class SettingsScreen implements Screen, InputProcessor {
         playSelectMove = true;
         music = true;
         Assets.titleMusic.play();
+        Assets.titleMusic.setLooping(true);
       } else if (keycode == Keys.RIGHT && music == true) {
         playSelectMove = true;
         music = false;
@@ -207,7 +213,7 @@ public class SettingsScreen implements Screen, InputProcessor {
       game.settings.setSoundOn(sound);
       game.settings.setMusicOn(music);
       game.settings.setHomunculiNum(level);
-      Assets.writeSettings(game.settings);
+      Assets.writeSettings(game.settings, game.desktopGame);
       game.goToGame();
     }
     
@@ -233,8 +239,7 @@ public class SettingsScreen implements Screen, InputProcessor {
 
   @Override
   public void pause() {
-    // TODO Auto-generated method stub
-
+    Gdx.input.setInputProcessor(null);
   }
 
   @Override
@@ -270,7 +275,7 @@ public class SettingsScreen implements Screen, InputProcessor {
     if (showSelector) {
       if (cursorLevel == 0) {
         spriteBatch.draw(Assets.selector, (LEVEL_X - 0.25f) * ppuX,
-            (LEVEL_Y - 0.2f) * ppuY, 2.9f * ppuX, 0.9f * ppuY);
+            (LEVEL_Y - 0.2f) * ppuY, (LEVEL_W + .4f) * ppuX, (LEVEL_H + 0.35f) * ppuY);
       } else if (cursorLevel == 1 && speed == 0) {
         spriteBatch.draw(Assets.selector, (SLOW_X - .2f) * ppuX, (SLOW_Y - .2f)
             * ppuY, (SLOW_W + .4f) * ppuX, (SLOW_H + .35f) * ppuY);
@@ -373,7 +378,14 @@ public class SettingsScreen implements Screen, InputProcessor {
     spriteBatch.draw(Assets.startW, START_X * ppuX, START_Y * ppuY, START_W
         * ppuX, START_H * ppuY);
     
-    Assets.font.draw(spriteBatch, Integer.toString(level), NUM_X * ppuX, NUM_Y * ppuY);
+    tmpString.delete(0, 2);
+    if (level < 10) {
+      tmpString.append("0");
+      tmpString.append(Integer.toString(level));
+    } else {
+      tmpString.append(Integer.toString(level));
+    }
+    Assets.font.draw(spriteBatch, tmpString, NUM_X * ppuX, NUM_Y * ppuY);
   }
 
   @Override
@@ -387,13 +399,30 @@ public class SettingsScreen implements Screen, InputProcessor {
     ppuY = ppuX;
     yDiff = height - CAMERA_H * ppuY;
     xDiff = width - CAMERA_W * ppuX;
-    Assets.scaleFont(ppuX, ppuY);
+    Assets.scaleFont(ppuX + 4f, ppuY + 4f);
+    setHeight();
+  }
+  
+  private void setHeight() {
+    YSPACE = yDiff / ppuY / 4f;
+    SETTINGS_Y = height / ppuY - 3f;
+    LEVEL_Y = SETTINGS_Y - STEP;
+    SPEED_Y = LEVEL_Y - STEP - YSPACE;
+    SLOW_Y = SPEED_Y + .09375f * 2f;
+    MED_Y = SLOW_Y;
+    FAST_Y = SLOW_Y - 0.0625f;
+    SOUND_Y = SPEED_Y - STEP - YSPACE;
+    MUSIC_Y = SOUND_Y - STEP - YSPACE;
+    ON1_Y = SOUND_Y;
+    OFF1_Y =  ON1_Y - 0.0625f;
+    ON2_Y = MUSIC_Y;
+    OFF2_Y = ON2_Y - 0.0625f;
+    NUM_Y = LEVEL_Y + 0.55f;
   }
 
   @Override
   public void resume() {
-    // TODO Auto-generated method stub
-
+    Gdx.input.setInputProcessor(this);
   }
 
   @Override
@@ -453,16 +482,16 @@ public class SettingsScreen implements Screen, InputProcessor {
         } else if (overArea(x, y, FAST_X, FAST_Y, FAST_W, FAST_H)) {
           speed = 2;
           playSelectMove = true;
-        } else if (overArea(x, y, ON1_X, ON1_Y, ON_W, ON_H)) {
+        } else if (overArea(x, y, ON1_X - 1f, ON1_Y - .5f, ON_W + 1f, ON_H + .5f)) {
           sound = true;
           playSelectMove = true;
-        } else if (overArea(x, y, OFF1_X, OFF1_Y, OFF_W, OFF_H)) {
+        } else if (overArea(x, y, OFF1_X - 1f, OFF1_Y - .5f, OFF_W + 1f, OFF_H + .5f)) {
           sound = false;
-        }else if (overArea(x, y, ON2_X, ON2_Y, ON_W, ON_H)) {
+        }else if (overArea(x, y, ON2_X - 1f, ON2_Y - .5f, ON_W + 1f, ON_H + .5f)) {
           music = true;
           playSelectMove = true;
           Assets.titleMusic.play();
-        } else if (overArea(x, y, OFF2_X, OFF2_Y, OFF_W, OFF_H)) {
+        } else if (overArea(x, y, OFF2_X - 1f, OFF2_Y - .5f, OFF_W + 1f, OFF_H + .5f)) {
           music = false;
           playSelectMove = true;
           Assets.titleMusic.stop();
@@ -473,7 +502,7 @@ public class SettingsScreen implements Screen, InputProcessor {
             game.settings.setSoundOn(sound);
             game.settings.setMusicOn(music);
             game.settings.setHomunculiNum(level);
-            Assets.writeSettings(game.settings);
+            Assets.writeSettings(game.settings, game.desktopGame);
             game.setScreen(new GameScreen(game));
         }
       }

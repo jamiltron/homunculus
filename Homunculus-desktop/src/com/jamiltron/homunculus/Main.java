@@ -9,12 +9,9 @@ public class Main {
     LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
     cfg.title = "Homunculus";
     cfg.useGL20 = true;
-    cfg.width = 600;
-    cfg.height = 800;
-    //cfg.width   = 450;
-    //cfg.height  = 600;
+    cfg.width   = 450;
+    cfg.height  = 600;
     cfg.resizable = false;
-    new LwjglApplication(new HomunculusGame(false), cfg);
-    //new LwjglApplication(new HomunculusGame(true), cfg);
+    new LwjglApplication(new HomunculusGame(true), cfg);
   }
 }
