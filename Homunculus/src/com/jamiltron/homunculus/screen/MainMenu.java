@@ -60,17 +60,12 @@ public class MainMenu implements Screen, InputProcessor {
   private boolean playSelectEnter;
   
   // TODO UPDATE RECTANGLES
-  private Rectangle startArea = new Rectangle(2f, 
-      START_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
-  private Rectangle instructionsArea = new Rectangle(2f, 
-      INSTRUCTIONS_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
-  private Rectangle highscoresArea = new Rectangle(2f,
-      HIGHSCORES_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
-  private Rectangle creditsArea = new Rectangle(2f, 
-      CREDITS_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
-  private Rectangle quitArea = new Rectangle(2f, 
-      QUIT_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
-
+  private Rectangle startArea;
+  private Rectangle instructionsArea;
+  private Rectangle highscoresArea;
+  private Rectangle creditsArea;
+  private Rectangle quitArea;
+  
   public MainMenu(HomunculusGame g) {
     this.cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
     this.cam.position.set(CAMERA_W / 2f, CAMERA_H / 2f, 0f);
@@ -103,6 +98,12 @@ public class MainMenu implements Screen, InputProcessor {
     HIGHSCORES_Y = INSTRUCTIONS_Y - YBASE - YSPACE;
     CREDITS_Y = HIGHSCORES_Y - YBASE - YSPACE;
     QUIT_Y = CREDITS_Y - YBASE - YSPACE;
+
+    startArea = new Rectangle(2f, START_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
+    instructionsArea = new Rectangle(2f, INSTRUCTIONS_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
+    highscoresArea = new Rectangle(2f, HIGHSCORES_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
+    creditsArea = new Rectangle(2f, CREDITS_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
+    quitArea = new Rectangle(2f, QUIT_Y - AREA_H, CAMERA_W - 4f, AREA_H * 3f);
 
   }
 
@@ -142,24 +143,18 @@ public class MainMenu implements Screen, InputProcessor {
     }
     
     if (keycode == Keys.SPACE || keycode == Keys.ENTER) {
-      // TODO don't create new screens every time
       if (arrowY == START_Y) {
         playSelectEnter = true;
-        //game.setScreen(new SettingsScreen(game));
         game.goToSettings();
       } else if (arrowY == INSTRUCTIONS_Y) {
         playSelectEnter = true;
         game.goToInstructions();
-        //game.setScreen(new InstructionScreen(game, this));
-        // TODO Make highscore screen
       } else if (arrowY == HIGHSCORES_Y) {
         playSelectEnter = true;
         game.goToHighScores();
-        //game.setScreen(new HighScoreScreen(game, this));
       } else if (arrowY == CREDITS_Y) {
         playSelectEnter = true;
         game.goToCredits();
-//        game.setScreen(new CreditsScreen(game, this));
       } else {
         playSelectEnter = true;
         over = true;
@@ -278,20 +273,16 @@ public class MainMenu implements Screen, InputProcessor {
     if (button == 0) {
       if ((x >= startArea.x && x <= startArea.x + startArea.width) &&
           (y >= startArea.y && y <= startArea.y + startArea.height)) {
-        //game.setScreen(new SettingsScreen(game));
         game.goToSettings();
       } else if ((x >= instructionsArea.x && x <= instructionsArea.x + instructionsArea.width) &&
           (y >= instructionsArea.y && y <= instructionsArea.y + instructionsArea.height)) {
         game.goToInstructions();
-        //game.setScreen(new InstructionScreen(game, this));
       } else if ((x >= highscoresArea.x && x <= highscoresArea.x + highscoresArea.width) &&
           (y >= highscoresArea.y && y <= highscoresArea.y + highscoresArea.height)) {
         game.goToHighScores();
-        //game.setScreen(new HighScoreScreen(game, this));
       } else if ((x >= creditsArea.x && x <= creditsArea.x + creditsArea.width) &&
           (y >= creditsArea.y && y <= creditsArea.y + creditsArea.height)) {
         game.goToCredits();
-        //game.setScreen(new CreditsScreen(game, this));
       } else if ((x >= quitArea.x && x <= quitArea.x + quitArea.width) &&
           (y >= quitArea.y && y <= quitArea.y + quitArea.height)) {
         over = true;

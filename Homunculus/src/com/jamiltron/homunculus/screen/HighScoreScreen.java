@@ -24,14 +24,14 @@ public class HighScoreScreen implements Screen, InputProcessor {
   private float xDiff;
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
-  private static final float SCALE = 2.5f;
+  private static final float SCALE = 3.5f;
   private static final float INSTRUCTIONS_W = Assets.highScoresW.getRegionWidth()
       / 32f * SCALE;
   private static final float INSTRUCTIONS_H = Assets.highScoresW.getRegionHeight()
       / 32f * SCALE;
-  private static final float INSTRUCTIONS_Y = 22.5f; 
+  private static float INSTRUCTIONS_Y; 
   private static final float INSTRUCTIONS_X = CAMERA_W / 2f - INSTRUCTIONS_W / 2f;
-  private static final float TEXT_Y = 21.5f;
+  private static float TEXT_Y;
   private static final float TEXT_X = 1.4f;
 
   public HighScoreScreen(HomunculusGame g) {
@@ -44,11 +44,7 @@ public class HighScoreScreen implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
-    if (keycode == Keys.ESCAPE) {
-      Gdx.app.exit();
-    } else {
-      game.goToMainMenu();
-    }
+    game.goToMainMenu();
     return true;
   }
 
@@ -108,6 +104,11 @@ public class HighScoreScreen implements Screen, InputProcessor {
     spriteBatch.end();
   }
   
+  private void setHeight() {
+    INSTRUCTIONS_Y = height / ppuY - 3f;
+    TEXT_Y = INSTRUCTIONS_Y - 1.5f;
+  }
+  
   public void renderBackground() {
     spriteBatch.draw(Assets.startScreenBackground, 0, 0, CAMERA_W * ppuX, CAMERA_H * ppuY);
     if (yDiff > 0) {
@@ -136,9 +137,6 @@ public class HighScoreScreen implements Screen, InputProcessor {
         i++;
       }
     }
-    Assets.font.draw(spriteBatch, "       press any key to continue", TEXT_X * ppuX,
-        (TEXT_Y - 12.5f) * ppuY);
-
   }
 
   @Override
@@ -151,7 +149,8 @@ public class HighScoreScreen implements Screen, InputProcessor {
     ppuY = ppuX;
     yDiff = height - CAMERA_H * ppuY;
     xDiff = width - CAMERA_W * ppuX;
-    Assets.scaleFont(ppuX / 1.5f, ppuY / 1.5f);
+    Assets.scaleFont(ppuX / (32f / ppuX), ppuY / (32f / ppuY));
+    setHeight();
   }
 
   @Override

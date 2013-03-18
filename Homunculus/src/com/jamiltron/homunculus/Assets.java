@@ -29,6 +29,7 @@ public class Assets {
   public static Sound selectEnter;
   public static Sound rotate;
   
+  public static TextureRegion instructionsBase;
   public static Texture startScreenBackgroundT;
   public static Texture gameOverBackgroundT;
   public static Texture pauseBackgroundT;
@@ -64,6 +65,7 @@ public class Assets {
   public static TextureRegion highScore;
   public static TextureRegion complete;
   
+  public static TextureRegion paused;
   public static TextureRegion startW;
   public static TextureRegion startB;
   public static TextureRegion highScoresW;
@@ -318,7 +320,9 @@ public class Assets {
     enterName = new TextureRegion(textT, 73, 40, 77, 22);
     highScore = new TextureRegion(textT, 262, 0, 74, 12);
     complete  = new TextureRegion(textT, 152,41,66,12);
+    instructionsBase = new TextureRegion(textT, 0, 66, 282, 94);
 
+    paused = new TextureRegion(textT, 328, 52, 53, 12);
     startW = new TextureRegion(textT, 0, 0, 41, 10);
     startB = new TextureRegion(textT, 42, 0, 41, 10);
     quitW = new TextureRegion(textT, 83, 0, 33, 14);

@@ -23,12 +23,12 @@ public class CreditsScreen implements Screen, InputProcessor {
   private float xDiff;
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
-  private static final float SCALE = 2.5f;
+  private static final float SCALE = 3.5f;
   private static final float CREDITS_W = Assets.creditsW.getRegionWidth() / 32f * SCALE;
   private static final float CREDITS_H = Assets.creditsW.getRegionHeight() / 32f * SCALE;
-  private static final float CREDITS_Y = 22.5f;
+  private static float CREDITS_Y = 22.5f;
   private static final float CREDITS_X = CAMERA_W / 2f - CREDITS_W / 2f;
-  private static final float TEXT_Y = 20.5f;
+  private static float TEXT_Y = 20.5f;
   private static final float TEXT_X = 1.4f;
 
   public CreditsScreen(HomunculusGame g) {
@@ -41,11 +41,7 @@ public class CreditsScreen implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
-    if (keycode == Keys.ESCAPE) {
-      Gdx.app.exit();
-    } else {
-      game.goToMainMenu();
-    }
+    game.goToMainMenu();
     return true;
   }
 
@@ -121,18 +117,17 @@ public class CreditsScreen implements Screen, InputProcessor {
   public void renderText() {
     spriteBatch.draw(Assets.creditsW, CREDITS_X * ppuX, CREDITS_Y * ppuY, CREDITS_W * ppuX, CREDITS_H * ppuY);
     Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-    Assets.font.draw(spriteBatch, "game development & programming", (TEXT_X + 1f) * ppuX,
-        TEXT_Y * ppuY);
-    Assets.font.draw(spriteBatch, "justin hamilton", (TEXT_X + 5f) * ppuX,
-        (TEXT_Y - 1f) * ppuY);
-    Assets.font.draw(spriteBatch, "graphic design & art", (TEXT_X + 4f) * ppuX,
-        (TEXT_Y - 4f) * ppuY);
-    Assets.font.draw(spriteBatch, "donna almendrala", (TEXT_X + 5f) * ppuX,
+    Assets.font.draw(spriteBatch, "          justin hamilton", TEXT_X * ppuX, TEXT_Y * ppuY);
+    Assets.font.draw(spriteBatch, "    development & programming", TEXT_X * ppuX,
+       (TEXT_Y - 1f) * ppuY);
+    Assets.font.draw(spriteBatch, "       graphic design & art", TEXT_X * ppuX,
         (TEXT_Y - 5f) * ppuY);
-    Assets.font.draw(spriteBatch, "music", (TEXT_X + 7f) * ppuX,
-        (TEXT_Y - 8f) * ppuY);
-    Assets.font.draw(spriteBatch, "lucky lion studios", (TEXT_X + 4.25f) * ppuX,
+    Assets.font.draw(spriteBatch, "         donna almendrala", TEXT_X * ppuX,
+        (TEXT_Y - 4f) * ppuY);
+    Assets.font.draw(spriteBatch, "               music", TEXT_X * ppuX,
         (TEXT_Y - 9f) * ppuY);
+    Assets.font.draw(spriteBatch, "        lucky lion studios", TEXT_X * ppuX,
+        (TEXT_Y - 8f) * ppuY);
   }
 
   @Override
@@ -145,7 +140,13 @@ public class CreditsScreen implements Screen, InputProcessor {
     ppuY = ppuX;
     yDiff = height - CAMERA_H * ppuY;
     xDiff = width  - CAMERA_W * ppuX;
-    Assets.scaleFont(ppuX / 1.5f, ppuY / 1.5f);
+    Assets.scaleFont(ppuX / (32f / ppuX), ppuY / (32f / ppuY));
+    setHeight();
+  }
+  
+  private void setHeight() {
+    CREDITS_Y = height / ppuY - 3f;
+    TEXT_Y = CREDITS_Y - 1.5f;
   }
 
   @Override

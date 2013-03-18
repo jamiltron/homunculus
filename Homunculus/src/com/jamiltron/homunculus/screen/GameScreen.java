@@ -95,6 +95,7 @@ public class GameScreen implements Screen, InputProcessor {
     final GameScreen tmpGameScreen = this;
     textfield.setTextFieldListener(new TextFieldListener() {
       public void keyTyped (TextField textfield, char key) {
+        textfield.getOnscreenKeyboard().show(true);
         if (key == '\n' || key == '\r') {
           textfield.getOnscreenKeyboard().show(false);
           Gdx.input.setInputProcessor(tmpGameScreen);
@@ -236,6 +237,7 @@ public class GameScreen implements Screen, InputProcessor {
         if (!dropPressed) controller.dropRelease();
         if (!rotrPressed) controller.rotrRelease();
         if (!rotlPressed) controller.rotlRelease();
+        controller.anyRelease();
       }
     }
 
@@ -312,6 +314,7 @@ public class GameScreen implements Screen, InputProcessor {
       
     if (!game.desktopGame) {
      if (button == 0) { 
+       if (!world.paused) { 
        final float x = screenX / ppuX; 
        final float y = height / ppuY - screenY / ppuY;
 
@@ -329,6 +332,7 @@ public class GameScreen implements Screen, InputProcessor {
        lastX = screenX;
        lastDragX = screenX;
        touching = true;
+       }
      }
      return true;
      } else {
@@ -363,6 +367,8 @@ public class GameScreen implements Screen, InputProcessor {
   public boolean touchUp(final int screenX, final int screenY,
       final int pointer, final int button) {
     if (!game.desktopGame) {
+      if (!world.paused) {
+        controller.anyPress();
       if (Math.abs(lastX - screenX) <= 1f && screenY < height - 3.25 * ppuY) {
         controller.rotlPress();
       }
@@ -372,6 +378,12 @@ public class GameScreen implements Screen, InputProcessor {
       lastDragX = screenX;
       touching = false;
       return true;
+      } else {
+        world.paused = false;
+        controller.unpausable = false;
+        if (game.settings.getMusicOn()) Assets.levelMusic.play();
+        return true;
+      }
     } else {
       return false;
     }

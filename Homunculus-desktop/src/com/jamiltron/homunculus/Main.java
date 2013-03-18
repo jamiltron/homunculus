@@ -12,6 +12,6 @@ public class Main {
     cfg.width   = 450;
     cfg.height  = 600;
     cfg.resizable = false;
-    new LwjglApplication(new HomunculusGame(true), cfg);
+    new LwjglApplication(new HomunculusGame(false), cfg);
   }
 }

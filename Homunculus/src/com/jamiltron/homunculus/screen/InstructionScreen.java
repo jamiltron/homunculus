@@ -23,14 +23,14 @@ public class InstructionScreen implements Screen, InputProcessor {
   private float xDiff;
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
-  private static final float SCALE = 2.5f;
+  private static final float SCALE = 3.5f;
   private static final float INSTRUCTIONS_W = Assets.instructionsW.getRegionWidth()
       / 32f * SCALE;
   private static final float INSTRUCTIONS_H = Assets.instructionsB.getRegionHeight()
       / 32f * SCALE;
-  private static final float INSTRUCTIONS_Y = 22.5f; 
+  private static float INSTRUCTIONS_Y = 22.5f; 
   private static final float INSTRUCTIONS_X = CAMERA_W / 2f - INSTRUCTIONS_W / 2f;
-  private static final float TEXT_Y = 21.5f;
+  private static float TEXT_Y = 21.5f;
   private static final float TEXT_X = 1.4f;
 
 
@@ -45,11 +45,7 @@ public class InstructionScreen implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(int keycode) {
-    if (keycode == Keys.ESCAPE) {
-      Gdx.app.exit();
-    } else {
-      game.goToMainMenu();
-    }
+    game.goToMainMenu();
     return true;
   }
 
@@ -126,36 +122,33 @@ public class InstructionScreen implements Screen, InputProcessor {
   }
   
   public void renderText() {
-    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f); 
     spriteBatch.draw(Assets.instructionsW, INSTRUCTIONS_X * ppuX, INSTRUCTIONS_Y * ppuY, INSTRUCTIONS_W * ppuX, INSTRUCTIONS_H * ppuY);
-    
     Assets.font.draw(spriteBatch, "a spell went awry and loosed foul", TEXT_X * ppuX,
         TEXT_Y * ppuY);
     Assets.font.draw(spriteBatch, "homunculi throughout your tower", TEXT_X * ppuX,
         (TEXT_Y - 1f) * ppuY);
-    Assets.font.draw(spriteBatch, "use magic to return them to the void", TEXT_X * ppuX,
+    Assets.font.draw(spriteBatch, "match four of the same colors", TEXT_X * ppuX,
         (TEXT_Y - 2.5f) * ppuY);
-    Assets.font.draw(spriteBatch, "match four of the same color in a", TEXT_X * ppuX,
+    Assets.font.draw(spriteBatch, "to return them to the void", TEXT_X * ppuX,
         (TEXT_Y - 3.5f) * ppuY);
-    Assets.font.draw(spriteBatch, "row to complete the spell", TEXT_X * ppuX,
-        (TEXT_Y - 4.5f) * ppuY);
     
     if (game.desktopGame) {
-      Assets.font.draw(spriteBatch, "press the arrow keys or wasd' to move", TEXT_X * ppuX,
+      Assets.font.draw(spriteBatch, "use arrow or wasd keys to move", TEXT_X * ppuX,
+          (TEXT_Y - 5f) * ppuY);
+      Assets.font.draw(spriteBatch, "use 'z' key to rotate left", TEXT_X * ppuX,
           (TEXT_Y - 6f) * ppuY);
-      Assets.font.draw(spriteBatch, "press 'z' to rotate left", TEXT_X * ppuX,
+      Assets.font.draw(spriteBatch, "use 'x' or 'up' keys to rotate right", TEXT_X * ppuX,
           (TEXT_Y - 7f) * ppuY);
-      Assets.font.draw(spriteBatch, "press 'x' or 'up' to rotate right", TEXT_X * ppuX,
+      Assets.font.draw(spriteBatch, "use 'p' key to pause", TEXT_X * ppuX,
           (TEXT_Y - 8f) * ppuY);
-      Assets.font.draw(spriteBatch, "press 'p' to pause", TEXT_X * ppuX,
+      Assets.font.draw(spriteBatch, "use 'esc' key to go back or quit", TEXT_X * ppuX,
           (TEXT_Y - 9f) * ppuY);
-      Assets.font.draw(spriteBatch, "press 'esc' to quit", TEXT_X * ppuX,
-          (TEXT_Y - 10f) * ppuY);
-      
-      Assets.font.draw(spriteBatch, "       press any key to continue", TEXT_X * ppuX,
-          (TEXT_Y - 12.5f) * ppuY);
     } else {
-      // TODO mobile instructions
+      Assets.font.draw(spriteBatch, "use the screen buttons to move", TEXT_X * ppuX,
+          (TEXT_Y - 5f) * ppuY);
+      Assets.font.draw(spriteBatch, "you may also drag to move", TEXT_X * ppuX, (TEXT_Y - 6f) * ppuY);
+      Assets.font.draw(spriteBatch, "tapping the screen will rotate", TEXT_X * ppuX, (TEXT_Y - 7f) * ppuY);
     }
 
   }
@@ -170,7 +163,13 @@ public class InstructionScreen implements Screen, InputProcessor {
     ppuY = ppuX;
     xDiff = width - CAMERA_W * ppuX;
     yDiff = height - CAMERA_H * ppuY;
-    Assets.scaleFont(ppuX / 1.5f, ppuY / 1.5f);
+    Assets.scaleFont(ppuX / (32f / ppuX), ppuY / (32f/ ppuY));
+    setHeight();
+  }
+  
+  public void setHeight() {
+    INSTRUCTIONS_Y = height / ppuY - 3f;
+    TEXT_Y = INSTRUCTIONS_Y - 1.5f;
   }
 
   @Override
@@ -186,12 +185,12 @@ public class InstructionScreen implements Screen, InputProcessor {
 
   @Override
   public void pause() {
-    // do nothing
+    Gdx.input.setInputProcessor(null);
   }
 
   @Override
   public void resume() {
-    // do nothing
+    Gdx.input.setInputProcessor(this);
   }
 
   @Override

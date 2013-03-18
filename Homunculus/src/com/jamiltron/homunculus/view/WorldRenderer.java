@@ -29,8 +29,28 @@ public class WorldRenderer {
   private static final float CONTINUE_SCALE = 2.5f;
   private static final float PRESS_W = Assets.pressAnyKey.getRegionWidth() / 32f * CONTINUE_SCALE;
   private static final float PRESS_H = Assets.pressAnyKey.getRegionHeight() / 32f * CONTINUE_SCALE;
-  private static final float PRESS_X = 3.25f;
+  private static final float PRESS_X = 7f - PRESS_W / 2f;
   private static final float PRESS_Y = 6f;
+  private static final float TAP_W   = Assets.tapScreen.getRegionWidth() / 32f * CONTINUE_SCALE;
+  private static final float TAP_H   = Assets.tapScreen.getRegionHeight() / 32f * CONTINUE_SCALE;
+  private static final float TAP_X   = 7f - TAP_W / 2f;
+  private static final float TAP_Y   = PRESS_Y;
+  private static final float COMPLETE_W = Assets.complete.getRegionWidth() / 32f * GAMEOVER_SCALE;
+  private static final float COMPLETE_H = Assets.complete.getRegionHeight() / 32f * GAMEOVER_SCALE;
+  private static final float COMPLETE_X = 14f / 2f - COMPLETE_W / 2f;
+  private static final float COMPLETE_Y = GAMEOVER_Y;
+  private static final float HIGHSCORE_W = Assets.highScore.getRegionWidth() / 32f * GAMEOVER_SCALE;
+  private static final float HIGHSCORE_H = Assets.highScore.getRegionHeight() / 32f * GAMEOVER_SCALE;
+  private static final float HIGHSCORE_X = 14f / 2 - HIGHSCORE_W / 2f;
+  private static final float HIGHSCORE_Y = GAMEOVER_Y;
+  private static final float PAUSED_W    = Assets.paused.getRegionWidth() / 32f * GAMEOVER_SCALE;
+  private static final float PAUSED_H    = Assets.paused.getRegionHeight() / 32f * GAMEOVER_SCALE;
+  private static final float PAUSED_X    = 14f / 2f - PAUSED_W / 2f;
+  private static final float PAUSED_Y    = GAMEOVER_Y;
+  private static final float ENTERNAME_W = Assets.enterName.getRegionWidth() / 32f * CONTINUE_SCALE;
+  private static final float ENTERNAME_H = Assets.enterName.getRegionHeight() / 32f * CONTINUE_SCALE;
+  private static final float ENTERNAME_X = 14f / 2f - ENTERNAME_W / 2f;
+  private static final float ENTERNAME_Y = HIGHSCORE_Y - 1f - ENTERNAME_H;
   
   private float ppuX;
   private float ppuY;
@@ -79,6 +99,14 @@ public class WorldRenderer {
     renderText();
     spriteBatch.end();
   }
+  
+  private void renderBottom() {
+      if (game.desktopGame) {
+        spriteBatch.draw(Assets.pressAnyKey, PRESS_X * ppuX, PRESS_Y * ppuY, PRESS_W * ppuX, PRESS_H * ppuY);
+      } else {
+        spriteBatch.draw(Assets.tapScreen, TAP_X * ppuX, TAP_Y * ppuY, TAP_W * ppuX, TAP_H * ppuY);
+      }
+  }
 
   private void renderText() {
     Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -86,26 +114,17 @@ public class WorldRenderer {
         22.5f * ppuY);
     
     if (world.paused) {
-      if (game.desktopGame) {
-        Assets.font.draw(spriteBatch, "paused", 5.5f * ppuX, 19.5f * ppuY);
-        Assets.font.draw(spriteBatch, "press any key", 3.4f * ppuX, 12 * ppuY);
-        Assets.font.draw(spriteBatch, "to continue", 4f * ppuX, 11 * ppuY);
-      } else {
-        Assets.font.draw(spriteBatch, "touch screen to continue", 4 * ppuX, 7 * ppuY);
-      }
+      spriteBatch.draw(Assets.paused, PAUSED_X * ppuX, PAUSED_Y * ppuY, PAUSED_W * ppuX, PAUSED_H * ppuY);
+      renderBottom();
     } else if (world.won) {
-      Assets.font.draw(spriteBatch, "     complete", 2f * ppuX, 19.5f * ppuY);
-      Assets.font.draw(spriteBatch, "press any key", 3.4f * ppuX, 12 * ppuY);
-      Assets.font.draw(spriteBatch, "to continue", 4f * ppuX, 11 * ppuY);
+      spriteBatch.draw(Assets.complete, COMPLETE_X * ppuX, COMPLETE_Y * ppuY, COMPLETE_W * ppuX, COMPLETE_H * ppuY);
+      renderBottom();
     } else if (world.lost && !world.scoreBroken) {
       spriteBatch.draw(Assets.gameOver, GAMEOVER_X * ppuX, GAMEOVER_Y * ppuY, GAMEOVER_W * ppuX, GAMEOVER_H * ppuY);
-      spriteBatch.draw(Assets.pressAnyKey, PRESS_X * ppuX, PRESS_Y * ppuY, PRESS_W * ppuX, PRESS_H * ppuY);
+      renderBottom();
     } else if (world.lost && world.scoreBroken) {
-      Assets.font.draw(spriteBatch, "    high score", 2f * ppuX, 19.5f * ppuY);
-      Assets.font.draw(spriteBatch, "enter your", 4f * ppuX, 17.5f * ppuY);
-      Assets.font.draw(spriteBatch, "   name", 4f * ppuX, 16.5f * ppuY);
-      Assets.font.draw(spriteBatch, "press  enter", 3.5f * ppuX, 12 * ppuY);
-      Assets.font.draw(spriteBatch, "to continue", 3.7f * ppuX, 11 * ppuY);
+      spriteBatch.draw(Assets.highScore, HIGHSCORE_X * ppuX, HIGHSCORE_Y * ppuY, HIGHSCORE_W * ppuX, HIGHSCORE_H * ppuY);
+      spriteBatch.draw(Assets.enterName, ENTERNAME_X * ppuX, ENTERNAME_Y * ppuY, ENTERNAME_W * ppuX, ENTERNAME_H * ppuY);
     }
     
     Assets.font.setColor(0.0f, 0.0f, 0.0f, 1.0f);

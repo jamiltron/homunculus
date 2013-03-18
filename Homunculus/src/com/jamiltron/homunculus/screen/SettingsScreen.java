@@ -111,11 +111,11 @@ public class SettingsScreen implements Screen, InputProcessor {
       * HEADINGS_SCALE;
   private static final float START_X = CAMERA_W / 2f - START_W / 2f;
   private static final float LEFT_ARROW_X = 7.25f;
-  private static final float LEFT_ARROW_Y = LEVEL_Y - 0.25f;
+  private static float LEFT_ARROW_Y = LEVEL_Y - 0.25f;
   private static final float LEFT_ARROW_W = Assets.leftArrow.getRegionWidth() / 32f * ARROW_SCALE;
   private static final float LEFT_ARROW_H = Assets.leftArrow.getRegionHeight() / 32f * ARROW_SCALE;
-  private static final float RIGHT_ARROW_X = LEFT_ARROW_X + 3.25f;
-  private static final float RIGHT_ARROW_Y = LEVEL_Y - 0.25f;
+  private static final float RIGHT_ARROW_X = LEFT_ARROW_X + 3.4f;
+  private static float RIGHT_ARROW_Y = LEVEL_Y - 0.25f;
   private static final float RIGHT_ARROW_W = Assets.rightArrow.getRegionWidth() / 32f * ARROW_SCALE;
   private static final float RIGHT_ARROW_H = Assets.rightArrow.getRegionHeight() / 32f * ARROW_SCALE;
   private static final float NUM_X = LEFT_ARROW_X + 1.75f;
@@ -158,7 +158,7 @@ public class SettingsScreen implements Screen, InputProcessor {
     playSelectMove = false;
     
     if (keycode == Keys.ESCAPE) {
-      Gdx.app.exit();
+      game.goToMainMenu();
     }
     
     if (cursorLevel == 0) {
@@ -418,6 +418,9 @@ public class SettingsScreen implements Screen, InputProcessor {
     ON2_Y = MUSIC_Y;
     OFF2_Y = ON2_Y - 0.0625f;
     NUM_Y = LEVEL_Y + 0.55f;
+    LEFT_ARROW_Y = LEVEL_Y - 0.25f;
+    RIGHT_ARROW_Y = LEVEL_Y - 0.25f;
+    
   }
 
   @Override
@@ -473,13 +476,13 @@ public class SettingsScreen implements Screen, InputProcessor {
              level += 1;
               playSelectMove = true;
            }
-        } else if (overArea(x, y, SLOW_X, SLOW_Y, SLOW_W, SLOW_H)) {
+        } else if (overArea(x, y, SLOW_X - 0.25f, SLOW_Y - 0.25f, SLOW_W + 0.25f, SLOW_H + 0.25f)) {
           speed = 0;
           playSelectMove = true;
-        } else if (overArea(x, y, MED_X, MED_Y, MED_W, MED_H)) {
+        } else if (overArea(x, y, MED_X - 0.25f, MED_Y - 0.25f, MED_W + 0.25f, MED_H + 0.25f)) {
           speed = 1;
           playSelectMove = true;
-        } else if (overArea(x, y, FAST_X, FAST_Y, FAST_W, FAST_H)) {
+        } else if (overArea(x, y, FAST_X - 0.25f, FAST_Y - 0.25f, FAST_W + 0.25f, FAST_H + 0.25f)) {
           speed = 2;
           playSelectMove = true;
         } else if (overArea(x, y, ON1_X - 1f, ON1_Y - .5f, ON_W + 1f, ON_H + .5f)) {

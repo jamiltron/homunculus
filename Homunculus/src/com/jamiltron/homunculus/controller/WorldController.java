@@ -24,7 +24,7 @@ public class WorldController {
   private World world;
   private Spell activeSpell;
   private final Settings settings;
-  private boolean unpausable;
+  public boolean unpausable;
   private boolean destroying;
   private boolean playSound;
   private boolean check1;
