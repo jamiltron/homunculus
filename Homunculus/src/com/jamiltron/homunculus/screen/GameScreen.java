@@ -95,7 +95,6 @@ public class GameScreen implements Screen, InputProcessor {
     final GameScreen tmpGameScreen = this;
     textfield.setTextFieldListener(new TextFieldListener() {
       public void keyTyped (TextField textfield, char key) {
-        textfield.getOnscreenKeyboard().show(true);
         if (key == '\n' || key == '\r') {
           textfield.getOnscreenKeyboard().show(false);
           Gdx.input.setInputProcessor(tmpGameScreen);
@@ -264,6 +263,7 @@ public class GameScreen implements Screen, InputProcessor {
     }
     } else {
       Gdx.input.setInputProcessor(stage);
+      textfield.getOnscreenKeyboard().show(true);
       renderer.render();
       stage.act(delta);
       stage.setKeyboardFocus(textfield);

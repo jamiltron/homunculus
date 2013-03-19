@@ -19,6 +19,7 @@ public class Assets {
   private static final String settingsPath   = path + "settings.dat";
   public static final int TOUCH_BOX = 2;
   
+  public static int unit;
   public static int wizardFrames = 5;
   public static float wizardTime = 0.1f;
   public static Music titleMusic;
@@ -40,7 +41,7 @@ public class Assets {
   public static Texture spriteSheet;
   public static Texture selector;
   public static Texture textT;
-  
+    
   public static TextureRegion gameOverBackground;
   public static TextureRegion startScreenBackground;
   public static TextureRegion pauseBackground;
@@ -309,7 +310,15 @@ public class Assets {
         Gdx.files.internal("data/fnt/fontw.png"), false);
   }
   
-  public static void loadImages() {
+  public static void loadImages(boolean small) {
+    int yb;
+    if (small) {
+      unit = 16;
+      yb = 400;
+    } else {
+      unit = 32;
+      yb = 0;
+    }
     textCursorT = loadTexture("data/gfx/textCursor.png");
     textCursor = new TextureRegion(textCursorT, 0, 0, 8, 12);
     overlay = loadTexture("data/gfx/overlay.png");
@@ -352,6 +361,7 @@ public class Assets {
     gameOverBackgroundT = loadTexture("data/gfx/game-over-bg.png");
     pauseBackgroundT = loadTexture("data/gfx/pause-bg.png");
     playGameBackgroundT = loadTexture("data/gfx/play-game-bg.png");
+    
     spriteSheet = loadTexture("data/gfx/sprite-sheet.png");
     startScreenBackgroundT = loadTexture("data/gfx/start-screen-bg.png");
 
@@ -367,65 +377,66 @@ public class Assets {
     pauseBackground       = new TextureRegion(pauseBackgroundT, 0, 0, 300, 400);
     gameOverBackground    = new TextureRegion(gameOverBackgroundT, 0, 0, 300, 400);
     
-    wizardAnim = new Animation(wizardTime, new TextureRegion(spriteSheet, 0, 0, 128, 128),
-        new TextureRegion(spriteSheet, 128, 0, 128, 128),
-        new TextureRegion(spriteSheet, 256, 0, 128, 128),
-        new TextureRegion(spriteSheet, 256, 0, 128, 128),
-        new TextureRegion(spriteSheet, 128, 0, 128, 128));
     
-    redHomLiveAnim = new Animation(0.18f, new TextureRegion(spriteSheet, 0, 128, 32, 32),
-        new TextureRegion(spriteSheet, 32, 128, 32, 32),
-        new TextureRegion(spriteSheet, 64, 128, 32, 32),
-        new TextureRegion(spriteSheet, 32, 128, 32, 32));
+    wizardAnim = new Animation(wizardTime, new TextureRegion(spriteSheet, unit * 4 * 0, 0 + yb, unit * 4, unit * 4),
+        new TextureRegion(spriteSheet, unit * 4 * 1, 0 + yb, unit * 4, unit * 4),
+        new TextureRegion(spriteSheet, unit * 4 * 2, 0 + yb, unit * 4, unit * 4),
+        new TextureRegion(spriteSheet, unit * 4 * 2, 0 + yb, unit * 4, unit * 4),
+        new TextureRegion(spriteSheet, unit * 4 * 1, 0 + yb, unit * 4, unit * 4));
     
-    yellowHomLiveAnim = new Animation(0.15f, new TextureRegion(spriteSheet, 0, 160, 32, 32),
-        new TextureRegion(spriteSheet, 32, 160, 32, 32),
-        new TextureRegion(spriteSheet, 64, 160, 32, 32),
-        new TextureRegion(spriteSheet, 32, 160, 32, 32));
+    redHomLiveAnim = new Animation(0.18f, new TextureRegion(spriteSheet, unit * 0, unit * 4 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 1, unit * 4 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 2, unit * 4 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 1, unit * 4 + yb, unit, unit));
     
-    blueHomLiveAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 0, 192, 32, 32),
-        new TextureRegion(spriteSheet, 32, 192, 32, 32),
-        new TextureRegion(spriteSheet, 64, 192, 32, 32),
-        new TextureRegion(spriteSheet, 32, 192, 32, 32));
+    yellowHomLiveAnim = new Animation(0.15f, new TextureRegion(spriteSheet, 0, unit * 5 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 1, unit * 5 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 2, unit * 5 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 1, unit * 5 + yb, unit, unit));
     
-    redHomDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 96, 128, 32, 32),
-        new TextureRegion(spriteSheet, 128, 128, 32, 32),
-        new TextureRegion(spriteSheet, 160, 128, 32, 32));
+    blueHomLiveAnim = new Animation(0.2f, new TextureRegion(spriteSheet, 0, unit * 6 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 1, unit * 6 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 2, unit * 6 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 1, unit * 6 + yb, unit, unit));
     
-    yellowHomDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 96, 160, 32, 32),
-        new TextureRegion(spriteSheet, 128, 160, 32, 32),
-        new TextureRegion(spriteSheet, 160, 160, 32, 32));
+    redHomDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, unit * 3, unit * 4 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 4, unit * 4 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 5, unit * 4 + yb, unit, unit));
+    
+    yellowHomDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, unit * 3, unit * 5 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 4, unit * 5 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 5, unit * 5 + yb, unit, unit));
 
-    blueHomDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 96, 192, 32, 32),
-        new TextureRegion(spriteSheet, 128, 192, 32, 32),
-        new TextureRegion(spriteSheet, 160, 192, 32, 32));
+    blueHomDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, unit * 3, unit * 6 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 5, unit * 6 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 5, unit * 6 + yb, unit, unit));
     
-    redSpellLiveAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 192, 128, 32, 32),
-        new TextureRegion(spriteSheet, 224, 128, 32, 32),
-        new TextureRegion(spriteSheet, 256, 128, 32, 32),
-        new TextureRegion(spriteSheet, 224, 128, 32, 32));
+    redSpellLiveAnim = new Animation(0.1f, new TextureRegion(spriteSheet, unit * 6, unit * 4 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 7, unit * 4 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 8, unit * 4 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 7, unit * 4 + yb, unit, unit));
     
-    yellowSpellLiveAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 192, 160, 32, 32),
-        new TextureRegion(spriteSheet, 224, 160, 32, 32),
-        new TextureRegion(spriteSheet, 256, 160, 32, 32),
-        new TextureRegion(spriteSheet, 224, 160, 32, 32));
+    yellowSpellLiveAnim = new Animation(0.1f, new TextureRegion(spriteSheet, unit * 6, unit * 5 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 7, unit * 5 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 8, unit * 5 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 7, unit * 5 + yb, unit, unit));
     
-    blueSpellLiveAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 192, 192, 32, 32),
-        new TextureRegion(spriteSheet, 224, 192, 32, 32),
-        new TextureRegion(spriteSheet, 256, 192, 32, 32),
-        new TextureRegion(spriteSheet, 224, 192, 32, 32));
+    blueSpellLiveAnim = new Animation(0.1f, new TextureRegion(spriteSheet, unit * 6, unit * 6 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 7, unit * 6 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 8, unit * 6 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 7, unit * 6 + yb, unit, unit));
     
-    redSpellDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 288, 128, 32, 32),
-        new TextureRegion(spriteSheet, 320, 128, 32, 32),
-        new TextureRegion(spriteSheet, 352, 128, 32, 32));
+    redSpellDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, unit * 9, unit * 4 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 10, unit * 4 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 11, unit * 4 + yb, unit, unit));
     
-    yellowSpellDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 288, 160, 32, 32),
-        new TextureRegion(spriteSheet, 320, 160, 32, 32),
-        new TextureRegion(spriteSheet, 352, 160, 32, 32));
+    yellowSpellDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, unit * 9, unit * 5 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 10, unit * 5 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 11, unit * 5 + yb, unit, unit));
     
-    blueSpellDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, 288, 192, 32, 32),
-        new TextureRegion(spriteSheet, 320, 192, 32, 32),
-        new TextureRegion(spriteSheet, 352, 192, 32, 32));
+    blueSpellDeadAnim = new Animation(0.1f, new TextureRegion(spriteSheet, unit * 9, unit * 6 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 10, unit * 6 + yb, unit, unit),
+        new TextureRegion(spriteSheet, unit * 11, unit * 6 + yb, unit, unit));
     
     leftArrow = new TextureRegion(spriteSheet, 0, 224, 32, 32);
     rightArrow = new TextureRegion(spriteSheet, 64, 224, 32, 32);

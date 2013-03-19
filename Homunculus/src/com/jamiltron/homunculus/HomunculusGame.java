@@ -64,7 +64,7 @@ public class HomunculusGame extends Game {
     scores = Assets.getHighScores(this.desktopGame);
     Assets.loadSounds();
     Assets.loadMusic();
-    Assets.loadImages();
+    Assets.loadImages(false);
     Assets.loadFonts();
     
     if (settings.getMusicOn()) {

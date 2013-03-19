@@ -2,7 +2,6 @@ package com.jamiltron.homunculus.screen;
 
 import com.jamiltron.homunculus.HomunculusGame;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
@@ -124,9 +123,9 @@ public class InstructionScreen implements Screen, InputProcessor {
   public void renderText() {
     Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f); 
     spriteBatch.draw(Assets.instructionsW, INSTRUCTIONS_X * ppuX, INSTRUCTIONS_Y * ppuY, INSTRUCTIONS_W * ppuX, INSTRUCTIONS_H * ppuY);
-    Assets.font.draw(spriteBatch, "a spell went awry and loosed foul", TEXT_X * ppuX,
+    Assets.font.draw(spriteBatch, "a spell went awry and loosed", TEXT_X * ppuX,
         TEXT_Y * ppuY);
-    Assets.font.draw(spriteBatch, "homunculi throughout your tower", TEXT_X * ppuX,
+    Assets.font.draw(spriteBatch, "homunculi within your tower", TEXT_X * ppuX,
         (TEXT_Y - 1f) * ppuY);
     Assets.font.draw(spriteBatch, "match four of the same colors", TEXT_X * ppuX,
         (TEXT_Y - 2.5f) * ppuY);

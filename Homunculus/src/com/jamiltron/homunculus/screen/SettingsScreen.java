@@ -157,7 +157,7 @@ public class SettingsScreen implements Screen, InputProcessor {
     showSelector = true;
     playSelectMove = false;
     
-    if (keycode == Keys.ESCAPE) {
+    if (keycode == Keys.ESCAPE && keycode == Keys.BACK) {
       game.goToMainMenu();
     }
     

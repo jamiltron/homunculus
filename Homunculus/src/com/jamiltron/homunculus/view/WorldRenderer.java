@@ -179,8 +179,6 @@ public class WorldRenderer {
       spriteBatch.draw(Assets.rightArrow, 9.75f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
       spriteBatch.draw(Assets.rotateArrow, 14f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
     }
-    
-    
   }
 
   private void renderHomunculi() {
