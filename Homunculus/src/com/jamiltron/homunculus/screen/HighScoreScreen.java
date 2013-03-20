@@ -127,12 +127,11 @@ public class HighScoreScreen implements Screen, InputProcessor {
     Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
     spriteBatch.draw(Assets.highScoresW, INSTRUCTIONS_X * ppuX, INSTRUCTIONS_Y * ppuY, INSTRUCTIONS_W * ppuX, INSTRUCTIONS_H * ppuY);
     
-    //for (int i=0; i < 10; i++) {
     int i =0;
     for (SimpleEntry<String, Integer> score : game.scores) {
       if (i < 10) {
         Assets.font.draw(spriteBatch, score.getKey(), (TEXT_X + 2f) * ppuX, (TEXT_Y - ((float) i)) * ppuY);
-        Assets.font.draw(spriteBatch, Integer.toString(score.getValue()), (TEXT_X + 12f) * ppuX, (TEXT_Y - ((float) i)) * ppuY);
+        Assets.font.draw(spriteBatch, Integer.toString(score.getValue()), (TEXT_X + 9f) * ppuX, (TEXT_Y - ((float) i)) * ppuY);
         i++;
       }
     }
