@@ -64,19 +64,20 @@ public class HomunculusGame extends Game {
     scores = Assets.getHighScores(this.desktopGame);
     Assets.loadSounds();
     Assets.loadMusic();
-    Assets.loadImages(false);
+    Assets.loadImages();
     Assets.loadFonts();
     
-    if (settings.getMusicOn()) {
-      Assets.titleMusic.setLooping(true);
-      Assets.titleMusic.play();
-    }
     mainMenu = new MainMenu(this);
     creditsScreen = new CreditsScreen(this);
     gameScreen = new GameScreen(this);
     highscoreScreen = new HighScoreScreen(this);
     instructionScreen = new InstructionScreen(this);
     settingsScreen = new SettingsScreen(this);
+
+    if (settings.getMusicOn()) {
+      Assets.titleMusic.setLooping(true);
+      Assets.titleMusic.play();
+    }
 
     setScreen(mainMenu);
   }

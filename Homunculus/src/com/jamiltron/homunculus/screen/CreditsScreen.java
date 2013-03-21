@@ -23,12 +23,37 @@ public class CreditsScreen implements Screen, InputProcessor {
   private static final float CAMERA_W = 18.75f;
   private static final float CAMERA_H = 25f;
   private static final float SCALE = 3.5f;
+  private static final float SMALL = 2f;
+  private static final float SMALLER = 1.5f;
   private static final float CREDITS_W = Assets.creditsW.getRegionWidth() / 32f * SCALE;
   private static final float CREDITS_H = Assets.creditsW.getRegionHeight() / 32f * SCALE;
   private static float CREDITS_Y = 22.5f;
   private static final float CREDITS_X = CAMERA_W / 2f - CREDITS_W / 2f;
-  private static float TEXT_Y = 20.5f;
-  private static final float TEXT_X = 1.4f;
+  private static final float JUSTIN_W = Assets.justinHamilton.getRegionWidth() / 32f * SMALL;
+  private static final float JUSTIN_H = Assets.justinHamilton.getRegionHeight() / 32f * SMALL;
+  private static final float JUSTIN_X = CAMERA_W / 2f - JUSTIN_W / 2f;
+  private static float JUSTIN_Y;
+  private static final float PROGRAMMING_W = Assets.programming.getRegionWidth() / 32f * SMALLER;
+  private static final float PROGRAMMING_H = Assets.programming.getRegionHeight() / 32f * SMALLER;
+  private static final float PROGRAMMING_X = CAMERA_W / 2f - PROGRAMMING_W / 2f;
+  private static float PROGRAMMING_Y;
+  private static final float DONNA_W = Assets.donnaAlmendrala.getRegionWidth() / 32f * SMALL;
+  private static final float DONNA_H = Assets.donnaAlmendrala.getRegionHeight() / 32f * SMALL;
+  private static final float DONNA_X = CAMERA_W / 2f - DONNA_W / 2f;
+  private static float DONNA_Y;
+  private static final float ART_W = Assets.art.getRegionWidth() / 32f * SMALLER;
+  private static final float ART_H = Assets.art.getRegionHeight() / 32f * SMALLER;
+  private static final float ART_X = CAMERA_W / 2f - ART_W / 2f;
+  private static float ART_Y;
+  private static final float LION_W = Assets.luckyLion.getRegionWidth() / 32f * SMALL;
+  private static final float LION_H = Assets.luckyLion.getRegionHeight() / 32f * SMALL;
+  private static final float LION_X = CAMERA_W / 2f - LION_W / 2f;
+  private static float LION_Y;
+  private static final float MUSIC_W = Assets.music.getRegionWidth() / 32f * SMALLER;
+  private static final float MUSIC_H = Assets.music.getRegionHeight() / 32f * SMALLER;
+  private static final float MUSIC_X = CAMERA_W / 2f - MUSIC_W / 2f;
+  private static float MUSIC_Y;
+  
 
   public CreditsScreen(HomunculusGame g) {
     this.cam = new OrthographicCamera(CAMERA_W, CAMERA_H);
@@ -115,18 +140,12 @@ public class CreditsScreen implements Screen, InputProcessor {
   
   public void renderText() {
     spriteBatch.draw(Assets.creditsW, CREDITS_X * ppuX, CREDITS_Y * ppuY, CREDITS_W * ppuX, CREDITS_H * ppuY);
-    Assets.font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-    Assets.font.draw(spriteBatch, "          justin hamilton", TEXT_X * ppuX, TEXT_Y * ppuY);
-    Assets.font.draw(spriteBatch, "    development & programming", TEXT_X * ppuX,
-       (TEXT_Y - 1f) * ppuY);
-    Assets.font.draw(spriteBatch, "       graphic design & art", TEXT_X * ppuX,
-        (TEXT_Y - 5f) * ppuY);
-    Assets.font.draw(spriteBatch, "         donna almendrala", TEXT_X * ppuX,
-        (TEXT_Y - 4f) * ppuY);
-    Assets.font.draw(spriteBatch, "               music", TEXT_X * ppuX,
-        (TEXT_Y - 9f) * ppuY);
-    Assets.font.draw(spriteBatch, "        lucky lion studios", TEXT_X * ppuX,
-        (TEXT_Y - 8f) * ppuY);
+    spriteBatch.draw(Assets.justinHamilton, JUSTIN_X * ppuX, JUSTIN_Y * ppuY, JUSTIN_W * ppuX, JUSTIN_H * ppuY);
+    spriteBatch.draw(Assets.programming, PROGRAMMING_X * ppuX, PROGRAMMING_Y * ppuY, PROGRAMMING_W * ppuX, PROGRAMMING_H * ppuY);
+    spriteBatch.draw(Assets.donnaAlmendrala, DONNA_X * ppuX, DONNA_Y * ppuY, DONNA_W * ppuX, DONNA_H * ppuY);
+    spriteBatch.draw(Assets.art, ART_X * ppuX, ART_Y * ppuY, ART_W * ppuX, ART_H * ppuY);
+    spriteBatch.draw(Assets.luckyLion, LION_X * ppuX, LION_Y * ppuY, LION_W * ppuX, LION_H * ppuY);
+    spriteBatch.draw(Assets.music, MUSIC_X * ppuX, MUSIC_Y * ppuY, MUSIC_W * ppuX, MUSIC_H * ppuY);
   }
 
   @Override
@@ -145,7 +164,12 @@ public class CreditsScreen implements Screen, InputProcessor {
   
   private void setHeight() {
     CREDITS_Y = height / ppuY - 3f;
-    TEXT_Y = CREDITS_Y - 1.5f;
+    JUSTIN_Y = CREDITS_Y - 2.5f;
+    PROGRAMMING_Y = JUSTIN_Y - 1.25f;
+    DONNA_Y = PROGRAMMING_Y - 2f;
+    ART_Y = DONNA_Y - 1.25f;
+    LION_Y = ART_Y - 2f;
+    MUSIC_Y = LION_Y - 1.25f;
   }
 
   @Override
@@ -167,7 +191,7 @@ public class CreditsScreen implements Screen, InputProcessor {
 
   @Override
   public void resume() {
-    // do nothing
+    Gdx.input.setInputProcessor(this);
   }
 
   @Override

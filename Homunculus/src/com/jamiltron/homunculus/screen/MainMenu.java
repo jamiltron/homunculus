@@ -59,7 +59,6 @@ public class MainMenu implements Screen, InputProcessor {
   private boolean playSelectMove;
   private boolean playSelectEnter;
   
-  // TODO UPDATE RECTANGLES
   private Rectangle startArea;
   private Rectangle instructionsArea;
   private Rectangle highscoresArea;

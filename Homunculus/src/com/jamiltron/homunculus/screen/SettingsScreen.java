@@ -112,12 +112,12 @@ public class SettingsScreen implements Screen, InputProcessor {
   private static final float START_X = CAMERA_W / 2f - START_W / 2f;
   private static final float LEFT_ARROW_X = 7.25f;
   private static float LEFT_ARROW_Y = LEVEL_Y - 0.25f;
-  private static final float LEFT_ARROW_W = Assets.leftArrow.getRegionWidth() / 32f * ARROW_SCALE;
-  private static final float LEFT_ARROW_H = Assets.leftArrow.getRegionHeight() / 32f * ARROW_SCALE;
+  private static final float LEFT_ARROW_W = Assets.leftArrowMenu.getRegionWidth() / 32f * ARROW_SCALE;
+  private static final float LEFT_ARROW_H = Assets.leftArrowMenu.getRegionHeight() / 32f * ARROW_SCALE;
   private static final float RIGHT_ARROW_X = LEFT_ARROW_X + 3.4f;
   private static float RIGHT_ARROW_Y = LEVEL_Y - 0.25f;
-  private static final float RIGHT_ARROW_W = Assets.rightArrow.getRegionWidth() / 32f * ARROW_SCALE;
-  private static final float RIGHT_ARROW_H = Assets.rightArrow.getRegionHeight() / 32f * ARROW_SCALE;
+  private static final float RIGHT_ARROW_W = Assets.rightArrowMenu.getRegionWidth() / 32f * ARROW_SCALE;
+  private static final float RIGHT_ARROW_H = Assets.rightArrowMenu.getRegionHeight() / 32f * ARROW_SCALE;
   private static final float NUM_X = LEFT_ARROW_X + 1.75f;
   private static float NUM_Y;
   private StringBuffer tmpString;
@@ -135,6 +135,7 @@ public class SettingsScreen implements Screen, InputProcessor {
     cam.update();
     spriteBatch = new SpriteBatch();
     tmpString = new StringBuffer(2);
+    Gdx.input.setCatchBackKey(true);
   }
   
   public void reset() {
@@ -157,7 +158,7 @@ public class SettingsScreen implements Screen, InputProcessor {
     showSelector = true;
     playSelectMove = false;
     
-    if (keycode == Keys.ESCAPE && keycode == Keys.BACK) {
+    if (keycode == Keys.ESCAPE || keycode == Keys.BACK) {
       game.goToMainMenu();
     }
     
@@ -269,8 +270,8 @@ public class SettingsScreen implements Screen, InputProcessor {
   }
 
   private void renderCursors() {
-    spriteBatch.draw(Assets.leftArrow, LEFT_ARROW_X * ppuX, (LEVEL_Y - 0.25f) * ppuY, LEFT_ARROW_W * ppuX, LEFT_ARROW_H * ppuY);
-    spriteBatch.draw(Assets.rightArrow, RIGHT_ARROW_X * ppuX, (LEVEL_Y - 0.25f) * ppuY, RIGHT_ARROW_W * ppuX, RIGHT_ARROW_H * ppuY);
+    spriteBatch.draw(Assets.leftArrowMenu, LEFT_ARROW_X * ppuX, (LEVEL_Y - 0.25f) * ppuY, LEFT_ARROW_W * ppuX, LEFT_ARROW_H * ppuY);
+    spriteBatch.draw(Assets.rightArrowMenu, RIGHT_ARROW_X * ppuX, (LEVEL_Y - 0.25f) * ppuY, RIGHT_ARROW_W * ppuX, RIGHT_ARROW_H * ppuY);
 
     if (showSelector) {
       if (cursorLevel == 0) {

@@ -103,6 +103,8 @@ public class GameScreen implements Screen, InputProcessor {
           for (int i=0; i < 10; i++) {
             if (world.score > game.scores.get(i).getValue()) {
               game.scores.add(i, new SimpleEntry<String, Integer>(textfield.getText(), world.score));
+              textfield.setText("");
+              textfield.setCursorPosition(0);
               break;
             }
           }

@@ -27,14 +27,18 @@ public class WorldRenderer {
   private static final float GAMEOVER_X = 3.8f;
   private static final float GAMEOVER_Y = 18.5f;
   private static final float CONTINUE_SCALE = 2.5f;
-  private static final float PRESS_W = Assets.pressAnyKey.getRegionWidth() / 32f * CONTINUE_SCALE;
-  private static final float PRESS_H = Assets.pressAnyKey.getRegionHeight() / 32f * CONTINUE_SCALE;
+  private static final float PRESS_W = Assets.pressAnyKeyGame.getRegionWidth() / 32f * CONTINUE_SCALE;
+  private static final float PRESS_H = Assets.pressAnyKeyGame.getRegionHeight() / 32f * CONTINUE_SCALE;
   private static final float PRESS_X = 7f - PRESS_W / 2f;
-  private static final float PRESS_Y = 6f;
-  private static final float TAP_W   = Assets.tapScreen.getRegionWidth() / 32f * CONTINUE_SCALE;
-  private static final float TAP_H   = Assets.tapScreen.getRegionHeight() / 32f * CONTINUE_SCALE;
+  private static final float PRESS_Y = 7f;
+  private static final float TAP_W   = Assets.tapScreenGame.getRegionWidth() / 32f * CONTINUE_SCALE;
+  private static final float TAP_H   = Assets.tapScreenGame.getRegionHeight() / 32f * CONTINUE_SCALE;
   private static final float TAP_X   = 7f - TAP_W / 2f;
   private static final float TAP_Y   = PRESS_Y;
+  private static final float CONTINUE_W   = Assets.toContinueGame.getRegionWidth() / 32f * CONTINUE_SCALE;
+  private static final float CONTINUE_H   = Assets.toContinueGame.getRegionHeight() / 32f * CONTINUE_SCALE;
+  private static final float CONTINUE_X   = 7f - CONTINUE_W / 2f;
+  private static final float CONTINUE_Y   = PRESS_Y - 1f;
   private static final float COMPLETE_W = Assets.complete.getRegionWidth() / 32f * GAMEOVER_SCALE;
   private static final float COMPLETE_H = Assets.complete.getRegionHeight() / 32f * GAMEOVER_SCALE;
   private static final float COMPLETE_X = 14f / 2f - COMPLETE_W / 2f;
@@ -47,8 +51,8 @@ public class WorldRenderer {
   private static final float PAUSED_H    = Assets.paused.getRegionHeight() / 32f * GAMEOVER_SCALE;
   private static final float PAUSED_X    = 14f / 2f - PAUSED_W / 2f;
   private static final float PAUSED_Y    = GAMEOVER_Y;
-  private static final float ENTERNAME_W = Assets.enterName.getRegionWidth() / 32f * CONTINUE_SCALE;
-  private static final float ENTERNAME_H = Assets.enterName.getRegionHeight() / 32f * CONTINUE_SCALE;
+  private static final float ENTERNAME_W = Assets.enterYour.getRegionWidth() / 32f * CONTINUE_SCALE;
+  private static final float ENTERNAME_H = Assets.enterYour.getRegionHeight() / 32f * CONTINUE_SCALE;
   private static final float ENTERNAME_X = 14f / 2f - ENTERNAME_W / 2f;
   private static final float ENTERNAME_Y = HIGHSCORE_Y - 1f - ENTERNAME_H;
   
@@ -102,10 +106,11 @@ public class WorldRenderer {
   
   private void renderBottom() {
       if (game.desktopGame) {
-        spriteBatch.draw(Assets.pressAnyKey, PRESS_X * ppuX, PRESS_Y * ppuY, PRESS_W * ppuX, PRESS_H * ppuY);
+        spriteBatch.draw(Assets.pressAnyKeyGame, PRESS_X * ppuX, PRESS_Y * ppuY, PRESS_W * ppuX, PRESS_H * ppuY);
       } else {
-        spriteBatch.draw(Assets.tapScreen, TAP_X * ppuX, TAP_Y * ppuY, TAP_W * ppuX, TAP_H * ppuY);
+        spriteBatch.draw(Assets.tapScreenGame, TAP_X * ppuX, TAP_Y * ppuY, TAP_W * ppuX, TAP_H * ppuY);
       }
+      spriteBatch.draw(Assets.toContinueGame, CONTINUE_X * ppuX, CONTINUE_Y * ppuY, CONTINUE_W * ppuX, CONTINUE_H * ppuY);
   }
 
   private void renderText() {
@@ -124,7 +129,7 @@ public class WorldRenderer {
       renderBottom();
     } else if (world.lost && world.scoreBroken) {
       spriteBatch.draw(Assets.highScore, HIGHSCORE_X * ppuX, HIGHSCORE_Y * ppuY, HIGHSCORE_W * ppuX, HIGHSCORE_H * ppuY);
-      spriteBatch.draw(Assets.enterName, ENTERNAME_X * ppuX, ENTERNAME_Y * ppuY, ENTERNAME_W * ppuX, ENTERNAME_H * ppuY);
+      spriteBatch.draw(Assets.enterYour, ENTERNAME_X * ppuX, ENTERNAME_Y * ppuY, ENTERNAME_W * ppuX, ENTERNAME_H * ppuY);
     }
     
     Assets.font.setColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -174,10 +179,10 @@ public class WorldRenderer {
     spriteBatch.draw(keyFrame, 12.7f * ppuX, 16.45f * ppuY, 4 * ppuX, 4 * ppuY);
     
     if (!game.desktopGame) {
-      spriteBatch.draw(Assets.leftArrow, 1.25f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
-      spriteBatch.draw(Assets.downArrow, 5.5f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
-      spriteBatch.draw(Assets.rightArrow, 9.75f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
-      spriteBatch.draw(Assets.rotateArrow, 14f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+      spriteBatch.draw(Assets.leftArrowGame, 1.25f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+      spriteBatch.draw(Assets.downArrowGame, 5.5f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+      spriteBatch.draw(Assets.rightArrowGame, 9.75f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+      spriteBatch.draw(Assets.rotrArrowGame, 14f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
     }
   }
 
