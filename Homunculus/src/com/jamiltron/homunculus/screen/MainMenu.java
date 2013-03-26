@@ -319,8 +319,8 @@ public class MainMenu implements Screen, InputProcessor {
     update(dt);
     draw(dt);
     if (game.settings.getMusicOn() && !Assets.titleMusic.isPlaying()) {
+      if (!Assets.titleMusic.isLooping()) Assets.titleMusic.setLooping(true);
       Assets.titleMusic.play();
-      Assets.titleMusic.setLooping(true);
     }
   }
 

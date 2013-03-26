@@ -501,13 +501,12 @@ public class SettingsScreen implements Screen, InputProcessor {
           Assets.titleMusic.stop();
         } else if (overArea(x, y, START_X, START_Y, START_W, START_H)) {
           if (sound) Assets.playSound(Assets.selectEnter);
-            //final Settings settings = new Settings();
             game.settings.setSpeed(speed);
             game.settings.setSoundOn(sound);
             game.settings.setMusicOn(music);
             game.settings.setHomunculiNum(level);
             Assets.writeSettings(game.settings, game.desktopGame);
-            game.setScreen(new GameScreen(game));
+            game.goToGame();
         }
       }
       if (sound && playSelectMove) Assets.playSound(Assets.selectMove);

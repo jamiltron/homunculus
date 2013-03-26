@@ -13,7 +13,7 @@ public class Mob extends Entity {
   }
   
   public void update(float dt) {
-    pos.add(vel.cpy().mul(dt));
+    pos.add(vel.cpy().scl(dt));
   }
 }
 

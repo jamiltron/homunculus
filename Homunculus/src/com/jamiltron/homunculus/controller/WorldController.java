@@ -11,7 +11,6 @@ import com.jamiltron.homunculus.model.Component;
 import com.jamiltron.homunculus.model.Homunculus;
 import com.jamiltron.homunculus.model.Spell;
 import com.jamiltron.homunculus.model.World;
-import com.jamiltron.homunculus.screen.MainMenu;
 import com.jamiltron.homunculus.util.JArray;
 
 public class WorldController {
@@ -222,8 +221,7 @@ public class WorldController {
     
     if (world.lost && keys.get(Keys.ANY) && !world.scoreBroken ||
         world.lost && keys.get(Keys.CONTINUE) && world.scoreBroken) {
-      // TODO write score stuff here
-      game.setScreen(new MainMenu(game));
+      game.goToMainMenu();
     }
   }
   public void updatePaused() {

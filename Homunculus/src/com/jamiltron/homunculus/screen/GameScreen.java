@@ -65,7 +65,7 @@ public class GameScreen implements Screen, InputProcessor {
   private static final float ROTR_Y = LEFT_Y;
   private static final float ROTR_H = LEFT_W;
 
-
+  
   public GameScreen(final HomunculusGame g) {
     super();
     game         = g;
@@ -99,7 +99,7 @@ public class GameScreen implements Screen, InputProcessor {
           textfield.getOnscreenKeyboard().show(false);
           Gdx.input.setInputProcessor(tmpGameScreen);
           world.scoreBroken = false;
-          game.setScreen(new MainMenu(game));
+          game.goToMainMenu();
           for (int i=0; i < 10; i++) {
             if (world.score > game.scores.get(i).getValue()) {
               game.scores.add(i, new SimpleEntry<String, Integer>(textfield.getText(), world.score));
@@ -217,13 +217,13 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public void pause() {
+    if (game.settings.getMusicOn() && Assets.levelMusic.isPlaying()) Assets.levelMusic.pause();
     world.paused = true;
     Gdx.input.setInputProcessor(null);
   }
 
   @Override
   public void render(final float delta) {
-    //logger.log();
     Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
     Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
@@ -250,15 +250,15 @@ public class GameScreen implements Screen, InputProcessor {
         numHomunculi = world.numHomunculi + 4;
       }
 
-      //world = new World(numHomunculi, world.score);
       worldPool.free(world);
       world = worldPool.obtain();
       world.setProps(numHomunculi, score);
-      Assets.titleMusic.stop();
       if (game.settings.getMusicOn() && Assets.titleMusic.isPlaying()) {
         Assets.titleMusic.stop();
-        Assets.levelMusic.setLooping(true);
-        Assets.levelMusic.play();
+        if (!Assets.levelMusic.isPlaying()) {
+          Assets.levelMusic.setLooping(true);
+          Assets.levelMusic.play();
+        }
       }
       controller.resetController(world);
       renderer.resetRenderer(world);
@@ -304,9 +304,11 @@ public class GameScreen implements Screen, InputProcessor {
     controller = new WorldController(world, game);
     Gdx.input.setInputProcessor(this);
     if (game.settings.getMusicOn()) {
-      Assets.titleMusic.stop();
-      Assets.levelMusic.setLooping(true);
-      Assets.levelMusic.play();
+      if (Assets.titleMusic.isPlaying()) Assets.titleMusic.stop();
+      if (!Assets.levelMusic.isPlaying()) {
+        Assets.levelMusic.setLooping(true);
+        Assets.levelMusic.play();
+      }
     }
   }
 
@@ -383,7 +385,7 @@ public class GameScreen implements Screen, InputProcessor {
       } else {
         world.paused = false;
         controller.unpausable = false;
-        if (game.settings.getMusicOn()) Assets.levelMusic.play();
+        if (game.settings.getMusicOn() && !Assets.levelMusic.isPlaying()) Assets.levelMusic.play();
         return true;
       }
     } else {
