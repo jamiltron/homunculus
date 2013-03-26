@@ -40,6 +40,8 @@ public class GameScreen implements Screen, InputProcessor {
   private float                height;
   private float                lastX;
   private float                lastDragX;
+  private float                lastY;
+  private float                lastDragY;
   private static final float   CAMERA_W = 18.75f;
   private static final float   CAMERA_H = 25f;
   private Stage stage;
@@ -334,7 +336,9 @@ public class GameScreen implements Screen, InputProcessor {
          controller.rotrPress();
        }
        lastX = screenX;
+       lastY = screenY;
        lastDragX = screenX;
+       lastDragY = screenY;
        touching = true;
        }
      }
@@ -359,6 +363,12 @@ public class GameScreen implements Screen, InputProcessor {
         } else {
           controller.leftRelease();
           controller.rightRelease();
+        }
+        
+        if (screenY - lastDragY >= 51) {
+          controller.dropPress();
+        } else {
+          controller.dropRelease();
         }
       }
       return true;
