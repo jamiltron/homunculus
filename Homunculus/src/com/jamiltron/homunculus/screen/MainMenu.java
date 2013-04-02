@@ -74,6 +74,7 @@ public class MainMenu implements Screen, InputProcessor {
     game = g;
     playSelectMove = false;
     playSelectEnter = false;
+    Gdx.input.setCatchBackKey(true);
   }
 
   public void setSize(int width, int height) {
@@ -111,7 +112,7 @@ public class MainMenu implements Screen, InputProcessor {
     playSelectMove = false;
     playSelectEnter = false;
     
-    if (keycode == Keys.ESCAPE) {
+    if (keycode == Keys.ESCAPE || keycode == Keys.BACK) {
       Gdx.app.exit();
     }
     

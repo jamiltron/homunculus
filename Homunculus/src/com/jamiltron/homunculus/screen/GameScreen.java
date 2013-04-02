@@ -34,6 +34,7 @@ public class GameScreen implements Screen, InputProcessor {
   private boolean              dropPressed;
   private boolean              rotrPressed;
   private boolean              rotlPressed;
+  private boolean              pauseLock;
   private int                  highScore;
   private float                ppuX;
   private float                ppuY;
@@ -66,6 +67,11 @@ public class GameScreen implements Screen, InputProcessor {
   private static final float ROTR_W = 3;
   private static final float ROTR_Y = LEFT_Y;
   private static final float ROTR_H = LEFT_W;
+  
+  private static final float PAUSE_X = ROTR_X;
+  private static final float PAUSE_Y = 5.25f;
+  private static final float PAUSE_W = LEFT_W;
+  private static final float PAUSE_H = LEFT_H;
 
   
   public GameScreen(final HomunculusGame g) {
@@ -79,12 +85,14 @@ public class GameScreen implements Screen, InputProcessor {
     rotrPressed  = false;
     rotlPressed  = false;
     highScore    = game.scores.get(0).getValue();
+    pauseLock = false;
     worldPool = new Pool<World>() {
       @Override
       protected World newObject() {
         return new World();
       }
     };
+    Gdx.input.setCatchBackKey(true);
     stage = new Stage(Gdx.graphics.getWidth(),
         Gdx.graphics.getHeight(), false);
     TextFieldStyle tStyle = new TextFieldStyle();
@@ -129,27 +137,27 @@ public class GameScreen implements Screen, InputProcessor {
 
   @Override
   public boolean keyDown(final int keycode) {
-    if (keycode == Keys.LEFT) {
+    if (keycode == Keys.LEFT || keycode == Keys.A) {
       controller.leftPress();
       leftPressed = true;
     }
 
-    if (keycode == Keys.RIGHT) {
+    if (keycode == Keys.RIGHT || keycode == Keys.D) {
       controller.rightPress();
       rightPressed = true;
     }
 
-    if (keycode == Keys.DOWN) {
+    if (keycode == Keys.DOWN || keycode == Keys.S) {
       controller.dropPress();
       dropPressed = true;
     }
 
-    if (keycode == Keys.X || keycode == Keys.UP) {
+    if (keycode == Keys.X || keycode == Keys.UP || keycode == Keys.W || keycode == Keys.PERIOD) {
       rotrPressed = true;
       controller.rotrPress();
     }
 
-    if (keycode == Keys.Z) {
+    if (keycode == Keys.Z || keycode == Keys.COMMA) {
       rotlPressed = true;
       controller.rotlPress();
     }
@@ -160,6 +168,10 @@ public class GameScreen implements Screen, InputProcessor {
     
     if (keycode == Keys.ESCAPE){
       controller.quitPress();
+    }
+    
+    if (keycode == Keys.BACK) {
+      game.goToSettings();
     }
 
     controller.anyPress();
@@ -189,12 +201,12 @@ public class GameScreen implements Screen, InputProcessor {
       dropPressed = false;
     }
 
-    if (keycode == Keys.X || keycode == Keys.UP || keycode == Keys.W || keycode == Keys.SHIFT_RIGHT) {
+    if (keycode == Keys.X || keycode == Keys.UP || keycode == Keys.W || keycode == Keys.PERIOD) {
       controller.rotrRelease();
       rotrPressed = false;
     }
 
-    if (keycode == Keys.Z || keycode == Keys.SHIFT_LEFT) {
+    if (keycode == Keys.Z ||  keycode == Keys.COMMA) {
       rotlPressed = false;
       controller.rotlRelease();
     }
@@ -284,7 +296,7 @@ public class GameScreen implements Screen, InputProcessor {
     ppuX = Math.min(ppuX, ppuY);
     ppuY = ppuX;
     renderer.setSize(w, h);
-    textfield.setPosition(4.5f * ppuX, 14.5f * ppuY);
+    textfield.setPosition(4.5f * ppuX, 14f * ppuY);
   }
 
   @Override
@@ -321,28 +333,35 @@ public class GameScreen implements Screen, InputProcessor {
     if (!game.desktopGame) {
      if (button == 0) { 
        if (!world.paused) { 
-       final float x = screenX / ppuX; 
-       final float y = height / ppuY - screenY / ppuY;
-
-       if (x >= LEFT_X && x <= LEFT_X + LEFT_W && y >= LEFT_Y && y <= LEFT_Y + LEFT_H) {
-         controller.leftPress(); 
-         leftPressed = true;
-       } else if (x >= DOWN_X && x <= DOWN_X + DOWN_W && y >= DOWN_Y && y <= DOWN_Y + DOWN_H) { 
-         controller.dropPress(); 
-       } else if (x >= RIGHT_X && x <= RIGHT_X + RIGHT_W && y >= RIGHT_Y && y <= RIGHT_Y + RIGHT_H) { 
-         controller.rightPress();
-         rightPressed = true;
-       } else if (x >= ROTR_X && x <= ROTR_X + ROTR_W && y >= ROTR_Y && y <= ROTR_Y + ROTR_H) {
-         controller.rotrPress();
-       }
-       lastX = screenX;
-       lastY = screenY;
-       lastDragX = screenX;
-       lastDragY = screenY;
-       touching = true;
+         final float x = screenX / ppuX; 
+         final float y = height / ppuY - screenY / ppuY;
+         
+         if (pauseLock) pauseLock = false;
+         
+         if (x >= LEFT_X && x <= LEFT_X + LEFT_W && y >= LEFT_Y && y <= LEFT_Y + LEFT_H) {
+           controller.leftPress(); 
+           leftPressed = true;
+         } else if (x >= DOWN_X && x <= DOWN_X + DOWN_W && y >= DOWN_Y && y <= DOWN_Y + DOWN_H) { 
+           controller.dropPress(); 
+         } else if (x >= RIGHT_X && x <= RIGHT_X + RIGHT_W && y >= RIGHT_Y && y <= RIGHT_Y + RIGHT_H) { 
+           controller.rightPress();
+           rightPressed = true;
+         } else if (x >= ROTR_X && x <= ROTR_X + ROTR_W && y >= ROTR_Y && y <= ROTR_Y + ROTR_H) {
+           controller.rotrPress();
+         } else if (!world.paused && x >= PAUSE_X && x <= PAUSE_X + PAUSE_W && y >= PAUSE_Y && y <= PAUSE_Y + PAUSE_H) {
+           if (game.settings.getMusicOn() && Assets.levelMusic.isPlaying()) Assets.levelMusic.pause();
+           world.paused = true;
+           pauseLock = true;
+         }
+       
+         lastX = screenX;
+         lastY = screenY;
+         lastDragX = screenX;
+         lastDragY = screenY;
+         if (!pauseLock) touching = true;
        }
      }
-     return true;
+       return true;
      } else {
        return false;
     }
@@ -354,10 +373,10 @@ public class GameScreen implements Screen, InputProcessor {
     if (!game.desktopGame) {
       final float y = height / ppuY - screenY / ppuY;
       if (y > 3.25f) {
-        if (screenX - lastDragX >= 51) {
+        if (screenX - lastDragX >= 63) {
           controller.rightPress();
           controller.leftRelease(); 
-        } else if (lastDragX - screenX >= 51) {
+        } else if (lastDragX - screenX >= 63) {
           controller.leftPress(); 
           controller.rightRelease();
         } else {
@@ -365,7 +384,7 @@ public class GameScreen implements Screen, InputProcessor {
           controller.rightRelease();
         }
         
-        if (screenY - lastDragY >= 51) {
+        if (screenY - lastDragY >= 63) {
           controller.dropPress();
         } else {
           controller.dropRelease();
@@ -383,19 +402,26 @@ public class GameScreen implements Screen, InputProcessor {
     if (!game.desktopGame) {
       if (!world.paused) {
         controller.anyPress();
-      if (Math.abs(lastX - screenX) <= 1f && screenY < height - 3.25 * ppuY) {
-        controller.rotlPress();
-      }
+        if (Math.abs(lastX - screenX) <= 1f &&
+            Math.abs(lastY - screenY) <= 1f &&
+            screenY < height - 3.25 * ppuY) {
+          controller.rotrPress();
+        }
 
-      leftPressed = false;
-      rightPressed = false;
-      lastDragX = screenX;
-      touching = false;
-      return true;
+        leftPressed = false;
+        rightPressed = false;
+        lastDragX = screenX;
+        lastDragY = screenY;
+        touching = false;
+        return true;
       } else {
-        world.paused = false;
-        controller.unpausable = false;
-        if (game.settings.getMusicOn() && !Assets.levelMusic.isPlaying()) Assets.levelMusic.play();
+        if (!pauseLock) {
+          world.paused = false;
+          controller.unpausable = false;
+          if (game.settings.getMusicOn() && !Assets.levelMusic.isPlaying()) Assets.levelMusic.play();
+        } else {
+          pauseLock = false;
+        }
         return true;
       }
     } else {

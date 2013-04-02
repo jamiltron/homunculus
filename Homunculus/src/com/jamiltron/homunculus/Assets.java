@@ -41,6 +41,7 @@ public class Assets {
   public static TextureRegion toContinueGame;
   public static TextureRegion leftArrowMenu;
   public static TextureRegion leftArrowGame;
+  public static TextureRegion pauseButtonGame;
   public static TextureRegion rightArrowMenu;
   public static TextureRegion rightArrowGame;
   public static TextureRegion rotrArrowGame;
@@ -361,7 +362,7 @@ public class Assets {
     
     gameOver  = gameAtlas.createSprite("gameoverW");
     enterYour = gameAtlas.createSprite("enteryourW");
-    name      = gameAtlas.createSprite("name");
+    name      = gameAtlas.createSprite("nameW");
     highScore = gameAtlas.createSprite("highscoreW");
     complete  = gameAtlas.createSprite("completeW");
 
@@ -470,6 +471,7 @@ public class Assets {
     blueSpellDeadAnim = new Animation(0.1f, blueSpellDead0, blueSpellDead1, blueSpellDead2);
     
     
+    pauseButtonGame = gameAtlas.createSprite("pauseButton");
     leftArrowGame = gameAtlas.createSprite("leftArrow");
     rightArrowGame = gameAtlas.createSprite("rightArrow");
     rotrArrowGame = gameAtlas.createSprite("rotrArrow");

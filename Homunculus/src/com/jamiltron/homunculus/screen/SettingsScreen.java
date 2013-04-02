@@ -245,6 +245,11 @@ public class SettingsScreen implements Screen, InputProcessor {
 
   @Override
   public void render(final float dt) {
+    if (game.settings.getMusicOn() && Assets.levelMusic.isPlaying()) {
+      Assets.levelMusic.stop();
+      Assets.titleMusic.setLooping(true);
+      Assets.titleMusic.play();
+    }
     Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
     Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
     spriteBatch.begin();

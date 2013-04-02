@@ -150,217 +150,217 @@ redAlive1
   orig: 32, 32
   offset: 0, 0
   index: -1
-yellowAlive0
+pauseButton
   rotate: false
   xy: 113, 80
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-ba1
+yellowAlive0
   rotate: false
   xy: 147, 114
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-rightArrow
+ba1
   rotate: false
   xy: 905, 619
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-blueAlive0
+rightArrow
   rotate: false
   xy: 939, 653
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yellowAlive1
+blueAlive0
   rotate: false
   xy: 147, 80
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-ba0
+yellowAlive1
   rotate: false
   xy: 905, 585
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yd1
+ba0
   rotate: false
   xy: 939, 619
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-rd0
+yd1
   rotate: false
   xy: 905, 551
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-blueDead1
+rd0
   rotate: false
   xy: 939, 585
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-blueDead2
+blueDead1
   rotate: false
   xy: 905, 517
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yellowDead0
+blueDead2
   rotate: false
   xy: 939, 551
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-ya2
+yellowDead0
   rotate: false
   xy: 905, 483
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-redDead0
+ya2
   rotate: false
   xy: 939, 517
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yellowDead2
+redDead0
   rotate: false
   xy: 905, 449
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-bd2
+yellowDead2
   rotate: false
   xy: 939, 483
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-ya0
+bd2
   rotate: false
   xy: 905, 415
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-redAlive0
+ya0
   rotate: false
   xy: 939, 449
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-downArrow
+redAlive0
   rotate: false
   xy: 905, 381
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yellowAlive2
+downArrow
   rotate: false
   xy: 939, 415
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-bd1
+yellowAlive2
   rotate: false
   xy: 905, 347
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yd0
+bd1
   rotate: false
   xy: 939, 381
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-rotrArrow
+yd0
   rotate: false
   xy: 905, 313
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-ya1
+rotrArrow
   rotate: false
   xy: 939, 347
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-leftArrow
+ya1
   rotate: false
   xy: 905, 279
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-rd1
+leftArrow
   rotate: false
   xy: 939, 313
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yellowDead1
+rd1
   rotate: false
   xy: 905, 245
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-blueAlive1
+yellowDead1
   rotate: false
   xy: 939, 279
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-yd2
+blueAlive1
   rotate: false
   xy: 905, 211
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-redDead2
+yd2
   rotate: false
   xy: 939, 245
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-ra2
+redDead2
   rotate: false
   xy: 939, 211
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-ba2
+ra2
   rotate: false
   xy: 35, 1
   size: 32, 32
@@ -374,16 +374,23 @@ nameW
   orig: 37, 8
   offset: 0, 0
   index: -1
-blueAlive2
+ba2
   rotate: false
   xy: 984, 716
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-ra1
+blueAlive2
   rotate: false
   xy: 973, 682
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+ra1
+  rotate: false
+  xy: 973, 648
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

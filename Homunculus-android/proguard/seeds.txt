@@ -1,28 +1,3 @@
-android.support.v4.app.BackStackState
-android.support.v4.app.BackStackState: android.os.Parcelable$Creator CREATOR
-android.support.v4.app.Fragment$SavedState
-android.support.v4.app.Fragment$SavedState: android.os.Parcelable$Creator CREATOR
-android.support.v4.app.FragmentActivity
-android.support.v4.app.FragmentManagerState
-android.support.v4.app.FragmentManagerState: android.os.Parcelable$Creator CREATOR
-android.support.v4.app.FragmentState
-android.support.v4.app.FragmentState: android.os.Parcelable$Creator CREATOR
-android.support.v4.app.FragmentTabHost
-android.support.v4.app.FragmentTabHost: FragmentTabHost(android.content.Context,android.util.AttributeSet)
-android.support.v4.app.FragmentTabHost$SavedState
-android.support.v4.app.FragmentTabHost$SavedState: android.os.Parcelable$Creator CREATOR
-android.support.v4.content.ModernAsyncTask$Status: android.support.v4.content.ModernAsyncTask$Status[] values()
-android.support.v4.content.ModernAsyncTask$Status: android.support.v4.content.ModernAsyncTask$Status valueOf(java.lang.String)
-android.support.v4.view.PagerTabStrip
-android.support.v4.view.PagerTabStrip: PagerTabStrip(android.content.Context,android.util.AttributeSet)
-android.support.v4.view.PagerTitleStrip
-android.support.v4.view.PagerTitleStrip: PagerTitleStrip(android.content.Context,android.util.AttributeSet)
-android.support.v4.view.ViewPager
-android.support.v4.view.ViewPager: ViewPager(android.content.Context,android.util.AttributeSet)
-android.support.v4.view.ViewPager$LayoutParams
-android.support.v4.view.ViewPager$LayoutParams: ViewPager$LayoutParams(android.content.Context,android.util.AttributeSet)
-android.support.v4.view.ViewPager$SavedState
-android.support.v4.view.ViewPager$SavedState: android.os.Parcelable$Creator CREATOR
 com.badlogic.gdx.Application$ApplicationType: com.badlogic.gdx.Application$ApplicationType[] values()
 com.badlogic.gdx.Application$ApplicationType: com.badlogic.gdx.Application$ApplicationType valueOf(java.lang.String)
 com.badlogic.gdx.Files$FileType: com.badlogic.gdx.Files$FileType[] values()
@@ -708,14 +683,15 @@ com.badlogic.gdx.backends.android.AndroidGraphicsDaydream$AndroidDisplayMode
 com.badlogic.gdx.backends.android.AndroidGraphicsDaydream$AndroidDisplayMode: com.badlogic.gdx.backends.android.AndroidGraphicsDaydream this$0
 com.badlogic.gdx.backends.android.AndroidGraphicsDaydream$AndroidDisplayMode: AndroidGraphicsDaydream$AndroidDisplayMode(com.badlogic.gdx.backends.android.AndroidGraphicsDaydream,int,int,int,int)
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.backends.android.surfaceview.GLBaseSurfaceViewLW view
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.backends.android.AndroidLiveWallpaper app
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: android.view.View view
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: int width
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: int height
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.backends.android.AndroidLiveWallpaper app
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.graphics.GLCommon gl
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.graphics.GL10 gl10
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.graphics.GL11 gl11
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.graphics.GL20 gl20
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: android.opengl.GLU glu
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: javax.microedition.khronos.egl.EGLContext eglContext
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: java.lang.String extensions
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: long lastFrameTime
@@ -737,8 +713,15 @@ com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: float density
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.backends.android.AndroidApplicationConfiguration config
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.Graphics$BufferFormat bufferFormat
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean isContinuous
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean configLogged
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: int[] value
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: java.lang.Object synch
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: AndroidGraphicsLiveWallpaper(com.badlogic.gdx.backends.android.AndroidLiveWallpaper,com.badlogic.gdx.backends.android.AndroidApplicationConfiguration,com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void setPreserveContext(java.lang.Object)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: android.view.SurfaceHolder getSurfaceHolder()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: android.view.View createGLSurfaceView(android.content.Context,boolean,com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: android.opengl.GLSurfaceView$EGLConfigChooser getEglConfigChooser()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void updatePpi()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean checkGL20()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.graphics.GL10 getGL10()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.graphics.GL11 getGL11()
@@ -747,44 +730,57 @@ com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: int getHeight()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: int getWidth()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean isGL11Available()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean isGL20Available()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean isPowerOfTwo(int)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void setupGL(javax.microedition.khronos.opengles.GL10)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig)
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void logConfig(javax.microedition.khronos.egl.EGLConfig)
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: int getAttrib(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig,int,int)
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void resume()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void pause()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void destroy()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void onDrawFrame(javax.microedition.khronos.opengles.GL10)
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: float getDeltaTime()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: float getRawDeltaTime()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.Graphics$GraphicsType getType()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: int getFramesPerSecond()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void clearManagedCaches()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: android.view.View getView()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.graphics.GLCommon getGLCommon()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: float getPpiX()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: float getPpiY()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: float getPpcX()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: float getPpcY()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: float getDensity()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean supportsDisplayModeChange()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean setDisplayMode(com.badlogic.gdx.Graphics$DisplayMode)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.Graphics$DisplayMode[] getDisplayModes()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean setDisplayMode(int,int,boolean)
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void setTitle(java.lang.String)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.Graphics$DisplayMode getDesktopDisplayMode()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.Graphics$BufferFormat getBufferFormat()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void setVSync(boolean)
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean supportsExtension(java.lang.String)
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean isContinuousRendering()
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean isFullscreen()
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: AndroidGraphicsLiveWallpaper(com.badlogic.gdx.backends.android.AndroidLiveWallpaper,com.badlogic.gdx.backends.android.AndroidApplicationConfiguration,com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy)
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.backends.android.surfaceview.GLBaseSurfaceViewLW createGLSurfaceView(com.badlogic.gdx.backends.android.AndroidLiveWallpaper,boolean,com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy)
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: android.opengl.GLSurfaceView$EGLConfigChooser getEglConfigChooser()
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void updatePpi()
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void setupGL(javax.microedition.khronos.opengles.GL10)
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int)
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig)
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void onDrawFrame(javax.microedition.khronos.opengles.GL10)
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void clearManagedCaches()
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.backends.android.surfaceview.GLBaseSurfaceViewLW getView()
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.Graphics$DisplayMode[] getDisplayModes()
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: float getDensity()
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: com.badlogic.gdx.Graphics$DisplayMode getDesktopDisplayMode()
-com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean setDisplayMode(int,int,boolean)
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void setContinuousRendering(boolean)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean isContinuousRendering()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: void requestRendering()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper: boolean isFullscreen()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$1
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$1: com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper this$0
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$1: AndroidGraphicsLiveWallpaper$1(com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper,android.content.Context,com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$1: android.view.SurfaceHolder getHolder()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$1: void onDestroy()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$2
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$2: com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy val$resolutionStrategy
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$2: com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper this$0
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$2: AndroidGraphicsLiveWallpaper$2(com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper,android.content.Context,com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$2: void onMeasure(int,int)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$2: android.view.SurfaceHolder getHolder()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$2: void onDestroy()
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$3
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$3: com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper this$0
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$3: AndroidGraphicsLiveWallpaper$3(com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper,android.content.Context,com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy)
+com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$3: android.view.SurfaceHolder getHolder()
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$AndroidDisplayMode
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$AndroidDisplayMode: com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper this$0
 com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper$AndroidDisplayMode: AndroidGraphicsLiveWallpaper$AndroidDisplayMode(com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper,int,int,int,int)
@@ -990,8 +986,7 @@ com.badlogic.gdx.backends.android.AndroidInputThreePlus: AndroidInputThreePlus(c
 com.badlogic.gdx.backends.android.AndroidInputThreePlus: boolean onGenericMotion(android.view.View,android.view.MotionEvent)
 com.badlogic.gdx.backends.android.AndroidInputThreePlus: void addGenericMotionListener(android.view.View$OnGenericMotionListener)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper
-com.badlogic.gdx.backends.android.AndroidLiveWallpaper: android.service.wallpaper.WallpaperService service
-com.badlogic.gdx.backends.android.AndroidLiveWallpaper: android.service.wallpaper.WallpaperService$Engine engine
+com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.backends.android.AndroidLiveWallpaperService service
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.backends.android.AndroidGraphicsLiveWallpaper graphics
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.backends.android.AndroidInput input
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.backends.android.AndroidAudio audio
@@ -1004,15 +999,14 @@ com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.utils.A
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.utils.Array lifecycleListeners
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: int logLevel
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.backends.android.AndroidClipboard clipboard
-com.badlogic.gdx.backends.android.AndroidLiveWallpaper: AndroidLiveWallpaper(android.service.wallpaper.WallpaperService,android.service.wallpaper.WallpaperService$Engine)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaper: AndroidLiveWallpaper(com.badlogic.gdx.backends.android.AndroidLiveWallpaperService)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: void initialize(com.badlogic.gdx.ApplicationListener,com.badlogic.gdx.backends.android.AndroidApplicationConfiguration)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: void onPause()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: void onResume()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: void onDestroy()
-com.badlogic.gdx.backends.android.AndroidLiveWallpaper: android.service.wallpaper.WallpaperService getService()
-com.badlogic.gdx.backends.android.AndroidLiveWallpaper: android.service.wallpaper.WallpaperService$Engine getEngine()
+com.badlogic.gdx.backends.android.AndroidLiveWallpaper: android.view.WindowManager getWindowManager()
+com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.backends.android.AndroidLiveWallpaperService getService()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.ApplicationListener getListener()
-com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.ApplicationListener getApplicationListener()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: void postRunnable(java.lang.Runnable)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.Audio getAudio()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.Files getFiles()
@@ -1035,46 +1029,74 @@ com.badlogic.gdx.backends.android.AndroidLiveWallpaper: void setLogLevel(int)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: void exit()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: void addLifecycleListener(com.badlogic.gdx.LifecycleListener)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: void removeLifecycleListener(com.badlogic.gdx.LifecycleListener)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaper: com.badlogic.gdx.ApplicationListener getApplicationListener()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaper: void <clinit>()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: java.lang.String TAG
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: boolean DEBUG
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: int runningEngines
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: com.badlogic.gdx.backends.android.AndroidLiveWallpaper app
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: android.view.SurfaceHolder$Callback view
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: int viewFormat
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: int viewWidth
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: int viewHeight
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: int engines
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: int visibleEngines
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine linkedEngine
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: boolean isPreviewNotified
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: boolean notifiedPreviewState
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: int[] sync
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: void setLinkedEngine(com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: AndroidLiveWallpaperService()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: void onCreate()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: android.service.wallpaper.WallpaperService$Engine onCreateEngine()
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: com.badlogic.gdx.ApplicationListener createListener(boolean)
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: com.badlogic.gdx.backends.android.AndroidApplicationConfiguration createConfig()
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: void offsetChange(com.badlogic.gdx.ApplicationListener,float,float,float,float,int,int)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: void onCreateApplication()
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: void initialize(com.badlogic.gdx.ApplicationListener,boolean)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: void initialize(com.badlogic.gdx.ApplicationListener,com.badlogic.gdx.backends.android.AndroidApplicationConfiguration)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: android.view.SurfaceHolder getSurfaceHolder()
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: void onDeepPauseApplication()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: void onDestroy()
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: void finalize()
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: com.badlogic.gdx.backends.android.AndroidLiveWallpaper getLiveWallpaper()
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: android.view.WindowManager getWindowManager()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService: void <clinit>()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: com.badlogic.gdx.backends.android.AndroidLiveWallpaper app
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: com.badlogic.gdx.ApplicationListener listener
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: com.badlogic.gdx.backends.android.surfaceview.GLBaseSurfaceViewLW view
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: boolean engineIsVisible
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: int engineFormat
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: int engineWidth
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: int engineHeight
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: boolean offsetsConsumed
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: float xOffset
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: float yOffset
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: float xOffsetStep
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: float yOffsetStep
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: int xPixelOffset
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: int yPixelOffset
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: com.badlogic.gdx.backends.android.AndroidLiveWallpaperService this$0
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: AndroidLiveWallpaperService$AndroidWallpaperEngine(com.badlogic.gdx.backends.android.AndroidLiveWallpaperService)
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: android.os.Bundle onCommand(java.lang.String,int,int,int,android.os.Bundle,boolean)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onCreate(android.view.SurfaceHolder)
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onDestroy()
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onPause()
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onResume()
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onSurfaceChanged(android.view.SurfaceHolder,int,int,int)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onSurfaceCreated(android.view.SurfaceHolder)
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onSurfaceDestroyed(android.view.SurfaceHolder)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onSurfaceChanged(android.view.SurfaceHolder,int,int,int)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void notifySurfaceChanged(int,int,int,boolean)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onVisibilityChanged(boolean)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void notifyVisibilityChanged(boolean)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onResume()
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onPause()
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onSurfaceDestroyed(android.view.SurfaceHolder)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onDestroy()
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: android.os.Bundle onCommand(java.lang.String,int,int,int,android.os.Bundle,boolean)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onTouchEvent(android.view.MotionEvent)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void onOffsetsChanged(float,float,float,float,int,int)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void notifyOffsetsChanged()
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine: void notifyPreviewState()
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$1
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$1: float val$xOffset
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$1: float val$yOffset
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$1: float val$xOffsetStep
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$1: float val$yOffsetStep
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$1: int val$xPixelOffset
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$1: int val$yPixelOffset
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$1: com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine this$1
-com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$1: AndroidLiveWallpaperService$AndroidWallpaperEngine$1(com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine,float,float,float,float,int,int)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$1: AndroidLiveWallpaperService$AndroidWallpaperEngine$1(com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine)
 com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$1: void run()
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$2
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$2: boolean val$currentPreviewState
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$2: com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine this$1
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$2: AndroidLiveWallpaperService$AndroidWallpaperEngine$2(com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine,boolean)
+com.badlogic.gdx.backends.android.AndroidLiveWallpaperService$AndroidWallpaperEngine$2: void run()
 com.badlogic.gdx.backends.android.AndroidMultiTouchHandler
 com.badlogic.gdx.backends.android.AndroidMultiTouchHandler: AndroidMultiTouchHandler()
 com.badlogic.gdx.backends.android.AndroidMultiTouchHandler: void onTouch(android.view.MotionEvent,com.badlogic.gdx.backends.android.AndroidInput)
@@ -2480,7 +2502,6 @@ com.badlogic.gdx.physics.box2d.Body: long jniCreateFixture(long,long,float,float
 com.badlogic.gdx.physics.box2d.Body: long jniCreateFixture(long,long,float)
 com.badlogic.gdx.physics.box2d.Body: void jniDestroyFixture(long,long)
 com.badlogic.gdx.physics.box2d.Body: void jniSetTransform(long,float,float,float)
-com.badlogic.gdx.physics.box2d.Body: void jniSetTransform(long,float,float,float,boolean)
 com.badlogic.gdx.physics.box2d.Body: void jniGetTransform(long,float[])
 com.badlogic.gdx.physics.box2d.Body: void jniGetPosition(long,float[])
 com.badlogic.gdx.physics.box2d.Body: float jniGetAngle(long)
@@ -2490,11 +2511,11 @@ com.badlogic.gdx.physics.box2d.Body: void jniSetLinearVelocity(long,float,float)
 com.badlogic.gdx.physics.box2d.Body: void jniGetLinearVelocity(long,float[])
 com.badlogic.gdx.physics.box2d.Body: void jniSetAngularVelocity(long,float)
 com.badlogic.gdx.physics.box2d.Body: float jniGetAngularVelocity(long)
-com.badlogic.gdx.physics.box2d.Body: void jniApplyForce(long,float,float,float,float)
-com.badlogic.gdx.physics.box2d.Body: void jniApplyForceToCenter(long,float,float)
-com.badlogic.gdx.physics.box2d.Body: void jniApplyTorque(long,float)
-com.badlogic.gdx.physics.box2d.Body: void jniApplyLinearImpulse(long,float,float,float,float)
-com.badlogic.gdx.physics.box2d.Body: void jniApplyAngularImpulse(long,float)
+com.badlogic.gdx.physics.box2d.Body: void jniApplyForce(long,float,float,float,float,boolean)
+com.badlogic.gdx.physics.box2d.Body: void jniApplyForceToCenter(long,float,float,boolean)
+com.badlogic.gdx.physics.box2d.Body: void jniApplyTorque(long,float,boolean)
+com.badlogic.gdx.physics.box2d.Body: void jniApplyLinearImpulse(long,float,float,float,float,boolean)
+com.badlogic.gdx.physics.box2d.Body: void jniApplyAngularImpulse(long,float,boolean)
 com.badlogic.gdx.physics.box2d.Body: float jniGetMass(long)
 com.badlogic.gdx.physics.box2d.Body: float jniGetInertia(long)
 com.badlogic.gdx.physics.box2d.Body: void jniGetMassData(long,float[])
@@ -2746,6 +2767,7 @@ com.badlogic.gdx.utils.BufferUtils: void copyJni(java.nio.Buffer,int,java.nio.Bu
 com.badlogic.gdx.utils.JsonWriter$OutputType: com.badlogic.gdx.utils.JsonWriter$OutputType[] values()
 com.badlogic.gdx.utils.JsonWriter$OutputType: com.badlogic.gdx.utils.JsonWriter$OutputType valueOf(java.lang.String)
 com.badlogic.gdx.utils.Pool: int max
+com.badlogic.gdx.utils.Pool: int peak
 com.badlogic.gdx.utils.Pool: com.badlogic.gdx.utils.Array freeObjects
 com.badlogic.gdx.utils.Pool: Pool()
 com.badlogic.gdx.utils.Pool: Pool(int)
@@ -2755,6 +2777,7 @@ com.badlogic.gdx.utils.Pool: java.lang.Object obtain()
 com.badlogic.gdx.utils.Pool: void free(java.lang.Object)
 com.badlogic.gdx.utils.Pool: void freeAll(com.badlogic.gdx.utils.Array)
 com.badlogic.gdx.utils.Pool: void clear()
+com.badlogic.gdx.utils.Pool: int getFree()
 com.badlogic.gdx.utils.Scaling: com.badlogic.gdx.utils.Scaling[] values()
 com.badlogic.gdx.utils.Scaling: com.badlogic.gdx.utils.Scaling valueOf(java.lang.String)
 com.esotericsoftware.tablelayout.BaseTableLayout$Debug: com.esotericsoftware.tablelayout.BaseTableLayout$Debug[] values()

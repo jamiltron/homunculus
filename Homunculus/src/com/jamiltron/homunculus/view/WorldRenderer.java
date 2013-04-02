@@ -56,6 +56,11 @@ public class WorldRenderer {
   private static final float ENTERNAME_X = 14f / 2f - ENTERNAME_W / 2f;
   private static final float ENTERNAME_Y = HIGHSCORE_Y - 1f - ENTERNAME_H;
   
+  private static final float NAME_W = Assets.name.getRegionWidth() / 32f * CONTINUE_SCALE;
+  private static final float NAME_H = Assets.name.getRegionHeight() / 32f * CONTINUE_SCALE;
+  private static final float NAME_X = 14f / 2f - NAME_W / 2f;
+  private static final float NAME_Y = ENTERNAME_Y - 0.5f - NAME_H;
+  
   private float ppuX;
   private float ppuY;
   private float yDiff;
@@ -130,6 +135,7 @@ public class WorldRenderer {
     } else if (world.lost && world.scoreBroken) {
       spriteBatch.draw(Assets.highScore, HIGHSCORE_X * ppuX, HIGHSCORE_Y * ppuY, HIGHSCORE_W * ppuX, HIGHSCORE_H * ppuY);
       spriteBatch.draw(Assets.enterYour, ENTERNAME_X * ppuX, ENTERNAME_Y * ppuY, ENTERNAME_W * ppuX, ENTERNAME_H * ppuY);
+      spriteBatch.draw(Assets.name, NAME_X * ppuX, NAME_Y * ppuY, NAME_W * ppuX, NAME_H * ppuY);
     }
     
     Assets.font.setColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -183,6 +189,7 @@ public class WorldRenderer {
       spriteBatch.draw(Assets.downArrowGame, 5.5f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
       spriteBatch.draw(Assets.rightArrowGame, 9.75f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
       spriteBatch.draw(Assets.rotrArrowGame, 14f * ppuX, 0.25f * ppuY, 3 * ppuX, 3 * ppuY);
+      spriteBatch.draw(Assets.pauseButtonGame, 14f * ppuX, 5.25f * ppuY, 3 * ppuX, 3 * ppuY);
     }
   }
 

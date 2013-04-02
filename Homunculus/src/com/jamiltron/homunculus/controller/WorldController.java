@@ -189,7 +189,6 @@ public class WorldController {
     activeSpell = w.getActiveSpell();
     currentTime = 0f;
     destroying = false;
-
     resetKeys();
     setSpeed();
 
