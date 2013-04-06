@@ -578,7 +578,6 @@ public class WorldController {
           if (world.getGrid(activeSpell.bottomComponent().pos.x - 1f,
               activeSpell.bottomComponent().pos.y) == null) {
             Component top = activeSpell.topComponent();
-            Component bot = activeSpell.bottomComponent();
             top.pos.y -= 1f;
             top.pos.x -= 1f;
             activeSpell.setRotateTime(rotateDelay + dt);
