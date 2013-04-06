@@ -2201,9 +2201,14 @@ com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20 -> com.badlogic.gd
     java.lang.String TAG -> TAG
     boolean DEBUG -> DEBUG
     com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy resolutionStrategy -> resolutionStrategy
-    58:60:void onMeasure(int,int) -> onMeasure
-    69:86:void init(boolean,int,int) -> init
-    107:110:void checkEglError(java.lang.String,javax.microedition.khronos.egl.EGL10) -> checkEglError
+    64:66:void onMeasure(int,int) -> onMeasure
+    70:93:android.view.inputmethod.InputConnection onCreateInputConnection(android.view.inputmethod.EditorInfo) -> onCreateInputConnection
+    103:120:void init(boolean,int,int) -> init
+    141:144:void checkEglError(java.lang.String,javax.microedition.khronos.egl.EGL10) -> checkEglError
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$1 -> com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$1:
+    com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20 this$0 -> this$0
+    73:83:boolean deleteSurroundingText(int,int) -> deleteSurroundingText
+    86:91:void sendDownUpKeyEventForBackwardCompatibility(int) -> sendDownUpKeyEventForBackwardCompatibility
 com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$ConfigChooser -> com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$ConfigChooser:
     int EGL_OPENGL_ES2_BIT -> EGL_OPENGL_ES2_BIT
     int[] s_configAttribs2 -> s_configAttribs2
@@ -2214,15 +2219,15 @@ com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$ConfigChooser -> c
     int mDepthSize -> mDepthSize
     int mStencilSize -> mStencilSize
     int[] mValue -> mValue
-    136:157:javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay) -> chooseConfig
-    161:176:javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig[]) -> chooseConfig
-    181:184:int findConfigAttrib(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig,int,int) -> findConfigAttrib
-    188:194:void printConfigs(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig[]) -> printConfigs
-    197:228:void printConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig) -> printConfig
+    170:191:javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay) -> chooseConfig
+    195:210:javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig[]) -> chooseConfig
+    215:218:int findConfigAttrib(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig,int,int) -> findConfigAttrib
+    222:228:void printConfigs(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig[]) -> printConfigs
+    231:262:void printConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig) -> printConfig
 com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$ContextFactory -> com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$ContextFactory:
     int EGL_CONTEXT_CLIENT_VERSION -> EGL_CONTEXT_CLIENT_VERSION
-    92:97:javax.microedition.khronos.egl.EGLContext createContext(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig) -> createContext
-    101:102:void destroyContext(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLContext) -> destroyContext
+    126:131:javax.microedition.khronos.egl.EGLContext createContext(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig) -> createContext
+    135:136:void destroyContext(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLContext) -> destroyContext
 com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20LW -> com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20LW:
     java.lang.String TAG -> TAG
     boolean DEBUG -> DEBUG

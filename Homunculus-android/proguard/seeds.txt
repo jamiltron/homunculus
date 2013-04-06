@@ -2072,9 +2072,15 @@ com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20: com.badlogic.gdx.
 com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20: GLSurfaceView20(android.content.Context,com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy)
 com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20: GLSurfaceView20(android.content.Context,boolean,int,int,com.badlogic.gdx.backends.android.surfaceview.ResolutionStrategy)
 com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20: void onMeasure(int,int)
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20: android.view.inputmethod.InputConnection onCreateInputConnection(android.view.inputmethod.EditorInfo)
 com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20: void init(boolean,int,int)
 com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20: void checkEglError(java.lang.String,javax.microedition.khronos.egl.EGL10)
 com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20: void <clinit>()
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$1
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$1: com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20 this$0
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$1: GLSurfaceView20$1(com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20,android.view.View,boolean)
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$1: boolean deleteSurroundingText(int,int)
+com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$1: void sendDownUpKeyEventForBackwardCompatibility(int)
 com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$ConfigChooser
 com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$ConfigChooser: int EGL_OPENGL_ES2_BIT
 com.badlogic.gdx.backends.android.surfaceview.GLSurfaceView20$ConfigChooser: int[] s_configAttribs2

@@ -8,6 +8,11 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldListener;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Pool;
 import com.jamiltron.homunculus.Assets;
 import com.jamiltron.homunculus.HomunculusGame;
@@ -15,11 +20,6 @@ import com.jamiltron.homunculus.Settings;
 import com.jamiltron.homunculus.controller.WorldController;
 import com.jamiltron.homunculus.model.World;
 import com.jamiltron.homunculus.view.WorldRenderer;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class GameScreen implements Screen, InputProcessor {
   private World                world;
