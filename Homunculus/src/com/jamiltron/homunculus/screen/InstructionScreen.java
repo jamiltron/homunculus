@@ -162,7 +162,7 @@ public class InstructionScreen implements Screen, InputProcessor {
     ppuY = ppuX;
     xDiff = width - CAMERA_W * ppuX;
     yDiff = height - CAMERA_H * ppuY;
-    Assets.scaleFont(ppuX / (32f / ppuX), ppuY / (32f/ ppuY));
+    Assets.scaleFont(ppuX / (32f / ppuX), ppuY / (32f / ppuY));
     setHeight();
   }
   
