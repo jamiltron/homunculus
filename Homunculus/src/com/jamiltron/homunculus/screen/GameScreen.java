@@ -402,8 +402,8 @@ public class GameScreen implements Screen, InputProcessor {
     if (!game.desktopGame) {
       if (!world.paused) {
         controller.anyPress();
-        if (Math.abs(lastX - screenX) <= 1f &&
-            Math.abs(lastY - screenY) <= 1f &&
+        if (Math.abs(lastX - screenX) <= 50f &&
+            Math.abs(lastY - screenY) <=  50f &&
             screenY < height - 3.25 * ppuY) {
           controller.rotrPress();
         }

@@ -28,3 +28,4 @@
 2013-04-02 20:24:14,798 [org.eclipse.jdt.internal.ui.text.JavaReconciler] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
 2013-04-02 22:46:57,381 [org.eclipse.jdt.internal.ui.text.JavaReconciler] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
 2013-04-05 08:44:34,601 [org.eclipse.jdt.internal.ui.text.JavaReconciler] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
+2013-04-07 14:24:19,017 [org.eclipse.jdt.internal.ui.text.JavaReconciler] INFO  org.mortbay.log - Logging to Logger[org.mortbay.log] via org.mortbay.log.Slf4jLog
